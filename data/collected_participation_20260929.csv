@@ -1,0 +1,11 @@
+company_id,scope_type,scope_code,role_code,valid_from,valid_to,confidence_score,evidence_url,note
+ORG-001,SITE,LGU_PYEONGCHON,OPERATOR,,,1.0,https://www.lguplus.com/biz/all/telecom/idc/center/B000000031,공식 센터 안내
+ORG-001,SITE,LGU_NONHYEON,OPERATOR,,,1.0,https://www.lguplus.com/biz/all/telecom/idc/center/B000000031,공식 센터 안내
+ORG-001,SITE,LGU_SANGAM,OPERATOR,,,1.0,https://www.lguplus.com/biz/all/telecom/idc/center/B000000031,공식 센터 안내
+ORG-001,SITE,LGU_GASAN,OPERATOR,,,1.0,https://www.lguplus.com/biz/all/telecom/idc/center/B000000031,공식 센터 안내
+ORG-001,SITE,LGU_SEOCHO1,OPERATOR,,,1.0,https://www.lguplus.com/biz/all/telecom/idc/center/B000000031,공식 센터 안내
+ORG-001,SITE,LGU_SEOCHO2,OPERATOR,,,1.0,https://www.lguplus.com/biz/all/telecom/idc/center/B000000031,공식 센터 안내
+ORG-003,SITE,SKB_GASAN,OPERATOR,,,1.0,https://biz.skbroadband.com/page.do?menu_id=P06010100,공식 센터 안내
+ORG-003,SITE,SKB_SEOCHO,OPERATOR,,,1.0,https://biz.skbroadband.com/page.do?menu_id=P06010100,공식 센터 안내
+ORG-003,SITE,SKB_ILSAN,OPERATOR,,,1.0,https://biz.skbroadband.com/page.do?menu_id=P06010100,공식 센터 안내
+ORG-003,SITE,SKB_BUNDANG,OPERATOR,,,1.0,https://biz.skbroadband.com/page.do?menu_id=P06010100,공식 센터 안내

@@ -1,0 +1,11 @@
+project_code,site_code,project_name,project_scope,project_type,status_code,scope_note,planned_rfs_date,rfs_date,completion_date,service_start_date
+LGU_PYEONGCHON_OP,LGU_PYEONGCHON,평촌메가센터 운영,WHOLE_SITE,IDC,OPERATING,LG유플러스 공식 IDC 센터 안내 기준,,,,
+LGU_NONHYEON_OP,LGU_NONHYEON,논현센터 운영,WHOLE_SITE,IDC,OPERATING,LG유플러스 공식 IDC 센터 안내 기준,,,,
+LGU_SANGAM_OP,LGU_SANGAM,상암센터 운영,WHOLE_SITE,IDC,OPERATING,LG유플러스 공식 IDC 센터 안내 기준,,,,
+LGU_GASAN_OP,LGU_GASAN,가산센터 운영,WHOLE_SITE,IDC,OPERATING,LG유플러스 공식 IDC 센터 안내 기준,,,,
+LGU_SEOCHO1_OP,LGU_SEOCHO1,서초1센터 운영,WHOLE_SITE,IDC,OPERATING,LG유플러스 공식 IDC 센터 안내 기준,,,,
+LGU_SEOCHO2_OP,LGU_SEOCHO2,서초2센터 운영,WHOLE_SITE,IDC,OPERATING,LG유플러스 공식 IDC 센터 안내 기준,,,,
+SKB_GASAN_OP,SKB_GASAN,가산센터 운영,WHOLE_SITE,IDC,OPERATING,SK브로드밴드 공식 IDC 센터 안내 기준,,,,
+SKB_SEOCHO_OP,SKB_SEOCHO,서초센터 운영,WHOLE_SITE,IDC,OPERATING,SK브로드밴드 공식 IDC 센터 안내 기준,,,,
+SKB_ILSAN_OP,SKB_ILSAN,일산센터 운영,WHOLE_SITE,IDC,OPERATING,SK브로드밴드 공식 IDC 센터 안내 기준,,,,
+SKB_BUNDANG_OP,SKB_BUNDANG,분당센터 운영,WHOLE_SITE,IDC,OPERATING,SK브로드밴드 공식 IDC 센터 안내 기준,,,,
