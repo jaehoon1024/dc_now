@@ -9,3 +9,6 @@ dashboard/*.json
 dashboard/status.html
 dashboard/quality.html
 !deploy/data.json
+
+# Local Netlify folder
+.netlify
