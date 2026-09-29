@@ -11,7 +11,7 @@ ROOT=Path(__file__).resolve().parent;OUT=ROOT/"deploy"
 def build_payload(repo):
  sites,total=repo.sites(None,None,500,0)
  details={x["site_code"]:repo.site_detail(x["site_code"]) for x in sites}
- return {"generated_at":datetime.now().astimezone().isoformat(),"total":total,"sites":sites,"details":details,"regions":repo.regions(),"companies":repo.companies(),"yearly":repo.yearly(),"collection_status":repo.collection_status()}
+ return {"generated_at":datetime.now().astimezone().isoformat(),"total":total,"target_summary":repo.target_summary(),"sites":sites,"details":details,"regions":repo.regions(),"companies":repo.companies(),"yearly":repo.yearly(),"collection_status":repo.collection_status()}
 def render_html(payload):
  page=(ROOT/"dashboard/professional.html").read_text(encoding="utf-8")
  page=page.replace(
@@ -34,6 +34,7 @@ def render_html(payload):
   '<dt>운영사</dt><dd>${esc(x.operator_names)}</dd>',
   '<dt>운영사</dt><dd>${esc(x.operator_names)}</dd><dt>자산운용사</dt><dd>${esc(x.asset_manager_names)}</dd><dt>시공사</dt><dd>${esc(x.builder_names)}</dd>',
  )
+ page=page.replace('공개·검토 완료 기준','수집 대상 총계 · 공개 지표 분리')
  page=page.replace(
   '<div class="foot">',
   '<section class="panel section"><div class="ph"><h2>생태계 추적 범위</h2><span class="meta">근거 확인 후 센터·프로젝트와 연결</span></div><div class="body"><div class="metric"><span>자산운용사</span><b>이지스 · 코람코 · ESR켄달스퀘어 · 마스턴</b></div><div class="metric"><span>시공사</span><b>삼성물산 · 현대건설 · GS건설 · DL이앤씨 · SK에코플랜트</b></div></div></section><div class="foot">',
@@ -62,8 +63,12 @@ def render_html(payload):
   '<strong id="docs">0</strong>':f'<strong id="docs">{sum(x.get("new_document_count") or 0 for x in payload["collection_status"])}</strong>',
   '<tbody id="rows"></tbody>':f'<tbody id="rows">{rows}</tbody>',
  }
+ target=payload.get("target_summary") or {"target_total":payload["total"],"public_total":payload["total"],"needs_evidence_total":0}
+ replacements['<small>공개 센터</small>']=f'<small>공개 {target["public_total"]} / 근거 검토 {target["needs_evidence_total"]}</small>'
+ replacements[f'<strong id="total">{payload["total"]}</strong>']=f'<strong id="total">{target["target_total"]}</strong>'
  if sites:replacements['<div class="empty" id="empty">']='<div class="empty" id="empty" hidden>'
  for old,new in replacements.items():page=page.replace(old,new)
+ page=page.replace("$('#total').textContent=F.length;", "")
  return page
 def write_site(payload,out=OUT):
  out.mkdir(parents=True,exist_ok=True);(out/"index.html").write_text(render_html(payload),encoding="utf-8")

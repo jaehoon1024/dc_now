@@ -1,0 +1,75 @@
+site_code,site_name,address_raw,address_standard,sido,sigungu,latitude,longitude,location_precision,coordinate_quality
+DLR_ICN11,Digital Realty ICN11,경기도 김포시 구래동 6877-9,경기도 김포시 구래동 6877-9,경기도,김포시,,,PARCEL,C
+DIGITALEDGE_SEL1,Digital Edge SEL1,서울특별시 강남구 역삼동 646-1,서울특별시 강남구 역삼동 646-1,서울특별시,강남구,,,PARCEL,C
+KT_MOKDONG1,KT Cloud 목동1 IDC,서울특별시 양천구 목동 924-4,서울특별시 양천구 목동동로 233-5,서울특별시,양천구,,,ROAD,C
+LGCNS_SANGAM,LG CNS 상암 IT센터,서울특별시 마포구 상암동,서울특별시 마포구 월드컵북로 424,서울특별시,마포구,,,ROAD,C
+SAMSUNG_SDS_SANGAM,삼성SDS 상암 ICT센터,서울특별시 마포구 상암동,서울특별시 마포구 월드컵북로60길 24,서울특별시,마포구,,,ROAD,C
+DC_CONNECTS_SOUL01,DC Connects Soul01,경기도 용인시 처인구 덕성리 448-8,경기도 용인시 처인구 덕성리 448-8,경기도,용인시,,,PARCEL,C
+STT_SEOUL1,STT Seoul 1,서울특별시 금천구 가산동 345-26,서울특별시 금천구 가산동 345-26,서울특별시,금천구,,,PARCEL,C
+EMPYRION_KR1,Empyrion Digital KR1,서울특별시 서초구 양재동 224,서울특별시 서초구 양재동 224,서울특별시,서초구,,,PARCEL,C
+KT_YEOUIDO,KT Cloud 여의도 IDC,서울특별시 영등포구 여의도동,서울특별시 영등포구 여의대로 14,서울특별시,영등포구,,,ROAD,C
+KT_MOKDONG2,KT Cloud 목동2 IDC,서울특별시 양천구 목동,서울특별시 양천구 목동동로 323,서울특별시,양천구,,,ROAD,C
+TELEHOUSE_SEOUL,TELEHOUSE Seoul,서울특별시 중구 태평로1가,서울특별시 중구 세종대로 136,서울특별시,중구,,,ROAD,C
+LGCNS_JUKJEON,LG CNS 죽전 데이터센터,경기도 용인시 수지구 죽전동 1358,경기도 용인시 수지구 죽전동 1358,경기도,용인시,,,PARCEL,C
+LGCNS_GASAN,LG CNS 가산 데이터센터,서울특별시 금천구 가산동,서울특별시 금천구 가산디지털1로 189,서울특별시,금천구,,,ROAD,C
+EQUINIX_SL4,Equinix SL4,경기도 고양시 덕양구 향동동 585,경기도 고양시 덕양구 향동동 585,경기도,고양시,,,PARCEL,C
+NETREALTY_ICN01,NETREALTY ICN-01,서울특별시 금천구 가산동,서울특별시 금천구 디지털로9길 32,서울특별시,금천구,,,ROAD,C
+DAOU_JUKJEON,다우기술 죽전 CDC,경기도 용인시 수지구 죽전동 23-11,경기도 용인시 수지구 죽전동 23-11,경기도,용인시,,,PARCEL,C
+KT_GASAN,KT Cloud 가산 IDC,서울특별시 금천구 가산동,서울특별시 금천구 가산디지털2로 23,서울특별시,금천구,,,ROAD,C
+DIGITALEDGE_SEL2,Digital Edge SEL2,인천광역시 부평구 청천동 422,인천광역시 부평구 청천동 422,인천광역시,부평구,,,PARCEL,C
+EQUINIX_SL2X,Equinix SL2x,경기도 고양시 덕양구 향동동 585,경기도 고양시 덕양구 향동동 585,경기도,고양시,,,PARCEL,C
+KT_GURO,KT Cloud 구로 데이터센터,서울특별시 구로구 개봉동 166-2,서울특별시 구로구 개봉동 166-2,서울특별시,구로구,,,PARCEL,C
+LOTTE_INTEGRATED,롯데 통합 데이터센터,서울특별시 금천구 가산동,서울특별시 금천구 가산디지털2로 179,서울특별시,금천구,,,ROAD,C
+KT_GANGNAM,KT Cloud 강남 IDC,서울특별시 강남구 역삼동,서울특별시 강남구 언주로 517,서울특별시,강남구,,,ROAD,C
+EQUINIX_SL3X,Equinix SL3x,경기도 고양시 덕양구 향동동 583,경기도 고양시 덕양구 향동동 583,경기도,고양시,,,PARCEL,C
+KINX_BUNDANG1,KINX 분당1 IDC,경기도 성남시 분당구 야탑동,경기도 성남시 분당구 장미로 36,경기도,성남시,,,ROAD,C
+EPOCH_YANGPYEONG,Epoch Digital 양평 데이터센터,서울특별시 영등포구 양평동3가 77-80,서울특별시 영등포구 양평동3가 77-80,서울특별시,영등포구,,,PARCEL,C
+SCZEUS_BUCHEON,SC Zeus 부천 데이터센터,경기도 부천시 춘의동 65-2,경기도 부천시 춘의동 65-2,경기도,부천시,,,PARCEL,C
+KAKAO_HANAM,카카오 하남 데이터센터,경기도 하남시 풍산동 607-2,경기도 하남시 풍산동 607-2,경기도,하남시,,,PARCEL,C
+PDG_SE1,Princeton Digital SE1,인천광역시 부평구 청천동 414-2,인천광역시 부평구 청천동 414-2,인천광역시,부평구,,,PARCEL,C
+KINX_DOGOK,KINX 도곡 IDC,서울특별시 강남구 도곡동,서울특별시 강남구 언주로30길 13,서울특별시,강남구,,,ROAD,C
+KEPPEL_ANSAN,Keppel 안산 데이터센터,경기도 안산시 단원구 원시동 726-4,경기도 안산시 단원구 원시동 726-4,경기도,안산시,,,PARCEL,C
+DIGITALEDGE_SEL3,Digital Edge SEL3,인천광역시 부평구 청천동 422,인천광역시 부평구 청천동 422,인천광역시,부평구,,,PARCEL,C
+EPOCH_ANYANG,Epoch Digital 안양 데이터센터,경기도 안양시 동안구 호계동,경기도 안양시 동안구 엘에스로 126,경기도,안양시,,,ROAD,C
+KT_YONGSAN,KT Cloud 용산 IDC,서울특별시 용산구 원효로,서울특별시 용산구 원효로41길 33,서울특별시,용산구,,,ROAD,C
+KT_DAEJEON,KT Cloud 대전 IDC,대전광역시 서구 둔산동,대전광역시 서구 문정로48번길 30,대전광역시,서구,,,ROAD,C
+KAKAO_NAMYANGJU,카카오 남양주 데이터센터,경기도 남양주시 일원,경기도 남양주시,경기도,남양주시,,,CITY,D
+OKESTRO_YEOUIDO,오케스트로 여의도 AI 데이터센터,서울특별시 영등포구 여의도동,서울특별시 영등포구 여의대로 108,서울특별시,영등포구,,,ROAD,C
+KINX_PYEONGCHON,KINX 평촌 IDC,경기도 안양시 동안구 관양동,경기도 안양시 동안구 벌말로 113,경기도,안양시,,,ROAD,C
+DIGITALEDGE_SEL5,Digital Edge SEL5,경기도 안산시 단원구 성곡동 668-1,경기도 안산시 단원구 성곡동 668-1,경기도,안산시,,,PARCEL,C
+DCI_ANSAN01,DCI Ansan 01,경기도 안산시 단원구 성곡동,경기도 안산시 단원구 성곡동,경기도,안산시,,,DISTRICT,D
+DCI_SEOUL01,DCI Seoul 01,서울특별시 금천구 가산동 459-3,서울특별시 금천구 가산동 459-3,서울특별시,금천구,,,PARCEL,C
+DREAMMARK1_GURO,Dreammark1 구로 IDC,서울특별시 구로구 구로동,서울특별시 구로구 디지털로31길 61,서울특별시,구로구,,,ROAD,C
+KSQUARE_GASAN,K Square 가산 데이터센터,서울특별시 금천구 가산동 319-19,서울특별시 금천구 가산동 319-19,서울특별시,금천구,,,PARCEL,C
+DAOU_MAPO,다우기술 마포 IDC,서울특별시 마포구 용강동,서울특별시 마포구 독막로 311,서울특별시,마포구,,,ROAD,C
+MOACK_GANGNAM,Moack 강남 데이터센터,서울특별시 강남구 도곡동 553-3,서울특별시 강남구 도곡동 553-3,서울특별시,강남구,,,PARCEL,C
+SAMSUNG_SDS_SUWON,삼성SDS 수원 ICT센터,경기도 수원시 영통구 매탄동,경기도 수원시 영통구 삼성로168번길 10,경기도,수원시,,,ROAD,C
+LGCNS_SAMSONG_A,LG CNS 삼송 A동 데이터센터,경기도 고양시 덕양구 오금동 690,경기도 고양시 덕양구 오금동 690,경기도,고양시,,,PARCEL,C
+LGCNS_SAMSONG_B,LG CNS 삼송 B동 데이터센터,경기도 고양시 덕양구 오금동 690,경기도 고양시 덕양구 오금동 690,경기도,고양시,,,PARCEL,C
+NFD_DANGJIN_B1,NFD 당진 송산 IDC 1동,충청남도 당진시 송산면 동곡리 379,충청남도 당진시 송산면 동곡리 379,충청남도,당진시,,,PARCEL,C
+NFD_DANGJIN_B2,NFD 당진 송산 IDC 2동,충청남도 당진시 송산면 동곡리 379,충청남도 당진시 송산면 동곡리 379,충청남도,당진시,,,PARCEL,C
+NFD_DANGJIN_B3,NFD 당진 송산 IDC 3동,충청남도 당진시 송산면 동곡리 379,충청남도 당진시 송산면 동곡리 379,충청남도,당진시,,,PARCEL,C
+NFD_DANGJIN_B4,NFD 당진 송산 IDC 4동,충청남도 당진시 송산면 동곡리 379,충청남도 당진시 송산면 동곡리 379,충청남도,당진시,,,PARCEL,C
+NFD_DANGJIN_B5,NFD 당진 송산 IDC 5동,충청남도 당진시 송산면 동곡리 379,충청남도 당진시 송산면 동곡리 379,충청남도,당진시,,,PARCEL,C
+NFD_DANGJIN_B6,NFD 당진 송산 IDC 6동,충청남도 당진시 송산면 동곡리 379,충청남도 당진시 송산면 동곡리 379,충청남도,당진시,,,PARCEL,C
+LGU_PAJU,LG유플러스 파주 데이터센터,경기도 파주시 일원,경기도 파주시,경기도,파주시,,,CITY,D
+KOSCOM_ANYANG,코스콤 안양 IDC,경기도 안양시 동안구 호계동,경기도 안양시 동안구 엘에스로115번길 26,경기도,안양시,,,ROAD,C
+DIGITALEDGE_PUS1,Digital Edge PUS1,부산광역시 해운대구 우동,부산광역시 해운대구 센텀7로 32,부산광역시,해운대구,,,ROAD,C
+KT_GIMHAE,KT Cloud 김해 IDC,경상남도 김해시,경상남도 김해시 분성로3번길 235-2,경상남도,김해시,,,ROAD,C
+MICROSOFT_PUS05,Microsoft Busan PUS05,부산광역시 강서구 구랑동 1278-5,부산광역시 강서구 구랑동 1278-5,부산광역시,강서구,,,PARCEL,C
+KOSCOM_BUSAN,코스콤 부산 IDC,부산광역시 동구 범일동 828-9,부산광역시 동구 범일동 828-9,부산광역시,동구,,,PARCEL,C
+INUVERSE_DAEGU,Inuverse AI 대구 데이터센터,경상북도 영천시 남성리 485,경상북도 영천시 남성리 485,경상북도,영천시,,,PARCEL,C
+LOTTE_GLOBAL,롯데 글로벌 클라우드센터,경기도 용인시 기흥구 마북동,경기도 용인시 기흥구 마북동,경기도,용인시,,,DISTRICT,D
+LOTTE_EXTERNAL,롯데 외부·글로벌센터,경기도 용인시 기흥구 마북동 102-18,경기도 용인시 기흥구 마북동 102-18,경기도,용인시,,,PARCEL,C
+SKB_PANGYO,SK브로드밴드 판교 CDC,경기도 성남시 분당구 삼평동,경기도 성남시 분당구 판교로255번길 46,경기도,성남시,,,ROAD,C
+SEJONG_BUNDANG,세종텔레콤 분당 IDC,경기도 용인시 수지구 동천동,경기도 용인시 수지구 용구대로2771번길 85,경기도,용인시,,,ROAD,C
+DOUZONE_CHUNCHEON,더존 춘천 IDC,강원특별자치도 춘천시 남산면,강원특별자치도 춘천시 남산면 버들1길 130,강원특별자치도,춘천시,,,ROAD,C
+NEOAI_POHANG,NeoAI 포항 데이터센터,경상북도 포항시 남구 오천읍 광명리,경상북도 포항시 남구 오천읍 광명리,경상북도,포항시,,,DISTRICT,D
+PENTACITY_POHANG,펜타시티 AI 데이터센터,경상북도 포항시 북구 흥해읍 이인리 134,경상북도 포항시 북구 흥해읍 이인리 134,경상북도,포항시,,,PARCEL,C
+OKESTRO_SEJONG,오케스트로 세종 데이터센터,세종특별자치시 어진동,세종특별자치시 가름로 194,세종특별자치시,세종시,,,ROAD,C
+KT_GYEONGBUK_AI,KT 경북 AI 클라우드 데이터센터,경상북도 예천군 호명면 금능리 832,경상북도 예천군 호명면 금능리 832,경상북도,예천군,,,PARCEL,C
+SAMSUNG_SDS_GUMI,삼성SDS 구미 데이터센터,경상북도 구미시 공단동,경상북도 구미시 1공단로 244,경상북도,구미시,,,ROAD,C
+SGC_GUNSAN,SGC 군산 AI 데이터센터,전북특별자치도 군산시,전북특별자치도 군산시 외항로 1331,전북특별자치도,군산시,,,ROAD,C
+GS_DONGHAE_AI,GS 동해 AI 데이터센터,강원특별자치도 동해시 추암동 48-12,강원특별자치도 동해시 추암동 48-12,강원특별자치도,동해시,,,PARCEL,C
+KT_BAEKSEOK_AI,KT Cloud 백석 AI 데이터센터,경기도 고양시 일산동구 백석동,경기도 고양시 일산동구 경의로 235,경기도,고양시,,,ROAD,C
+KT_SONGJEONG,KT Cloud 송정 데이터센터,부산광역시 해운대구 송정동,부산광역시 해운대구 송정광어골로 42,부산광역시,해운대구,,,ROAD,C

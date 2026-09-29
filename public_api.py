@@ -80,6 +80,20 @@ class PublicRepository:
         total = int(rows[0].pop("total_count")) if rows else 0
         return rows, total
 
+    def target_summary(self) -> dict[str, int]:
+        with self.engine.connect() as connection:
+            row = connection.execute(text("""
+                SELECT count(*) AS target_total,
+                       count(*) FILTER (
+                           WHERE public_visible = true AND review_status = 'CONFIRMED'
+                       ) AS public_total,
+                       count(*) FILTER (
+                           WHERE review_status = 'NEEDS_EVIDENCE'
+                       ) AS needs_evidence_total
+                FROM dc_site WHERE record_status = 'ACTIVE'
+            """)).mappings().one()
+        return {key: int(value or 0) for key, value in row.items()}
+
     def regions(self) -> list[dict[str, Any]]:
         with self.engine.connect() as connection:
             rows = connection.execute(

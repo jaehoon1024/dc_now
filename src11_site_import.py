@@ -95,7 +95,11 @@ def import_rows(engine: Any, rows: list[dict[str, Any]]) -> int:
                     :site_code, :site_name, :address_raw, NULLIF(:address_standard,''),
                     NULLIF(:sido,''), NULLIF(:sigungu,''), :location_precision,
                     :coordinate_quality,
-                    CASE WHEN :latitude IS NULL THEN NULL ELSE ST_SetSRID(ST_MakePoint(:longitude,:latitude),4326) END,
+                    CASE WHEN CAST(:latitude AS double precision) IS NULL THEN NULL
+                         ELSE ST_SetSRID(ST_MakePoint(
+                             CAST(:longitude AS double precision),
+                             CAST(:latitude AS double precision)
+                         ),4326) END,
                     'NEEDS_EVIDENCE', false
                 ) ON CONFLICT (site_code) DO NOTHING
             """), row)

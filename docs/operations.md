@@ -137,6 +137,18 @@ curl -s http://127.0.0.1:8765/api/v1/healthz
 .venv/bin/python -B src11_site_import.py 준비된파일.csv --apply
 ```
 
+## 2026-09-30 수집 대상 100개 확장
+
+- 기존 공개·확정 센터 26개는 그대로 유지한다.
+- `data/collected_site_targets_20260930.csv`의 신규 후보 74개는 `NEEDS_EVIDENCE`, 비공개 상태로 반입한다.
+- 후보 출처는 `DATACENTERMAP_KR`로 등록하며, 공식 사업자 자료를 교차 확인한 뒤 검토 워크플로에서 공개한다.
+- 대시보드의 수집 대상 총계는 100개이며 공개 목록과 지도에는 확정된 26개만 표시한다.
+
+```bash
+.venv/bin/python src11_site_import.py data/collected_site_targets_20260930.csv
+.venv/bin/python src11_site_import.py data/collected_site_targets_20260930.csv --apply
+```
+
 ## 2026-09-29 프로젝트 기준 데이터 반입
 
 - `src12_project_import.py`는 프로젝트 코드·센터 참조·상태·날짜 순서·중복을 검증한다.
