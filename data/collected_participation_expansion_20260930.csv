@@ -1,0 +1,11 @@
+company_id,scope_type,scope_code,role_code,valid_from,valid_to,confidence_score,evidence_url,note
+ORG-001,SITE,LGU_DAEGU,OPERATOR,,,1.0,https://www.lguplus.com/biz/all/telecom/idc/center/B000000031,공식 센터 안내
+ORG-001,SITE,LGU_ANYANG,OPERATOR,,,1.0,https://www.lguplus.com/biz/all/telecom/idc/center/B000000031,공식 센터 안내
+ORG-001,SITE,LGU_BUSAN_AMI,OPERATOR,,,1.0,https://www.lguplus.com/biz/all/telecom/idc/center/B000000031,공식 센터 안내
+ORG-001,SITE,LGU_DAEJEON,OPERATOR,,,1.0,https://www.lguplus.com/biz/all/telecom/idc/center/B000000031,공식 센터 안내
+ORG-001,SITE,LGU_GWANGJU,OPERATOR,,,1.0,https://www.lguplus.com/biz/all/telecom/idc/center/B000000031,공식 센터 안내
+ORG-005,SITE,NAVER_GAK_CHUNCHEON,OPERATOR,,,1.0,https://datacenter.navercorp.com/,공식 데이터센터 안내
+ORG-005,SITE,NAVER_GAK_SEJONG,OPERATOR,,,1.0,https://datacenter.navercorp.com/,공식 데이터센터 안내
+ORG-007,SITE,KINX_GWACHEON,OPERATOR,,,1.0,https://www.kinx.net/,공식 IDC 안내
+ORG-008,SITE,EQUINIX_SL1,OPERATOR,,,1.0,https://www.equinix.com/data-centers/asia-pacific-colocation/south-korea-colocation/seoul-data-centers,공식 데이터센터 안내
+ORG-009,SITE,DLR_ICN10,OPERATOR,,,1.0,https://www.digitalrealty.com/data-centers/asia-pacific/seoul/icn10,공식 데이터센터 안내

@@ -14,6 +14,22 @@ def build_payload(repo):
  return {"generated_at":datetime.now().astimezone().isoformat(),"total":total,"sites":sites,"details":details,"regions":repo.regions(),"companies":repo.companies(),"yearly":repo.yearly(),"collection_status":repo.collection_status()}
 def render_html(payload):
  page=(ROOT/"dashboard/professional.html").read_text(encoding="utf-8")
+ page=page.replace(
+  '.map{height:430px;position:relative;overflow:hidden;background:linear-gradient(145deg,#eaf2f7,#dcebf0)}',
+  '.map{height:430px;position:relative;overflow:hidden;background:#eaf2f7}.map iframe{width:100%;height:100%;border:0}.maphint{position:absolute;left:12px;bottom:12px;background:#081a2bdd;color:#fff;padding:8px 10px;border-radius:6px;font-size:11px;pointer-events:none}',
+ )
+ page=page.replace(
+  '<h2>전국 데이터센터 자산 지도</h2><span class="meta">운영·개발 단계별 위치</span></div><div class="map" id="map"><div class="grid"></div><div class="land"></div><div class="legend"><i style="background:var(--green)"></i>운영 <i style="background:var(--amber)"></i>개발·기타</div></div>',
+  '<h2>Google Maps · 데이터센터 자산 지도</h2><span class="meta">센터 행을 선택하면 해당 위치로 이동</span></div><div class="map" id="map"><iframe id="gmap" title="Google 데이터센터 지도" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD+%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%84%BC%ED%84%B0&amp;z=7&amp;output=embed"></iframe><div class="maphint">센터 목록에서 행을 선택하세요</div></div>',
+ )
+ page=page.replace(
+  "function detail(code){let x=D.details[code]||D.sites.find(v=>v.site_code===code);$('#dtitle').textContent=x.site_name;",
+  "function detail(code){let x=D.details[code]||D.sites.find(v=>v.site_code===code);if(x.latitude&&x.longitude)$('#gmap').src=`https://maps.google.com/maps?q=${encodeURIComponent(x.latitude+','+x.longitude)}&z=15&output=embed`;$('#dtitle').textContent=x.site_name;",
+ )
+ page=page.replace(
+  ";document.querySelectorAll('.marker').forEach(x=>x.remove());F.filter(x=>x.latitude!=null&&x.longitude!=null).forEach(x=>{let m=document.createElement('button');m.className='marker '+x.lifecycle_group;m.title=x.site_name;m.style.left=((x.longitude-124)/8*64+18)+'%';m.style.top=((39-x.latitude)/6*84+8)+'%';m.onclick=()=>detail(x.site_code);$('#map').append(m)});document.querySelectorAll('#rows tr').forEach(x=>x.onclick=e=>{if(e.target.tagName!=='A')detail(x.dataset.code)});bars()}",
+  ";document.querySelectorAll('#rows tr').forEach(x=>x.onclick=e=>{if(e.target.tagName!=='A')detail(x.dataset.code)});bars()}",
+ )
  sites=payload["sites"]
  rows="".join(
   "<tr data-code=\"{}\"><td><b>{}</b><br><small>{}</small></td><td>{} {}</td><td><span class=\"badge\">{}</span></td><td>{}</td><td>{}</td><td>{}</td><td><a target=\"_blank\" rel=\"noopener\" href=\"https://www.google.com/maps/search/?api=1&amp;query={},{}\">지도 ↗</a></td></tr>".format(
@@ -44,7 +60,7 @@ def render_html(payload):
 def write_site(payload,out=OUT):
  out.mkdir(parents=True,exist_ok=True);(out/"index.html").write_text(render_html(payload),encoding="utf-8")
  (out/"data.json").write_text(json.dumps(payload,ensure_ascii=False,default=json_value,separators=(",",":")),encoding="utf-8")
- (out/"_headers").write_text("/*\n  Cache-Control: public, max-age=0, must-revalidate\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: no-referrer\n  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'\n\n/data.json\n  Cache-Control: public, max-age=60, must-revalidate\n",encoding="utf-8")
+ (out/"_headers").write_text("/*\n  Cache-Control: public, max-age=0, must-revalidate\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: no-referrer\n  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-src https://www.google.com https://maps.google.com\n\n/data.json\n  Cache-Control: public, max-age=60, must-revalidate\n",encoding="utf-8")
 def main():
  load_env_file();e=create_engine(resolve_database_url(),connect_args={"options":"-c default_transaction_read_only=on -c statement_timeout=10000"})
  try:payload=build_payload(PublicRepository(e))

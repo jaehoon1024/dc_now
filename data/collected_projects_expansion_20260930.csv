@@ -1,0 +1,11 @@
+project_code,site_code,project_name,project_scope,project_type,status_code,scope_note,planned_rfs_date,rfs_date,completion_date,service_start_date
+LGU_DAEGU_OP,LGU_DAEGU,대구센터 운영,WHOLE_SITE,IDC,OPERATING,운영사 공식 센터 안내 기준,,,,
+LGU_ANYANG_OP,LGU_ANYANG,안양센터 운영,WHOLE_SITE,IDC,OPERATING,운영사 공식 센터 안내 기준,,,,
+LGU_BUSAN_AMI_OP,LGU_BUSAN_AMI,부산 아미센터 운영,WHOLE_SITE,IDC,OPERATING,운영사 공식 센터 안내 기준,,,,
+LGU_DAEJEON_OP,LGU_DAEJEON,대전센터 운영,WHOLE_SITE,IDC,OPERATING,운영사 공식 센터 안내 기준,,,,
+LGU_GWANGJU_OP,LGU_GWANGJU,광주센터 운영,WHOLE_SITE,IDC,OPERATING,운영사 공식 센터 안내 기준,,,,
+NAVER_GAK_CHUNCHEON_OP,NAVER_GAK_CHUNCHEON,각 춘천 운영,WHOLE_SITE,HYPERSCALE,OPERATING,운영사 공식 데이터센터 안내 기준,,,,
+NAVER_GAK_SEJONG_OP,NAVER_GAK_SEJONG,각 세종 운영,WHOLE_SITE,HYPERSCALE,OPERATING,운영사 공식 데이터센터 안내 기준,,,,
+KINX_GWACHEON_OP,KINX_GWACHEON,과천센터 운영,WHOLE_SITE,IDC,OPERATING,운영사 공식 센터 안내 기준,,,,
+EQUINIX_SL1_OP,EQUINIX_SL1,SL1 운영,WHOLE_SITE,COLOCATION,OPERATING,운영사 공식 센터 안내 기준,,,,
+DLR_ICN10_OP,DLR_ICN10,ICN10 운영,WHOLE_SITE,COLOCATION,OPERATING,운영사 공식 센터 안내 기준,,,,
