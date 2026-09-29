@@ -1,6 +1,6 @@
 [
  {"task":"DB 0001~0015","status":"완료","evidence":"0015 근거 문서 검토 스키마 적용, revision/head 일치"},
- {"task":"SRC-01 출처 등록","status":"완료·확장 중","evidence":"26개 등록; 자동수집 활성 출처 6개, RSS 피드 7개, 뉴스룸 페이지 2개"},
+ {"task":"SRC-01 출처 등록","status":"완료·확장 중","evidence":"29개 등록; 산군·삼성SDS·카카오 추가, 자동수집과 수동검토 출처 분리 운영"},
  {"task":"SRC-02 수집 정책","status":"진행","evidence":"기존 정책 적용; 기업 뉴스룸 4개 추가 검토 기록"},
  {"task":"SRC-03 OpenDART","status":"완료·서버 확인","evidence":"최초 수동 수집 성공, 일일 타이머 활성화"},
  {"task":"SRC-04 RSS","status":"완료·서버 확인","evidence":"NULL SQL/미정의 변수 수정, 6개 피드 성공"},
