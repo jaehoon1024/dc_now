@@ -1,0 +1,11 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+data/raw/
+data/backups/
+data/exports/
+dashboard/*.json
+dashboard/status.html
+dashboard/quality.html
+!deploy/data.json

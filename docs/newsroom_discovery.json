@@ -1,0 +1,52 @@
+[
+  {
+    "url": "https://news.lguplus.com/",
+    "status": 200,
+    "feeds": [],
+    "robots": null
+  },
+  {
+    "url": "https://news.lguplus.com/robots.txt",
+    "status": 200,
+    "feeds": [],
+    "robots": "User-agent: *\nDisallow: /wp-admin/\nDisallow: /?s=\nDisallow: /page/*/?s=\nDisallow: /search/\nAllow: /wp-admin/admin-ajax.php\n\nSitemap: https://news.lguplus.com/sitemap.xml\n\nSitemap: https://news.lguplus.com/sitemap.xml\nSitemap: https://news.lguplus.com/sitemap.html\n"
+  },
+  {
+    "url": "https://www.lgcns.com/kr/newsroom/press",
+    "status": 200,
+    "feeds": [],
+    "robots": null
+  },
+  {
+    "url": "https://www.lgcns.com/robots.txt",
+    "status": 200,
+    "feeds": [],
+    "robots": "User-agent: *\r\nDisallow: /bin/\r\nDisallow: /content/lgcns/\r\nDisallow: /language-masters\r\nDisallow: /content/dam\r\nSitemap: https://www.lgcns.com/sitemap.xml\r\n"
+  },
+  {
+    "url": "https://tech.ktcloud.com/",
+    "status": 200,
+    "feeds": [
+      "https://ktcloudplatform.tistory.com/rss"
+    ],
+    "robots": null
+  },
+  {
+    "url": "https://tech.ktcloud.com/robots.txt",
+    "status": 200,
+    "feeds": [],
+    "robots": "User-agent: *\nDisallow: /guestbook\nDisallow: /m/guestbook\nDisallow: /manage\nDisallow: /owner\nDisallow: /admin\nDisallow: /search\nDisallow: /m/search\n\nUser-agent: bingbot\nCrawl-delay: 20\n"
+  },
+  {
+    "url": "https://www.skbroadband.com/kor/pr/press_list.do?menu_id=K05010000",
+    "status": 200,
+    "feeds": [],
+    "robots": null
+  },
+  {
+    "url": "https://www.skbroadband.com/robots.txt",
+    "status": 200,
+    "feeds": [],
+    "robots": "User-agent: *\r\nDisallow: /data/\r\nDisallow: /*.ajax\r\nDisallow: /common/\r\nDisallow: /m/common/\r\nSitemap: https://www.skbroadband.com/sitemap.xml"
+  }
+]
