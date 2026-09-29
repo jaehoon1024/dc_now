@@ -12,7 +12,7 @@ from src04_rss_collector import load_env_file, resolve_database_url
 CODE=re.compile(r"^[A-Z0-9][A-Z0-9_-]{1,39}$")
 SPECS={
  "company": {"required":("company_id","standard_name"),"allowed":{}},
- "participation":{"required":("company_id","scope_type","scope_code","role_code"),"allowed":{"scope_type":{"SITE","PROJECT","PHASE"},"role_code":{"OWNER","DEVELOPER","DESIGNER","BUILDER","OPERATOR","DBO_PROVIDER","TENANT","SELLER"}}},
+ "participation":{"required":("company_id","scope_type","scope_code","role_code"),"allowed":{"scope_type":{"SITE","PROJECT","PHASE"},"role_code":{"OWNER","DEVELOPER","DESIGNER","BUILDER","OPERATOR","DBO_PROVIDER","TENANT","SELLER","ASSET_MANAGER"}}},
  "capacity":{"required":("scope_type","scope_code","capacity_type_code","raw_value","raw_unit","capacity_stage","measurement_basis"),"allowed":{"scope_type":{"SITE","PROJECT","PHASE"},"capacity_stage":{"ANNOUNCED","SECURED","DESIGNED","UNDER_CONSTRUCTION","INSTALLED","OPERATING"},"measurement_basis":{"PUBLISHED_CAPACITY","NAMEPLATE","CONTRACTED","AVAILABLE","ALLOCATED","METERED_PEAK","METERED_AVG"}}},
  "evidence":{"required":("source_code","title","document_type","source_grade"),"allowed":{"document_type":{"PERMIT","CONTRACT","DISCLOSURE","PRESS_RELEASE","NEWS","IM","WEB_PAGE","PDF","API_RESPONSE","RSS_ITEM","OTHER"},"source_grade":{"A","B","C","D"}}},
 }

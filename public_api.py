@@ -109,6 +109,14 @@ class PublicRepository:
                     SELECT site_code, site_name, address_standard, sido, sigungu,
                            latitude, longitude, lifecycle_group, owner_names,
                            operator_names, developer_names, dbo_provider_names,
+                           (SELECT string_agg(DISTINCT c.standard_name, ', ')
+                            FROM company_participation cp JOIN company c ON c.company_id=cp.company_id
+                            WHERE cp.scope_type='SITE' AND cp.scope_id=v_site_map.site_id
+                              AND cp.role_code='ASSET_MANAGER' AND cp.review_status='CONFIRMED') AS asset_manager_names,
+                           (SELECT string_agg(DISTINCT c.standard_name, ', ')
+                            FROM company_participation cp JOIN company c ON c.company_id=cp.company_id
+                            WHERE cp.scope_type='SITE' AND cp.scope_id=v_site_map.site_id
+                              AND cp.role_code='BUILDER' AND cp.review_status='CONFIRMED') AS builder_names,
                            operating_grid_intake_mw, operating_it_load_mw,
                            development_grid_intake_mw, development_it_load_mw,
                            earliest_rfs_date, latest_data_update

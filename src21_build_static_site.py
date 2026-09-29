@@ -30,6 +30,14 @@ def render_html(payload):
   ";document.querySelectorAll('.marker').forEach(x=>x.remove());F.filter(x=>x.latitude!=null&&x.longitude!=null).forEach(x=>{let m=document.createElement('button');m.className='marker '+x.lifecycle_group;m.title=x.site_name;m.style.left=((x.longitude-124)/8*64+18)+'%';m.style.top=((39-x.latitude)/6*84+8)+'%';m.onclick=()=>detail(x.site_code);$('#map').append(m)});document.querySelectorAll('#rows tr').forEach(x=>x.onclick=e=>{if(e.target.tagName!=='A')detail(x.dataset.code)});bars()}",
   ";document.querySelectorAll('#rows tr').forEach(x=>x.onclick=e=>{if(e.target.tagName!=='A')detail(x.dataset.code)});bars()}",
  )
+ page=page.replace(
+  '<dt>운영사</dt><dd>${esc(x.operator_names)}</dd>',
+  '<dt>운영사</dt><dd>${esc(x.operator_names)}</dd><dt>자산운용사</dt><dd>${esc(x.asset_manager_names)}</dd><dt>시공사</dt><dd>${esc(x.builder_names)}</dd>',
+ )
+ page=page.replace(
+  '<div class="foot">',
+  '<section class="panel section"><div class="ph"><h2>생태계 추적 범위</h2><span class="meta">근거 확인 후 센터·프로젝트와 연결</span></div><div class="body"><div class="metric"><span>자산운용사</span><b>이지스 · 코람코 · ESR켄달스퀘어 · 마스턴</b></div><div class="metric"><span>시공사</span><b>삼성물산 · 현대건설 · GS건설 · DL이앤씨 · SK에코플랜트</b></div></div></section><div class="foot">',
+ )
  sites=payload["sites"]
  rows="".join(
   "<tr data-code=\"{}\"><td><b>{}</b><br><small>{}</small></td><td>{} {}</td><td><span class=\"badge\">{}</span></td><td>{}</td><td>{}</td><td>{}</td><td><a target=\"_blank\" rel=\"noopener\" href=\"https://www.google.com/maps/search/?api=1&amp;query={},{}\">지도 ↗</a></td></tr>".format(
