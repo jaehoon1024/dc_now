@@ -1,0 +1,7 @@
+company_id,scope_type,scope_code,role_code,valid_from,valid_to,confidence_score,evidence_url,note
+ORG-010,SITE,SAMSUNG_SDS_DONGTAN,OPERATOR,,,1.0,https://www.samsungsds.com/kr/news/,공식 발표
+ORG-010,SITE,SAMSUNG_SDS_CHUNCHEON,OPERATOR,,,1.0,https://www.samsungsds.com/kr/news/,공식 발표
+ORG-011,SITE,KAKAO_ANSAN,OPERATOR,,,1.0,https://www.kakaocorp.com/page/service/service/KakaoNews,공식 발표
+ORG-002,SITE,LGCNS_BUSAN,OPERATOR,,,1.0,https://connect.lgcns.com/kr/newsroom/press,공식 발표
+ORG-006,SITE,NHN_PANGYO,OPERATOR,,,1.0,https://inside.nhn.com/news,공식 발표
+ORG-006,SITE,NHN_GWANGJU_AI,OPERATOR,,,1.0,https://inside.nhn.com/news,공식 발표

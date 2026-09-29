@@ -1,0 +1,7 @@
+project_code,site_code,project_name,project_scope,project_type,status_code,scope_note,planned_rfs_date,rfs_date,completion_date,service_start_date
+SAMSUNG_SDS_DONGTAN_OP,SAMSUNG_SDS_DONGTAN,동탄 HPC 데이터센터 운영,WHOLE_SITE,HPC,OPERATING,삼성SDS 공식 발표 기준,,,,
+SAMSUNG_SDS_CHUNCHEON_OP,SAMSUNG_SDS_CHUNCHEON,춘천 데이터센터 운영,WHOLE_SITE,CLOUD,OPERATING,삼성SDS 공식 발표 기준,,,,
+KAKAO_ANSAN_OP,KAKAO_ANSAN,카카오 데이터센터 안산 운영,WHOLE_SITE,HYPERSCALE,OPERATING,카카오 공식 발표 기준,,,,
+LGCNS_BUSAN_OP,LGCNS_BUSAN,부산 글로벌 클라우드 데이터센터 운영,WHOLE_SITE,CLOUD,OPERATING,LG CNS 공식 발표 기준,,,,
+NHN_PANGYO_OP,NHN_PANGYO,NHN Cloud 판교 센터 운영,WHOLE_SITE,CLOUD,OPERATING,NHN 공식 발표 기준,,,,
+NHN_GWANGJU_AI_OP,NHN_GWANGJU_AI,광주 국가 AI 데이터센터 운영,WHOLE_SITE,AI,OPERATING,NHN Cloud 공식 발표 기준,,,,

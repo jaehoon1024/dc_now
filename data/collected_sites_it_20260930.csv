@@ -1,0 +1,7 @@
+site_code,site_name,address_raw,address_standard,sido,sigungu,latitude,longitude,location_precision,coordinate_quality
+SAMSUNG_SDS_DONGTAN,삼성SDS 동탄 데이터센터,경기도 화성시 동탄 권역,경기도 화성시 동탄,경기도,화성시,37.2000000,127.0980000,DISTRICT,C
+SAMSUNG_SDS_CHUNCHEON,삼성SDS 춘천 데이터센터,강원특별자치도 춘천시,강원특별자치도 춘천시,강원특별자치도,춘천시,37.8813000,127.7298000,CITY,C
+KAKAO_ANSAN,카카오 데이터센터 안산,한양대학교 ERICA 캠퍼스,경기도 안산시 상록구 한양대학로 55,경기도,안산시,37.2964000,126.8350000,DISTRICT,B
+LGCNS_BUSAN,LG CNS 부산 글로벌 클라우드 데이터센터,부산진해경제자유구역 미음지구,부산광역시 강서구 미음산단,부산광역시,강서구,35.1360000,128.8780000,DISTRICT,C
+NHN_PANGYO,NHN Cloud 판교 데이터센터,경기도 성남시 판교 권역,경기도 성남시 분당구 판교,경기도,성남시,37.3948000,127.1112000,DISTRICT,C
+NHN_GWANGJU_AI,NHN Cloud 광주 국가 AI 데이터센터,광주광역시 첨단3지구,광주광역시 북구 첨단3지구,광주광역시,북구,35.2290000,126.8470000,DISTRICT,C
