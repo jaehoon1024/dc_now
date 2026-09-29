@@ -70,8 +70,35 @@ def render_html(payload):
  for old,new in replacements.items():page=page.replace(old,new)
  page=page.replace("$('#total').textContent=F.length;", "")
  return page
+def render_v2(payload):
+ page=(ROOT/"dashboard/professional_v2.html").read_text(encoding="utf-8")
+ sites=payload["sites"]
+ rows="".join(
+  "<tr data-code=\"{}\"><td class=\"sitecell\"><b>{}</b><small>{}</small></td><td>{} {}</td><td><span class=\"badge\">{}</span></td><td>{} MW</td><td>{} MW</td><td>{}</td><td><a class=\"maplink\" target=\"_blank\" rel=\"noopener\" href=\"https://www.google.com/maps/search/?api=1&amp;query={}\">Google Maps ↗</a></td></tr>".format(
+   html.escape(str(x.get("site_code") or "")),html.escape(str(x.get("site_name") or "—")),html.escape(str(x.get("operator_names") or "운영사 미확인")),html.escape(str(x.get("sido") or "—")),html.escape(str(x.get("sigungu") or "—")),html.escape(str(x.get("lifecycle_group") or "—")),html.escape(str(x.get("operating_grid_intake_mw") or "미공개")),html.escape(str(x.get("operating_it_load_mw") or "미공개")),html.escape(str(x.get("latest_data_update") or "")[:10]),html.escape(quote_plus(str(x.get("address_standard") or x.get("site_name") or ""))),
+  ) for x in sites
+ )
+ target=payload.get("target_summary") or {"target_total":payload["total"],"public_total":payload["total"],"needs_evidence_total":0}
+ rate=round(target["public_total"]/target["target_total"]*100) if target["target_total"] else 0
+ grid=sum(float(x.get("operating_grid_intake_mw") or 0) for x in sites)
+ replacements={
+  '승인 데이터 준비 중':f'기준 {html.escape(str(payload.get("generated_at") or "미확인"))[:16].replace("T"," ")}',
+  '<strong id="total">0</strong>':f'<strong id="total">{target["target_total"]}</strong>',
+  '<small id="targetBreakdown">공개 센터</small>':f'<small id="targetBreakdown">공개 {target["public_total"]} · 근거 검토 {target["needs_evidence_total"]}</small>',
+  '<strong id="verified">0</strong>':f'<strong id="verified">{target["public_total"]}</strong>',
+  '<strong id="op">0</strong>':f'<strong id="op">{sum(x.get("lifecycle_group") in {"OPERATING","MIXED"} for x in sites)}</strong>',
+  '<strong id="gridmw">—</strong>':f'<strong id="gridmw">{grid:g}</strong>' if grid else '<strong id="gridmw">미공개</strong>',
+  '<b id="coverage">0%</b>':f'<b id="coverage">{rate}%</b>',
+  '<span id="pending">검토 대기 —</span>':f'<span id="pending">검토 대기 {target["needs_evidence_total"]}건</span>',
+  '<i id="coveragebar"></i>':f'<i id="coveragebar" style="width:{rate}%"></i>',
+  '<span class="resultcount" id="resultcount">0건</span>':f'<span class="resultcount" id="resultcount">{len(sites)}건</span>',
+  '<tbody id="rows"></tbody>':f'<tbody id="rows">{rows}</tbody>',
+ }
+ if sites:replacements['<div class="empty" id="empty">']='<div class="empty" id="empty" hidden>'
+ for old,new in replacements.items():page=page.replace(old,new)
+ return page
 def write_site(payload,out=OUT):
- out.mkdir(parents=True,exist_ok=True);(out/"index.html").write_text(render_html(payload),encoding="utf-8")
+ out.mkdir(parents=True,exist_ok=True);(out/"index.html").write_text(render_v2(payload),encoding="utf-8")
  (out/"data.json").write_text(json.dumps(payload,ensure_ascii=False,default=json_value,separators=(",",":")),encoding="utf-8")
  (out/"_headers").write_text("/*\n  Cache-Control: public, max-age=0, must-revalidate\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: no-referrer\n  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-src https://www.google.com https://maps.google.com\n\n/data.json\n  Cache-Control: public, max-age=60, must-revalidate\n",encoding="utf-8")
 def main():
