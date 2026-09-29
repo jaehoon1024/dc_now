@@ -149,6 +149,18 @@ curl -s http://127.0.0.1:8765/api/v1/healthz
 .venv/bin/python src11_site_import.py data/collected_site_targets_20260930.csv --apply
 ```
 
+## 2026-09-30 수집 대상 200개 확장·지도 보정
+
+- 추가 발굴 후보 100개를 `NEEDS_EVIDENCE`, 비공개 상태로 반입해 전체 수집 대상을 200개로 확장한다.
+- 전체 200개 중 공개 확정은 26개, 공식 근거와 세부 위치 검토 대기는 174개다.
+- 광역 위치나 기관 단위 후보는 이름에 `수집 검증 대상`을 표시하며, 실제 데이터센터 존재와 주소를 확인한 뒤에만 공개한다.
+- Google Maps 링크와 임베드 지도는 좌표보다 표준주소를 우선해 오래된 좌표·행정구역 중심점 오차를 피한다.
+
+```bash
+.venv/bin/python src11_site_import.py data/collected_site_targets_200_20260930.csv
+.venv/bin/python src11_site_import.py data/collected_site_targets_200_20260930.csv --apply
+```
+
 ## 2026-09-29 프로젝트 기준 데이터 반입
 
 - `src12_project_import.py`는 프로젝트 코드·센터 참조·상태·날짜 순서·중복을 검증한다.

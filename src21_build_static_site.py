@@ -4,6 +4,7 @@ from __future__ import annotations
 import html,json
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import quote_plus
 from sqlalchemy import create_engine
 from public_api import PublicRepository,json_value
 from src04_rss_collector import load_env_file,resolve_database_url
@@ -20,11 +21,11 @@ def render_html(payload):
  )
  page=page.replace(
   '<h2>전국 데이터센터 자산 지도</h2><span class="meta">운영·개발 단계별 위치</span></div><div class="map" id="map"><div class="grid"></div><div class="land"></div><div class="legend"><i style="background:var(--green)"></i>운영 <i style="background:var(--amber)"></i>개발·기타</div></div>',
-  '<h2>Google Maps · 데이터센터 자산 지도</h2><span class="meta">센터 행을 선택하면 해당 위치로 이동</span></div><div class="map" id="map"><iframe id="gmap" title="Google 데이터센터 지도" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD+%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%84%BC%ED%84%B0&amp;z=7&amp;output=embed"></iframe><div class="maphint">센터 목록에서 행을 선택하세요</div></div>',
+  '<h2>Google Maps · 데이터센터 자산 지도</h2><span class="meta">표준주소 기준 · 센터 행을 선택하면 이동</span></div><div class="map" id="map"><iframe id="gmap" title="Google 데이터센터 지도" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=36.3%2C127.8&amp;z=7&amp;output=embed"></iframe><div class="maphint" id="maphint">센터 목록에서 행을 선택하세요</div></div>',
  )
  page=page.replace(
   "function detail(code){let x=D.details[code]||D.sites.find(v=>v.site_code===code);$('#dtitle').textContent=x.site_name;",
-  "function detail(code){let x=D.details[code]||D.sites.find(v=>v.site_code===code);if(x.latitude&&x.longitude)$('#gmap').src=`https://maps.google.com/maps?q=${encodeURIComponent(x.latitude+','+x.longitude)}&z=15&output=embed`;$('#dtitle').textContent=x.site_name;",
+  "function detail(code){let x=D.details[code]||D.sites.find(v=>v.site_code===code);let loc=x.address_standard||((x.latitude!=null&&x.longitude!=null)?x.latitude+','+x.longitude:'');if(loc){$('#gmap').src=`https://maps.google.com/maps?q=${encodeURIComponent(loc)}&z=16&output=embed`;$('#maphint').textContent=x.site_name+' · '+loc}$('#dtitle').textContent=x.site_name;",
  )
  page=page.replace(
   ";document.querySelectorAll('.marker').forEach(x=>x.remove());F.filter(x=>x.latitude!=null&&x.longitude!=null).forEach(x=>{let m=document.createElement('button');m.className='marker '+x.lifecycle_group;m.title=x.site_name;m.style.left=((x.longitude-124)/8*64+18)+'%';m.style.top=((39-x.latitude)/6*84+8)+'%';m.onclick=()=>detail(x.site_code);$('#map').append(m)});document.querySelectorAll('#rows tr').forEach(x=>x.onclick=e=>{if(e.target.tagName!=='A')detail(x.dataset.code)});bars()}",
@@ -41,7 +42,7 @@ def render_html(payload):
  )
  sites=payload["sites"]
  rows="".join(
-  "<tr data-code=\"{}\"><td><b>{}</b><br><small>{}</small></td><td>{} {}</td><td><span class=\"badge\">{}</span></td><td>{}</td><td>{}</td><td>{}</td><td><a target=\"_blank\" rel=\"noopener\" href=\"https://www.google.com/maps/search/?api=1&amp;query={},{}\">지도 ↗</a></td></tr>".format(
+  "<tr data-code=\"{}\"><td><b>{}</b><br><small>{}</small></td><td>{} {}</td><td><span class=\"badge\">{}</span></td><td>{}</td><td>{}</td><td>{}</td><td><a target=\"_blank\" rel=\"noopener\" href=\"https://www.google.com/maps/search/?api=1&amp;query={}\">지도 ↗</a></td></tr>".format(
    html.escape(str(x.get("site_code") or "")),
    html.escape(str(x.get("site_name") or "—")),
    html.escape(str(x.get("operator_names") or "운영사 미확인")),
@@ -51,8 +52,7 @@ def render_html(payload):
    html.escape(str(x.get("operating_grid_intake_mw") or "미공개")),
    html.escape(str(x.get("operating_it_load_mw") or "—")),
    html.escape(str(x.get("latest_data_update") or "")[:10]),
-   html.escape(str(x.get("latitude") or "")),
-   html.escape(str(x.get("longitude") or "")),
+   html.escape(quote_plus(str(x.get("address_standard") or x.get("site_name") or ""))),
   ) for x in sites
  )
  replacements={

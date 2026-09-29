@@ -1,0 +1,101 @@
+site_code,site_name,address_raw,address_standard,sido,sigungu,latitude,longitude,location_precision,coordinate_quality
+KT_NAMGURO,KT Cloud 남구로 DC 수집 검증 대상,서울특별시 구로구 남구로 권역,서울특별시 구로구,서울특별시,구로구,,,DISTRICT,D
+KT_BEOMIL,KT Cloud 범일 DC 수집 검증 대상,부산광역시 동구 범일동,부산광역시 동구 범일동,부산광역시,동구,,,DISTRICT,D
+KT_CHEONAN,KT Cloud 천안 CDC 수집 검증 대상,충청남도 천안시,충청남도 천안시,충청남도,천안시,,,CITY,D
+KT_WONJU_AI,원주 KT 협의 AI 데이터센터 수집 검증 대상,강원특별자치도 원주시,강원특별자치도 원주시,강원특별자치도,원주시,,,CITY,D
+SKB_SEOCHO2,SK브로드밴드 서초2 IDC 수집 검증 대상,서울특별시 서초구,서울특별시 서초구,서울특별시,서초구,,,CITY,D
+SKB_CENTUM,SK브로드밴드 센텀 IDC 수집 검증 대상,부산광역시 해운대구 센텀권,부산광역시 해운대구,부산광역시,해운대구,,,DISTRICT,D
+SKB_YANGJU,SK브로드밴드 양주 IDC 수집 검증 대상,경기도 양주시,경기도 양주시,경기도,양주시,,,CITY,D
+SKB_ILSAN2,SK브로드밴드 일산 제2 IDC 수집 검증 대상,경기도 고양시 일산권,경기도 고양시,경기도,고양시,,,DISTRICT,D
+SKHORIZON_GURO,SK호라이즌 구로 AI 데이터센터 수집 검증 대상,서울특별시 구로구,서울특별시 구로구,서울특별시,구로구,,,CITY,D
+SK_AWS_ULSAN,SK-AWS 울산 AI 데이터센터 수집 검증 대상,울산광역시 미포국가산업단지,울산광역시 미포국가산업단지,울산광역시,남구,,,DISTRICT,D
+NHN_YANGPYEONG,NHN Cloud 양평 데이터센터 수집 검증 대상,서울특별시 영등포구 양평동3가 77-80,서울특별시 영등포구 양평동3가 77-80,서울특별시,영등포구,,,PARCEL,D
+ALIBABA_SEOUL1,Alibaba Cloud 서울 리전 1 수집 검증 대상,서울특별시,서울특별시,서울특별시,미확인,,,CITY,U
+ALIBABA_SEOUL2,Alibaba Cloud 서울 리전 2 수집 검증 대상,서울특별시,서울특별시,서울특별시,미확인,,,CITY,U
+ALIBABA_SEOUL3,Alibaba Cloud 서울 리전 3 수집 검증 대상,서울특별시,서울특별시,서울특별시,미확인,,,CITY,U
+JDC_JEJU,제주국제자유도시개발센터 데이터센터 수집 검증 대상,제주특별자치도 제주시,제주특별자치도 제주시,제주특별자치도,제주시,,,CITY,D
+CHANGWON_DEFENSE_AI,창원 방산 AI 데이터센터 수집 검증 대상,경상남도 창원시 의창구 팔용동 23-3 일원,경상남도 창원시 의창구 팔용동 23-3,경상남도,창원시,,,PARCEL,D
+UNKNOWN_GAEBONG,개봉동 데이터센터 신축공사 수집 검증 대상,서울특별시 구로구 개봉동 166-2,서울특별시 구로구 개봉동 166-2,서울특별시,구로구,,,PARCEL,D
+UNKNOWN_BUSAN_SONGJEONG,부산 송정동 데이터센터 수집 검증 대상,부산광역시 강서구 송정동 1711-4 일원,부산광역시 강서구 송정동 1711-4,부산광역시,강서구,,,PARCEL,D
+UNKNOWN_BUCHEON_NAEDONG,부천 내동 데이터센터 수집 검증 대상,경기도 부천시 오정구 내동 222-13 일원,경기도 부천시 오정구 내동 222-13,경기도,부천시,,,PARCEL,D
+UNKNOWN_BUCHEON_SAMJEONG,부천 삼정동 데이터센터 수집 검증 대상,경기도 부천시 오정구 삼정동 13-15,경기도 부천시 오정구 삼정동 13-15,경기도,부천시,,,PARCEL,D
+UNKNOWN_UIJEONGBU,의정부 용현동 데이터센터 수집 검증 대상,경기도 의정부시 용현동 522-8,경기도 의정부시 용현동 522-8,경기도,의정부시,,,PARCEL,D
+UNKNOWN_HANAM_EDGE,하남 풍산동 엣지 데이터센터 수집 검증 대상,경기도 하남시 풍산동,경기도 하남시 풍산동,경기도,하남시,,,DISTRICT,D
+UNKNOWN_MUAN_ORYONG,무안 오룡지구 AI 데이터센터 수집 검증 대상,전라남도 무안군 일로읍 오룡리 지원7블록,전라남도 무안군 일로읍 오룡리,전라남도,무안군,,,DISTRICT,D
+NIRS_DAEJEON,국가정보자원관리원 대전센터 수집 검증 대상,대전광역시 유성구,대전광역시 유성구,대전광역시,유성구,,,CITY,D
+NIRS_GWANGJU,국가정보자원관리원 광주센터 수집 검증 대상,광주광역시,광주광역시,광주광역시,미확인,,,CITY,D
+NIRS_DAEGU,국가정보자원관리원 대구센터 수집 검증 대상,대구광역시,대구광역시,대구광역시,미확인,,,CITY,D
+NIRS_GONGJU,국가정보자원관리원 공주 백업센터 수집 검증 대상,충청남도 공주시,충청남도 공주시,충청남도,공주시,,,CITY,D
+SEOUL_CITY_DC,서울시 데이터센터 수집 검증 대상,서울특별시,서울특별시,서울특별시,미확인,,,CITY,U
+BUSAN_CITY_DC,부산시 데이터센터 수집 검증 대상,부산광역시,부산광역시,부산광역시,미확인,,,CITY,U
+GYEONGGI_PROVINCE_DC,경기도 데이터센터 수집 검증 대상,경기도 수원시,경기도 수원시,경기도,수원시,,,CITY,U
+GANGWON_PROVINCE_DC,강원도 데이터센터 수집 검증 대상,강원특별자치도 춘천시,강원특별자치도 춘천시,강원특별자치도,춘천시,,,CITY,U
+CHUNGBUK_PROVINCE_DC,충청북도 데이터센터 수집 검증 대상,충청북도 청주시,충청북도 청주시,충청북도,청주시,,,CITY,U
+CHUNGNAM_PROVINCE_DC,충청남도 데이터센터 수집 검증 대상,충청남도 홍성군,충청남도 홍성군,충청남도,홍성군,,,CITY,U
+JEONBUK_PROVINCE_DC,전북특별자치도 데이터센터 수집 검증 대상,전북특별자치도 전주시,전북특별자치도 전주시,전북특별자치도,전주시,,,CITY,U
+JEONNAM_PROVINCE_DC,전라남도 데이터센터 수집 검증 대상,전라남도 무안군,전라남도 무안군,전라남도,무안군,,,CITY,U
+GYEONGBUK_PROVINCE_DC,경상북도 데이터센터 수집 검증 대상,경상북도 안동시,경상북도 안동시,경상북도,안동시,,,CITY,U
+GYEONGNAM_PROVINCE_DC,경상남도 데이터센터 수집 검증 대상,경상남도 창원시,경상남도 창원시,경상남도,창원시,,,CITY,U
+KB_GIMPO_IT,KB국민은행 김포 IT센터 수집 검증 대상,경기도 김포시,경기도 김포시,경기도,김포시,,,CITY,D
+SHINHAN_YONGIN_IT,신한금융 용인 IT센터 수집 검증 대상,경기도 용인시,경기도 용인시,경기도,용인시,,,CITY,D
+HANA_CHEONGNA_IT,하나금융 청라 통합데이터센터 수집 검증 대상,인천광역시 서구 청라,인천광역시 서구 청라,인천광역시,서구,,,DISTRICT,D
+WOORI_SANGAM_IT,우리금융 상암 IT센터 수집 검증 대상,서울특별시 마포구 상암동,서울특별시 마포구 상암동,서울특별시,마포구,,,DISTRICT,D
+NH_UIWANG_IT,NH농협은행 의왕 IT센터 수집 검증 대상,경기도 의왕시,경기도 의왕시,경기도,의왕시,,,CITY,D
+IBK_SUJI_IT,IBK기업은행 수지 IT센터 수집 검증 대상,경기도 용인시 수지구,경기도 용인시 수지구,경기도,용인시,,,CITY,D
+KDB_BANK_IT,KDB산업은행 IT센터 수집 검증 대상,서울특별시,서울특별시,서울특별시,미확인,,,CITY,U
+KRX_BUSAN_IT,한국거래소 부산 IT센터 수집 검증 대상,부산광역시 남구,부산광역시 남구,부산광역시,남구,,,CITY,D
+KFTC_BUNDANG,금융결제원 분당센터 수집 검증 대상,경기도 성남시 분당구,경기도 성남시 분당구,경기도,성남시,,,CITY,D
+KFTC_BACKUP,금융결제원 재해복구센터 수집 검증 대상,대한민국 세부 위치 비공개,대한민국,미확인,미확인,,,UNKNOWN,U
+KOSCOM_YEOUIDO,코스콤 여의도 IT센터 수집 검증 대상,서울특별시 영등포구 여의도동,서울특별시 영등포구 여의도동,서울특별시,영등포구,,,DISTRICT,D
+SAMSUNG_FINANCE_IT,삼성금융 IT센터 수집 검증 대상,대한민국 세부 위치 검증 필요,대한민국,미확인,미확인,,,UNKNOWN,U
+HYUNDAI_CARD_IT,현대카드 IT센터 수집 검증 대상,서울특별시,서울특별시,서울특별시,미확인,,,CITY,U
+BC_CARD_IT,BC카드 IT센터 수집 검증 대상,서울특별시,서울특별시,서울특별시,미확인,,,CITY,U
+KOREA_POST_NAJU,우정사업정보센터 나주 수집 검증 대상,전라남도 나주시,전라남도 나주시,전라남도,나주시,,,CITY,D
+KEPCO_NAJU_IT,한국전력공사 나주 IT센터 수집 검증 대상,전라남도 나주시,전라남도 나주시,전라남도,나주시,,,CITY,D
+KDN_NAJU_IT,한전KDN 나주 IT센터 수집 검증 대상,전라남도 나주시,전라남도 나주시,전라남도,나주시,,,CITY,D
+LH_JINJU_IT,LH 진주 IT센터 수집 검증 대상,경상남도 진주시,경상남도 진주시,경상남도,진주시,,,CITY,D
+KORAIL_DAEJEON_IT,한국철도공사 대전 IT센터 수집 검증 대상,대전광역시,대전광역시,대전광역시,미확인,,,CITY,D
+KWATER_DAEJEON_IT,한국수자원공사 대전 IT센터 수집 검증 대상,대전광역시,대전광역시,대전광역시,미확인,,,CITY,D
+ROAD_GIMCHEON_IT,한국도로공사 김천 IT센터 수집 검증 대상,경상북도 김천시,경상북도 김천시,경상북도,김천시,,,CITY,D
+HIRA_WONJU_IT,건강보험심사평가원 원주 IT센터 수집 검증 대상,강원특별자치도 원주시,강원특별자치도 원주시,강원특별자치도,원주시,,,CITY,D
+NHIS_WONJU_IT,국민건강보험공단 원주 IT센터 수집 검증 대상,강원특별자치도 원주시,강원특별자치도 원주시,강원특별자치도,원주시,,,CITY,D
+NPS_JEONJU_IT,국민연금공단 전주 IT센터 수집 검증 대상,전북특별자치도 전주시,전북특별자치도 전주시,전북특별자치도,전주시,,,CITY,D
+KOGAS_DAEGU_IT,한국가스공사 대구 IT센터 수집 검증 대상,대구광역시,대구광역시,대구광역시,미확인,,,CITY,D
+INCHEON_AIRPORT_IT,인천국제공항공사 IT센터 수집 검증 대상,인천광역시 중구 영종도,인천광역시 중구 영종도,인천광역시,중구,,,DISTRICT,D
+BUSAN_PORT_IT,부산항만공사 IT센터 수집 검증 대상,부산광역시,부산광역시,부산광역시,미확인,,,CITY,D
+SNU_HPC,서울대학교 HPC 데이터센터 수집 검증 대상,서울특별시 관악구,서울특별시 관악구,서울특별시,관악구,,,CITY,D
+KAIST_HPC,KAIST HPC 데이터센터 수집 검증 대상,대전광역시 유성구,대전광역시 유성구,대전광역시,유성구,,,CITY,D
+POSTECH_HPC,POSTECH HPC 데이터센터 수집 검증 대상,경상북도 포항시,경상북도 포항시,경상북도,포항시,,,CITY,D
+GIST_HPC,GIST HPC 데이터센터 수집 검증 대상,광주광역시 북구,광주광역시 북구,광주광역시,북구,,,CITY,D
+DGIST_HPC,DGIST HPC 데이터센터 수집 검증 대상,대구광역시 달성군,대구광역시 달성군,대구광역시,달성군,,,CITY,D
+UNIST_HPC,UNIST HPC 데이터센터 수집 검증 대상,울산광역시 울주군,울산광역시 울주군,울산광역시,울주군,,,CITY,D
+KISTI_DAEJEON,KISTI 대전 슈퍼컴퓨팅센터 수집 검증 대상,대전광역시 유성구,대전광역시 유성구,대전광역시,유성구,,,CITY,D
+KISTI_GWANGJU,KISTI 광주 AI 컴퓨팅센터 수집 검증 대상,광주광역시,광주광역시,광주광역시,미확인,,,CITY,D
+ETRI_DAEJEON,ETRI 대전 컴퓨팅센터 수집 검증 대상,대전광역시 유성구,대전광역시 유성구,대전광역시,유성구,,,CITY,D
+KARI_DAEJEON,한국항공우주연구원 컴퓨팅센터 수집 검증 대상,대전광역시 유성구,대전광역시 유성구,대전광역시,유성구,,,CITY,D
+KBS_YEOUIDO_IT,KBS 여의도 IT센터 수집 검증 대상,서울특별시 영등포구 여의도동,서울특별시 영등포구 여의도동,서울특별시,영등포구,,,DISTRICT,D
+MBC_SANGAM_IT,MBC 상암 IT센터 수집 검증 대상,서울특별시 마포구 상암동,서울특별시 마포구 상암동,서울특별시,마포구,,,DISTRICT,D
+SBS_MOKDONG_IT,SBS 목동 IT센터 수집 검증 대상,서울특별시 양천구 목동,서울특별시 양천구 목동,서울특별시,양천구,,,DISTRICT,D
+EBS_GOYANG_IT,EBS 고양 IT센터 수집 검증 대상,경기도 고양시,경기도 고양시,경기도,고양시,,,CITY,D
+CJENM_SANGAM_IT,CJ ENM 상암 IT센터 수집 검증 대상,서울특별시 마포구 상암동,서울특별시 마포구 상암동,서울특별시,마포구,,,DISTRICT,D
+NC_PANGYO_IT,엔씨소프트 판교 IT센터 수집 검증 대상,경기도 성남시 판교,경기도 성남시 판교,경기도,성남시,,,DISTRICT,D
+NEXON_PANGYO_IT,넥슨 판교 IT센터 수집 검증 대상,경기도 성남시 판교,경기도 성남시 판교,경기도,성남시,,,DISTRICT,D
+NETMARBLE_GURO_IT,넷마블 구로 IT센터 수집 검증 대상,서울특별시 구로구,서울특별시 구로구,서울특별시,구로구,,,CITY,D
+SMILEGATE_PANGYO_IT,스마일게이트 판교 IT센터 수집 검증 대상,경기도 성남시 판교,경기도 성남시 판교,경기도,성남시,,,DISTRICT,D
+PEARLABYSS_GWACHEON,펄어비스 과천 IT센터 수집 검증 대상,경기도 과천시,경기도 과천시,경기도,과천시,,,CITY,D
+COUPANG_SEOUL_IT,쿠팡 IT 인프라 수집 검증 대상,서울특별시,서울특별시,서울특별시,미확인,,,CITY,U
+WOOWA_SEOUL_IT,우아한형제들 IT 인프라 수집 검증 대상,서울특별시,서울특별시,서울특별시,미확인,,,CITY,U
+TOSS_GANGNAM_IT,토스 IT 인프라 수집 검증 대상,서울특별시 강남구,서울특별시 강남구,서울특별시,강남구,,,CITY,U
+HYUNDAI_UIWANG_IT,현대자동차 의왕 IT센터 수집 검증 대상,경기도 의왕시,경기도 의왕시,경기도,의왕시,,,CITY,D
+HYUNDAI_MABUK_IT,현대모비스 마북 IT센터 수집 검증 대상,경기도 용인시 마북동,경기도 용인시 마북동,경기도,용인시,,,DISTRICT,D
+SAMSUNG_SUWON_IT,삼성전자 수원 IT센터 수집 검증 대상,경기도 수원시,경기도 수원시,경기도,수원시,,,CITY,D
+SAMSUNG_GIHEUNG_IT,삼성전자 기흥 IT센터 수집 검증 대상,경기도 용인시 기흥구,경기도 용인시 기흥구,경기도,용인시,,,CITY,D
+SKHYNIX_ICHEON_IT,SK하이닉스 이천 IT센터 수집 검증 대상,경기도 이천시,경기도 이천시,경기도,이천시,,,CITY,D
+SKHYNIX_CHEONGJU_IT,SK하이닉스 청주 IT센터 수집 검증 대상,충청북도 청주시,충청북도 청주시,충청북도,청주시,,,CITY,D
+POSCO_POHANG_IT,포스코 포항 IT센터 수집 검증 대상,경상북도 포항시,경상북도 포항시,경상북도,포항시,,,CITY,D
+POSCO_GWANGYANG_IT,포스코 광양 IT센터 수집 검증 대상,전라남도 광양시,전라남도 광양시,전라남도,광양시,,,CITY,D
+LG_PYEONGTAEK_IT,LG 평택 IT센터 수집 검증 대상,경기도 평택시,경기도 평택시,경기도,평택시,,,CITY,D
+HANWHA_DAEJEON_IT,한화 대전 IT센터 수집 검증 대상,대전광역시,대전광역시,대전광역시,미확인,,,CITY,D
+HDHYUNDAI_PANGYO_IT,HD현대 판교 IT센터 수집 검증 대상,경기도 성남시 판교,경기도 성남시 판교,경기도,성남시,,,DISTRICT,D
+SHINSEGAE_GIMPO_AI,신세계그룹 김포 AI 데이터센터 수집 검증 대상,경기도 김포시,경기도 김포시,경기도,김포시,,,CITY,D
+NATIONAL_AI_HAENAM,국가 AI 컴퓨팅센터 해남 수집 검증 대상,전라남도 해남군,전라남도 해남군,전라남도,해남군,,,CITY,D
