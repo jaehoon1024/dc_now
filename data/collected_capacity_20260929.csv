@@ -1,0 +1,7 @@
+scope_type,scope_code,capacity_type_code,raw_value,raw_unit,normalized_value_mw,normalized_value,normalized_unit,capacity_stage,measurement_basis,effective_from,effective_to,document_url,evidence_location,note
+SITE,LGU_PYEONGCHON,GRID_INTAKE_MW,165000,kW,165,165,MW,OPERATING,PUBLISHED_CAPACITY,,,https://www.lguplus.com/biz/all/telecom/idc/center/B000000031,IDC 센터 현황,공식 수전용량
+SITE,LGU_NONHYEON,GRID_INTAKE_MW,20000,kW,20,20,MW,OPERATING,PUBLISHED_CAPACITY,,,https://www.lguplus.com/biz/all/telecom/idc/center/B000000031,IDC 센터 현황,공식 수전용량
+SITE,LGU_SANGAM,GRID_INTAKE_MW,19250,kW,19.25,19.25,MW,OPERATING,PUBLISHED_CAPACITY,,,https://www.lguplus.com/biz/all/telecom/idc/center/B000000031,IDC 센터 현황,공식 수전용량
+SITE,LGU_GASAN,GRID_INTAKE_MW,40000,kW,40,40,MW,OPERATING,PUBLISHED_CAPACITY,,,https://www.lguplus.com/biz/all/telecom/idc/center/B000000031,IDC 센터 현황,공식 수전용량
+SITE,LGU_SEOCHO1,GRID_INTAKE_MW,9500,kW,9.5,9.5,MW,OPERATING,PUBLISHED_CAPACITY,,,https://www.lguplus.com/biz/all/telecom/idc/center/B000000031,IDC 센터 현황,공식 수전용량
+SITE,LGU_SEOCHO2,GRID_INTAKE_MW,7500,kW,7.5,7.5,MW,OPERATING,PUBLISHED_CAPACITY,,,https://www.lguplus.com/biz/all/telecom/idc/center/B000000031,IDC 센터 현황,공식 수전용량

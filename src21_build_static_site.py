@@ -13,15 +13,21 @@ def build_payload(repo):
  details={x["site_code"]:repo.site_detail(x["site_code"]) for x in sites}
  return {"generated_at":datetime.now().astimezone().isoformat(),"total":total,"sites":sites,"details":details,"regions":repo.regions(),"companies":repo.companies(),"yearly":repo.yearly(),"collection_status":repo.collection_status()}
 def render_html(payload):
- page=(ROOT/"dashboard/static.html").read_text(encoding="utf-8")
+ page=(ROOT/"dashboard/professional.html").read_text(encoding="utf-8")
  sites=payload["sites"]
  rows="".join(
-  "<tr><td>{}</td><td>{} {}</td><td>{}</td><td>{}</td></tr>".format(
+  "<tr data-code=\"{}\"><td><b>{}</b><br><small>{}</small></td><td>{} {}</td><td><span class=\"badge\">{}</span></td><td>{}</td><td>{}</td><td>{}</td><td><a target=\"_blank\" rel=\"noopener\" href=\"https://www.google.com/maps/search/?api=1&amp;query={},{}\">지도 ↗</a></td></tr>".format(
+   html.escape(str(x.get("site_code") or "")),
    html.escape(str(x.get("site_name") or "—")),
+   html.escape(str(x.get("operator_names") or "운영사 미확인")),
    html.escape(str(x.get("sido") or "—")),
    html.escape(str(x.get("sigungu") or "—")),
    html.escape(str(x.get("lifecycle_group") or "—")),
+   html.escape(str(x.get("operating_grid_intake_mw") or "미공개")),
    html.escape(str(x.get("operating_it_load_mw") or "—")),
+   html.escape(str(x.get("latest_data_update") or "")[:10]),
+   html.escape(str(x.get("latitude") or "")),
+   html.escape(str(x.get("longitude") or "")),
   ) for x in sites
  )
  replacements={

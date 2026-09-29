@@ -21,7 +21,8 @@ VERSION = "public-api-1.0.0"
 SITE_COLUMNS = (
     "site_code", "site_name", "address_standard", "sido", "sigungu",
     "latitude", "longitude", "lifecycle_group", "owner_names",
-    "operator_names", "operating_it_load_mw", "development_it_load_mw",
+    "operator_names", "operating_grid_intake_mw", "operating_it_load_mw",
+    "development_grid_intake_mw", "development_it_load_mw",
     "earliest_rfs_date", "latest_data_update",
 )
 STATUSES = {"OPERATING", "DEVELOPMENT", "MIXED", "ON_HOLD", "UNKNOWN"}
