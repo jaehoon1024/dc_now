@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class MigrationChainTests(unittest.TestCase):
-    def test_revisions_form_one_chain_through_0015(self):
+    def revisions(self):
         revisions = {}
         for path in (ROOT / "migrations" / "versions").glob("*.py"):
             values = {}
@@ -21,6 +21,10 @@ class MigrationChainTests(unittest.TestCase):
                     values[node.target.id] = ast.literal_eval(node.value)
             if "revision" in values:
                 revisions[values["revision"]] = values.get("down_revision")
+        return revisions
+
+    def test_revisions_form_one_chain_through_0015(self):
+        revisions = self.revisions()
 
         current = "0015_evidence_review"
         seen = []
@@ -32,6 +36,11 @@ class MigrationChainTests(unittest.TestCase):
 
         self.assertEqual(len(seen), 15)
         self.assertEqual(seen[-1], "0001_core_schema")
+
+    def test_latest_revision_is_single_0022_head(self):
+        revisions = self.revisions()
+        heads = set(revisions) - {x for x in revisions.values() if x is not None}
+        self.assertEqual(heads, {"0022_dealbook_source"})
 
 
 if __name__ == "__main__":

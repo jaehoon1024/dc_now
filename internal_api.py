@@ -20,11 +20,14 @@ def make_app(engine,token):
   if not hmac.compare_digest(auth,f"Bearer {token}"):return response(start,"401 Unauthorized",{"error":"unauthorized"})
   path=env.get("PATH_INFO","");method=env.get("REQUEST_METHOD")
   try:
-   if method=="GET" and path=="/internal/v1/review-queue":return response(start,"200 OK",queue(engine))
+   if method=="GET" and path=="/internal/v1/review-queue":return response(start,"200 OK",queue(engine,limit=500))
    if method=="GET" and path=="/internal/v1/quality":return response(start,"200 OK",build_report(engine))
    if method=="POST" and path=="/internal/v1/review":
     size=min(int(env.get("CONTENT_LENGTH") or 0),10000);data=json.loads(env["wsgi.input"].read(size));required={"kind","record_id","decision","reviewer","note"}
-    if not required<=data.keys() or data["kind"] not in ENTITIES:return response(start,"400 Bad Request",{"error":"invalid_request"})
+    if (not required<=data.keys() or data["kind"] not in ENTITIES
+        or data["decision"] not in {"approve","reject"}
+        or not str(data["reviewer"]).strip() or not str(data["note"]).strip()):
+     return response(start,"400 Bad Request",{"error":"invalid_request"})
     return response(start,"200 OK",review(engine,data["kind"],data["record_id"],data["decision"],data["reviewer"],data["note"],bool(data.get("publish"))))
    return response(start,"404 Not Found",{"error":"not_found"})
   except (ValueError,KeyError,json.JSONDecodeError):return response(start,"400 Bad Request",{"error":"invalid_request"})

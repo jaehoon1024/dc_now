@@ -7,6 +7,11 @@ class ReviewWorkflowTests(unittest.TestCase):
   self.assertEqual({k for k,v in ENTITIES.items() if v.public_column},{"site","project","participation"})
  def test_evidence_and_fact_record_reviewer(self):
   self.assertTrue(ENTITIES["evidence"].reviewer_columns);self.assertTrue(ENTITIES["fact"].reviewer_columns)
+ def test_evidence_queue_exposes_review_context(self):
+  self.assertTrue({"canonical_url","publisher","published_at","source_grade"}<=set(ENTITIES["evidence"].detail_columns))
+ def test_blank_reviewer_or_note_is_rejected(self):
+  with self.assertRaises(ValueError):review(None,"evidence","x","approve","","note")
+  with self.assertRaises(ValueError):review(None,"evidence","x","approve","tester"," ")
  @unittest.skipUnless(os.getenv("DC_TEST_DATABASE")=="1","DB test disabled")
  def test_review_updates_status_and_writes_audit(self):
   from contextlib import contextmanager

@@ -156,6 +156,13 @@ curl -s http://127.0.0.1:8765/api/v1/healthz
 - 광역 위치나 기관 단위 후보는 이름에 `수집 검증 대상`을 표시하며, 실제 데이터센터 존재와 주소를 확인한 뒤에만 공개한다.
 - Google Maps 링크와 임베드 지도는 좌표보다 표준주소를 우선해 오래된 좌표·행정구역 중심점 오차를 피한다.
 
+## 2026-09-30 DealBook 정보 소스
+
+- 딜북뉴스의 공개 데이터센터 태그 RSS `https://www.dealbook.co.kr/tag/deiteosenteo/rss/`를 데이터센터 PF·투자·자산운용·시공 동향의 후보 근거로 사용한다.
+- robots.txt가 차단한 `/bluedot/`, `/p/` 경로는 요청하지 않으며 데이터센터 태그 RSS만 수집한다.
+- 제목·정규 URL·게시일·발행기관만 저장하고 본문·요약·이미지는 저장하지 않는다.
+- 2차 보도자료인 C등급 출처이므로 센터·용량·참여 관계 공개 전 공식 기업 또는 공공기관 자료와 교차검증한다.
+
 ```bash
 .venv/bin/python src11_site_import.py data/collected_site_targets_200_20260930.csv
 .venv/bin/python src11_site_import.py data/collected_site_targets_200_20260930.csv --apply
@@ -198,6 +205,8 @@ curl -s http://127.0.0.1:8765/api/v1/healthz
 .venv/bin/python -B src14_review_workflow.py review site UUID approve --note '근거 확인' --publish
 .venv/bin/python -B src15_quality_report.py --json dashboard/quality.json --html dashboard/quality.html
 ```
+
+내부 검토 콘솔은 N100 서버의 `http://127.0.0.1:8766/`에서 제공한다. 관리 토큰과 검토자 이름을 입력하면 대상별 상세정보와 공식 원문을 확인하고 승인 또는 반려할 수 있다. 센터·프로젝트·참여 관계는 승인과 공개를 분리해 선택하며 모든 결정에는 검토 사유가 필요하고 `audit_log`에 기록된다. 서비스는 로컬 인터페이스에만 바인딩하므로 외부에서 사용할 때는 SSH 터널 등 인증된 관리 경로를 사용한다.
 
 ## 2026-09-29 사실·백업·내부 운영
 
