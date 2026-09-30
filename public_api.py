@@ -80,6 +80,38 @@ class PublicRepository:
         total = int(rows[0].pop("total_count")) if rows else 0
         return rows, total
 
+    def tracking_sites(self) -> list[dict[str, Any]]:
+        """Return minimal public tracking fields for every active target.
+
+        Candidate rows remain explicitly labelled and are excluded from the
+        confirmed market aggregates exposed by the other repository methods.
+        """
+        with self.engine.connect() as connection:
+            rows = connection.execute(text("""
+                SELECT v.site_code, v.site_name, v.address_standard,
+                       v.sido, v.sigungu, v.latitude, v.longitude,
+                       v.lifecycle_group, v.owner_names, v.operator_names,
+                       v.operating_grid_intake_mw, v.operating_it_load_mw,
+                       v.development_grid_intake_mw, v.development_it_load_mw,
+                       v.earliest_rfs_date, v.latest_data_update,
+                       v.review_status, v.public_visible,
+                       v.location_precision, v.coordinate_quality,
+                       (v.site_name LIKE '%%수집 검증 대상%%') AS discovery_target,
+                       CASE
+                           WHEN v.public_visible=true AND v.review_status='CONFIRMED'
+                               THEN 'PUBLIC_CONFIRMED'
+                           WHEN v.site_name LIKE '%%수집 검증 대상%%'
+                               THEN 'DISCOVERY_TARGET'
+                           ELSE 'REVIEW_REQUIRED'
+                       END AS tracking_status
+                FROM v_site_map v
+                JOIN dc_site s ON s.site_id=v.site_id
+                WHERE s.record_status='ACTIVE'
+                ORDER BY v.public_visible DESC, v.sido NULLS LAST,
+                         v.sigungu NULLS LAST, v.site_name
+            """)).mappings().all()
+        return [dict(row) for row in rows]
+
     def target_summary(self) -> dict[str, int]:
         with self.engine.connect() as connection:
             row = connection.execute(text("""
