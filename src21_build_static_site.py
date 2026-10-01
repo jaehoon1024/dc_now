@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build a Netlify snapshot of confirmed facilities and labelled tracking targets."""
 from __future__ import annotations
-import html,json
+import html,json,shutil
 from datetime import datetime
 from pathlib import Path
 from urllib.parse import quote_plus
@@ -76,8 +76,8 @@ def render_v2(payload):
  sites=payload["sites"]
  def status_flags(x):
   if x.get("public_visible") and x.get("review_status")=="CONFIRMED":
-   return [("public","공개 확정")]
-  result=[]
+   result=[("public","공개 확정")]
+  else:result=[]
   if x.get("discovery_target") or "수집 검증 대상" in str(x.get("site_name") or ""):
    result.append(("discovery","수집 검증 대상"))
   if x.get("review_status")!="CONFIRMED":result.append(("warning","근거 확인 필요"))
@@ -118,7 +118,10 @@ def render_v2(payload):
 def write_site(payload,out=OUT):
  out.mkdir(parents=True,exist_ok=True);(out/"index.html").write_text(render_v2(payload),encoding="utf-8")
  (out/"data.json").write_text(json.dumps(payload,ensure_ascii=False,default=json_value,separators=(",",":")),encoding="utf-8")
- (out/"_headers").write_text("/*\n  Cache-Control: public, max-age=0, must-revalidate\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: no-referrer\n  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline' https://unpkg.com; script-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: https://*.tile.openstreetmap.org; connect-src 'self' https://*.tile.openstreetmap.org; frame-src https://www.google.com https://maps.google.com\n\n/data.json\n  Cache-Control: public, max-age=60, must-revalidate\n",encoding="utf-8")
+ vendor=out/"vendor"/"leaflet";vendor.mkdir(parents=True,exist_ok=True)
+ for name in ("leaflet.css","leaflet.js","LICENSE"):
+  shutil.copyfile(ROOT/"dashboard"/"vendor"/"leaflet"/name,vendor/name)
+ (out/"_headers").write_text("/*\n  Cache-Control: public, max-age=0, must-revalidate\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.tile.openstreetmap.org; connect-src 'self' https://*.tile.openstreetmap.org; frame-src https://www.google.com https://maps.google.com\n\n/data.json\n  Cache-Control: public, max-age=60, must-revalidate\n",encoding="utf-8")
 def main():
  load_env_file();e=create_engine(resolve_database_url(),connect_args={"options":"-c default_transaction_read_only=on -c statement_timeout=10000"})
  try:payload=build_payload(PublicRepository(e))
