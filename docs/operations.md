@@ -5,7 +5,7 @@
 - RSS의 게시일 없는 응답/304 처리 시 발생한 PostgreSQL AmbiguousParameter 수정: NULL 검사에 timestamptz 명시.
 - 잘못된 반복문의 feed_index 참조를 수정. 실패한 피드 뒤에도 요청 간격 유지.
 - 실제 6개 피드 실행 성공 확인. 기존 실패 이력은 보존.
-- OpenDART 일일 06:10 KST, RSS 일일 06:30 KST 사용자 타이머 활성화. 각각 최대 5분 무작위 지연.
+- OpenDART 일일 06:10 KST, RSS 일일 00:30·06:30·12:30·18:30 KST 사용자 타이머 활성화. 각각 최대 5분 무작위 지연.
 - 사용자 linger 활성화. Windows/WSL 자체가 종료되어 있으면 실행되지 않으며 Persistent 설정으로 다음 시작 시 누락 실행을 보완.
 - ops_status.py: 읽기 전용 DB 조회, 타이머 상태, 로컬 Task 목록, 검색 가능한 운영 현황 HTML.
 - 비밀번호, API 키, 환경파일 내용은 보고서에 포함하지 않음.

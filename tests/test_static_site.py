@@ -12,7 +12,7 @@ class StaticSiteTests(unittest.TestCase):
    self.assertTrue((out/"vendor"/"leaflet"/"leaflet.js").exists())
    self.assertIn('src="./vendor/leaflet/leaflet.js"',(out/"index.html").read_text())
  def test_build_prerenders_public_count_and_rows(self):
-  payload={"generated_at":"2026-09-29T00:00:00+09:00","total":1,"target_summary":{"target_total":100,"public_total":1,"needs_evidence_total":99},"sites":[{"site_code":"TEST-001","site_name":"테스트 센터","address_standard":"서울특별시 금천구 가산로 1","sido":"서울특별시","sigungu":"금천구","lifecycle_group":"OPERATING","operating_it_load_mw":None,"review_status":"NEEDS_EVIDENCE","public_visible":False,"latitude":None,"longitude":None,"location_precision":"CITY","discovery_target":True}],"details":{},"regions":[],"companies":[],"yearly":[],"collection_status":[]}
+  payload={"generated_at":"2026-09-29T00:00:00+09:00","total":1,"target_summary":{"target_total":100,"public_total":1,"needs_evidence_total":99},"sites":[{"site_code":"TEST-001","site_name":"테스트 센터","address_standard":"서울특별시 금천구 가산로 1","sido":"서울특별시","sigungu":"금천구","lifecycle_group":"OPERATING","operating_it_load_mw":None,"review_status":"NEEDS_EVIDENCE","public_visible":False,"latitude":None,"longitude":None,"location_precision":"CITY","discovery_target":True}],"details":{},"regions":[],"companies":[],"yearly":[],"collection_status":[],"evidence_summary":{"total_document_count":491,"public_document_count":480,"confirmed_document_count":491,"source_count":20},"recent_evidence":[{"title":"데이터센터 투자 소식","canonical_url":"https://example.com/evidence","publisher":"테스트신문","published_at":"2026-09-29T00:00:00+09:00","source_grade":"C"}]}
   with tempfile.TemporaryDirectory() as d:
    write_site(payload,Path(d));page=(Path(d)/"index.html").read_text()
    self.assertIn('<strong id="total">100</strong>',page)
@@ -22,6 +22,9 @@ class StaticSiteTests(unittest.TestCase):
    self.assertIn('좌표 확인 필요',page)
    self.assertIn('상세 주소 확인 필요',page)
    self.assertIn('공개 확정',page)
+   self.assertIn('근거 491건 · 공개 480건 · 소스 20개',page)
+   self.assertIn('데이터센터 투자 소식',page)
+   self.assertIn('https://example.com/evidence',page)
    self.assertIn("L.map('dcmap'",page)
    self.assertNotIn("$('#total').textContent=F.length;",page)
    self.assertIn('query=%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C+%EA%B8%88%EC%B2%9C%EA%B5%AC+%EA%B0%80%EC%82%B0%EB%A1%9C+1',page)

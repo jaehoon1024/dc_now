@@ -27,6 +27,12 @@ class FakeRepository:
     def collection_status(self):
         return [{"job_name": "RSS_DAILY", "run_status": "SUCCESS"}]
 
+    def evidence_summary(self):
+        return {"total_document_count": 491, "public_document_count": 480, "confirmed_document_count": 491, "source_count": 20}
+
+    def recent_evidence(self, limit=24):
+        return [{"title": "테스트 근거", "source_grade": "C"}][:limit]
+
 
 def request(app, path, query="", method="GET"):
     captured = {}
@@ -62,7 +68,7 @@ class PublicApiTests(unittest.TestCase):
         self.assertEqual(parse_positive_int("9999", 100, 500), 500)
 
     def test_dashboard_data_endpoints(self):
-        for path in ("/api/v1/companies", "/api/v1/yearly", "/api/v1/collection-status", "/api/v1/sites/SEOUL-01"):
+        for path in ("/api/v1/companies", "/api/v1/yearly", "/api/v1/collection-status", "/api/v1/evidence-summary", "/api/v1/recent-evidence", "/api/v1/sites/SEOUL-01"):
             response, payload = request(self.app, path)
             self.assertEqual(response["status"], "200 OK")
             self.assertTrue(payload)

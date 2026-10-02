@@ -82,10 +82,10 @@ UNIT
 
 cat >"${TIMER_PATH}" <<UNIT
 [Unit]
-Description=Run DC Platform RSS collection every morning
+Description=Run DC Platform RSS collection every six hours
 
 [Timer]
-OnCalendar=*-*-* 06:30:00 Asia/Seoul
+OnCalendar=*-*-* 00,06,12,18:30:00 Asia/Seoul
 Persistent=true
 RandomizedDelaySec=5min
 AccuracySec=1min
@@ -99,7 +99,7 @@ chmod 600 "${SERVICE_PATH}" "${TIMER_PATH}"
 systemctl --user daemon-reload
 
 if [[ "${ACTION}" == "install" ]]; then
-  echo "스케줄 파일 설치 완료: 매일 06:30 Asia/Seoul"
+  echo "스케줄 파일 설치 완료: 매일 00:30, 06:30, 12:30, 18:30 Asia/Seoul"
   echo "현재 상태: 비활성"
   echo "수집 성공 확인 후 다음 명령으로 활성화하세요:"
   echo "  bash ${PROJECT_DIR}/src04_install_rss_schedule.sh --enable"

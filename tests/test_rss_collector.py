@@ -1,9 +1,29 @@
 import unittest
+import tempfile
 from pathlib import Path
 from unittest.mock import patch
 import src04_rss_collector as rss
 
 class CollectorTests(unittest.TestCase):
+    def test_google_news_source_publisher_is_preserved(self):
+        payload = b'''<?xml version="1.0" encoding="UTF-8"?>
+        <rss><channel><item><title>AI data center</title>
+        <link>https://example.com/article</link><guid>one</guid>
+        <pubDate>Wed, 01 Oct 2026 00:00:00 GMT</pubDate>
+        <source url="https://publisher.example">Publisher Name</source>
+        </item></channel></rss>'''
+        items = rss.parse_feed(payload, 10)
+        self.assertEqual(len(items), 1)
+        self.assertEqual(items[0]["publisher"], "Publisher Name")
+
+    def test_evidence_hash_is_stable_across_overlapping_feeds(self):
+        item = {"title":"Data center", "canonical_url":"https://example.com/a", "publisher":"Publisher", "published_at":None}
+        base = {"source_code":"NEWS", "source_name":"News", "feed_code":"ONE"}
+        with tempfile.TemporaryDirectory() as directory:
+            _, first = rss.save_evidence_json(Path(directory), base, item, "ALL", "rss:id")
+            _, second = rss.save_evidence_json(Path(directory), {**base,"feed_code":"TWO"}, item, "ALL", "rss:id")
+        self.assertEqual(first, second)
+
     def test_unchanged_feed_succeeds_and_observes_interval(self):
         self.check_feeds(False)
 

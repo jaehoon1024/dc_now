@@ -30,7 +30,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.engine import URL
 
 
-VERSION = "src04-1.0.1"
+VERSION = "src04-1.1.1"
 USER_AGENT = "dc-platform-rss-collector/1.0 (+metadata-only)"
 TRACKING_PARAMETERS = {
     "fbclid",
@@ -396,6 +396,7 @@ def parse_feed(payload: bytes, max_items: int) -> list[dict[str, Any]]:
                 "title": title,
                 "canonical_url": link,
                 "guid": guid,
+                "publisher": first_text(entry, ("source",)),
                 "published_raw": published_raw,
                 "published_at": parse_datetime(published_raw),
             }
@@ -454,12 +455,11 @@ def save_evidence_json(
         "collector_version": collector_version,
         "storage_policy": "METADATA_ONLY",
         "source_code": feed["source_code"],
-        "feed_code": feed["feed_code"],
         "relevance_reason": reason,
         "external_document_id": external_id,
         "title": item["title"],
         "canonical_url": item["canonical_url"],
-        "publisher": feed["source_name"],
+        "publisher": item.get("publisher") or feed["source_name"],
         "published_at": (
             item["published_at"].isoformat() if item.get("published_at") else None
         ),
@@ -573,7 +573,7 @@ def store_items(
                         "canonical_url": item["canonical_url"],
                         "external_document_id": external_id,
                         "title": item["title"],
-                        "publisher": feed["source_name"],
+                        "publisher": item.get("publisher") or feed["source_name"],
                         "published_at": item.get("published_at"),
                         "source_grade": feed["default_source_grade"],
                     },
@@ -670,7 +670,7 @@ def store_items(
                     "document_id": document_id,
                     "canonical_url": item["canonical_url"],
                     "title": item["title"],
-                    "publisher": feed["source_name"],
+                    "publisher": item.get("publisher") or feed["source_name"],
                     "published_at": item.get("published_at"),
                 },
             )

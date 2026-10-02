@@ -13,7 +13,7 @@ def build_payload(repo):
  public_sites,total=repo.sites(None,None,500,0)
  sites=repo.tracking_sites()
  details={x["site_code"]:repo.site_detail(x["site_code"]) for x in public_sites}
- return {"generated_at":datetime.now().astimezone().isoformat(),"total":len(sites),"public_total":total,"target_summary":repo.target_summary(),"sites":sites,"details":details,"regions":repo.regions(),"companies":repo.companies(),"yearly":repo.yearly(),"collection_status":repo.collection_status()}
+ return {"generated_at":datetime.now().astimezone().isoformat(),"total":len(sites),"public_total":total,"target_summary":repo.target_summary(),"sites":sites,"details":details,"regions":repo.regions(),"companies":repo.companies(),"yearly":repo.yearly(),"collection_status":repo.collection_status(),"evidence_summary":repo.evidence_summary(),"recent_evidence":repo.recent_evidence()}
 def render_html(payload):
  page=(ROOT/"dashboard/professional.html").read_text(encoding="utf-8")
  page=page.replace(
@@ -99,6 +99,12 @@ def render_v2(payload):
  rate=round(target["public_total"]/target["target_total"]*100) if target["target_total"] else 0
  public_sites=[x for x in sites if x.get("public_visible") and x.get("review_status")=="CONFIRMED"]
  grid=sum(float(x.get("operating_grid_intake_mw") or 0) for x in public_sites)
+ evidence_summary=payload.get("evidence_summary") or {}
+ evidence_rows="".join(
+  '<a class="evidenceitem" target="_blank" rel="noopener" href="{}"><span class="evidencegrade">{}</span><span><b>{}</b><small>{} · {}</small></span></a>'.format(
+   html.escape(str(x.get("canonical_url") or "#")),html.escape(str(x.get("source_grade") or "—")),html.escape(str(x.get("title") or "제목 없음")),html.escape(str(x.get("publisher") or x.get("source_code") or "출처 미확인")),html.escape(str(x.get("published_at") or "")[:10]),
+  ) for x in payload.get("recent_evidence",[])
+ )
  replacements={
   '승인 데이터 준비 중':f'기준 {html.escape(str(payload.get("generated_at") or "미확인"))[:16].replace("T"," ")}',
   '<strong id="total">0</strong>':f'<strong id="total">{target["target_total"]}</strong>',
@@ -111,6 +117,8 @@ def render_v2(payload):
   '<i id="coveragebar"></i>':f'<i id="coveragebar" style="width:{rate}%"></i>',
   '<span class="resultcount" id="resultcount">0건</span>':f'<span class="resultcount" id="resultcount">{len(sites)}건</span>',
   '<tbody id="rows"></tbody>':f'<tbody id="rows">{rows}</tbody>',
+  '<span class="sectiontag" id="evidenceSummary">근거 집계 중</span>':f'<span class="sectiontag" id="evidenceSummary">근거 {evidence_summary.get("total_document_count",0)}건 · 공개 {evidence_summary.get("public_document_count",0)}건 · 소스 {evidence_summary.get("source_count",0)}개</span>',
+  '<div class="evidencelist" id="evidence"><div class="empty">수집 근거를 불러오는 중입니다.</div></div>':f'<div class="evidencelist" id="evidence">{evidence_rows}</div>',
  }
  if sites:replacements['<div class="empty" id="empty">']='<div class="empty" id="empty" hidden>'
  for old,new in replacements.items():page=page.replace(old,new)

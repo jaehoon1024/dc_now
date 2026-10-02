@@ -238,6 +238,33 @@ class PublicRepository:
             """)).mappings().all()
         return [dict(row) for row in rows]
 
+    def evidence_summary(self) -> dict[str, int]:
+        with self.engine.connect() as connection:
+            row = connection.execute(text("""
+                SELECT count(*) AS total_document_count,
+                       count(*) FILTER (WHERE ed.review_status='CONFIRMED') AS confirmed_document_count,
+                       count(*) FILTER (WHERE ed.review_status='CONFIRMED' AND ed.access_scope='PUBLIC') AS public_document_count,
+                       count(*) FILTER (WHERE ed.created_at>=CURRENT_TIMESTAMP-INTERVAL '7 days') AS recent_document_count,
+                       count(DISTINCT ed.source_id) AS source_count
+                FROM evidence_document ed
+                WHERE ed.record_status='ACTIVE'
+            """)).mappings().one()
+        return {key: int(value or 0) for key, value in row.items()}
+
+    def recent_evidence(self, limit: int = 24) -> list[dict[str, Any]]:
+        with self.engine.connect() as connection:
+            rows = connection.execute(text("""
+                SELECT ed.title, ed.canonical_url, ed.publisher,
+                       ed.published_at, ed.source_grade, sr.source_code
+                FROM evidence_document ed
+                JOIN source_registry sr ON sr.source_id=ed.source_id
+                WHERE ed.record_status='ACTIVE' AND ed.access_scope='PUBLIC'
+                  AND ed.review_status='CONFIRMED'
+                ORDER BY COALESCE(ed.published_at,ed.created_at) DESC, ed.created_at DESC
+                LIMIT :limit
+            """), {"limit": limit}).mappings().all()
+        return [dict(row) for row in rows]
+
     def health(self) -> None:
         with self.engine.connect() as connection:
             connection.execute(text("SELECT 1"))
@@ -287,6 +314,11 @@ def make_application(repository: Any):
                 return json_response(start_response, "200 OK", {"items": repository.yearly()})
             if path == "/api/v1/collection-status":
                 return json_response(start_response, "200 OK", {"items": repository.collection_status()})
+            if path == "/api/v1/evidence-summary":
+                return json_response(start_response, "200 OK", repository.evidence_summary())
+            if path == "/api/v1/recent-evidence":
+                limit = parse_positive_int(query.get("limit", [None])[0], 24, 100)
+                return json_response(start_response, "200 OK", {"items": repository.recent_evidence(limit)})
             if path.startswith("/api/v1/sites/"):
                 site_code = path.removeprefix("/api/v1/sites/")
                 if not site_code or len(site_code) > 30:
