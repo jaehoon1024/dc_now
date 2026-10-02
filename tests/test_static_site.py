@@ -16,7 +16,10 @@ class StaticSiteTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as d:
    write_site(payload,Path(d));page=(Path(d)/"index.html").read_text()
    self.assertIn('<strong id="total">100</strong>',page)
-   self.assertIn('전체 표시 100 · 공개 확정 1',page)
+   self.assertIn('센터 원장 1건 · 공개 승인 1건',page)
+   self.assertIn('조치 대기',page)
+   self.assertIn('핵심 정보 완성도',page)
+   self.assertIn('<strong id="qualityScore">17%</strong>',page)
    self.assertIn('수집 검증 대상',page)
    self.assertIn('근거 확인 필요',page)
    self.assertIn('좌표 확인 필요',page)

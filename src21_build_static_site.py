@@ -74,50 +74,75 @@ def render_html(payload):
 def render_v2(payload):
  page=(ROOT/"dashboard/professional_v2.html").read_text(encoding="utf-8")
  sites=payload["sites"]
- def status_flags(x):
-  if x.get("public_visible") and x.get("review_status")=="CONFIRMED":
-   result=[("public","공개 확정")]
-  else:result=[]
-  if x.get("discovery_target") or "수집 검증 대상" in str(x.get("site_name") or ""):
-   result.append(("discovery","수집 검증 대상"))
-  if x.get("review_status")!="CONFIRMED":result.append(("warning","근거 확인 필요"))
-  if x.get("latitude") is None or x.get("longitude") is None:
-   result.append(("coordinate","좌표 확인 필요"))
-  if x.get("location_precision") in {"CITY","DISTRICT","UNKNOWN"}:
-   result.append(("warning","상세 주소 확인 필요"))
-  return result or [("warning","상태 확인 필요")]
- def status_html(x):
-  return '<div class="flags">'+''.join(
-   f'<span class="flag {kind}">{html.escape(label)}</span>' for kind,label in status_flags(x)
-  )+'</div>'
+ def has_coordinate(x):return x.get("latitude") is not None and x.get("longitude") is not None
+ def has_stage(x):return bool(x.get("lifecycle_group")) and x.get("lifecycle_group")!="UNKNOWN"
+ def has_operator(x):return bool(str(x.get("operator_names") or "").strip())
+ def has_capacity(x):return any(x.get(k) is not None for k in ("operating_grid_intake_mw","operating_it_load_mw","development_grid_intake_mw","development_it_load_mw"))
+ def has_address(x):return x.get("location_precision") in {"ROOFTOP","ROAD","PARCEL"}
+ def has_rfs(x):return bool(x.get("earliest_rfs_date"))
+ def gap_labels(x):
+  result=[]
+  if x.get("public_visible") and x.get("review_status")=="CONFIRMED":result.append(("base","공개 확정"))
+  elif x.get("review_status")!="CONFIRMED":result.append(("","근거 확인 필요"))
+  if not has_coordinate(x):result.append(("","좌표 확인 필요"))
+  if not has_stage(x):result.append(("","운영 단계 확인 필요"))
+  if not has_operator(x):result.append(("","운영사 확인 필요"))
+  if not has_address(x):result.append(("","상세 주소 확인 필요"))
+  if not has_capacity(x):result.append(("","용량 확인 필요"))
+  if not has_rfs(x):result.append(("","RFS 확인 필요"))
+  if x.get("discovery_target") or "수집 검증 대상" in str(x.get("site_name") or ""):result.append(("","수집 검증 대상"))
+  return result
+ def priority(x):
+  if not has_coordinate(x) or not has_stage(x):return "P1","p1"
+  if not has_operator(x) or not has_address(x):return "P2","p2"
+  if not has_capacity(x) or not has_rfs(x):return "P3","p3"
+  return "완료","ready"
+ stage_label={"OPERATING":"운영","DEVELOPMENT":"개발","MIXED":"혼합","ON_HOLD":"보류","UNKNOWN":"미확인"}
+ def gaps_html(x):return '<div class="gaps">'+''.join(f'<span class="gap {kind}">{html.escape(label)}</span>' for kind,label in gap_labels(x))+'</div>'
  rows="".join(
-  "<tr data-code=\"{}\"><td class=\"sitecell\"><b>{}</b><small>{}</small></td><td>{} {}</td><td><span class=\"badge\">{}</span></td><td>{}</td><td>{} MW</td><td>{} MW</td><td>{}</td><td><a class=\"maplink\" target=\"_blank\" rel=\"noopener\" href=\"https://www.google.com/maps/search/?api=1&amp;query={}\">Google Maps ↗</a></td></tr>".format(
-   html.escape(str(x.get("site_code") or "")),html.escape(str(x.get("site_name") or "—")),html.escape(str(x.get("operator_names") or "운영사 미확인")),html.escape(str(x.get("sido") or "—")),html.escape(str(x.get("sigungu") or "—")),html.escape(str(x.get("lifecycle_group") or "—")),status_html(x),html.escape(str(x.get("operating_grid_intake_mw") or "미공개")),html.escape(str(x.get("operating_it_load_mw") or "미공개")),html.escape(str(x.get("latest_data_update") or "")[:10]),html.escape(quote_plus(str(x.get("address_standard") or x.get("site_name") or ""))),
+  "<tr data-code=\"{}\"><td><span class=\"priority {}\">{}</span></td><td class=\"sitecell\"><b>{}</b><small>{}</small></td><td>{} {}</td><td><span class=\"stage {}\">{}</span></td><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td><a class=\"maplink\" target=\"_blank\" rel=\"noopener\" href=\"https://www.google.com/maps/search/?api=1&amp;query={}\">Google Maps ↗</a></td></tr>".format(
+   html.escape(str(x.get("site_code") or "")),priority(x)[1],priority(x)[0],html.escape(str(x.get("site_name") or "—")),html.escape(str(x.get("site_code") or "—")),html.escape(str(x.get("sido") or "—")),html.escape(str(x.get("sigungu") or "")),"unknown" if not has_stage(x) else "",html.escape(stage_label.get(x.get("lifecycle_group"),str(x.get("lifecycle_group") or "미확인"))),html.escape(str(x.get("operator_names") or "미확인")),html.escape(str(x.get("operating_grid_intake_mw") or x.get("development_grid_intake_mw") or "미확인"))+(" MW" if has_capacity(x) else ""),gaps_html(x),html.escape(str(x.get("latest_data_update") or "")[:10]),html.escape(quote_plus(str(x.get("address_standard") or x.get("site_name") or ""))),
   ) for x in sites
  )
  target=payload.get("target_summary") or {"target_total":payload["total"],"public_total":payload["total"],"needs_evidence_total":0}
- rate=round(target["public_total"]/target["target_total"]*100) if target["target_total"] else 0
- public_sites=[x for x in sites if x.get("public_visible") and x.get("review_status")=="CONFIRMED"]
- grid=sum(float(x.get("operating_grid_intake_mw") or 0) for x in public_sites)
+ total=len(sites)
+ counts={"coordinate":sum(map(has_coordinate,sites)),"stage":sum(map(has_stage,sites)),"operator":sum(map(has_operator,sites)),"capacity":sum(map(has_capacity,sites)),"address":sum(map(has_address,sites)),"rfs":sum(map(has_rfs,sites))}
+ score=round(sum(counts.values())/(total*6)*100) if total else 0
  evidence_summary=payload.get("evidence_summary") or {}
+ collection_healthy=bool(payload.get("collection_status")) and all(x.get("run_status")=="SUCCESS" for x in payload.get("collection_status",[]))
  evidence_rows="".join(
   '<a class="evidenceitem" target="_blank" rel="noopener" href="{}"><span class="evidencegrade">{}</span><span><b>{}</b><small>{} · {}</small></span></a>'.format(
    html.escape(str(x.get("canonical_url") or "#")),html.escape(str(x.get("source_grade") or "—")),html.escape(str(x.get("title") or "제목 없음")),html.escape(str(x.get("publisher") or x.get("source_code") or "출처 미확인")),html.escape(str(x.get("published_at") or "")[:10]),
-  ) for x in payload.get("recent_evidence",[])
+ ) for x in payload.get("recent_evidence",[])
  )
+ completeness=''.join('<div class="comprow"><span>{}</span><div class="track"><i style="width:{}%"></i></div><b>{} · {}%</b></div>'.format(label,round(counts[key]/total*100) if total else 0,counts[key],round(counts[key]/total*100) if total else 0) for key,label in (("coordinate","좌표"),("stage","운영 단계"),("operator","운영사"),("address","상세 주소"),("capacity","용량"),("rfs","RFS")))
  replacements={
-  '승인 데이터 준비 중':f'기준 {html.escape(str(payload.get("generated_at") or "미확인"))[:16].replace("T"," ")}',
+  '데이터 준비 중':f'기준 {html.escape(str(payload.get("generated_at") or "미확인"))[:16].replace("T"," ")}',
+  '<div class="online" id="systemStatus"><i></i>수집 상태 확인 중</div>':f'<div class="online" id="systemStatus"><i></i>{"수집 시스템 정상" if collection_healthy else "수집 상태 점검 필요"}</div>',
   '<strong id="total">0</strong>':f'<strong id="total">{target["target_total"]}</strong>',
-  '<small id="targetBreakdown">공개 센터</small>':f'<small id="targetBreakdown">전체 표시 {target["target_total"]} · 공개 확정 {target["public_total"]}</small>',
-  '<strong id="verified">0</strong>':f'<strong id="verified">{target["public_total"]}</strong>',
-  '<strong id="op">0</strong>':f'<strong id="op">{sum(x.get("lifecycle_group") in {"OPERATING","MIXED"} for x in public_sites)}</strong>',
-  '<strong id="gridmw">—</strong>':f'<strong id="gridmw">{grid:g}</strong>' if grid else '<strong id="gridmw">미공개</strong>',
-  '<b id="coverage">0%</b>':f'<b id="coverage">{rate}%</b>',
-  '<span id="pending">검토 대기 —</span>':f'<span id="pending">검토 대기 {target["needs_evidence_total"]}건</span>',
-  '<i id="coveragebar"></i>':f'<i id="coveragebar" style="width:{rate}%"></i>',
+  '<small id="targetBreakdown">센터 원장 집계</small>':f'<small id="targetBreakdown">센터 원장 {total}건 · 공개 승인 {target["public_total"]}건</small>',
+  '<strong id="coordinateCount">0</strong>':f'<strong id="coordinateCount">{counts["coordinate"]}</strong>',
+  '<span class="delta" id="coordinateRate">0%</span>':f'<span class="delta" id="coordinateRate">{round(counts["coordinate"]/total*100) if total else 0}%</span>',
+  '<strong id="stageCount">0</strong>':f'<strong id="stageCount">{counts["stage"]}</strong>',
+  '<span class="delta" id="stageRate">0%</span>':f'<span class="delta" id="stageRate">{round(counts["stage"]/total*100) if total else 0}%</span>',
+  '<strong id="operatorCount">0</strong>':f'<strong id="operatorCount">{counts["operator"]}</strong>',
+  '<span class="delta" id="operatorRate">0%</span>':f'<span class="delta" id="operatorRate">{round(counts["operator"]/total*100) if total else 0}%</span>',
+  '<strong id="capacityCount">0</strong>':f'<strong id="capacityCount">{counts["capacity"]}</strong>',
+  '<span class="delta" id="capacityRate">0%</span>':f'<span class="delta" id="capacityRate">{round(counts["capacity"]/total*100) if total else 0}%</span>',
+  '<strong id="evidenceTotal">0</strong>':f'<strong id="evidenceTotal">{evidence_summary.get("confirmed_document_count",0)}</strong>',
+  '<span class="delta" id="sourceCount">0 sources</span>':f'<span class="delta" id="sourceCount">{evidence_summary.get("source_count",0)} sources</span>',
+  '<strong id="qualityScore">0%</strong>':f'<strong id="qualityScore">{score}%</strong>',
+  '<strong id="needCoordinate">0</strong>':f'<strong id="needCoordinate">{total-counts["coordinate"]}</strong>',
+  '<strong id="needStage">0</strong>':f'<strong id="needStage">{total-counts["stage"]}</strong>',
+  '<strong id="needOperator">0</strong>':f'<strong id="needOperator">{total-counts["operator"]}</strong>',
+  '<strong id="needAddress">0</strong>':f'<strong id="needAddress">{total-counts["address"]}</strong>',
+  '<strong id="needCapacity">0</strong>':f'<strong id="needCapacity">{total-counts["capacity"]}</strong>',
+  '<strong id="needRfs">0</strong>':f'<strong id="needRfs">{total-counts["rfs"]}</strong>',
+  '<span id="approvedCount">0</span>':f'<span id="approvedCount">{target["public_total"]}</span>',
   '<span class="resultcount" id="resultcount">0건</span>':f'<span class="resultcount" id="resultcount">{len(sites)}건</span>',
   '<tbody id="rows"></tbody>':f'<tbody id="rows">{rows}</tbody>',
-  '<span class="sectiontag" id="evidenceSummary">근거 집계 중</span>':f'<span class="sectiontag" id="evidenceSummary">근거 {evidence_summary.get("total_document_count",0)}건 · 공개 {evidence_summary.get("public_document_count",0)}건 · 소스 {evidence_summary.get("source_count",0)}개</span>',
+  '<div class="body" id="completeness"></div>':f'<div class="body" id="completeness">{completeness}</div>',
+  '<span class="tag" id="evidenceSummary">근거 집계 중</span>':f'<span class="tag" id="evidenceSummary">근거 {evidence_summary.get("total_document_count",0)}건 · 공개 {evidence_summary.get("public_document_count",0)}건 · 소스 {evidence_summary.get("source_count",0)}개</span>',
   '<div class="evidencelist" id="evidence"><div class="empty">수집 근거를 불러오는 중입니다.</div></div>':f'<div class="evidencelist" id="evidence">{evidence_rows}</div>',
  }
  if sites:replacements['<div class="empty" id="empty">']='<div class="empty" id="empty" hidden>'
