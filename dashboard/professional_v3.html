@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#091621">
+<title>DC NOW | Data Center Market Intelligence</title>
+<link rel="stylesheet" href="./vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="./app_v3.css">
+</head>
+<body>
+<div class="app">
+ <aside class="sidebar">
+  <div class="brand"><span class="brandmark">DC</span><span><b>DC NOW</b><small>MARKET INTELLIGENCE</small></span></div>
+  <nav class="nav" aria-label="주요 화면">
+   <button class="navitem active" data-view="executive"><span>⌂</span>Executive Dashboard</button>
+   <button class="navitem" data-view="map"><span>⌖</span>전국 데이터센터 Map</button>
+   <button class="navitem" data-view="centers"><span>▦</span>센터 Master</button>
+   <button class="navitem" data-view="supply"><span>↗</span>Supply Analysis</button>
+   <button class="navitem" data-view="companies"><span>◎</span>Company Analysis</button>
+   <button class="navitem" data-view="demand"><span>◇</span>Customer & Demand <i>준비</i></button>
+   <button class="navitem" data-view="intelligence"><span>≡</span>Market Intelligence</button>
+   <button class="navitem" data-view="quality"><span>✓</span>Data Quality</button>
+  </nav>
+  <div class="sideinfo"><span class="health" id="systemStatus"><i></i>수집 상태 확인 중</span><small id="generated">데이터 준비 중</small></div>
+ </aside>
+ <main class="main">
+  <header class="topbar"><button class="menubtn" id="menubtn">☰</button><div><b id="viewTitle">Executive Dashboard</b><span id="viewCaption">국내 데이터센터 시장 및 공급 현황</span></div><div class="topactions"><span class="security">PUBLIC VIEW</span><button class="exportbtn" id="export">데이터 내보내기</button></div></header>
+
+  <section class="view active" data-page="executive">
+   <div class="titleline"><div><p class="eyebrow">KOREA DATA CENTER MARKET</p><h1>국내 데이터센터 Market Intelligence</h1><p>현재 운영 현황과 향후 공급, 전력·인프라 정보를 MW와 RFS 기준으로 추적합니다.</p></div><div class="asof"><b>DATA AS OF</b><span id="asOf">—</span></div></div>
+   <div class="kpis executive-kpis">
+    <article class="kpi primary"><span>전체 센터</span><strong id="total">0</strong><small id="targetBreakdown">센터 원장 집계</small></article>
+    <article class="kpi"><span>운영 센터</span><strong id="operatingCount">0</strong><small>운영 단계 확인 기준</small></article>
+    <article class="kpi"><span>운영 IT Load</span><strong id="operatingIt">미확인</strong><small id="operatingItCoverage">확보율 0%</small></article>
+    <article class="kpi"><span>확인 수전용량</span><strong id="gridCapacity">미확인</strong><small id="gridCoverage">확보율 0%</small></article>
+    <article class="kpi"><span>개발 IT Load</span><strong id="developmentIt">미확인</strong><small id="developmentCoverage">확보율 0%</small></article>
+    <article class="kpi"><span>향후 3년 공급</span><strong id="threeYearSupply">미확인</strong><small id="rfsCoverage">RFS 확보율 0%</small></article>
+    <article class="kpi"><span>Available Capacity</span><strong id="availableCapacity">미확인</strong><small>계약·LOI 연계 필요</small></article>
+    <article class="kpi"><span>GPU Ready</span><strong id="gpuCapacity">미확인</strong><small>GPU/DLC 데이터 필요</small></article>
+   </div>
+   <div class="coverage-alert"><span class="alerticon">!</span><div><b>부분 집계 안내</b><p id="coverageNotice">핵심 용량 정보의 확보율을 계산 중입니다.</p></div><button data-go="quality">데이터 품질 보기</button></div>
+   <div class="executive-grid">
+    <article class="card mapcard"><header><div><h2>전국 데이터센터 공급 지도</h2><p>확인 좌표는 센터 단위, 미확정 좌표는 시도 단위로 표시</p></div><div class="segmented"><button class="active" data-bubble="grid">수전 MW</button><button data-bubble="count">센터 수</button></div></header><div class="maparea"><div id="executiveMap"></div><div class="maplegend"><span><i class="operating"></i>운영</span><span><i class="unknown"></i>단계 미확인</span><span><i class="aggregate"></i>좌표 미확정 집계</span></div><div class="mapmessage" id="mapMessage">센터를 선택하면 상세 정보를 확인할 수 있습니다.</div></div></article>
+    <div class="sidecharts">
+     <article class="card"><header><div><h2>지역별 공급 현황</h2><p>확인 IT Load 우선, 미확인 시 센터 수</p></div><button class="linkbtn" data-go="supply">상세 ›</button></header><div class="chartbody" id="regionChart"></div></article>
+     <article class="card"><header><div><h2>공급 단계</h2><p>전체 센터 기준</p></div></header><div class="supplymix"><div class="donut" id="statusDonut"><b>0</b><span>센터</span></div><div id="statusLegend"></div></div></article>
+     <article class="card compact"><header><div><h2>AI Infrastructure</h2><p>GPU/HPC·DLC 대응 데이터</p></div></header><div class="techgrid"><div><b>GPU Ready</b><strong>미확인</strong></div><div><b>DLC Ready</b><strong>미확인</strong></div><div><b>Rack Density</b><strong>미확인</strong></div></div></article>
+    </div>
+   </div>
+   <article class="card timelinecard"><header><div><h2>연도별 신규 공급 Timeline</h2><p>Phase별 RFS와 IT Load를 연결하여 향후 공급 집중도를 분석합니다.</p></div><button class="linkbtn" data-go="supply">Supply Analysis ›</button></header><div class="timeline" id="timeline"></div></article>
+   <div class="summarygrid"><article class="card"><header><div><h2>사업자별 Portfolio</h2><p>확인된 센터 수 기준</p></div><button class="linkbtn" data-go="companies">상세 ›</button></header><div class="chartbody" id="executiveCompanies"></div></article><article class="card"><header><div><h2>Market Intelligence</h2><p>최근 확정된 뉴스·공시·공식자료</p></div><button class="linkbtn" data-go="intelligence">전체 ›</button></header><div class="newscompact" id="executiveEvidence"></div></article></div>
+  </section>
+
+  <section class="view" data-page="map"><div class="modulehead"><div><p class="eyebrow">GEOSPATIAL INTELLIGENCE</p><h1>전국 데이터센터 Map</h1><p>입지, 공급 규모, 운영 상태를 지도에서 조회합니다.</p></div></div><div class="filterbar"><input id="mapQ" placeholder="센터명, 주소, 운영사 검색"><select id="mapRegion"><option value="">전국</option></select><select id="mapStatus"><option value="">전체 상태</option><option value="OPERATING">운영</option><option value="DEVELOPMENT">개발</option><option value="UNKNOWN">미확인</option></select><select id="mapCapacity"><option value="">전체 용량</option><option value="KNOWN">용량 확인</option><option value="UNKNOWN">용량 미확인</option></select><button id="mapReset">초기화</button></div><div class="mapmodule"><div class="maparea"><div id="fullMap"></div><div class="maplegend"><span><i class="operating"></i>좌표 확인</span><span><i class="aggregate"></i>시도별 좌표 미확정</span></div></div><aside><div class="mapstats" id="mapStats"></div><h3>현재 결과</h3><div class="maplist" id="mapList"></div></aside></div></section>
+
+  <section class="view" data-page="centers"><div class="modulehead"><div><p class="eyebrow">DATA CENTER MASTER</p><h1>센터 Master</h1><p>센터별 위치, 사업자, 전력, 용량, RFS와 데이터 상태를 관리합니다.</p></div><div class="comparebar" id="compareBar"><span>비교할 센터를 2~5개 선택</span><button id="compareOpen" disabled>선택 비교</button></div></div><div class="filterbar masterfilters"><input id="q" placeholder="센터명, 주소, 운영사 검색"><select id="region"><option value="">전국 지역</option></select><select id="status"><option value="">전체 운영 단계</option><option value="OPERATING">운영</option><option value="DEVELOPMENT">개발</option><option value="MIXED">혼합</option><option value="ON_HOLD">보류</option><option value="UNKNOWN">미확인</option></select><select id="quality"><option value="">전체 데이터 상태</option><option value="NEEDS_COORDINATE">좌표 확인 필요</option><option value="NEEDS_STAGE">운영 단계 확인 필요</option><option value="NEEDS_OPERATOR">운영사 확인 필요</option><option value="NEEDS_CAPACITY">용량 확인 필요</option><option value="NEEDS_RFS">RFS 확인 필요</option><option value="DISCOVERY_TARGET">수집 검증 대상</option><option value="READY">핵심 정보 완료</option></select><button id="reset">초기화</button></div><article class="card tablecard"><header><div><h2>Data Center Register</h2><p>공개 승인과 개별 필드 완성도를 분리 표시</p></div><span class="count" id="resultcount">0건</span></header><div class="tablewrap"><table><thead><tr><th>비교</th><th>센터 / 코드</th><th>지역</th><th>상태</th><th>운영사</th><th>수전 MW</th><th>IT Load</th><th>RFS</th><th>데이터 상태</th></tr></thead><tbody id="rows"></tbody></table><div class="empty" id="empty">표시할 센터가 없습니다.</div></div></article></section>
+
+  <section class="view" data-page="supply"><div class="modulehead"><div><p class="eyebrow">SUPPLY INTELLIGENCE</p><h1>Supply Analysis</h1><p>센터 → Phase → RFS → MW 구조로 미래 공급을 분석합니다.</p></div></div><div class="kpis module-kpis"><article class="kpi"><span>운영 IT Load</span><strong id="supplyOperating">미확인</strong><small>현재 운영 공급</small></article><article class="kpi"><span>건설·개발 IT Load</span><strong id="supplyDevelopment">미확인</strong><small>향후 공급</small></article><article class="kpi"><span>RFS 확인 센터</span><strong id="supplyRfsCount">0</strong><small>전체 센터 대비</small></article><article class="kpi"><span>수도권 비중</span><strong id="capitalShare">0%</strong><small>센터 수 기준</small></article></div><div class="analysisgrid"><article class="card"><header><div><h2>지역별 공급</h2><p>운영·개발 상태와 용량 확보 현황</p></div></header><div class="chartbody tall" id="supplyRegions"></div></article><article class="card"><header><div><h2>연도별 신규 공급</h2><p>Phase/RFS 기준</p></div></header><div class="timeline vertical" id="supplyTimeline"></div></article></div></section>
+
+  <section class="view" data-page="companies"><div class="modulehead"><div><p class="eyebrow">COMPETITIVE INTELLIGENCE</p><h1>Company Analysis</h1><p>Owner·Developer·Operator 관계와 사업자별 공급 Portfolio를 분석합니다.</p></div></div><article class="card"><header><div><h2>사업자 Portfolio</h2><p>확인된 관계와 운영·개발 센터 기준</p></div></header><div class="companytable" id="companyTable"></div></article></section>
+
+  <section class="view" data-page="demand"><div class="modulehead"><div><p class="eyebrow">BUSINESS INTELLIGENCE</p><h1>Customer & Demand</h1><p>고객 수요와 Available Capacity를 연결하는 영업 지원 모듈입니다.</p></div><span class="phasebadge">PHASE 3</span></div><div class="demandzero"><div><span>◇</span><h2>고객·계약 데이터 계층 준비</h2><p>Customer, Demand, LOI, Contract, Price 데이터를 권한별로 분리한 뒤 센터 공급과 연결합니다.</p></div><div class="demandflow"><span>고객 요구지역</span><b>→</b><span>필요 MW·RFS</span><b>→</b><span>GPU·DLC 조건</span><b>→</b><span>후보센터 Matching</span></div></div></section>
+
+  <section class="view" data-page="intelligence"><div class="modulehead"><div><p class="eyebrow">MARKET INTELLIGENCE</p><h1>뉴스·공시·시장정보</h1><p>신규 발표, 전력 확보, 인허가, 착공, RFS, 계약, 투자 이벤트를 추적합니다.</p></div><span class="tag" id="evidenceSummary">근거 집계 중</span></div><div class="intelligencegrid"><article class="card"><header><div><h2>최근 확정 근거</h2><p>신뢰도 등급과 원문 링크</p></div></header><div class="evidencelist" id="evidence"><div class="empty">수집 근거를 불러오는 중입니다.</div></div></article><article class="card"><header><div><h2>수집 운영 상태</h2><p>수집기별 최근 실행 결과</p></div></header><div class="collection" id="collection"></div></article></div></section>
+
+  <section class="view" data-page="quality"><div class="modulehead"><div><p class="eyebrow">DATA GOVERNANCE</p><h1>Data Quality</h1><p>Source, 최신성, 신뢰도와 핵심 필드 확보율을 관리합니다.</p></div><strong class="qualityscore" id="qualityScore">0%</strong></div><div class="qualitygrid"><article class="card"><header><div><h2>핵심 정보 확보율</h2><p>Phase 1 MVP 필수 데이터 기준</p></div></header><div class="chartbody" id="completeness"></div></article><article class="card"><header><div><h2>조치 대기</h2><p>보완 유형을 선택하면 센터 원장으로 이동합니다.</p></div></header><div class="actionlist"><button data-quality="NEEDS_COORDINATE"><span>좌표 확인</span><b id="needCoordinate">0</b></button><button data-quality="NEEDS_STAGE"><span>운영 단계</span><b id="needStage">0</b></button><button data-quality="NEEDS_OPERATOR"><span>운영사</span><b id="needOperator">0</b></button><button data-quality="NEEDS_ADDRESS"><span>상세 주소</span><b id="needAddress">0</b></button><button data-quality="NEEDS_CAPACITY"><span>용량</span><b id="needCapacity">0</b></button><button data-quality="NEEDS_RFS"><span>RFS</span><b id="needRfs">0</b></button></div><div class="approvalnote">공개 승인 <b id="approvedCount">0</b>건 · 공개 승인은 개별 필드의 완성을 의미하지 않습니다.</div></article></div></section>
+ </main>
+</div>
+<div class="overlay" id="overlay"></div><aside class="drawer" id="drawer"><button class="drawerclose" id="close">✕</button><p class="eyebrow">DATA CENTER DETAIL</p><h2 id="dtitle">센터 상세</h2><div class="detailtabs"><button class="active" data-detail="overview">Overview</button><button data-detail="capacity">Capacity & Power</button><button data-detail="facility">Facility</button><button data-detail="company">Company</button><button data-detail="source">Source</button></div><div id="detail"></div></aside>
+<div class="comparemodal" id="compareModal"><header><div><p class="eyebrow">DATA CENTER COMPARISON</p><h2>센터 비교</h2></div><button id="compareClose">✕</button></header><div class="comparecontent" id="compareContent"></div></div>
+<script src="./vendor/leaflet/leaflet.js"></script><script src="./app_v3.js"></script>
+</body></html>
