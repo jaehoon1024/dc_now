@@ -13,6 +13,7 @@ class StaticSiteTests(unittest.TestCase):
    self.assertIn('src="./vendor/leaflet/leaflet.js"',(out/"index.html").read_text())
    self.assertTrue((out/"app_v3.css").exists())
    self.assertTrue((out/"app_v3.js").exists())
+   self.assertTrue((out/".nojekyll").exists())
  def test_build_prerenders_public_count_and_rows(self):
   payload={"generated_at":"2026-09-29T00:00:00+09:00","total":1,"target_summary":{"target_total":100,"public_total":1,"needs_evidence_total":99},"sites":[{"site_code":"TEST-001","site_name":"테스트 센터","address_standard":"서울특별시 금천구 가산로 1","sido":"서울특별시","sigungu":"금천구","lifecycle_group":"OPERATING","operating_it_load_mw":None,"review_status":"NEEDS_EVIDENCE","public_visible":False,"latitude":None,"longitude":None,"location_precision":"CITY","discovery_target":True}],"details":{},"regions":[],"companies":[],"yearly":[],"collection_status":[],"evidence_summary":{"total_document_count":491,"public_document_count":480,"confirmed_document_count":491,"source_count":20},"recent_evidence":[{"title":"데이터센터 투자 소식","canonical_url":"https://example.com/evidence","publisher":"테스트신문","published_at":"2026-09-29T00:00:00+09:00","source_grade":"C"}]}
   with tempfile.TemporaryDirectory() as d:

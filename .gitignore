@@ -12,3 +12,8 @@ dashboard/quality.html
 
 # Local Netlify folder
 .netlify
+
+# Local geocoding response caches
+data/cache/google_embed_geocode.json
+data/cache/kakao_address_geocode.json
+data/cache/nominatim_geocode.json

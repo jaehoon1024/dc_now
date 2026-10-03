@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a Netlify snapshot of confirmed facilities and labelled tracking targets."""
+"""Build the static dashboard snapshot used by GitHub Pages and local previews."""
 from __future__ import annotations
 import html,json,shutil
 from datetime import datetime
@@ -171,6 +171,7 @@ def render_v2(payload):
 def write_site(payload,out=OUT):
  out.mkdir(parents=True,exist_ok=True);(out/"index.html").write_text(render_v2(payload),encoding="utf-8")
  (out/"data.json").write_text(json.dumps(payload,ensure_ascii=False,default=json_value,separators=(",",":")),encoding="utf-8")
+ (out/".nojekyll").touch()
  for name in ("app_v3.css","app_v3.js"):
   shutil.copyfile(ROOT/"dashboard"/name,out/name)
  vendor=out/"vendor"/"leaflet";vendor.mkdir(parents=True,exist_ok=True)
