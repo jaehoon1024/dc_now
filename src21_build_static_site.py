@@ -92,24 +92,26 @@ def render_v2(payload):
   if not has_rfs(x):result.append(("","RFS 확인 필요"))
   if x.get("discovery_target") or "수집 검증 대상" in str(x.get("site_name") or ""):result.append(("","수집 검증 대상"))
   return result
- stage_label={"OPERATING":"운영","DEVELOPMENT":"개발","MIXED":"혼합","ON_HOLD":"보류","UNKNOWN":"미확인"}
+ stage_label={"OPERATING":"운영 중","DEVELOPMENT":"개발 중","MIXED":"운영·개발 병행","ON_HOLD":"보류","UNKNOWN":"미확인"}
  def gaps_html(x):return '<div class="flags">'+''.join(f'<span class="flag {"ok" if kind=="base" else ""}">{html.escape(label)}</span>' for kind,label in gap_labels(x))+'</div>'
  rows="".join(
   "<tr data-code=\"{}\"><td><input class=\"comparecheck\" type=\"checkbox\" data-code=\"{}\"></td><td class=\"sitecell\"><b>{}</b><small>{}</small></td><td>{} {}</td><td><span class=\"status {}\">{}</span></td><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>".format(
-   html.escape(str(x.get("site_code") or "")),html.escape(str(x.get("site_code") or "")),html.escape(str(x.get("site_name") or "—")),html.escape(str(x.get("site_code") or "—")),html.escape(str(x.get("sido") or "—")),html.escape(str(x.get("sigungu") or "")),"unknown" if not has_stage(x) else "",html.escape(stage_label.get(x.get("lifecycle_group"),str(x.get("lifecycle_group") or "미확인"))),html.escape(str(x.get("operator_names") or "미확인")),html.escape(str(x.get("operating_grid_intake_mw") or x.get("development_grid_intake_mw") or "미확인")),html.escape(str(x.get("operating_it_load_mw") or x.get("development_it_load_mw") or "미확인")),html.escape(str(x.get("earliest_rfs_date") or "미확인")),gaps_html(x),
+   html.escape(str(x.get("site_code") or "")),html.escape(str(x.get("site_code") or "")),html.escape(str(x.get("site_name") or "—")),html.escape(str(x.get("site_code") or "—")),html.escape(str(x.get("sido") or "—")),html.escape(str(x.get("sigungu") or "")),str(x.get("lifecycle_group") or "UNKNOWN").lower().replace("_","-"),html.escape(stage_label.get(x.get("lifecycle_group"),str(x.get("lifecycle_group") or "미확인"))),html.escape(str(x.get("operator_names") or "미확인")),html.escape(str(x.get("operating_grid_intake_mw") or x.get("development_grid_intake_mw") or "미확인")),html.escape(str(x.get("operating_it_load_mw") or x.get("development_it_load_mw") or "미확인")),html.escape(str(x.get("earliest_rfs_date") or "미확인")),gaps_html(x),
   ) for x in sites
  )
  target=payload.get("target_summary") or {"target_total":payload["total"],"public_total":payload["total"],"needs_evidence_total":0}
  total=len(sites)
  counts={"coordinate":sum(map(has_coordinate,sites)),"stage":sum(map(has_stage,sites)),"operator":sum(map(has_operator,sites)),"capacity":sum(map(has_capacity,sites)),"address":sum(map(has_address,sites)),"rfs":sum(map(has_rfs,sites))}
  score=round(sum(counts.values())/(total*6)*100) if total else 0
- operating_sites=[x for x in sites if x.get("lifecycle_group") in {"OPERATING","MIXED"}]
+ operating_sites=[x for x in sites if x.get("lifecycle_group")=="OPERATING"]
+ development_sites=[x for x in sites if x.get("lifecycle_group")=="DEVELOPMENT"]
+ mixed_sites=[x for x in sites if x.get("lifecycle_group")=="MIXED"]
  operating_it_known=[x for x in operating_sites if x.get("operating_it_load_mw") is not None]
  operating_it=sum(float(x.get("operating_it_load_mw") or 0) for x in operating_sites)
  grid_known=[x for x in sites if x.get("operating_grid_intake_mw") is not None or x.get("development_grid_intake_mw") is not None]
  grid=sum(float(x.get("operating_grid_intake_mw") or x.get("development_grid_intake_mw") or 0) for x in sites)
- development_it_known=[x for x in sites if x.get("development_it_load_mw") is not None]
- development_it=sum(float(x.get("development_it_load_mw") or 0) for x in sites)
+ development_it_known=[x for x in development_sites if x.get("development_it_load_mw") is not None]
+ development_it=sum(float(x.get("development_it_load_mw") or 0) for x in development_sites)
  evidence_summary=payload.get("evidence_summary") or {}
  collection_healthy=bool(payload.get("collection_status")) and all(x.get("run_status")=="SUCCESS" for x in payload.get("collection_status",[]))
  evidence_rows="".join(
@@ -125,12 +127,15 @@ def render_v2(payload):
   '<small id="targetBreakdown">센터 원장 집계</small>':f'<small id="targetBreakdown">공개 승인 {target["public_total"]} · 좌표 확인 {counts["coordinate"]}</small>',
   '<span id="asOf">—</span>':f'<span id="asOf">{html.escape(str(payload.get("generated_at") or "")[:10])}</span>',
   '<strong id="operatingCount">0</strong>':f'<strong id="operatingCount">{len(operating_sites)}</strong>',
+  '<strong id="developmentCount">0</strong>':f'<strong id="developmentCount">{len(development_sites)}</strong>',
+  '<strong id="mixedCount">0</strong>':f'<strong id="mixedCount">{len(mixed_sites)}</strong>',
   '<strong id="operatingIt">미확인</strong>':f'<strong id="operatingIt">{operating_it:g} MW</strong>' if operating_it_known else '<strong id="operatingIt">미확인</strong>',
   '<small id="operatingItCoverage">확보율 0%</small>':f'<small id="operatingItCoverage">확보 {len(operating_it_known)}/{len(operating_sites)}개 운영센터</small>',
   '<strong id="gridCapacity">미확인</strong>':f'<strong id="gridCapacity">{grid:g} MW</strong>' if grid_known else '<strong id="gridCapacity">미확인</strong>',
   '<small id="gridCoverage">확보율 0%</small>':f'<small id="gridCoverage">확보 {len(grid_known)}/{total}개 센터</small>',
   '<strong id="developmentIt">미확인</strong>':f'<strong id="developmentIt">{development_it:g} MW</strong>' if development_it_known else '<strong id="developmentIt">미확인</strong>',
-  '<small id="developmentCoverage">확보율 0%</small>':f'<small id="developmentCoverage">확보 {len(development_it_known)}/{total}개 센터</small>',
+  '<small id="developmentCoverage">확보율 0%</small>':f'<small id="developmentCoverage">확보 {len(development_it_known)}/{len(development_sites)}개 개발센터</small>',
+  '<strong id="rfsCount">0</strong>':f'<strong id="rfsCount">{counts["rfs"]}</strong>',
   '<small id="rfsCoverage">RFS 확보율 0%</small>':f'<small id="rfsCoverage">RFS 확보 {counts["rfs"]}/{total}개 센터</small>',
   '핵심 용량 정보의 확보율을 계산 중입니다.':f'수전용량은 {len(grid_known)}/{total}개 센터에서 {grid:g} MW가 확인됐습니다. IT Load·RFS·GPU/DLC·Available Capacity는 추가 확보가 필요합니다.',
   '<strong id="coordinateCount">0</strong>':f'<strong id="coordinateCount">{counts["coordinate"]}</strong>',
@@ -174,10 +179,7 @@ def write_site(payload,out=OUT):
  (out/".nojekyll").touch()
  for name in ("app_v3.css","app_v3.js"):
   shutil.copyfile(ROOT/"dashboard"/name,out/name)
- vendor=out/"vendor"/"leaflet";vendor.mkdir(parents=True,exist_ok=True)
- for name in ("leaflet.css","leaflet.js","LICENSE"):
-  shutil.copyfile(ROOT/"dashboard"/"vendor"/"leaflet"/name,vendor/name)
- (out/"_headers").write_text("/*\n  Cache-Control: public, max-age=0, must-revalidate\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.tile.openstreetmap.org; connect-src 'self' https://*.tile.openstreetmap.org; frame-src https://www.google.com https://maps.google.com\n\n/data.json\n  Cache-Control: public, max-age=60, must-revalidate\n",encoding="utf-8")
+ (out/"_headers").write_text("/*\n  Cache-Control: public, max-age=0, must-revalidate\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-src https://www.google.com https://maps.google.com\n\n/data.json\n  Cache-Control: public, max-age=60, must-revalidate\n",encoding="utf-8")
 def main():
  load_env_file();e=create_engine(resolve_database_url(),connect_args={"options":"-c default_transaction_read_only=on -c statement_timeout=10000"})
  try:payload=build_payload(PublicRepository(e))

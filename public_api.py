@@ -204,8 +204,9 @@ class PublicRepository:
                     WHERE public_visible = true AND review_status = 'CONFIRMED'
                 )
                 SELECT company_name, count(DISTINCT site_code) AS site_count,
-                       count(DISTINCT site_code) FILTER (WHERE lifecycle_group IN ('OPERATING','MIXED')) AS operating_site_count,
-                       count(DISTINCT site_code) FILTER (WHERE lifecycle_group IN ('DEVELOPMENT','MIXED')) AS development_site_count,
+                       count(DISTINCT site_code) FILTER (WHERE lifecycle_group = 'OPERATING') AS operating_site_count,
+                       count(DISTINCT site_code) FILTER (WHERE lifecycle_group = 'DEVELOPMENT') AS development_site_count,
+                       count(DISTINCT site_code) FILTER (WHERE lifecycle_group = 'MIXED') AS mixed_site_count,
                        sum(operating_it_load_mw) AS operating_it_load_mw,
                        sum(development_it_load_mw) AS development_it_load_mw
                 FROM names WHERE company_name <> '' GROUP BY company_name
