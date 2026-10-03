@@ -15,12 +15,13 @@ class StaticSiteTests(unittest.TestCase):
    self.assertTrue((out/"app_v3.js").exists())
    self.assertTrue((out/".nojekyll").exists())
  def test_build_prerenders_public_count_and_rows(self):
-  payload={"generated_at":"2026-09-29T00:00:00+09:00","total":1,"target_summary":{"target_total":100,"public_total":1,"needs_evidence_total":99},"sites":[{"site_code":"TEST-001","site_name":"테스트 센터","address_standard":"서울특별시 금천구 가산로 1","sido":"서울특별시","sigungu":"금천구","lifecycle_group":"OPERATING","operating_it_load_mw":None,"review_status":"NEEDS_EVIDENCE","public_visible":False,"latitude":None,"longitude":None,"location_precision":"CITY","discovery_target":True}],"details":{},"regions":[],"companies":[],"yearly":[],"collection_status":[],"evidence_summary":{"total_document_count":491,"public_document_count":480,"confirmed_document_count":491,"source_count":20},"recent_evidence":[{"title":"데이터센터 투자 소식","canonical_url":"https://example.com/evidence","publisher":"테스트신문","published_at":"2026-09-29T00:00:00+09:00","source_grade":"C"}]}
+  payload={"generated_at":"2026-09-29T00:00:00+09:00","total":1,"target_summary":{"target_total":100,"public_total":1,"commercial_confirmed_total":1,"needs_evidence_total":99,"out_of_scope_total":3},"sites":[{"site_code":"TEST-001","site_name":"테스트 센터","address_standard":"서울특별시 금천구 가산로 1","sido":"서울특별시","sigungu":"금천구","lifecycle_group":"OPERATING","commercial_scope_status":"IN_SCOPE","commercial_model":"COLOCATION","commercial_review_status":"CONFIRMED","operating_it_load_mw":None,"review_status":"NEEDS_EVIDENCE","public_visible":False,"latitude":None,"longitude":None,"location_precision":"CITY","discovery_target":True}],"details":{},"regions":[],"companies":[],"yearly":[],"collection_status":[],"evidence_summary":{"total_document_count":491,"public_document_count":480,"confirmed_document_count":491,"source_count":20},"recent_evidence":[{"title":"데이터센터 투자 소식","canonical_url":"https://example.com/evidence","publisher":"테스트신문","published_at":"2026-09-29T00:00:00+09:00","source_grade":"C"}]}
   with tempfile.TemporaryDirectory() as d:
    write_site(payload,Path(d));page=(Path(d)/"index.html").read_text()
-   self.assertIn('<strong id="total">100</strong>',page)
+   self.assertIn('<strong id="total">1</strong>',page)
    script=(Path(d)/"app_v3.js").read_text()
-   self.assertIn('공개 승인 1 · 좌표 확인 0',page)
+   self.assertIn('상용성 검토 99 · 범위 제외 3',page)
+   self.assertIn('코로케이션',page)
    self.assertIn('Executive Dashboard',page)
    self.assertIn('Supply Analysis',page)
    self.assertIn('Customer & Demand',page)

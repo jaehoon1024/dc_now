@@ -51,7 +51,13 @@ def site_query(
 ) -> tuple[str, dict[str, Any]]:
     if status and status not in STATUSES:
         raise ValueError("invalid status")
-    conditions = ["public_visible = true", "review_status = 'CONFIRMED'"]
+    conditions = [
+        "public_visible = true", "review_status = 'CONFIRMED'",
+        "EXISTS (SELECT 1 FROM dc_site scope_site "
+        "WHERE scope_site.site_code=v_site_map.site_code "
+        "AND scope_site.commercial_scope_status='IN_SCOPE' "
+        "AND scope_site.commercial_review_status='CONFIRMED')",
+    ]
     parameters: dict[str, Any] = {"limit": limit, "offset": offset}
     if sido:
         conditions.append("sido = :sido")
@@ -96,6 +102,9 @@ class PublicRepository:
                        v.earliest_rfs_date, v.latest_data_update,
                        v.review_status, v.public_visible,
                        v.location_precision, v.coordinate_quality,
+                       s.commercial_scope_status, s.commercial_model,
+                       s.commercial_review_status, s.commercial_scope_note,
+                       s.commercial_source_url,
                        (v.site_name LIKE '%%수집 검증 대상%%') AS discovery_target,
                        CASE
                            WHEN v.public_visible=true AND v.review_status='CONFIRMED'
@@ -107,6 +116,7 @@ class PublicRepository:
                 FROM v_site_map v
                 JOIN dc_site s ON s.site_id=v.site_id
                 WHERE s.record_status='ACTIVE'
+                  AND s.commercial_scope_status <> 'OUT_OF_SCOPE'
                 ORDER BY v.public_visible DESC, v.sido NULLS LAST,
                          v.sigungu NULLS LAST, v.site_name
             """)).mappings().all()
@@ -115,13 +125,25 @@ class PublicRepository:
     def target_summary(self) -> dict[str, int]:
         with self.engine.connect() as connection:
             row = connection.execute(text("""
-                SELECT count(*) AS target_total,
+                SELECT count(*) FILTER (
+                           WHERE commercial_scope_status <> 'OUT_OF_SCOPE'
+                       ) AS target_total,
                        count(*) FILTER (
                            WHERE public_visible = true AND review_status = 'CONFIRMED'
+                             AND commercial_scope_status = 'IN_SCOPE'
+                             AND commercial_review_status = 'CONFIRMED'
                        ) AS public_total,
                        count(*) FILTER (
-                           WHERE review_status = 'NEEDS_EVIDENCE'
-                       ) AS needs_evidence_total
+                           WHERE commercial_scope_status = 'REVIEW_REQUIRED'
+                              OR commercial_review_status = 'NEEDS_EVIDENCE'
+                       ) AS needs_evidence_total,
+                       count(*) FILTER (
+                           WHERE commercial_scope_status = 'IN_SCOPE'
+                             AND commercial_review_status = 'CONFIRMED'
+                       ) AS commercial_confirmed_total,
+                       count(*) FILTER (
+                           WHERE commercial_scope_status = 'OUT_OF_SCOPE'
+                       ) AS out_of_scope_total
                 FROM dc_site WHERE record_status = 'ACTIVE'
             """)).mappings().one()
         return {key: int(value or 0) for key, value in row.items()}
@@ -131,16 +153,19 @@ class PublicRepository:
             rows = connection.execute(
                 text(
                     """
-                    SELECT COALESCE(sido, '미확인') AS sido, lifecycle_group,
+                    SELECT COALESCE(v.sido, '미확인') AS sido, v.lifecycle_group,
                            count(*) AS site_count,
                            sum(operating_project_count) AS operating_project_count,
                            sum(development_project_count) AS development_project_count,
                            sum(operating_it_load_mw) AS operating_it_load_mw,
                            sum(development_it_load_mw) AS development_it_load_mw,
                            max(latest_data_update) AS latest_data_update
-                    FROM v_site_map
-                    WHERE public_visible = true AND review_status = 'CONFIRMED'
-                    GROUP BY COALESCE(sido, '미확인'), lifecycle_group
+                    FROM v_site_map v
+                    JOIN dc_site s ON s.site_id=v.site_id
+                    WHERE v.public_visible = true AND v.review_status = 'CONFIRMED'
+                      AND s.commercial_scope_status='IN_SCOPE'
+                      AND s.commercial_review_status='CONFIRMED'
+                    GROUP BY COALESCE(v.sido, '미확인'), v.lifecycle_group
                     ORDER BY sido, lifecycle_group
                     """
                 )
@@ -152,23 +177,28 @@ class PublicRepository:
             site = connection.execute(
                 text(
                     """
-                    SELECT site_code, site_name, address_standard, sido, sigungu,
-                           latitude, longitude, lifecycle_group, owner_names,
-                           operator_names, developer_names, dbo_provider_names,
+                    SELECT v.site_code, v.site_name, v.address_standard, v.sido, v.sigungu,
+                           v.latitude, v.longitude, v.lifecycle_group, v.owner_names,
+                           v.operator_names, v.developer_names, v.dbo_provider_names,
                            (SELECT string_agg(DISTINCT c.standard_name, ', ')
                             FROM company_participation cp JOIN company c ON c.company_id=cp.company_id
-                            WHERE cp.scope_type='SITE' AND cp.scope_id=v_site_map.site_id
+                            WHERE cp.scope_type='SITE' AND cp.scope_id=v.site_id
                               AND cp.role_code='ASSET_MANAGER' AND cp.review_status='CONFIRMED') AS asset_manager_names,
                            (SELECT string_agg(DISTINCT c.standard_name, ', ')
                             FROM company_participation cp JOIN company c ON c.company_id=cp.company_id
-                            WHERE cp.scope_type='SITE' AND cp.scope_id=v_site_map.site_id
+                            WHERE cp.scope_type='SITE' AND cp.scope_id=v.site_id
                               AND cp.role_code='BUILDER' AND cp.review_status='CONFIRMED') AS builder_names,
-                           operating_grid_intake_mw, operating_it_load_mw,
-                           development_grid_intake_mw, development_it_load_mw,
-                           earliest_rfs_date, latest_data_update
-                    FROM v_site_map
-                    WHERE site_code = :site_code AND public_visible = true
-                      AND review_status = 'CONFIRMED'
+                           v.operating_grid_intake_mw, v.operating_it_load_mw,
+                           v.development_grid_intake_mw, v.development_it_load_mw,
+                           v.earliest_rfs_date, v.latest_data_update,
+                           s.commercial_scope_status, s.commercial_model,
+                           s.commercial_review_status, s.commercial_scope_note,
+                           s.commercial_source_url
+                    FROM v_site_map v JOIN dc_site s ON s.site_id=v.site_id
+                    WHERE v.site_code = :site_code AND v.public_visible = true
+                      AND v.review_status = 'CONFIRMED'
+                      AND s.commercial_scope_status='IN_SCOPE'
+                      AND s.commercial_review_status='CONFIRMED'
                     """
                 ), {"site_code": site_code},
             ).mappings().first()
@@ -195,13 +225,16 @@ class PublicRepository:
         with self.engine.connect() as connection:
             rows = connection.execute(text("""
                 WITH names AS (
-                    SELECT trim(name) AS company_name, lifecycle_group,
-                           operating_it_load_mw, development_it_load_mw, site_code
-                    FROM v_site_map,
+                    SELECT trim(name) AS company_name, v.lifecycle_group,
+                           v.operating_it_load_mw, v.development_it_load_mw, v.site_code
+                    FROM v_site_map v
+                    JOIN dc_site s ON s.site_id=v.site_id,
                     LATERAL regexp_split_to_table(
                         concat_ws(',', owner_names, operator_names, developer_names), ','
                     ) AS name
-                    WHERE public_visible = true AND review_status = 'CONFIRMED'
+                    WHERE v.public_visible = true AND v.review_status = 'CONFIRMED'
+                      AND s.commercial_scope_status='IN_SCOPE'
+                      AND s.commercial_review_status='CONFIRMED'
                 )
                 SELECT company_name, count(DISTINCT site_code) AS site_count,
                        count(DISTINCT site_code) FILTER (WHERE lifecycle_group = 'OPERATING') AS operating_site_count,
@@ -224,6 +257,8 @@ class PublicRepository:
                 WHERE s.public_visible = true AND s.review_status = 'CONFIRMED'
                   AND p.public_visible = true AND p.review_status = 'CONFIRMED'
                   AND p.record_status = 'ACTIVE'
+                  AND s.commercial_scope_status='IN_SCOPE'
+                  AND s.commercial_review_status='CONFIRMED'
                   AND COALESCE(p.rfs_date, p.planned_rfs_date) IS NOT NULL
                 GROUP BY supply_year, date_basis ORDER BY supply_year, date_basis
             """)).mappings().all()

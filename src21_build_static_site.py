@@ -73,7 +73,8 @@ def render_html(payload):
  return page
 def render_v2(payload):
  page=(ROOT/"dashboard/professional_v3.html").read_text(encoding="utf-8")
- sites=payload["sites"]
+ tracking_sites=payload["sites"]
+ sites=[x for x in tracking_sites if x.get("commercial_scope_status")=="IN_SCOPE" and x.get("commercial_review_status")=="CONFIRMED"]
  def has_coordinate(x):return x.get("latitude") is not None and x.get("longitude") is not None
  def has_stage(x):return bool(x.get("lifecycle_group")) and x.get("lifecycle_group")!="UNKNOWN"
  def has_operator(x):return bool(str(x.get("operator_names") or "").strip())
@@ -93,13 +94,14 @@ def render_v2(payload):
   if x.get("discovery_target") or "수집 검증 대상" in str(x.get("site_name") or ""):result.append(("","수집 검증 대상"))
   return result
  stage_label={"OPERATING":"운영 중","DEVELOPMENT":"개발 중","MIXED":"운영·개발 병행","ON_HOLD":"보류","UNKNOWN":"미확인"}
- def gaps_html(x):return '<div class="flags">'+''.join(f'<span class="flag {"ok" if kind=="base" else ""}">{html.escape(label)}</span>' for kind,label in gap_labels(x))+'</div>'
+ commercial_model={"COLOCATION":"코로케이션","WHOLESALE":"도매형","MASTER_LEASE":"마스터리스","LEASED":"임차 운영","BUILD_TO_SUIT":"BTS","MANAGED_SERVICE":"매니지드 서비스","MULTI_MODEL":"복합 모델","UNKNOWN":"모델 확인 필요"}
+ def gaps_html(x):return '<div class="flags"><span class="flag commercial">상용 확정</span>'+''.join(f'<span class="flag {"ok" if kind=="base" else ""}">{html.escape(label)}</span>' for kind,label in gap_labels(x))+'</div>'
  rows="".join(
-  "<tr data-code=\"{}\"><td><input class=\"comparecheck\" type=\"checkbox\" data-code=\"{}\"></td><td class=\"sitecell\"><b>{}</b><small>{}</small></td><td>{} {}</td><td><span class=\"status {}\">{}</span></td><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>".format(
-   html.escape(str(x.get("site_code") or "")),html.escape(str(x.get("site_code") or "")),html.escape(str(x.get("site_name") or "—")),html.escape(str(x.get("site_code") or "—")),html.escape(str(x.get("sido") or "—")),html.escape(str(x.get("sigungu") or "")),str(x.get("lifecycle_group") or "UNKNOWN").lower().replace("_","-"),html.escape(stage_label.get(x.get("lifecycle_group"),str(x.get("lifecycle_group") or "미확인"))),html.escape(str(x.get("operator_names") or "미확인")),html.escape(str(x.get("operating_grid_intake_mw") or x.get("development_grid_intake_mw") or "미확인")),html.escape(str(x.get("operating_it_load_mw") or x.get("development_it_load_mw") or "미확인")),html.escape(str(x.get("earliest_rfs_date") or "미확인")),gaps_html(x),
+  "<tr data-code=\"{}\"><td><input class=\"comparecheck\" type=\"checkbox\" data-code=\"{}\"></td><td class=\"sitecell\"><b>{}</b><small>{}</small></td><td>{} {}</td><td><span class=\"status {}\">{}</span></td><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>".format(
+   html.escape(str(x.get("site_code") or "")),html.escape(str(x.get("site_code") or "")),html.escape(str(x.get("site_name") or "—")),html.escape(str(x.get("site_code") or "—")),html.escape(str(x.get("sido") or "—")),html.escape(str(x.get("sigungu") or "")),str(x.get("lifecycle_group") or "UNKNOWN").lower().replace("_","-"),html.escape(stage_label.get(x.get("lifecycle_group"),str(x.get("lifecycle_group") or "미확인"))),html.escape(commercial_model.get(x.get("commercial_model"),"검토 필요")),html.escape(str(x.get("operator_names") or "미확인")),html.escape(str(x.get("operating_grid_intake_mw") or x.get("development_grid_intake_mw") or "미확인")),html.escape(str(x.get("operating_it_load_mw") or x.get("development_it_load_mw") or "미확인")),html.escape(str(x.get("earliest_rfs_date") or "미확인")),gaps_html(x),
   ) for x in sites
  )
- target=payload.get("target_summary") or {"target_total":payload["total"],"public_total":payload["total"],"needs_evidence_total":0}
+ target=payload.get("target_summary") or {"target_total":payload["total"],"public_total":len(sites),"commercial_confirmed_total":len(sites),"needs_evidence_total":0,"out_of_scope_total":0}
  total=len(sites)
  counts={"coordinate":sum(map(has_coordinate,sites)),"stage":sum(map(has_stage,sites)),"operator":sum(map(has_operator,sites)),"capacity":sum(map(has_capacity,sites)),"address":sum(map(has_address,sites)),"rfs":sum(map(has_rfs,sites))}
  score=round(sum(counts.values())/(total*6)*100) if total else 0
@@ -123,8 +125,8 @@ def render_v2(payload):
  replacements={
   '데이터 준비 중':f'기준 {html.escape(str(payload.get("generated_at") or "미확인"))[:16].replace("T"," ")}',
   '<span class="health" id="systemStatus"><i></i>수집 상태 확인 중</span>':f'<span class="health" id="systemStatus"><i></i>{"수집 시스템 정상" if collection_healthy else "수집 상태 점검 필요"}</span>',
-  '<strong id="total">0</strong>':f'<strong id="total">{target["target_total"]}</strong>',
-  '<small id="targetBreakdown">센터 원장 집계</small>':f'<small id="targetBreakdown">공개 승인 {target["public_total"]} · 좌표 확인 {counts["coordinate"]}</small>',
+  '<strong id="total">0</strong>':f'<strong id="total">{target.get("commercial_confirmed_total",len(sites))}</strong>',
+  '<small id="targetBreakdown">상용 범위 검토 중</small>':f'<small id="targetBreakdown">상용성 검토 {target.get("needs_evidence_total",0)} · 범위 제외 {target.get("out_of_scope_total",0)}</small>',
   '<span id="asOf">—</span>':f'<span id="asOf">{html.escape(str(payload.get("generated_at") or "")[:10])}</span>',
   '<strong id="operatingCount">0</strong>':f'<strong id="operatingCount">{len(operating_sites)}</strong>',
   '<strong id="developmentCount">0</strong>':f'<strong id="developmentCount">{len(development_sites)}</strong>',

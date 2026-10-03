@@ -51,6 +51,7 @@ class PublicApiTests(unittest.TestCase):
         query, params = site_query("서울특별시", "OPERATING", 20, 0)
         self.assertIn("public_visible = true", query)
         self.assertIn("review_status = 'CONFIRMED'", query)
+        self.assertIn("commercial_scope_status='IN_SCOPE'", query)
         self.assertEqual(params["status"], "OPERATING")
 
     def test_sites_endpoint_parses_filters_and_pagination(self):
