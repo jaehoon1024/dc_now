@@ -278,6 +278,60 @@ class PublicRepository:
             """)).mappings().all()
         return [dict(row) for row in rows]
 
+    def player_intelligence(self) -> list[dict[str, Any]]:
+        """Summarize three-year evidence discovery for priority market players."""
+        with self.engine.connect() as connection:
+            rows = connection.execute(text("""
+                WITH players(player_name, player_type, aliases) AS (VALUES
+                    ('LG CNS','IT서비스·운영사',ARRAY['LG CNS','LG씨엔에스','엘지씨엔에스']),
+                    ('삼성SDS','IT서비스·운영사',ARRAY['삼성SDS','삼성 SDS','Samsung SDS']),
+                    ('kt cloud','통신·운영사',ARRAY['kt cloud','KT클라우드','케이티클라우드']),
+                    ('SK브로드밴드','통신·운영사',ARRAY['SK브로드밴드','SK broadband']),
+                    ('LG유플러스','통신·운영사',ARRAY['LG유플러스','LG U+','LG Uplus']),
+                    ('롯데이노베이트','IT서비스·운영사',ARRAY['롯데이노베이트','롯데정보통신']),
+                    ('코람코자산운용','자산운용사',ARRAY['코람코자산운용','코람코자산신탁','코람코']),
+                    ('이지스자산운용','자산운용사',ARRAY['이지스자산운용','IGIS']),
+                    ('마스턴투자운용','자산운용사',ARRAY['마스턴투자운용','마스턴']),
+                    ('ESR켄달스퀘어','자산운용사',ARRAY['ESR켄달스퀘어','ESR KendallSquare','ESR Kendall Square']),
+                    ('Digital Edge','글로벌 운영사',ARRAY['Digital Edge','디지털엣지']),
+                    ('Digital Realty','글로벌 운영사',ARRAY['Digital Realty','디지털리얼티']),
+                    ('Equinix','글로벌 운영사',ARRAY['Equinix','에퀴닉스']),
+                    ('DCI Data Centers','글로벌 운영사',ARRAY['DCI Data Centers','DCI 데이터센터','코람코·DCI']),
+                    ('Empyrion Digital','글로벌 운영사',ARRAY['Empyrion Digital','엠피리온 디지털','엠피리온']),
+                    ('Princeton Digital Group','글로벌 운영사',ARRAY['Princeton Digital Group','프린스턴 디지털','PDG']),
+                    ('삼성물산','시공사·DBO',ARRAY['삼성물산']),
+                    ('현대건설','시공사·DBO',ARRAY['현대건설']),
+                    ('GS건설','시공사·DBO',ARRAY['GS건설']),
+                    ('DL이앤씨','시공사·DBO',ARRAY['DL이앤씨','DL E&C']),
+                    ('SK에코플랜트','시공사·DBO',ARRAY['SK에코플랜트'])
+                ), matched AS (
+                    SELECT p.player_name, p.player_type, ed.document_id,
+                           ed.review_status, ed.published_at
+                    FROM players p
+                    LEFT JOIN evidence_document ed
+                      ON ed.record_status='ACTIVE'
+                     AND COALESCE(ed.published_at, ed.created_at)
+                         >= CURRENT_DATE - INTERVAL '3 years'
+                     AND EXISTS (
+                         SELECT 1 FROM unnest(p.aliases) alias
+                         WHERE ed.title ILIKE '%%' || alias || '%%'
+                     )
+                )
+                SELECT player_name, player_type,
+                       count(document_id) AS document_count,
+                       count(document_id) FILTER (
+                           WHERE review_status='CONFIRMED'
+                       ) AS confirmed_document_count,
+                       count(document_id) FILTER (
+                           WHERE review_status<>'CONFIRMED'
+                       ) AS candidate_document_count,
+                       max(published_at) AS latest_published_at
+                FROM matched
+                GROUP BY player_name, player_type
+                ORDER BY count(document_id) DESC, player_name
+            """)).mappings().all()
+        return [dict(row) for row in rows]
+
     def yearly(self) -> list[dict[str, Any]]:
         with self.engine.connect() as connection:
             rows = connection.execute(text("""

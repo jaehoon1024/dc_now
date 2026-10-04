@@ -13,7 +13,7 @@ def build_payload(repo):
  public_sites,total=repo.sites(None,None,500,0)
  sites=repo.tracking_sites()
  details={x["site_code"]:repo.site_detail(x["site_code"]) for x in public_sites}
- return {"generated_at":datetime.now().astimezone().isoformat(),"total":len(sites),"public_total":total,"target_summary":repo.target_summary(),"sites":sites,"details":details,"regions":repo.regions(),"companies":repo.companies(),"yearly":repo.yearly(),"collection_status":repo.collection_status(),"evidence_summary":repo.evidence_summary(),"recent_evidence":repo.recent_evidence()}
+ return {"generated_at":datetime.now().astimezone().isoformat(),"total":len(sites),"public_total":total,"target_summary":repo.target_summary(),"sites":sites,"details":details,"regions":repo.regions(),"companies":repo.companies(),"player_intelligence":repo.player_intelligence(),"yearly":repo.yearly(),"collection_status":repo.collection_status(),"evidence_summary":repo.evidence_summary(),"recent_evidence":repo.recent_evidence()}
 def render_html(payload):
  page=(ROOT/"dashboard/professional.html").read_text(encoding="utf-8")
  page=page.replace(

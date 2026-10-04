@@ -35,7 +35,13 @@
 .maplist button.mixed{border-left:3px solid #7654a6}
 .maplist button.unknown{border-left:3px solid #82939f}
 .companyhead,.companyline{grid-template-columns:44px minmax(140px,1.3fr) repeat(5,1fr)}
+.companygrid{display:grid;gap:13px}
+.playertable{max-height:560px;overflow:auto;padding:0 14px}
+.playerhead,.playerline{display:grid;grid-template-columns:minmax(130px,1.3fr) minmax(110px,1fr) repeat(3,70px) 92px;gap:10px;align-items:center;padding:11px 6px;border-bottom:1px solid #edf1f3;font-size:8px}
+.playerhead{position:sticky;top:0;z-index:1;background:#fff;color:var(--muted);font-weight:900}
+.playerline b{font-size:9px}.playerline .confirmed{color:var(--green);font-weight:900}
 .filterbar,.masterfilters{grid-template-columns:minmax(220px,1.4fr) repeat(4,minmax(120px,.55fr)) auto}
 .flag.commercial{background:#dcecf8;color:#0c669f}
 @media(max-width:760px){.filterbar,.masterfilters{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){.playerhead,.playerline{grid-template-columns:minmax(120px,1.2fr) minmax(95px,1fr) repeat(2,54px)}.playerhead>*:nth-child(5),.playerline>*:nth-child(5),.playerhead>*:nth-child(6),.playerline>*:nth-child(6){display:none}}
 @media(max-width:430px){.filterbar,.masterfilters{grid-template-columns:1fr}}
