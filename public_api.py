@@ -255,26 +255,31 @@ class PublicRepository:
     def companies(self) -> list[dict[str, Any]]:
         with self.engine.connect() as connection:
             rows = connection.execute(text("""
-                WITH names AS (
-                    SELECT trim(name) AS company_name, v.lifecycle_group,
-                           v.operating_it_load_mw, v.development_it_load_mw, v.site_code
-                    FROM v_site_map v
-                    JOIN dc_site s ON s.site_id=v.site_id,
-                    LATERAL regexp_split_to_table(
-                        concat_ws(',', owner_names, operator_names, developer_names), ','
-                    ) AS name
-                    WHERE v.public_visible = true AND v.review_status = 'CONFIRMED'
+                WITH relations AS (
+                    SELECT DISTINCT cp.company_id, s.site_id
+                    FROM company_participation cp
+                    JOIN dc_site s ON cp.scope_type='SITE' AND cp.scope_id=s.site_id
+                    WHERE cp.review_status='CONFIRMED'
+                ), portfolio AS (
+                    SELECT r.company_id, v.site_code, v.lifecycle_group,
+                           v.operating_it_load_mw, v.development_it_load_mw
+                    FROM relations r JOIN v_site_map v ON v.site_id=r.site_id
+                    JOIN dc_site s ON s.site_id=r.site_id
+                    WHERE v.public_visible=true AND v.review_status='CONFIRMED'
                       AND s.commercial_scope_status='IN_SCOPE'
                       AND s.commercial_review_status='CONFIRMED'
                 )
-                SELECT company_name, count(DISTINCT site_code) AS site_count,
+                SELECT c.standard_name AS company_name,
+                       count(DISTINCT p.site_code) AS site_count,
                        count(DISTINCT site_code) FILTER (WHERE lifecycle_group = 'OPERATING') AS operating_site_count,
                        count(DISTINCT site_code) FILTER (WHERE lifecycle_group = 'DEVELOPMENT') AS development_site_count,
                        count(DISTINCT site_code) FILTER (WHERE lifecycle_group = 'MIXED') AS mixed_site_count,
                        sum(operating_it_load_mw) AS operating_it_load_mw,
                        sum(development_it_load_mw) AS development_it_load_mw
-                FROM names WHERE company_name <> '' GROUP BY company_name
-                ORDER BY site_count DESC, company_name
+                FROM company c LEFT JOIN portfolio p ON p.company_id=c.company_id
+                WHERE c.record_status='ACTIVE' AND c.review_status='CONFIRMED'
+                GROUP BY c.company_id,c.standard_name
+                ORDER BY count(DISTINCT p.site_code) DESC,c.standard_name
             """)).mappings().all()
         return [dict(row) for row in rows]
 
@@ -289,10 +294,22 @@ class PublicRepository:
                     ('SK브로드밴드','통신·운영사',ARRAY['SK브로드밴드','SK broadband']),
                     ('LG유플러스','통신·운영사',ARRAY['LG유플러스','LG U+','LG Uplus']),
                     ('롯데이노베이트','IT서비스·운영사',ARRAY['롯데이노베이트','롯데정보통신']),
+                    ('네이버클라우드','클라우드·운영사',ARRAY['네이버클라우드','NAVER Cloud']),
+                    ('NHN클라우드','클라우드·운영사',ARRAY['NHN클라우드','NHN Cloud']),
+                    ('KINX','코로케이션 운영사',ARRAY['KINX','케이아이엔엑스']),
+                    ('카카오','클라우드·운영사',ARRAY['카카오 데이터센터','카카오 DC']),
                     ('코람코자산운용','자산운용사',ARRAY['코람코자산운용','코람코자산신탁','코람코']),
                     ('이지스자산운용','자산운용사',ARRAY['이지스자산운용','IGIS']),
                     ('마스턴투자운용','자산운용사',ARRAY['마스턴투자운용','마스턴']),
                     ('ESR켄달스퀘어','자산운용사',ARRAY['ESR켄달스퀘어','ESR KendallSquare','ESR Kendall Square']),
+                    ('ESR Group','개발·투자사',ARRAY['ESR Group','ESR그룹']),
+                    ('Wide Creek Asset Management','자산운용사',ARRAY['Wide Creek','와이드크릭']),
+                    ('이도','개발·운영사',ARRAY['이도 데이터센터','YIDO 데이터센터']),
+                    ('유진투자증권','PF 주선사',ARRAY['유진투자증권']),
+                    ('한국대체투자자산운용(KAAM)','자산운용사',ARRAY['한국대체투자자산운용','KAAM']),
+                    ('OneAsia Network','글로벌 운영사',ARRAY['원아시아 데이터센터','OneAsia']),
+                    ('Keppel','글로벌 투자·운영사',ARRAY['케펠 데이터센터','Keppel data center','Keppel data centre']),
+                    ('Epoch Digital','개발·운영사',ARRAY['에포크 안양','Epoch Digital']),
                     ('Digital Edge','글로벌 운영사',ARRAY['Digital Edge','디지털엣지']),
                     ('Digital Realty','글로벌 운영사',ARRAY['Digital Realty','디지털리얼티']),
                     ('Equinix','글로벌 운영사',ARRAY['Equinix','에퀴닉스']),
