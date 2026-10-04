@@ -1,5 +1,15 @@
 # N100 운영 및 개발 기록
 
+## 2026-10-04 상용 개발 프로젝트 기준선
+
+- 개발 중 센터가 0개로 집계된 원인은 수집 근거가 `dc_project`와 연결되지 않았기 때문이다.
+- 공식 사업자 발표를 교차 확인해 Digital Edge SEL3, Digital Edge SEL5, ESR Bupyeong KR1/PDG SE1을 상용 개발 프로젝트로 확정했다.
+- 현재 상용 확정 21개는 운영 18개, 개발 3개다.
+- SEL3은 `CONSTRUCTION`, RFS `2027-Q4`; SEL5는 `SITE_SECURED`, RFS 미발표; KR1/SE1은 `CONSTRUCTION`, RFS `2028`로 관리한다.
+- 공식 발표용량은 SEL3 60MW, SEL5 60MW, KR1 80MW로 총 200MW다. IT Load 또는 수전용량 기준이 공식 자료에서 명확하지 않아 `ANNOUNCED_UNCLASSIFIED_MW`로 저장하고 IT Load·수전용량 합계에서 제외한다.
+- RFS 원문의 분기·연도 정밀도를 보존하기 위해 `planned_rfs_precision`과 `planned_rfs_period`를 추가했다.
+- 공식 보도자료 3건, 개발사·운영사·임차인·자산운용사 관계를 프로젝트와 연결했다.
+
 ## 2026-10-04 Google News 1년 과거자료 백필
 
 - 상용 데이터센터 관련 검색 결과가 최신 기사에 치우치지 않도록 기간 백필 수집기를 추가했다.

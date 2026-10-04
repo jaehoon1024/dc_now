@@ -100,6 +100,21 @@ class PublicRepository:
                        v.operating_grid_intake_mw, v.operating_it_load_mw,
                        v.development_grid_intake_mw, v.development_it_load_mw,
                        v.earliest_rfs_date, v.latest_data_update,
+                       (SELECT p.planned_rfs_period
+                        FROM dc_project p
+                        WHERE p.site_id=v.site_id AND p.record_status='ACTIVE'
+                          AND p.review_status='CONFIRMED'
+                          AND p.planned_rfs_period IS NOT NULL
+                        ORDER BY p.planned_rfs_date NULLS LAST, p.created_at
+                        LIMIT 1) AS earliest_rfs_period,
+                       (SELECT sum(cs.normalized_value_mw)
+                        FROM capacity_snapshot cs
+                        JOIN dc_project p ON p.project_id=cs.scope_id
+                        WHERE cs.scope_type='PROJECT' AND p.site_id=v.site_id
+                          AND p.record_status='ACTIVE'
+                          AND cs.capacity_type_code='ANNOUNCED_UNCLASSIFIED_MW'
+                          AND cs.capacity_stage IN ('ANNOUNCED','SECURED','DESIGNED','UNDER_CONSTRUCTION')
+                          AND cs.review_status='CONFIRMED') AS development_announced_capacity_mw,
                        v.review_status, v.public_visible,
                        v.location_precision, v.coordinate_quality,
                        s.commercial_scope_status, s.commercial_model,
@@ -191,6 +206,21 @@ class PublicRepository:
                            v.operating_grid_intake_mw, v.operating_it_load_mw,
                            v.development_grid_intake_mw, v.development_it_load_mw,
                            v.earliest_rfs_date, v.latest_data_update,
+                           (SELECT p.planned_rfs_period
+                            FROM dc_project p
+                            WHERE p.site_id=v.site_id AND p.record_status='ACTIVE'
+                              AND p.review_status='CONFIRMED'
+                              AND p.planned_rfs_period IS NOT NULL
+                            ORDER BY p.planned_rfs_date NULLS LAST, p.created_at
+                            LIMIT 1) AS earliest_rfs_period,
+                           (SELECT sum(cs.normalized_value_mw)
+                            FROM capacity_snapshot cs
+                            JOIN dc_project p ON p.project_id=cs.scope_id
+                            WHERE cs.scope_type='PROJECT' AND p.site_id=v.site_id
+                              AND p.record_status='ACTIVE'
+                              AND cs.capacity_type_code='ANNOUNCED_UNCLASSIFIED_MW'
+                              AND cs.capacity_stage IN ('ANNOUNCED','SECURED','DESIGNED','UNDER_CONSTRUCTION')
+                              AND cs.review_status='CONFIRMED') AS development_announced_capacity_mw,
                            s.commercial_scope_status, s.commercial_model,
                            s.commercial_review_status, s.commercial_scope_note,
                            s.commercial_source_url
@@ -208,7 +238,8 @@ class PublicRepository:
                 text(
                     """
                     SELECT p.project_code, p.project_name, p.status_code,
-                           p.planned_rfs_date, p.rfs_date
+                           p.planned_rfs_date, p.planned_rfs_precision,
+                           p.planned_rfs_period, p.rfs_date
                     FROM dc_project p JOIN dc_site s ON s.site_id = p.site_id
                     WHERE s.site_code = :site_code AND s.public_visible = true
                       AND s.review_status = 'CONFIRMED' AND p.public_visible = true

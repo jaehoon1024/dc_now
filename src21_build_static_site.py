@@ -78,9 +78,9 @@ def render_v2(payload):
  def has_coordinate(x):return x.get("latitude") is not None and x.get("longitude") is not None
  def has_stage(x):return bool(x.get("lifecycle_group")) and x.get("lifecycle_group")!="UNKNOWN"
  def has_operator(x):return bool(str(x.get("operator_names") or "").strip())
- def has_capacity(x):return any(x.get(k) is not None for k in ("operating_grid_intake_mw","operating_it_load_mw","development_grid_intake_mw","development_it_load_mw"))
+ def has_capacity(x):return any(x.get(k) is not None for k in ("operating_grid_intake_mw","operating_it_load_mw","development_grid_intake_mw","development_it_load_mw","development_announced_capacity_mw"))
  def has_address(x):return x.get("location_precision") in {"ROOFTOP","ROAD","PARCEL"}
- def has_rfs(x):return bool(x.get("earliest_rfs_date"))
+ def has_rfs(x):return bool(x.get("earliest_rfs_period") or x.get("earliest_rfs_date"))
  def gap_labels(x):
   result=[]
   if x.get("public_visible") and x.get("review_status")=="CONFIRMED":result.append(("base","공개 확정"))
@@ -98,7 +98,7 @@ def render_v2(payload):
  def gaps_html(x):return '<div class="flags"><span class="flag commercial">상용 확정</span>'+''.join(f'<span class="flag {"ok" if kind=="base" else ""}">{html.escape(label)}</span>' for kind,label in gap_labels(x))+'</div>'
  rows="".join(
   "<tr data-code=\"{}\"><td><input class=\"comparecheck\" type=\"checkbox\" data-code=\"{}\"></td><td class=\"sitecell\"><b>{}</b><small>{}</small></td><td>{} {}</td><td><span class=\"status {}\">{}</span></td><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>".format(
-   html.escape(str(x.get("site_code") or "")),html.escape(str(x.get("site_code") or "")),html.escape(str(x.get("site_name") or "—")),html.escape(str(x.get("site_code") or "—")),html.escape(str(x.get("sido") or "—")),html.escape(str(x.get("sigungu") or "")),str(x.get("lifecycle_group") or "UNKNOWN").lower().replace("_","-"),html.escape(stage_label.get(x.get("lifecycle_group"),str(x.get("lifecycle_group") or "미확인"))),html.escape(commercial_model.get(x.get("commercial_model"),"검토 필요")),html.escape(str(x.get("operator_names") or "미확인")),html.escape(str(x.get("operating_grid_intake_mw") or x.get("development_grid_intake_mw") or "미확인")),html.escape(str(x.get("operating_it_load_mw") or x.get("development_it_load_mw") or "미확인")),html.escape(str(x.get("earliest_rfs_date") or "미확인")),gaps_html(x),
+   html.escape(str(x.get("site_code") or "")),html.escape(str(x.get("site_code") or "")),html.escape(str(x.get("site_name") or "—")),html.escape(str(x.get("site_code") or "—")),html.escape(str(x.get("sido") or "—")),html.escape(str(x.get("sigungu") or "")),str(x.get("lifecycle_group") or "UNKNOWN").lower().replace("_","-"),html.escape(stage_label.get(x.get("lifecycle_group"),str(x.get("lifecycle_group") or "미확인"))),html.escape(commercial_model.get(x.get("commercial_model"),"검토 필요")),html.escape(str(x.get("operator_names") or "미확인")),html.escape(str(x.get("operating_grid_intake_mw") or x.get("development_grid_intake_mw") or ((str(x.get("development_announced_capacity_mw"))+" 발표") if x.get("development_announced_capacity_mw") is not None else "미확인"))),html.escape(str(x.get("operating_it_load_mw") or x.get("development_it_load_mw") or "미확인")),html.escape(str(x.get("earliest_rfs_period") or x.get("earliest_rfs_date") or "미확인")),gaps_html(x),
   ) for x in sites
  )
  target=payload.get("target_summary") or {"target_total":payload["total"],"public_total":len(sites),"commercial_confirmed_total":len(sites),"needs_evidence_total":0,"out_of_scope_total":0}
@@ -114,6 +114,7 @@ def render_v2(payload):
  grid=sum(float(x.get("operating_grid_intake_mw") or x.get("development_grid_intake_mw") or 0) for x in sites)
  development_it_known=[x for x in development_sites if x.get("development_it_load_mw") is not None]
  development_it=sum(float(x.get("development_it_load_mw") or 0) for x in development_sites)
+ announced_development=sum(float(x.get("development_announced_capacity_mw") or 0) for x in development_sites)
  evidence_summary=payload.get("evidence_summary") or {}
  collection_healthy=bool(payload.get("collection_status")) and all(x.get("run_status")=="SUCCESS" for x in payload.get("collection_status",[]))
  evidence_rows="".join(
@@ -136,7 +137,7 @@ def render_v2(payload):
   '<strong id="gridCapacity">미확인</strong>':f'<strong id="gridCapacity">{grid:g} MW</strong>' if grid_known else '<strong id="gridCapacity">미확인</strong>',
   '<small id="gridCoverage">확보율 0%</small>':f'<small id="gridCoverage">확보 {len(grid_known)}/{total}개 센터</small>',
   '<strong id="developmentIt">미확인</strong>':f'<strong id="developmentIt">{development_it:g} MW</strong>' if development_it_known else '<strong id="developmentIt">미확인</strong>',
-  '<small id="developmentCoverage">확보율 0%</small>':f'<small id="developmentCoverage">확보 {len(development_it_known)}/{len(development_sites)}개 개발센터</small>',
+  '<small id="developmentCoverage">확보율 0%</small>':f'<small id="developmentCoverage">IT Load 확보 {len(development_it_known)}/{len(development_sites)} · 발표용량 {announced_development:g}MW</small>',
   '<strong id="rfsCount">0</strong>':f'<strong id="rfsCount">{counts["rfs"]}</strong>',
   '<small id="rfsCoverage">RFS 확보율 0%</small>':f'<small id="rfsCoverage">RFS 확보 {counts["rfs"]}/{total}개 센터</small>',
   '핵심 용량 정보의 확보율을 계산 중입니다.':f'수전용량은 {len(grid_known)}/{total}개 센터에서 {grid:g} MW가 확인됐습니다. IT Load·RFS·GPU/DLC·Available Capacity는 추가 확보가 필요합니다.',

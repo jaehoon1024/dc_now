@@ -20,7 +20,8 @@ from src04_rss_collector import load_env_file, resolve_database_url
 REQUIRED_COLUMNS = ("project_code", "site_code", "project_name", "project_scope")
 ALL_COLUMNS = REQUIRED_COLUMNS + (
     "project_type", "status_code", "scope_note", "planned_rfs_date",
-    "rfs_date", "completion_date", "service_start_date",
+    "planned_rfs_precision", "planned_rfs_period", "rfs_date",
+    "completion_date", "service_start_date",
 )
 CODE = re.compile(r"^[A-Z0-9][A-Z0-9_-]{1,29}$")
 STATUSES = {
@@ -30,6 +31,8 @@ STATUSES = {
 DATE_FIELDS = (
     "planned_rfs_date", "rfs_date", "completion_date", "service_start_date",
 )
+RFS_PRECISIONS = {"", "DAY", "MONTH", "QUARTER", "YEAR", "UNKNOWN"}
+RFS_PERIOD = re.compile(r"^(?:\d{4}|\d{4}-Q[1-4]|\d{4}-\d{2}|\d{4}-\d{2}-\d{2})$")
 
 
 @dataclass(frozen=True)
@@ -75,6 +78,10 @@ def validate_rows(
         seen.add(row["project_code"])
         if row["status_code"] not in STATUSES:
             errors.append(ValidationError(number, "status_code", "허용되지 않은 상태"))
+        if row["planned_rfs_precision"] not in RFS_PRECISIONS:
+            errors.append(ValidationError(number, "planned_rfs_precision", "허용되지 않은 정밀도"))
+        if row["planned_rfs_period"] and not RFS_PERIOD.fullmatch(row["planned_rfs_period"]):
+            errors.append(ValidationError(number, "planned_rfs_period", "YYYY, YYYY-Qn, YYYY-MM 또는 YYYY-MM-DD 형식 필요"))
         for field in DATE_FIELDS:
             row[field] = parse_date(row[field], number, field, errors)
         completion = row["completion_date"]
@@ -114,13 +121,15 @@ def import_rows(engine: Any, rows: list[dict[str, Any]]) -> int:
                 INSERT INTO dc_project (
                     project_code, site_id, project_name, project_type,
                     project_scope, status_code, scope_note, planned_rfs_date,
+                    planned_rfs_precision, planned_rfs_period,
                     rfs_date, completion_date, service_start_date,
                     review_status, public_visible
                 ) SELECT
                     :project_code, s.site_id, :project_name,
                     NULLIF(:project_type,''), :project_scope,
                     NULLIF(:status_code,''), NULLIF(:scope_note,''),
-                    :planned_rfs_date, :rfs_date, :completion_date,
+                    :planned_rfs_date, NULLIF(:planned_rfs_precision,''),
+                    NULLIF(:planned_rfs_period,''), :rfs_date, :completion_date,
                     :service_start_date, 'NEEDS_EVIDENCE', false
                 FROM dc_site s WHERE s.site_code = :site_code
                   AND s.record_status = 'ACTIVE'

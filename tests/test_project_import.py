@@ -6,8 +6,8 @@ from src12_project_import import import_rows, validate_rows
 
 FIELDS = [
     "project_code", "site_code", "project_name", "project_scope",
-    "status_code", "planned_rfs_date", "rfs_date", "completion_date",
-    "service_start_date",
+    "status_code", "planned_rfs_date", "planned_rfs_precision",
+    "planned_rfs_period", "rfs_date", "completion_date", "service_start_date",
 ]
 
 
@@ -21,6 +21,16 @@ class ProjectImportTests(unittest.TestCase):
         }])
         self.assertEqual(errors, [])
         self.assertEqual(rows[0]["rfs_date"].isoformat(), "2026-01-01")
+
+    def test_quarter_rfs_preserves_source_precision(self):
+        rows, errors = validate_rows(FIELDS, [{
+            "project_code": "PROJ-002", "site_code": "SITE-001",
+            "project_name": "2동", "project_scope": "신축",
+            "status_code": "CONSTRUCTION", "planned_rfs_date": "2027-10-01",
+            "planned_rfs_precision": "QUARTER", "planned_rfs_period": "2027-Q4",
+        }])
+        self.assertEqual(errors, [])
+        self.assertEqual(rows[0]["planned_rfs_period"], "2027-Q4")
 
     def test_invalid_status_date_order_and_duplicate_are_reported(self):
         raw = {
@@ -67,7 +77,8 @@ class ProjectImportTests(unittest.TestCase):
                             site_id uuid NOT NULL, project_name text NOT NULL,
                             project_type text, project_scope text NOT NULL,
                             status_code text, scope_note text,
-                            planned_rfs_date date, rfs_date date,
+                            planned_rfs_date date, planned_rfs_precision text,
+                            planned_rfs_period text, rfs_date date,
                             completion_date date, service_start_date date,
                             review_status text NOT NULL, public_visible boolean NOT NULL
                         ) ON COMMIT DROP
