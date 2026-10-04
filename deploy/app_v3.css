@@ -34,7 +34,7 @@
 .maplist button.development{border-left:3px solid var(--blue)}
 .maplist button.mixed{border-left:3px solid #7654a6}
 .maplist button.unknown{border-left:3px solid #82939f}
-.companyhead,.companyline{grid-template-columns:44px minmax(140px,1.3fr) repeat(5,1fr)}
+.companyhead,.companyline{grid-template-columns:44px minmax(140px,1.3fr) repeat(7,1fr)}
 .companygrid{display:grid;gap:13px}
 .playertable{max-height:560px;overflow:auto;padding:0 14px}
 .playerhead,.playerline{display:grid;grid-template-columns:minmax(130px,1.3fr) minmax(110px,1fr) repeat(3,70px) 92px;gap:10px;align-items:center;padding:11px 6px;border-bottom:1px solid #edf1f3;font-size:8px}

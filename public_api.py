@@ -120,6 +120,13 @@ class PublicRepository:
                        s.commercial_scope_status, s.commercial_model,
                        s.commercial_review_status, s.commercial_scope_note,
                        s.commercial_source_url,
+                       s.facility_scope, s.facility_review_status,
+                       s.facility_scope_note, s.facility_source_url,
+                       (SELECT string_agg(DISTINCT c.standard_name, ', ' ORDER BY c.standard_name)
+                        FROM company_participation cp
+                        JOIN company c ON c.company_id=cp.company_id
+                        WHERE cp.scope_type='SITE' AND cp.scope_id=v.site_id
+                          AND cp.review_status IN ('CONFIRMED','CANDIDATE')) AS tracked_company_names,
                        (v.site_name LIKE '%%수집 검증 대상%%') AS discovery_target,
                        CASE
                            WHEN v.public_visible=true AND v.review_status='CONFIRMED'
@@ -131,7 +138,8 @@ class PublicRepository:
                 FROM v_site_map v
                 JOIN dc_site s ON s.site_id=v.site_id
                 WHERE s.record_status='ACTIVE'
-                  AND s.commercial_scope_status <> 'OUT_OF_SCOPE'
+                  AND (s.commercial_scope_status <> 'OUT_OF_SCOPE'
+                       OR s.facility_scope IN ('ENTERPRISE','CLOUD_SELF_USE'))
                 ORDER BY v.public_visible DESC, v.sido NULLS LAST,
                          v.sigungu NULLS LAST, v.site_name
             """)).mappings().all()
@@ -158,7 +166,17 @@ class PublicRepository:
                        ) AS commercial_confirmed_total,
                        count(*) FILTER (
                            WHERE commercial_scope_status = 'OUT_OF_SCOPE'
-                       ) AS out_of_scope_total
+                       ) AS out_of_scope_total,
+                       count(*) FILTER (
+                           WHERE facility_scope = 'ENTERPRISE'
+                       ) AS enterprise_total,
+                       count(*) FILTER (
+                           WHERE facility_scope = 'CLOUD_SELF_USE'
+                       ) AS cloud_self_use_total,
+                       count(*) FILTER (
+                           WHERE facility_scope IN ('ENTERPRISE','CLOUD_SELF_USE')
+                             AND facility_review_status = 'CONFIRMED'
+                       ) AS noncommercial_confirmed_total
                 FROM dc_site WHERE record_status = 'ACTIVE'
             """)).mappings().one()
         return {key: int(value or 0) for key, value in row.items()}
@@ -223,12 +241,15 @@ class PublicRepository:
                               AND cs.review_status='CONFIRMED') AS development_announced_capacity_mw,
                            s.commercial_scope_status, s.commercial_model,
                            s.commercial_review_status, s.commercial_scope_note,
-                           s.commercial_source_url
+                           s.commercial_source_url, s.facility_scope,
+                           s.facility_review_status, s.facility_scope_note,
+                           s.facility_source_url
                     FROM v_site_map v JOIN dc_site s ON s.site_id=v.site_id
                     WHERE v.site_code = :site_code AND v.public_visible = true
                       AND v.review_status = 'CONFIRMED'
-                      AND s.commercial_scope_status='IN_SCOPE'
-                      AND s.commercial_review_status='CONFIRMED'
+                      AND ((s.commercial_scope_status='IN_SCOPE'
+                            AND s.commercial_review_status='CONFIRMED')
+                           OR s.facility_scope IN ('ENTERPRISE','CLOUD_SELF_USE'))
                     """
                 ), {"site_code": site_code},
             ).mappings().first()
@@ -268,6 +289,22 @@ class PublicRepository:
                     WHERE v.public_visible=true AND v.review_status='CONFIRMED'
                       AND s.commercial_scope_status='IN_SCOPE'
                       AND s.commercial_review_status='CONFIRMED'
+                ), facility_portfolio AS (
+                    SELECT cp.company_id,
+                           count(DISTINCT s.site_code) FILTER (
+                               WHERE s.facility_scope='ENTERPRISE'
+                           ) AS enterprise_site_count,
+                           count(DISTINCT s.site_code) FILTER (
+                               WHERE s.facility_scope='CLOUD_SELF_USE'
+                           ) AS cloud_self_use_site_count,
+                           count(DISTINCT s.site_code) FILTER (
+                               WHERE s.facility_review_status='NEEDS_EVIDENCE'
+                           ) AS facility_review_site_count
+                    FROM company_participation cp
+                    JOIN dc_site s ON cp.scope_type='SITE' AND cp.scope_id=s.site_id
+                    WHERE cp.review_status IN ('CONFIRMED','CANDIDATE')
+                      AND s.facility_scope IN ('ENTERPRISE','CLOUD_SELF_USE')
+                    GROUP BY cp.company_id
                 )
                 SELECT c.standard_name AS company_name,
                        count(DISTINCT p.site_code) AS site_count,
@@ -275,8 +312,12 @@ class PublicRepository:
                        count(DISTINCT site_code) FILTER (WHERE lifecycle_group = 'DEVELOPMENT') AS development_site_count,
                        count(DISTINCT site_code) FILTER (WHERE lifecycle_group = 'MIXED') AS mixed_site_count,
                        sum(operating_it_load_mw) AS operating_it_load_mw,
-                       sum(development_it_load_mw) AS development_it_load_mw
+                       sum(development_it_load_mw) AS development_it_load_mw,
+                       COALESCE(max(f.enterprise_site_count),0) AS enterprise_site_count,
+                       COALESCE(max(f.cloud_self_use_site_count),0) AS cloud_self_use_site_count,
+                       COALESCE(max(f.facility_review_site_count),0) AS facility_review_site_count
                 FROM company c LEFT JOIN portfolio p ON p.company_id=c.company_id
+                LEFT JOIN facility_portfolio f ON f.company_id=c.company_id
                 WHERE c.record_status='ACTIVE' AND c.review_status='CONFIRMED'
                 GROUP BY c.company_id,c.standard_name
                 ORDER BY count(DISTINCT p.site_code) DESC,c.standard_name
@@ -289,6 +330,9 @@ class PublicRepository:
             rows = connection.execute(text("""
                 WITH players(player_name, player_type, aliases) AS (VALUES
                     ('LG CNS','IT서비스·운영사',ARRAY['LG CNS','LG씨엔에스','엘지씨엔에스']),
+                    ('현대자동차','기업 전용센터',ARRAY['현대자동차 데이터센터','현대차 데이터센터','현대자동차 IT센터']),
+                    ('삼성전자','기업 전용센터',ARRAY['삼성전자 데이터센터','삼성전자 IT센터']),
+                    ('SK하이닉스','기업 전용센터',ARRAY['SK하이닉스 데이터센터','SK하이닉스 IT센터']),
                     ('삼성SDS','IT서비스·운영사',ARRAY['삼성SDS','삼성 SDS','Samsung SDS']),
                     ('kt cloud','통신·운영사',ARRAY['kt cloud','KT클라우드','케이티클라우드']),
                     ('SK브로드밴드','통신·운영사',ARRAY['SK브로드밴드','SK broadband']),
