@@ -124,10 +124,14 @@ def render_v2(payload):
  )
  completeness=''.join('<div class="comprow"><span>{}</span><div class="track"><i style="width:{}%"></i></div><b>{} · {}%</b></div>'.format(label,round(counts[key]/total*100) if total else 0,counts[key],round(counts[key]/total*100) if total else 0) for key,label in (("coordinate","좌표"),("stage","운영 단계"),("operator","운영사"),("address","상세 주소"),("capacity","용량"),("rfs","RFS")))
  replacements={
-  '데이터 준비 중':f'기준 {html.escape(str(payload.get("generated_at") or "미확인"))[:16].replace("T"," ")}',
-  '<span class="health" id="systemStatus"><i></i>수집 상태 확인 중</span>':f'<span class="health" id="systemStatus"><i></i>{"수집 시스템 정상" if collection_healthy else "수집 상태 점검 필요"}</span>',
+  '데이터 준비 중':f'마지막 동기화 {html.escape(str(payload.get("generated_at") or "미확인"))[:16].replace("T"," ")}',
+  '<span class="health" id="systemStatus"><i></i>수집 상태 확인 중</span>':f'<span class="health" id="systemStatus"><i></i>{"수집 파이프라인 정상" if collection_healthy else "수집 상태 점검 필요"}</span>',
+  '<b id="scopeCommercial">0</b>':f'<b id="scopeCommercial">{target.get("commercial_confirmed_total",len(sites))}</b>',
+  '<b id="scopeCloud">0</b>':f'<b id="scopeCloud">{target.get("cloud_self_use_total",0)}</b>',
+  '<b id="scopeEnterprise">0</b>':f'<b id="scopeEnterprise">{target.get("enterprise_total",0)}</b>',
+  '<b id="scopeReview">0</b>':f'<b id="scopeReview">{target.get("needs_evidence_total",0)}</b>',
   '<strong id="total">0</strong>':f'<strong id="total">{target.get("commercial_confirmed_total",len(sites))}</strong>',
-  '<small id="targetBreakdown">상용 범위 검토 중</small>':f'<small id="targetBreakdown">상용성 검토 {target.get("needs_evidence_total",0)} · 범위 제외 {target.get("out_of_scope_total",0)}</small>',
+  '<small id="targetBreakdown">상용 범위 검토 중</small>':f'<small id="targetBreakdown">검토 {target.get("needs_evidence_total",0)} · 전체 추적 {payload.get("total",len(sites))}</small>',
   '<span id="asOf">—</span>':f'<span id="asOf">{html.escape(str(payload.get("generated_at") or "")[:10])}</span>',
   '<strong id="operatingCount">0</strong>':f'<strong id="operatingCount">{len(operating_sites)}</strong>',
   '<strong id="developmentCount">0</strong>':f'<strong id="developmentCount">{len(development_sites)}</strong>',
@@ -153,6 +157,7 @@ def render_v2(payload):
   '<span class="delta" id="sourceCount">0 sources</span>':f'<span class="delta" id="sourceCount">{evidence_summary.get("source_count",0)} sources</span>',
   '<strong id="qualityScore">0%</strong>':f'<strong id="qualityScore">{score}%</strong>',
   '<strong class="qualityscore" id="qualityScore">0%</strong>':f'<strong class="qualityscore" id="qualityScore">{score}%</strong>',
+  '<strong id="heroQuality">0%</strong>':f'<strong id="heroQuality">{score}%</strong>',
   '<strong id="needCoordinate">0</strong>':f'<strong id="needCoordinate">{total-counts["coordinate"]}</strong>',
   '<strong id="needStage">0</strong>':f'<strong id="needStage">{total-counts["stage"]}</strong>',
   '<strong id="needOperator">0</strong>':f'<strong id="needOperator">{total-counts["operator"]}</strong>',
@@ -180,7 +185,7 @@ def write_site(payload,out=OUT):
  out.mkdir(parents=True,exist_ok=True);(out/"index.html").write_text(render_v2(payload),encoding="utf-8")
  (out/"data.json").write_text(json.dumps(payload,ensure_ascii=False,default=json_value,separators=(",",":")),encoding="utf-8")
  (out/".nojekyll").touch()
- for name in ("app_v3.css","app_v3.js"):
+ for name in ("app_v4.css","app_v3.js"):
   shutil.copyfile(ROOT/"dashboard"/name,out/name)
  (out/"_headers").write_text("/*\n  Cache-Control: public, max-age=0, must-revalidate\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-src https://www.google.com https://maps.google.com\n\n/data.json\n  Cache-Control: public, max-age=60, must-revalidate\n",encoding="utf-8")
 def main():

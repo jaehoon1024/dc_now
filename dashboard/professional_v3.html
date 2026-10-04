@@ -5,29 +5,31 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#091621">
 <title>DC NOW | Data Center Market Intelligence</title>
-<link rel="stylesheet" href="./app_v3.css">
+<link rel="stylesheet" href="./app_v4.css">
 </head>
 <body>
 <div class="app">
  <aside class="sidebar">
-  <div class="brand"><span class="brandmark">DC</span><span><b>DC NOW</b><small>MARKET INTELLIGENCE</small></span></div>
+  <div class="brand"><span class="brandmark"><i></i>DC</span><span><b>DC NOW</b><small>KOREA INFRASTRUCTURE INTELLIGENCE</small></span></div>
+  <div class="navlabel">COMMAND</div>
   <nav class="nav" aria-label="주요 화면">
-   <button class="navitem active" data-view="executive"><span>⌂</span>Executive Dashboard</button>
-   <button class="navitem" data-view="map"><span>⌖</span>전국 데이터센터 Map</button>
-   <button class="navitem" data-view="centers"><span>▦</span>센터 Master</button>
-   <button class="navitem" data-view="supply"><span>↗</span>Supply Analysis</button>
-   <button class="navitem" data-view="companies"><span>◎</span>Company Analysis</button>
-   <button class="navitem" data-view="demand"><span>◇</span>Customer & Demand <i>준비</i></button>
-   <button class="navitem" data-view="intelligence"><span>≡</span>Market Intelligence</button>
-   <button class="navitem" data-view="quality"><span>✓</span>Data Quality</button>
+   <button class="navitem active" data-view="executive"><span>01</span>시장 관제</button>
+   <button class="navitem" data-view="map"><span>02</span>입지 지도</button>
+   <button class="navitem" data-view="centers"><span>03</span>센터 원장</button>
+   <button class="navitem" data-view="supply"><span>04</span>공급 전망</button>
+   <button class="navitem" data-view="companies"><span>05</span>플레이어</button>
+   <button class="navitem" data-view="demand"><span>06</span>수요 매칭 <i>준비</i></button>
+   <button class="navitem" data-view="intelligence"><span>07</span>시장 이벤트</button>
+   <button class="navitem" data-view="quality"><span>08</span>데이터 관제</button>
   </nav>
   <div class="sideinfo"><span class="health" id="systemStatus"><i></i>수집 상태 확인 중</span><small id="generated">데이터 준비 중</small></div>
  </aside>
  <main class="main">
-  <header class="topbar"><button class="menubtn" id="menubtn">☰</button><div><b id="viewTitle">Executive Dashboard</b><span id="viewCaption">국내 데이터센터 시장 및 공급 현황</span></div><div class="topactions"><span class="security">PUBLIC VIEW</span><button class="exportbtn" id="export">데이터 내보내기</button></div></header>
+  <header class="topbar"><button class="menubtn" id="menubtn">☰</button><div class="breadcrumb"><span>DC NOW /</span><b id="viewTitle">시장 관제</b><small id="viewCaption">국내 데이터센터 시장 및 공급 현황</small></div><div class="topactions"><span class="livechip"><i></i> LIVE DATA</span><span class="security">PUBLIC</span><button class="exportbtn" id="export">CSV EXPORT</button></div></header>
 
   <section class="view active" data-page="executive">
-   <div class="titleline"><div><p class="eyebrow">COMMERCIAL DATA CENTER MARKET</p><h1>국내 상용 데이터센터 Market Intelligence</h1><p>코로케이션·도매형·마스터리스·임차 운영 등 제3자에게 용량을 제공하는 상용 데이터센터를 추적합니다.</p></div><div class="asof"><b>DATA AS OF</b><span id="asOf">—</span></div></div>
+   <div class="commandhero"><div><p class="eyebrow">KOREA DATA CENTER CONTROL TOWER</p><h1>데이터센터 시장을<br><em>공급·인프라·사업기회</em>로 읽습니다.</h1><p>상용 공급과 기업 자체 인프라를 분리하고, 센터·Phase·전력·사업자·근거를 하나의 의사결정 흐름으로 연결합니다.</p></div><div class="asof"><b>INTELLIGENCE CUT-OFF</b><span id="asOf">—</span><small>자동 수집 · 검토 데이터</small></div></div>
+   <div class="scope-strip"><article><span>MARKET SUPPLY</span><b id="scopeCommercial">0</b><small>상용 확정</small></article><article><span>DIGITAL INFRA</span><b id="scopeCloud">0</b><small>클라우드·IT 자체</small></article><article><span>ENTERPRISE</span><b id="scopeEnterprise">0</b><small>기업 전용 추적</small></article><article class="attention"><span>REVIEW QUEUE</span><b id="scopeReview">0</b><small>근거 보완 대상</small></article></div>
    <div class="kpis executive-kpis">
     <article class="kpi primary"><span>상용 확정 센터</span><strong id="total">0</strong><small id="targetBreakdown">상용 범위 검토 중</small></article>
     <article class="kpi stage-kpi operating-kpi"><span>운영 중 센터</span><strong id="operatingCount">0</strong><small>상용 서비스 운영 기준</small></article>
@@ -38,13 +40,13 @@
     <article class="kpi"><span>확인 수전용량</span><strong id="gridCapacity">미확인</strong><small id="gridCoverage">확보율 0%</small></article>
     <article class="kpi"><span>RFS 확인 센터</span><strong id="rfsCount">0</strong><small id="rfsCoverage">전체 센터 대비</small></article>
    </div>
-   <div class="coverage-alert"><span class="alerticon">!</span><div><b>부분 집계 안내</b><p id="coverageNotice">핵심 용량 정보의 확보율을 계산 중입니다.</p></div><button data-go="quality">데이터 품질 보기</button></div>
+   <div class="coverage-alert"><span class="alerticon">DQ</span><div><b>의사결정 신뢰도</b><p id="coverageNotice">핵심 용량 정보의 확보율을 계산 중입니다.</p></div><div class="qualityring"><strong id="heroQuality">0%</strong><span>DATA<br>QUALITY</span></div><button data-go="quality">검토 큐 열기 →</button></div>
    <div class="executive-grid">
     <article class="card mapcard"><header><div><h2>Google Maps · 전국 데이터센터</h2><p>운영·개발 단계를 선택하고 센터 위치를 확인합니다.</p></div><div class="segmented"><button class="active" data-exec-stage="">전체</button><button data-exec-stage="OPERATING">운영</button><button data-exec-stage="DEVELOPMENT">개발</button><button data-exec-stage="MIXED">병행</button></div></header><div class="maparea googlemap"><iframe id="executiveMap" title="Google 데이터센터 지도" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD%20%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%84%BC%ED%84%B0&amp;z=7&amp;output=embed"></iframe><div class="mapselection" id="executiveMapSelection"></div><div class="mapquicklist" id="executiveMapList"></div></div></article>
     <div class="sidecharts">
      <article class="card"><header><div><h2>지역별 공급 현황</h2><p>확인 IT Load 우선, 미확인 시 센터 수</p></div><button class="linkbtn" data-go="supply">상세 ›</button></header><div class="chartbody" id="regionChart"></div></article>
      <article class="card"><header><div><h2>공급 단계</h2><p>전체 센터 기준</p></div></header><div class="supplymix"><div class="donut" id="statusDonut"><b>0</b><span>센터</span></div><div id="statusLegend"></div></div></article>
-     <article class="card compact"><header><div><h2>AI Infrastructure</h2><p>GPU/HPC·DLC 대응 데이터</p></div></header><div class="techgrid"><div><b>GPU Ready</b><strong>미확인</strong></div><div><b>DLC Ready</b><strong>미확인</strong></div><div><b>Rack Density</b><strong>미확인</strong></div></div></article>
+     <article class="card compact darkcard"><header><div><h2>Infrastructure Readiness</h2><p>AI/HPC 의사결정 필드</p></div></header><div class="techgrid"><div><b>GPU READY</b><strong>확보 중</strong></div><div><b>LIQUID COOLING</b><strong>확보 중</strong></div><div><b>RACK DENSITY</b><strong>확보 중</strong></div></div></article>
     </div>
    </div>
    <article class="card timelinecard"><header><div><h2>연도별 신규 공급 Timeline</h2><p>Phase별 RFS와 IT Load를 연결하여 향후 공급 집중도를 분석합니다.</p></div><button class="linkbtn" data-go="supply">Supply Analysis ›</button></header><div class="timeline" id="timeline"></div></article>
