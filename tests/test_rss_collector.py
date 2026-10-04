@@ -3,6 +3,7 @@ import tempfile
 from pathlib import Path
 from unittest.mock import patch
 import src04_rss_collector as rss
+import src25_google_news_backfill as backfill
 
 class CollectorTests(unittest.TestCase):
     def test_google_news_source_publisher_is_preserved(self):
@@ -49,6 +50,34 @@ class CollectorTests(unittest.TestCase):
             self.assertEqual(success.call_count, 0 if fail else 2)
             self.assertEqual(failure.call_count, 2 if fail else 0)
             sleep.assert_called_once_with(15.0)
+
+
+class GoogleNewsBackfillTests(unittest.TestCase):
+    def test_windows_cover_range_without_gap(self):
+        from datetime import date
+        windows = list(backfill.iter_windows(date(2025, 10, 4), date(2026, 10, 5), 31))
+        self.assertEqual(windows[0][0], date(2025, 10, 4))
+        self.assertEqual(windows[-1][1], date(2026, 10, 5))
+        self.assertTrue(all(left[1] == right[0] for left, right in zip(windows, windows[1:])))
+
+    def test_dated_url_replaces_relative_period(self):
+        from datetime import date
+        url = (
+            "https://news.google.com/rss/search?"
+            "q=%22data+center%22+when%3A365d&hl=ko&gl=KR"
+        )
+        result = backfill.dated_feed_url(url, date(2025, 10, 4), date(2025, 11, 4))
+        query = dict(__import__("urllib.parse").parse.parse_qsl(__import__("urllib.parse").parse.urlsplit(result).query))["q"]
+        self.assertNotIn("when:365d", query)
+        self.assertIn("after:2025-10-04", query)
+        self.assertIn("before:2025-11-04", query)
+
+    def test_items_without_date_or_outside_window_are_rejected(self):
+        from datetime import date, datetime, timezone
+        start, end = date(2026, 1, 1), date(2026, 2, 1)
+        self.assertFalse(backfill.in_window({"published_at": None}, start, end))
+        self.assertFalse(backfill.in_window({"published_at": datetime(2025, 12, 31, tzinfo=timezone.utc)}, start, end))
+        self.assertTrue(backfill.in_window({"published_at": datetime(2026, 1, 31, tzinfo=timezone.utc)}, start, end))
 
 if __name__ == "__main__":
     unittest.main()

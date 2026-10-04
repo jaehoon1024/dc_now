@@ -193,6 +193,7 @@ def create_collection_run(
     engine: Any,
     trigger_type: str,
     total_source_count: int,
+    job_name: str = "RSS_DAILY",
 ) -> Any:
     with engine.begin() as connection:
         return connection.execute(
@@ -208,7 +209,7 @@ def create_collection_run(
                     host_name,
                     application_version
                 ) VALUES (
-                    'RSS_DAILY',
+                    :job_name,
                     :trigger_type,
                     :requested_by,
                     CURRENT_TIMESTAMP,
@@ -221,6 +222,7 @@ def create_collection_run(
                 """
             ),
             {
+                "job_name": job_name,
                 "trigger_type": trigger_type,
                 "requested_by": os.getenv("USER", "dc-platform"),
                 "total_source_count": total_source_count,

@@ -1,5 +1,28 @@
 # N100 운영 및 개발 기록
 
+## 2026-10-04 Google News 1년 과거자료 백필
+
+- 상용 데이터센터 관련 검색 결과가 최신 기사에 치우치지 않도록 기간 백필 수집기를 추가했다.
+- 대상은 코로케이션·임대·마스터리스, 인허가·착공·준공·부지, 임차·매각·투자, 상용 운영사, 개발사·AMC·시공사·DBO의 5개 검색식이다.
+- Google News RSS의 검색 결과 상한을 줄이기 위해 지정 기간을 기본 31일 구간으로 나눠 조회한다.
+- RSS에 포함된 게시일을 다시 검사하며 기간 밖 결과와 게시일 없는 결과는 제외한다.
+- 기사 본문은 수집하지 않고 제목·URL·발행사·게시일만 저장한다. 신규 문서는 `CANDIDATE` 상태로 검토 대기에 둔다.
+- 2025-10-04부터 2026-10-04까지 최초 실행에서 60개 구간, 4,240건을 확인했고 신규 3,279건을 적재했다. 수집 실행 상태는 `SUCCESS`였다.
+
+```bash
+.venv/bin/python -u src25_google_news_backfill.py \
+  --from-date 2025-10-04 --to-date 2026-10-04 \
+  --window-days 31 --max-items 100
+```
+
+특정 검색식만 더 짧은 구간으로 보완할 때는 `--feed-code`를 반복 지정한다.
+
+```bash
+.venv/bin/python -u src25_google_news_backfill.py \
+  --days 365 --window-days 15 \
+  --feed-code GNEWS_DC_DEVELOPMENT
+```
+
 ## 2026-09-28 변경
 
 - RSS의 게시일 없는 응답/304 처리 시 발생한 PostgreSQL AmbiguousParameter 수정: NULL 검사에 timestamptz 명시.
