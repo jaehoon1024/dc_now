@@ -133,6 +133,7 @@ def render_v2(payload):
   '<strong id="total">0</strong>':f'<strong id="total">{target.get("commercial_confirmed_total",len(sites))}</strong>',
   '<small id="targetBreakdown">상용 범위 검토 중</small>':f'<small id="targetBreakdown">검토 {target.get("needs_evidence_total",0)} · 전체 추적 {payload.get("total",len(sites))}</small>',
   '<span id="asOf">—</span>':f'<span id="asOf">{html.escape(str(payload.get("generated_at") or "")[:10])}</span>',
+  '<strong id="asOf">—</strong>':f'<strong id="asOf">{html.escape(str(payload.get("generated_at") or "")[:10])}</strong>',
   '<strong id="operatingCount">0</strong>':f'<strong id="operatingCount">{len(operating_sites)}</strong>',
   '<strong id="developmentCount">0</strong>':f'<strong id="developmentCount">{len(development_sites)}</strong>',
   '<strong id="mixedCount">0</strong>':f'<strong id="mixedCount">{len(mixed_sites)}</strong>',
@@ -185,7 +186,7 @@ def write_site(payload,out=OUT):
  out.mkdir(parents=True,exist_ok=True);(out/"index.html").write_text(render_v2(payload),encoding="utf-8")
  (out/"data.json").write_text(json.dumps(payload,ensure_ascii=False,default=json_value,separators=(",",":")),encoding="utf-8")
  (out/".nojekyll").touch()
- for name in ("app_v4.css","app_v3.js"):
+ for name in ("app_v5.css","app_v3.js"):
   shutil.copyfile(ROOT/"dashboard"/name,out/name)
  (out/"_headers").write_text("/*\n  Cache-Control: public, max-age=0, must-revalidate\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-src https://www.google.com https://maps.google.com\n\n/data.json\n  Cache-Control: public, max-age=60, must-revalidate\n",encoding="utf-8")
 def main():
