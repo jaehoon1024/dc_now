@@ -21,6 +21,7 @@ from io import BytesIO
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlencode
+from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 from zipfile import BadZipFile, ZipFile
 
@@ -150,12 +151,25 @@ def api_get_bytes(
             "Accept": "application/json, application/zip, application/xml",
         },
     )
-    with urlopen(request, timeout=40) as response:
-        payload = response.read()
-    metrics.request_count += 1
-    metrics.downloaded_bytes += len(payload)
-    time.sleep(max(request_interval, 1.0))
-    return payload
+    last_error: Exception | None = None
+    for attempt in range(1, 4):
+        try:
+            with urlopen(request, timeout=40) as response:
+                payload = response.read()
+            metrics.request_count += 1
+            metrics.downloaded_bytes += len(payload)
+            prefix = payload.lstrip()[:32].lower()
+            if prefix.startswith(b"<!doctype html") or prefix.startswith(b"<html"):
+                raise CollectorError("OpenDART가 API 데이터 대신 HTML 응답을 반환했습니다.")
+            time.sleep(max(request_interval, 1.0))
+            return payload
+        except (HTTPError, URLError, TimeoutError, CollectorError) as exc:
+            last_error = exc
+            if attempt < 3:
+                time.sleep(attempt * 5)
+    raise CollectorError(
+        f"OpenDART 요청이 3회 실패했습니다: {type(last_error).__name__}"
+    ) from last_error
 
 
 def normalize_corp_name(value: str) -> str:
@@ -214,8 +228,7 @@ def load_corp_codes(
             )
             root = ET.fromstring(archive.read(xml_name))
     except (BadZipFile, StopIteration, ET.ParseError) as exc:
-        message = payload[:300].decode("utf-8", errors="replace")
-        raise CollectorError(f"DART 고유번호 파일 해석 실패: {message}") from exc
+        raise CollectorError("DART 고유번호 ZIP/XML 형식을 해석하지 못했습니다.") from exc
 
     by_stock: dict[str, dict[str, str]] = {}
     by_name: dict[str, dict[str, str]] = {}

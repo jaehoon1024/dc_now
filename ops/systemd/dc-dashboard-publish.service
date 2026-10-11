@@ -1,0 +1,15 @@
+[Unit]
+Description=Build and publish DC NOW public dashboard
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/jh1024/dc-platform
+EnvironmentFile=/home/jh1024/dc-platform/.env
+ExecStart=/home/jh1024/dc-platform/.venv/bin/python /home/jh1024/dc-platform/src22_publish_dashboard.py
+UMask=0077
+Nice=10
+TimeoutStartSec=10min
+NoNewPrivileges=true
+PrivateTmp=true

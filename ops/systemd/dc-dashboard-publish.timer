@@ -1,0 +1,11 @@
+[Unit]
+Description=Publish DC NOW dashboard after daily collectors
+
+[Timer]
+OnCalendar=*-*-* 09:10:00 Asia/Seoul
+Persistent=true
+AccuracySec=1min
+Unit=dc-dashboard-publish.service
+
+[Install]
+WantedBy=timers.target
