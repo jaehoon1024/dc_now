@@ -13,6 +13,7 @@ from urllib.parse import parse_qs
 from wsgiref.simple_server import WSGIRequestHandler, make_server
 
 from sqlalchemy import create_engine, text
+from manager_workspace import page as manager_page, static_response
 
 from src04_rss_collector import load_env_file, resolve_database_url
 
@@ -269,8 +270,56 @@ class PublicRepository:
                     """
                 ), {"site_code": site_code},
             ).mappings().all()
+            phases = connection.execute(text("""
+                SELECT ph.phase_code, ph.phase_name, ph.phase_order, ph.status_code,
+                       ph.planned_rfs_date, ph.rfs_date, p.project_code
+                FROM project_phase ph JOIN dc_project p ON p.project_id=ph.project_id
+                JOIN dc_site s ON s.site_id=p.site_id
+                WHERE s.site_code=:site_code AND p.public_visible=true
+                  AND p.review_status='CONFIRMED' AND p.record_status='ACTIVE'
+                  AND ph.review_status='CONFIRMED' AND ph.record_status='ACTIVE'
+                ORDER BY p.project_code, ph.phase_order NULLS LAST, ph.phase_name
+            """), {"site_code": site_code}).mappings().all()
+            capacities = connection.execute(text("""
+                WITH scopes AS (
+                    SELECT 'SITE' AS scope_type, s.site_id AS scope_id,
+                           s.site_name AS scope_label, NULL::text AS project_code,
+                           NULL::text AS phase_code
+                    FROM dc_site s WHERE s.site_code=:site_code
+                    UNION ALL
+                    SELECT 'PROJECT', p.project_id, p.project_name, p.project_code, NULL
+                    FROM dc_project p JOIN dc_site s ON s.site_id=p.site_id
+                    WHERE s.site_code=:site_code AND p.public_visible=true
+                      AND p.review_status='CONFIRMED' AND p.record_status='ACTIVE'
+                    UNION ALL
+                    SELECT 'PHASE', ph.phase_id, ph.phase_name, p.project_code, ph.phase_code
+                    FROM project_phase ph JOIN dc_project p ON p.project_id=ph.project_id
+                    JOIN dc_site s ON s.site_id=p.site_id
+                    WHERE s.site_code=:site_code AND p.public_visible=true
+                      AND p.review_status='CONFIRMED' AND p.record_status='ACTIVE'
+                      AND ph.review_status='CONFIRMED' AND ph.record_status='ACTIVE'
+                )
+                SELECT cs.scope_type, sc.scope_label, sc.project_code, sc.phase_code,
+                       cs.capacity_type_code, cs.normalized_value_mw,
+                       cs.capacity_stage, cs.measurement_basis, cs.effective_from,
+                       cs.effective_to, cs.published_at, cs.document_url,
+                       cs.aggregation_excluded
+                FROM capacity_snapshot cs
+                JOIN scopes sc ON sc.scope_type=cs.scope_type AND sc.scope_id=cs.scope_id
+                WHERE cs.review_status='CONFIRMED'
+                  AND cs.capacity_type_code IN ('GRID_INTAKE_MW','CONTRACT_POWER_MW',
+                                               'IT_LOAD_MW','ANNOUNCED_UNCLASSIFIED_MW')
+                  AND EXISTS (SELECT 1 FROM evidence_document ed
+                              WHERE ed.canonical_url=cs.document_url
+                                AND ed.access_scope='PUBLIC'
+                                AND ed.review_status='CONFIRMED'
+                                AND ed.record_status='ACTIVE')
+                ORDER BY cs.published_at DESC NULLS LAST, cs.created_at DESC
+            """), {"site_code": site_code}).mappings().all()
         result = dict(site)
         result["projects"] = [dict(row) for row in projects]
+        result["phases"] = [dict(row) for row in phases]
+        result["capacities"] = [dict(row) for row in capacities]
         return result
 
     def companies(self) -> list[dict[str, Any]]:
@@ -473,7 +522,7 @@ def html_response(start_response: Any, body: str) -> list[bytes]:
         ("Content-Length", str(len(encoded))),
         ("Cache-Control", "no-cache"),
         ("X-Content-Type-Options", "nosniff"),
-        ("Content-Security-Policy", "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'"),
+        ("Content-Security-Policy", "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-src https://maps.google.com https://www.google.com"),
     ])
     return [encoded]
 
@@ -483,8 +532,14 @@ def make_application(repository: Any):
         if environ.get("REQUEST_METHOD") != "GET":
             return json_response(start_response, "405 Method Not Allowed", {"error": "method_not_allowed"})
         path = environ.get("PATH_INFO", "")
+        static = static_response(path, start_response)
+        if static is not None:
+            return static
         query = parse_qs(environ.get("QUERY_STRING", ""), keep_blank_values=False)
         try:
+            if path == "/data.json":
+                from src21_build_static_site import build_payload
+                return json_response(start_response, "200 OK", build_payload(repository))
             if path == "/api/v1/healthz":
                 repository.health()
                 return json_response(start_response, "200 OK", {"status": "ok", "version": VERSION})
@@ -520,7 +575,7 @@ def make_application(repository: Any):
                     {"items": rows, "page": page, "limit": limit, "total": total},
                 )
             if path == "/":
-                return html_response(start_response, DASHBOARD_PATH.read_text(encoding="utf-8"))
+                return html_response(start_response, manager_page())
             return json_response(start_response, "404 Not Found", {"error": "not_found"})
         except (ValueError, TypeError):
             return json_response(start_response, "400 Bad Request", {"error": "invalid_parameter"})

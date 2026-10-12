@@ -12,7 +12,7 @@ ROOT=Path(__file__).resolve().parent;OUT=ROOT/"deploy"
 def build_payload(repo):
  public_sites,total=repo.sites(None,None,500,0)
  sites=repo.tracking_sites()
- details={x["site_code"]:repo.site_detail(x["site_code"]) for x in public_sites}
+ details={x["site_code"]:repo.site_detail(x["site_code"]) for x in sites if x.get("public_visible") and x.get("review_status")=="CONFIRMED"}
  return {"generated_at":datetime.now().astimezone().isoformat(),"total":len(sites),"public_total":total,"target_summary":repo.target_summary(),"sites":sites,"details":details,"regions":repo.regions(),"companies":repo.companies(),"player_intelligence":repo.player_intelligence(),"yearly":repo.yearly(),"collection_status":repo.collection_status(),"evidence_summary":repo.evidence_summary(),"recent_evidence":repo.recent_evidence()}
 def render_html(payload):
  page=(ROOT/"dashboard/professional.html").read_text(encoding="utf-8")
@@ -182,13 +182,27 @@ def render_v2(payload):
  if sites:replacements['<div class="empty" id="empty">']='<div class="empty" id="empty" hidden>'
  for old,new in replacements.items():page=page.replace(old,new)
  return page
+def render_manager(payload):
+ from manager_workspace import page
+ source=page()
+ target=payload.get("target_summary") or {}
+ evidence=payload.get("evidence_summary") or {}
+ source=source.replace('<strong id="initialTotal">0</strong>',f'<strong id="initialTotal">{payload.get("total",0)}</strong>')
+ source=source.replace('<strong id="initialCommercial">0</strong>',f'<strong id="initialCommercial">{target.get("commercial_confirmed_total",0)}</strong>')
+ source=source.replace('<strong id="initialReview">0</strong>',f'<strong id="initialReview">{target.get("needs_evidence_total",0)}</strong>')
+ source=source.replace('<strong id="initialEvidence">0</strong>',f'<strong id="initialEvidence">{evidence.get("public_document_count",0)}</strong>')
+ stage={"OPERATING":"운영","DEVELOPMENT":"개발","MIXED":"운영·증설 병행","UNKNOWN":"미확인","ON_HOLD":"보류"}
+ rows=''.join('<tr><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>'.format(html.escape(str(x.get("site_name") or "")),html.escape(str(x.get("sido") or "미확인")),html.escape(stage.get(x.get("lifecycle_group"),"미확인")),html.escape(str(x.get("facility_scope") or "범주 검토"))) for x in payload.get("sites",[])[:20])
+ source=source.replace('<tbody id="initialRows"></tbody>',f'<tbody id="initialRows">{rows}</tbody>')
+ return source
+
 def write_site(payload,out=OUT):
- out.mkdir(parents=True,exist_ok=True);(out/"index.html").write_text(render_v2(payload),encoding="utf-8")
+ out.mkdir(parents=True,exist_ok=True);(out/"index.html").write_text(render_manager(payload),encoding="utf-8")
  (out/"data.json").write_text(json.dumps(payload,ensure_ascii=False,default=json_value,separators=(",",":")),encoding="utf-8")
  (out/".nojekyll").touch()
- for name in ("app_v5.css","app_v3.js"):
+ for name in ("manager.css","manager-core.js","manager.js"):
   shutil.copyfile(ROOT/"dashboard"/name,out/name)
- (out/"_headers").write_text("/*\n  Cache-Control: public, max-age=0, must-revalidate\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-src https://www.google.com https://maps.google.com\n\n/data.json\n  Cache-Control: public, max-age=60, must-revalidate\n",encoding="utf-8")
+ (out/"_headers").write_text("/*\n  Cache-Control: public, max-age=0, must-revalidate\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:; connect-src 'self'; frame-src https://www.google.com https://maps.google.com\n\n/data.json\n  Cache-Control: public, max-age=60, must-revalidate\n",encoding="utf-8")
 def main():
  load_env_file();e=create_engine(resolve_database_url(),connect_args={"options":"-c default_transaction_read_only=on -c statement_timeout=10000"})
  try:payload=build_payload(PublicRepository(e))

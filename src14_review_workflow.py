@@ -32,7 +32,10 @@ def queue(engine,kind:str|None=None,limit:int=100):
    result[name]=[{**dict(x),"can_publish":bool(e.public_column)} for x in rows]
  return result
 
-def review(engine,kind,record_id,decision,reviewer,note,publish=False):
+class ReviewConflict(ValueError):
+ pass
+
+def review(engine,kind,record_id,decision,reviewer,note,publish=False,expected_status=None):
  if kind not in ENTITIES or decision not in {"approve","reject"}:raise ValueError("invalid review request")
  reviewer=str(reviewer).strip();note=str(note).strip()
  if not reviewer or not note:raise ValueError("reviewer and note are required")
@@ -40,6 +43,8 @@ def review(engine,kind,record_id,decision,reviewer,note,publish=False):
  with engine.begin() as c:
   before=c.execute(text(f"SELECT {e.id_column}::text AS id,review_status FROM {e.table} WHERE {e.id_column}=:id FOR UPDATE"),{"id":record_id}).mappings().first()
   if not before:raise ValueError("record not found")
+  if expected_status is not None and before["review_status"]!=expected_status:
+   raise ReviewConflict("review status changed")
   sets=["review_status=:status","updated_at=CURRENT_TIMESTAMP"]
   params={"id":record_id,"status":status}
   if e.public_column:

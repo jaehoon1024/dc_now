@@ -10,8 +10,9 @@ ROOT = Path(__file__).resolve().parent
 PUBLISH_PATHS = (
     "deploy/index.html",
     "deploy/data.json",
-    "deploy/app_v3.js",
-    "deploy/app_v5.css",
+    "deploy/manager.js",
+    "deploy/manager-core.js",
+    "deploy/manager.css",
     "deploy/.nojekyll",
     "deploy/_headers",
 )

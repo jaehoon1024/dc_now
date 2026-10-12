@@ -33,4 +33,28 @@ class ReviewWorkflowTests(unittest.TestCase):
      self.assertEqual(c.execute(text("SELECT result FROM audit_log")).scalar(),"SUCCESS")
     finally:tx.rollback()
   finally:engine.dispose()
+
+class ReviewConflictDatabaseTests(unittest.TestCase):
+ @unittest.skipUnless(os.getenv('DC_TEST_DATABASE')=='1','rollback-only DB test disabled')
+ def test_stale_status_cannot_overwrite_a_completed_review(self):
+  from contextlib import contextmanager
+  from sqlalchemy import create_engine,text
+  from src14_review_workflow import ReviewConflict
+  from src04_rss_collector import load_env_file,resolve_database_url
+  load_env_file();engine=create_engine(resolve_database_url())
+  try:
+   with engine.connect() as c:
+    tx=c.begin()
+    try:
+     c.execute(text("CREATE TEMP TABLE company(company_id text PRIMARY KEY,standard_name text,review_status text,updated_at timestamptz DEFAULT now()) ON COMMIT DROP"))
+     c.execute(text("INSERT INTO company VALUES('TEST','Test','CONFIRMED',now())"))
+     class E:
+      @contextmanager
+      def begin(self):yield c
+     with self.assertRaises(ReviewConflict):
+      review(E(),'company','TEST','reject','tester','stale client',expected_status='CANDIDATE')
+     self.assertEqual(c.execute(text("SELECT review_status FROM company")).scalar_one(),'CONFIRMED')
+    finally:tx.rollback()
+  finally:engine.dispose()
+
 if __name__=="__main__":unittest.main()
