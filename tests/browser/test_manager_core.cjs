@@ -35,3 +35,7 @@ assert.equal(C.periodEnd('2026'),'2026-12-31');
 assert.equal(C.annual([{year:2024,it:90,actual:false,overdue:true}],'it').length,0);
 assert.equal(C.runState({job_name:'RSS_DAILY',run_status:'SUCCESS',finished_at:'2026-10-12T00:00:00Z'},Date.parse('2026-10-13T00:00:00Z')).css,'dev');
 console.log('PASS: mixed campus, scope/privacy, unknown capacity, phase/parent deduplication, capacity history, expired/excluded values, actual/operating RFS exclusion, stale collection');
+
+const phaseCompletion={generated_at:'2026-10-13',details:{A:{projects:[{project_code:'PD'}],phases:[{project_code:'PD',phase_code:'P1',status_code:'CONSTRUCTION',planned_completion_period:'2027-06'}],capacities:[{scope_type:'PROJECT',project_code:'PD',capacity_type_code:'GRID_INTAKE_MW',normalized_value_mw:200}]}}};
+const completion=C.schedule(phaseCompletion,[base]);
+assert.equal(completion[0].period,'');assert.equal(completion[0].year,null);assert.equal(completion[0].completion_period,'2027-06');assert.equal(completion[0].grid,null);assert.equal(C.annual(completion,'grid').length,0);

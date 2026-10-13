@@ -64,7 +64,7 @@
           const it = latestCapacity(detail.capacities || [], 'IT_LOAD_MW', u.phase_code, p.project_code, snapshotDate);
           const grid = latestCapacity(detail.capacities || [], 'GRID_INTAKE_MW', u.phase_code, p.project_code, snapshotDate);
           const announced = latestCapacity(detail.capacities || [], 'ANNOUNCED_UNCLASSIFIED_MW', u.phase_code, p.project_code, snapshotDate);
-          out.push({site_code: s.site_code, site_name: s.site_name, region: s.sido, project_code: p.project_code, project_name: p.project_name, phase_name: u.phase_name || '프로젝트 기준 · Phase 미등록', status_code: u.status_code, period, year, actual, overdue: !actual && Boolean(periodEnd(period)) && periodEnd(period) < snapshotDate, operating: u.status_code === 'OPERATING', it, grid, announced});
+          out.push({site_code: s.site_code, site_name: s.site_name, region: s.sido, project_code: p.project_code, project_name: p.project_name, phase_name: u.phase_name || '프로젝트 기준 · Phase 미등록', status_code: u.status_code, completion_period: u.planned_completion_period || null, period, year, actual, overdue: !actual && Boolean(periodEnd(period)) && periodEnd(period) < snapshotDate, operating: u.status_code === 'OPERATING', it, grid, announced});
         });
       });
     });

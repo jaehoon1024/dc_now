@@ -272,7 +272,8 @@ class PublicRepository:
             ).mappings().all()
             phases = connection.execute(text("""
                 SELECT ph.phase_code, ph.phase_name, ph.phase_order, ph.status_code,
-                       ph.planned_rfs_date, ph.rfs_date, p.project_code
+                       ph.planned_rfs_date, ph.rfs_date, ph.planned_completion_period,
+                       ph.planned_completion_precision, p.project_code
                 FROM project_phase ph JOIN dc_project p ON p.project_id=ph.project_id
                 JOIN dc_site s ON s.site_id=p.site_id
                 WHERE s.site_code=:site_code AND p.public_visible=true
@@ -326,7 +327,9 @@ class PublicRepository:
                 WHERE s.site_code=:site_code AND f.review_status='CONFIRMED'
                   AND ed.access_scope='PUBLIC' AND ed.review_status='CONFIRMED' AND ed.record_status='ACTIVE'
                   AND f.field_name IN ('design_pue','design_pue_upper_bound','gpu_hpc_ready','cooling',
-                                      'dlc_integration','tier_design_certification','power_voltage_kv','rfs_month','address','ups_redundancy','power_spec_conflict')
+                                      'dlc_integration','tier_design_certification','power_voltage_kv','rfs_month','address','ups_redundancy','power_spec_conflict','development_stage','power_supply_secured',
+                                      'gpu_hpc_design_ready','dlc_design_ready','phase1_planned_completion_month',
+                                      'phase1_contract_status','power_scope_summary','commercial_model','site_area_sqm')
                 ORDER BY f.reviewed_at DESC
             """), {"site_code": site_code}).mappings().all()
         result = dict(site)

@@ -1,24 +1,24 @@
 {
-  "generated_at": "2026-10-13T09:07:28.297246+09:00",
+  "generated_at": "2026-10-13T09:43:42.958329+09:00",
   "review_date": "2026-10-13",
   "summary": {
-    "registered_sources": 73,
-    "contributing_sources": 38,
-    "registered_only_sources": 35,
-    "total_documents": 12032,
+    "registered_sources": 74,
+    "contributing_sources": 40,
+    "registered_only_sources": 34,
+    "total_documents": 12040,
     "aggregator_documents": 11913,
-    "aggregator_share_pct": 99.01
+    "aggregator_share_pct": 98.95
   },
   "coverage": {
-    "commercial_centers": 52,
+    "commercial_centers": 53,
     "centers_with_it_mw": 6,
-    "centers_with_grid_mw": 10,
+    "centers_with_grid_mw": 11,
     "centers_with_unknown_stage": 9,
     "centers_with_verified_coordinates": 39
   },
   "capacity_evidence": {
-    "confirmed_capacity_records": 23,
-    "records_with_public_document": 21
+    "confirmed_capacity_records": 24,
+    "records_with_public_document": 22
   },
   "sources": [
     {
@@ -97,6 +97,21 @@
       "acquisition_status": "문서 확보 · 수집 연계"
     },
     {
+      "source_code": "LGU_IDC",
+      "source_name": "LG유플러스 IDC 센터 안내",
+      "source_type": "COMPANY",
+      "base_url": "https://www.lguplus.com/biz/all/telecom/idc/center/B000000031",
+      "collection_method": "MANUAL",
+      "collection_policy": "MANUAL_ONLY",
+      "active": true,
+      "documents": 5,
+      "public_confirmed": 4,
+      "aggregator_urls": 0,
+      "latest_imported_at": "2026-10-13 09:38:27.982601+09:00",
+      "group": "사업자 공식자료",
+      "acquisition_status": "수동 근거 확보"
+    },
+    {
       "source_code": "KT_CLOUD_PRESS",
       "source_name": "kt cloud 공식 보도자료",
       "source_type": "COMPANY",
@@ -108,6 +123,21 @@
       "public_confirmed": 3,
       "aggregator_urls": 0,
       "latest_imported_at": "2026-10-08 18:36:49.032665+09:00",
+      "group": "사업자 공식자료",
+      "acquisition_status": "문서 확보 · 수집 연계"
+    },
+    {
+      "source_code": "LGU_NEWS",
+      "source_name": "LG유플러스 뉴스룸",
+      "source_type": "COMPANY",
+      "base_url": "https://news.lguplus.com/latest/",
+      "collection_method": "HTML",
+      "collection_policy": "METADATA_ONLY",
+      "active": true,
+      "documents": 4,
+      "public_confirmed": 0,
+      "aggregator_urls": 0,
+      "latest_imported_at": "2026-10-13 09:39:55.938429+09:00",
       "group": "사업자 공식자료",
       "acquisition_status": "문서 확보 · 수집 연계"
     },
@@ -213,21 +243,6 @@
       "public_confirmed": 2,
       "aggregator_urls": 0,
       "latest_imported_at": "2026-10-04 23:28:26.567801+09:00",
-      "group": "사업자 공식자료",
-      "acquisition_status": "수동 근거 확보"
-    },
-    {
-      "source_code": "LGU_IDC",
-      "source_name": "LG유플러스 IDC 센터 안내",
-      "source_type": "COMPANY",
-      "base_url": "https://www.lguplus.com/biz/all/telecom/idc/center/B000000031",
-      "collection_method": "MANUAL",
-      "collection_policy": "MANUAL_ONLY",
-      "active": true,
-      "documents": 2,
-      "public_confirmed": 1,
-      "aggregator_urls": 0,
-      "latest_imported_at": "2026-09-30 06:46:23.001568+09:00",
       "group": "사업자 공식자료",
       "acquisition_status": "수동 근거 확보"
     },
@@ -439,6 +454,21 @@
       "aggregator_urls": 0,
       "latest_imported_at": "2026-09-30 06:53:16.931331+09:00",
       "group": "사업자 공식자료",
+      "acquisition_status": "수동 근거 확보"
+    },
+    {
+      "source_code": "KB_DC_RESEARCH",
+      "source_name": "KB증권 데이터센터 공개 리서치",
+      "source_type": "INDUSTRY",
+      "base_url": "https://kbthink.com/securities-view.html?docId=20260811152537520K",
+      "collection_method": "MANUAL",
+      "collection_policy": "MANUAL_ONLY",
+      "active": true,
+      "documents": 1,
+      "public_confirmed": 1,
+      "aggregator_urls": 0,
+      "latest_imported_at": "2026-10-13 09:38:27.982601+09:00",
+      "group": "증권·금융기관 리서치",
       "acquisition_status": "수동 근거 확보"
     },
     {
@@ -892,21 +922,6 @@
       "acquisition_status": "등록만 · 문서 미확보"
     },
     {
-      "source_code": "LGU_NEWS",
-      "source_name": "LG유플러스 뉴스룸",
-      "source_type": "COMPANY",
-      "base_url": "https://news.lguplus.com/latest/",
-      "collection_method": "HTML",
-      "collection_policy": "METADATA_ONLY",
-      "active": true,
-      "documents": 0,
-      "public_confirmed": 0,
-      "aggregator_urls": 0,
-      "latest_imported_at": null,
-      "group": "사업자 공식자료",
-      "acquisition_status": "등록만 · 문서 미확보"
-    },
-    {
       "source_code": "LOCALDATA",
       "source_name": "지방행정인허가데이터개방",
       "source_type": "GOVERNMENT",
@@ -1117,7 +1132,64 @@
       "acquisition_status": "등록만 · 문서 미확보"
     }
   ],
+  "discovery_gaps": [
+    {
+      "site_code": "SEJONG_BUNDANG",
+      "site_name": "세종텔레콤 분당 IDC",
+      "commercial_scope_status": "REVIEW_REQUIRED",
+      "project_count": 0,
+      "mention_count": 5,
+      "latest_published_at": "2025-07-10 16:00:00+09:00",
+      "issue": "상용 범주 미검증 · 확정 프로젝트 미연계"
+    },
+    {
+      "site_code": "KAKAO_NAMYANGJU",
+      "site_name": "카카오 남양주 데이터센터",
+      "commercial_scope_status": "REVIEW_REQUIRED",
+      "project_count": 0,
+      "mention_count": 4,
+      "latest_published_at": "2025-06-23 16:00:00+09:00",
+      "issue": "상용 범주 미검증 · 확정 프로젝트 미연계"
+    },
+    {
+      "site_code": "GS_DONGHAE_AI",
+      "site_name": "GS 동해 AI 데이터센터",
+      "commercial_scope_status": "REVIEW_REQUIRED",
+      "project_count": 0,
+      "mention_count": 3,
+      "latest_published_at": "2026-09-14 16:00:00+09:00",
+      "issue": "상용 범주 미검증 · 확정 프로젝트 미연계"
+    }
+  ],
   "reviewed_references": [
+    {
+      "source_code": "LGU_IDC",
+      "title": "LG U+ AIDC 공식 시설 안내: 파주",
+      "url": "https://www.lguplus.com/biz/solution/type/aidc",
+      "published_at": null,
+      "note": "파주를 2027년 준공 예정으로 명시. 상단의 전국 운영 표현을 파주 운영 개시로 해석하지 않음. 제시 연면적은 건물 범위 미확인으로 캠퍼스 총면적에 사용하지 않음"
+    },
+    {
+      "source_code": "LGU_IDC",
+      "title": "LG U+ 파주 AIDC 전략 공식 발표",
+      "url": "https://news.lguplus.com/21965",
+      "published_at": "2026-06-08",
+      "note": "파주 건설 중·전력 공급 확보 확인. 200MW는 캠퍼스 전력이며 IT Load 아님. 1동 2027년 6월은 준공 계획으로 RFS 미공개. 계약 완료를 가용MW=0으로 계산하지 않음"
+    },
+    {
+      "source_code": "LGU_IDC",
+      "title": "LG유플러스 파주 상업용 하이퍼스케일 IDC 개발 발표",
+      "url": "https://news.lguplus.com/14042",
+      "published_at": "2024-05-02",
+      "note": "사업자 공식 상업용 IDC 개발 발표. 부지 매수 발표를 운영 개시로 해석하지 않음"
+    },
+    {
+      "source_code": "KB_DC_RESEARCH",
+      "title": "KB증권 LG유플러스 AIDC 사전판매 리서치",
+      "url": "https://kbthink.com/securities-view.html?docId=20260811152537520K",
+      "published_at": "2026-08-11",
+      "note": "공개 리서치의 1동 약40MW는 운영사 직접 IT 제원과 교차 확인 필요. 미래 개발 IT 합계에 반영하지 않음"
+    },
     {
       "source_code": "EMPYRION_DIGITAL",
       "title": "KR1 Gangnam 공식 시설 사양",

@@ -9,8 +9,42 @@ from src04_rss_collector import load_env_file,resolve_database_url
 ROOT=Path(__file__).resolve().parent
 RESEARCH={'CBRE_DC_KR','CUSHMAN_DC_KR','JLL_DC_KR','SAVILLS_DC_KR','RSQUARE_DC_KR'}
 
+DISCOVERY_QUERY = """
+ WITH titles AS MATERIALIZED (
+  SELECT document_id,published_at,
+   regexp_replace(lower(title),'[[:space:][:punct:]]','','g') AS normalized_title
+  FROM evidence_document WHERE record_status='ACTIVE' AND access_scope='PUBLIC'
+  AND COALESCE(published_at,created_at)>=CURRENT_DATE-INTERVAL '3 years'
+  AND title ~* '데이터[[:space:]]*센터|data[[:space:]]*cent(er|re)|AIDC|IDC'
+ ), candidates AS MATERIALIZED (
+  SELECT s.site_id,s.site_code,s.site_name,s.commercial_scope_status,
+   regexp_replace(lower(s.site_name),'데이터[[:space:]]*센터|data[[:space:]]*cent(er|re)|센터|[[:space:][:punct:]]','','g') AS stem,
+   (SELECT count(*) FROM dc_project p WHERE p.site_id=s.site_id AND p.public_visible
+    AND p.review_status='CONFIRMED' AND p.record_status='ACTIVE') AS project_count
+  FROM dc_site s WHERE s.record_status='ACTIVE' AND s.public_visible
+   AND s.facility_scope NOT IN ('ENTERPRISE','CLOUD_SELF_USE','PUBLIC')
+ )
+ SELECT s.site_code,s.site_name,s.commercial_scope_status,s.project_count,
+  count(DISTINCT n.document_id) AS mention_count,max(n.published_at) AS latest_published_at
+ FROM candidates s JOIN titles n ON length(s.stem)>=6 AND position(s.stem in n.normalized_title)>0
+ WHERE s.commercial_scope_status='REVIEW_REQUIRED' OR s.project_count=0
+ GROUP BY s.site_id,s.site_code,s.site_name,s.commercial_scope_status,s.project_count
+ HAVING count(DISTINCT n.document_id)>=3
+ ORDER BY count(DISTINCT n.document_id) DESC,s.site_code LIMIT 30
+"""
+
+def discovery_gaps(connection):
+    rows=[dict(r) for r in connection.execute(text(DISCOVERY_QUERY)).mappings()]
+    for row in rows:
+        issues=[]
+        if row['commercial_scope_status']=='REVIEW_REQUIRED':issues.append('상용 범주 미검증')
+        if not row['project_count']:issues.append('확정 프로젝트 미연계')
+        row['issue']=' · '.join(issues)
+    return rows
+
 def group(row):
     if row['source_code'].endswith('_LICENSED'):return '유료 전문 데이터'
+    if row['source_code']=='KB_DC_RESEARCH':return '증권·금융기관 리서치'
     if row['source_code'] in RESEARCH:return '컨설팅·부동산 리서치'
     if row['source_type'] in {'GOVERNMENT','REGULATOR'}:return '공공·공시'
     if row['source_type']=='COMPANY':return '사업자 공식자료'
@@ -46,9 +80,12 @@ def assess(engine):
     for r in rows:
         r['group']=group(r)
         r['acquisition_status']='계약 필요 · 미취득' if r['source_code'].endswith('_LICENSED') else '등록만 · 문서 미확보' if not r['documents'] else '수동 근거 확보' if r['collection_policy'] in {'MANUAL_ONLY','BLOCKED'} else '문서 확보 · 수집 연계'
-    manifest=json.loads((ROOT/'data/reference/source_review_2026-10-13.json').read_text())
-    return {'generated_at':datetime.now().astimezone().isoformat(),'review_date':manifest['checked_on'],'summary':summarize(rows),'coverage':coverage,'capacity_evidence':capacity_links,'sources':rows,
-        'reviewed_references':[{'source_code':d['source_code'],'title':d['title'],'url':d['url'],'published_at':d['published_at'],'note':d['note']} for d in manifest['documents']],
+    manifests=[json.loads(path.read_text()) for path in sorted((ROOT/'data/reference').glob('*review_*.json'))]
+    reference_docs={doc['url']:doc for manifest in manifests for doc in manifest['documents']}
+    with engine.connect() as c:gaps=discovery_gaps(c)
+    review_date=max(m['checked_on'] for m in manifests)
+    return {'generated_at':datetime.now().astimezone().isoformat(),'review_date':review_date,'summary':summarize(rows),'coverage':coverage,'capacity_evidence':capacity_links,'sources':rows,'discovery_gaps':gaps,
+        'reviewed_references':[{'source_code':d['source_code'],'title':d['title'],'url':d['url'],'published_at':d['published_at'],'note':d['note']} for d in reference_docs.values()],
         'limitations':['Google News는 발견 도구입니다. 문서 승인이 센터의 모든 필드 확정을 의미하지 않습니다.','기관별 시장 정의·지역·기준일이 달라 공개 보고서의 합계를 센터 합계에 더하지 않습니다.','유료 DB는 상품 소개만 확인했습니다. 원장·가격·임차인 데이터는 취득하지 않았습니다.','공공 API 소스 등록은 연동 완료를 의미하지 않습니다.','운영 IT Load는 운영 시설의 공개 총용량입니다. 실측 부하·점유·가용용량을 의미하지 않습니다.']}
 
 def main():

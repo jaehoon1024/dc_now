@@ -9,10 +9,12 @@ import os
 import re
 import socket
 import sys
-from datetime import datetime
+import time
+from datetime import date, datetime
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlparse, urljoin, unquote
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
@@ -29,7 +31,7 @@ from src04_rss_collector import (
 )
 
 
-VERSION = "src05-1.0.0"
+VERSION = "src05-1.1.0"
 MAX_DOWNLOAD_BYTES = 2_000_000
 
 
@@ -114,6 +116,93 @@ def parse_lgu_press(payload: bytes) -> list[dict[str, Any]]:
     for item in parser.items:
         unique[item["canonical_url"]] = item
     return list(unique.values())
+
+
+class LguArchiveParser(HTMLParser):
+    """Keep only title/date/URL from public press archive cards."""
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.current=None;self.capture=None;self.capture_tag=None;self.items=[]
+
+    def finish(self):
+        if self.current and self.current.get('title') and '보도자료' in self.current.get('category',''):
+            title=' '.join(self.current['title'].split())
+            url=canonicalize_url(self.current.get('url','').strip())
+            if urlparse(url).hostname=='news.lguplus.com':
+                raw=self.current.get('date','').strip()
+                try: published=datetime.strptime(raw,'%Y.%m.%d').replace(tzinfo=ZoneInfo('Asia/Seoul'))
+                except ValueError: published=None
+                self.items.append(dict(title=title,canonical_url=url,published_at=published,published_raw=raw,guid=url))
+        self.current=None;self.capture=None;self.capture_tag=None
+
+    def handle_starttag(self,tag,attrs):
+        values=dict(attrs);classes=set((values.get('class') or '').split())
+        if tag=='li' and 'post-item-wrap' in classes:
+            self.finish();self.current={};return
+        if self.current is None:return
+        if tag=='a' and 'post-title' in classes:
+            self.current['url']=values.get('href','');self.capture='title';self.capture_tag='a'
+        elif tag=='span' and 'post-date' in classes:self.capture='date';self.capture_tag='span'
+        elif tag=='span' and 'post-category' in classes:self.capture='category';self.capture_tag='span'
+
+    def handle_data(self,data):
+        if self.current is not None and self.capture:self.current[self.capture]=self.current.get(self.capture,'')+data
+
+    def handle_endtag(self,tag):
+        if tag=='li' and self.current is not None:self.finish()
+        elif tag==self.capture_tag:self.capture=None;self.capture_tag=None
+
+    def close(self):
+        super().close();self.finish()
+
+
+def parse_lgu_archive(payload):
+    parser=LguArchiveParser();parser.feed(payload.decode('utf-8',errors='replace'));parser.close()
+    return list({x['canonical_url']:x for x in parser.items}.values())
+
+
+def next_archive_url(payload,current_url):
+    """Follow only the immediately next public archive page, never search/body URLs."""
+    current=urlparse(current_url)
+    if current.hostname!='news.lguplus.com':return None
+    path=unquote(current.path).rstrip('/')
+    match=re.search(r'/page/(\d+)$',path)
+    base=path[:match.start()] if match else path
+    if not base.startswith('/category/프레스센터/보도자료'):return None
+    number=int(match.group(1)) if match else 1
+    wanted=base+'/page/'+str(number+1)
+    class Links(HTMLParser):
+        def __init__(self):super().__init__();self.links=[]
+        def handle_starttag(self,tag,attrs):
+            values=dict(attrs)
+            if tag in {'a','link'} and values.get('href'):self.links.append(values['href'])
+    parser=Links();parser.feed(payload.decode('utf-8',errors='replace'))
+    for link in parser.links:
+        full=urljoin(current_url,link.strip());candidate=urlparse(full)
+        if candidate.scheme=='https' and candidate.hostname==current.hostname and not candidate.query and not candidate.fragment and unquote(candidate.path).rstrip('/')==wanted:return full
+    return None
+
+
+def article_batches(page,max_pages=3,since=None,fetch=None,sleep=None):
+    fetch=fetch or fetch_page;sleep=sleep or time.sleep
+    parser=PARSERS.get(str(page['parser_code']))
+    if parser is None:raise CollectorError('지원하지 않는 뉴스룸 파서')
+    current=page['page_url'];seen=set();page['pages_scanned']=0
+    for _ in range(max_pages if page['parser_code']=='LGUPLUS_ARCHIVE_V1' else 1):
+        if current in seen:raise CollectorError('뉴스룸 목록 페이지 순환')
+        seen.add(current);payload=fetch({**page,'page_url':current});items=parser(payload)
+        if not items:raise CollectorError('보도자료 목록 항목을 찾지 못했습니다.')
+        page['pages_scanned']+=1
+        dates=[x['published_at'].date() for x in items if x.get('published_at')]
+        if dates:page['oldest_listed_date']=min(dates).isoformat()
+        yield [x for x in items if not since or not x.get('published_at') or x['published_at'].date()>=since]
+        if since and len(dates)==len(items) and min(dates)<since:
+            page['scan_end']='date_limit';return
+        if page['parser_code']!='LGUPLUS_ARCHIVE_V1':return
+        current=next_archive_url(payload,current)
+        if not current:page['scan_end']='archive_end';return
+        if page['pages_scanned']<max_pages:sleep(max(30,int(page['request_interval_seconds'])))
+    page['scan_end']='page_limit'
 
 
 class SkbPressParser(HTMLParser):
@@ -207,6 +296,7 @@ def parse_skb_press(payload: bytes) -> list[dict[str, Any]]:
 
 PARSERS = {
     "LGUPLUS_PRESS_V1": parse_lgu_press,
+    "LGUPLUS_ARCHIVE_V1": parse_lgu_archive,
     "SKB_PRESS_V1": parse_skb_press,
 }
 
@@ -216,6 +306,8 @@ def parse_args() -> argparse.Namespace:
         description="승인된 기업 뉴스룸에서 최소 메타데이터 수집"
     )
     parser.add_argument("--source-code")
+    parser.add_argument("--max-pages",type=int,default=3,choices=range(1,201),metavar="1..200")
+    parser.add_argument("--since",type=date.fromisoformat,help="과거 목록 반입 시작일 YYYY-MM-DD")
     parser.add_argument(
         "--trigger",
         choices=("MANUAL", "SCHEDULED", "RETRY", "BACKFILL"),
@@ -278,12 +370,13 @@ def create_run(engine: Any, trigger: str, total: int) -> Any:
                     run_status, total_source_count, host_name,
                     application_version
                 ) VALUES (
-                    'NEWSROOM_DAILY', :trigger, :requested_by,
+                    :job, :trigger, :requested_by,
                     CURRENT_TIMESTAMP, 'RUNNING', :total, :host, :version
                 ) RETURNING collection_run_id
                 """
             ),
             {
+                "job": "NEWSROOM_HISTORY_BACKFILL" if trigger=="BACKFILL" else "NEWSROOM_DAILY",
                 "trigger": trigger,
                 "requested_by": os.getenv("USER", "dc-platform"),
                 "total": total,
@@ -363,24 +456,18 @@ def main() -> int:
         raw_root = Path(os.getenv("RAW_DATA_DIR", "data/raw"))
         for page in pages:
             try:
-                parser = PARSERS.get(str(page["parser_code"]))
-                if parser is None:
-                    raise CollectorError(f"지원하지 않는 파서: {page['parser_code']}")
-                items = parser(fetch_page(page))
-                if not items:
-                    raise CollectorError("보도자료 항목을 찾지 못했습니다.")
                 page["filter_mode"] = "KEYWORD_REQUIRED"
-                counts = store_items(
-                    engine, page, items, raw_root,
-                    collection_kind="newsroom",
-                    collector_version=VERSION,
-                    parser_name="newsroom-metadata",
-                    external_id_prefix="newsroom",
-                )
+                from src04_rss_collector import Counts
+                counts=Counts()
+                for items in article_batches(page,args.max_pages,args.since):
+                    if not items:continue
+                    batch=store_items(engine,page,items,raw_root,collection_kind="newsroom",collector_version=VERSION,parser_name="newsroom-metadata",external_id_prefix="newsroom")
+                    counts.add(batch)
                 successes += 1
                 new += counts.new
                 updated += counts.updated
                 mark_page(engine, page["page_id"], None)
+                print(f"목록 범위 {page['source_code']}: {page.get('pages_scanned',1)}페이지 / 최저 게시일 {page.get('oldest_listed_date','미확인')} / 종료 {page.get('scan_end','single_page')}",flush=True)
                 print(
                     f"- {page['source_code']}: 발견 {counts.found}, "
                     f"신규 {counts.new}, 변경 {counts.updated}, "

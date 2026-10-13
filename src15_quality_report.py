@@ -20,6 +20,8 @@ def build_report(engine):
  result={"generated_at":datetime.now().astimezone().isoformat(),"checks":{},"review_queue":{}}
  with engine.connect() as c:
   for name,query in CHECKS.items():result["checks"][name]=[dict(r) for r in c.execute(text(query)).mappings()]
+  from src26_source_quality_audit import discovery_gaps
+  result['checks']['discovery_linkage']=[{'code':r['site_code'],'issue':str(r['mention_count'])+'건 언급 · '+r['issue']} for r in discovery_gaps(c)]
   for name,table in QUEUE_TABLES.items():
    result["review_queue"][name]=c.execute(text(f"SELECT count(*) FROM {table} WHERE review_status IN ('CANDIDATE','NEEDS_EVIDENCE','CONFLICT')")).scalar_one()
  return result

@@ -57,4 +57,26 @@ class SourceReviewDatabaseTests(unittest.TestCase):
     capacity('SITE',site,22);self.assertEqual(value(),22) # site total does not add children
     capacity('SITE',site,999,doc='https://example.com/private');self.assertEqual(value(),22) # absent public proof
    finally:tx.rollback()
+
+@unittest.skipUnless(os.getenv('DC_TEST_DATABASE')=='1','rollback-only DB test disabled')
+class DiscoveryLinkageTests(unittest.TestCase):
+ def test_repeated_public_mentions_raise_gap_until_scope_and_project_are_linked(self):
+  from src04_rss_collector import load_env_file,resolve_database_url
+  from src26_source_quality_audit import discovery_gaps
+  load_env_file();engine=create_engine(resolve_database_url());self.addCleanup(engine.dispose)
+  with engine.connect() as c:
+   tx=c.begin()
+   try:
+    code='TEST_'+uuid4().hex[:8];name='테스트팀'+code+'누락'
+    sid=c.execute(text("INSERT INTO dc_site(site_code,site_name,address_raw,review_status,public_visible,commercial_scope_status,facility_scope) VALUES(:code,:name,'test','CONFIRMED',true,'REVIEW_REQUIRED','UNKNOWN') RETURNING site_id"),dict(code=code,name=name+' 데이터센터')).scalar_one()
+    source=c.execute(text('SELECT source_id FROM source_registry LIMIT 1')).scalar_one()
+    for i in range(4):
+     c.execute(text("INSERT INTO evidence_document(source_id,canonical_url,title,document_type,source_grade,access_scope,review_status) VALUES(:source,:url,:title,'NEWS','C',:access,'CANDIDATE')"),dict(source=source,url='https://example.com/'+code+str(i),title=name+' 데이터센터 개발',access='PUBLIC' if i<3 else 'INTERNAL'))
+    gap=next(x for x in discovery_gaps(c) if x['site_code']==code)
+    self.assertEqual(gap['mention_count'],3);self.assertEqual(gap['project_count'],0)
+    c.execute(text("UPDATE dc_site SET commercial_scope_status='IN_SCOPE' WHERE site_id=:s"),{'s':sid})
+    c.execute(text("INSERT INTO dc_project(project_code,site_id,project_name,project_scope,status_code,review_status,public_visible) VALUES(:code,:s,'linked','test','CONSTRUCTION','CONFIRMED',true)"),{'code':code+'_DEV','s':sid})
+    self.assertNotIn(code,[x['site_code'] for x in discovery_gaps(c)])
+   finally:tx.rollback()
+
 if __name__=='__main__':unittest.main()

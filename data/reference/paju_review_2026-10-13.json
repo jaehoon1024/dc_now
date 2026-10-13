@@ -1,0 +1,227 @@
+{
+  "checked_on": "2026-10-13",
+  "reviewer": "paju-omission-review-2026-10-13",
+  "sources": [
+    {
+      "code": "KB_DC_RESEARCH",
+      "name": "KB증권 데이터센터 공개 리서치",
+      "type": "INDUSTRY",
+      "url": "https://kbthink.com/securities-view.html?docId=20260811152537520K",
+      "note": "증권사 원문 리서치. 추정·전망은 기업 확정 제원과 구분"
+    }
+  ],
+  "documents": [
+    {
+      "source_code": "LGU_IDC",
+      "url": "https://www.lguplus.com/biz/solution/type/aidc",
+      "title": "LG U+ AIDC 공식 시설 안내: 파주",
+      "published_at": null,
+      "document_type": "WEB_PAGE",
+      "note": "파주를 2027년 준공 예정으로 명시. 상단의 전국 운영 표현을 파주 운영 개시로 해석하지 않음. 제시 연면적은 건물 범위 미확인으로 캠퍼스 총면적에 사용하지 않음",
+      "site_code": "LGU_PAJU",
+      "facts": [
+        {
+          "field": "address",
+          "value": "경기도 파주시 월롱면 덕은리 1239-1",
+          "locator": "파주 시설 안내의 공식 지번",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        }
+      ],
+      "capacities": [],
+      "confirm_operating": false,
+      "publish_existing": true
+    },
+    {
+      "source_code": "LGU_IDC",
+      "url": "https://news.lguplus.com/21965",
+      "title": "LG U+ 파주 AIDC 전략 공식 발표",
+      "published_at": "2026-06-08",
+      "document_type": "WEB_PAGE",
+      "note": "파주 건설 중·전력 공급 확보 확인. 200MW는 캠퍼스 전력이며 IT Load 아님. 1동 2027년 6월은 준공 계획으로 RFS 미공개. 계약 완료를 가용MW=0으로 계산하지 않음",
+      "site_code": "LGU_PAJU",
+      "facts": [
+        {
+          "field": "development_stage",
+          "value": "CONSTRUCTION",
+          "locator": "파주 현장 발표: 현재 건설 중",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        },
+        {
+          "field": "power_supply_secured",
+          "value": true,
+          "locator": "Capacity: 전력 공급 확보",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        },
+        {
+          "field": "gpu_hpc_design_ready",
+          "value": true,
+          "locator": "고밀도 GPU를 위한 개발 설계. 운영 인증 아님",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        },
+        {
+          "field": "dlc_design_ready",
+          "value": true,
+          "locator": "하이브리드 냉각·D2C·CDU 설계. 가동 중 DLC 설치 확정과 구분",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        },
+        {
+          "field": "cooling",
+          "value": "개발 설계: 공랭+액체냉각, D2C/CDU",
+          "locator": "Efficiency 및 One LG 설비",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        },
+        {
+          "field": "phase1_planned_completion_month",
+          "value": "2027-06",
+          "locator": "1동 준공 예정 월. 실제/예정 RFS와 구분",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        },
+        {
+          "field": "phase1_contract_status",
+          "value": "공식 발표 당시 사전 계약 완료; 계약 MW·고객·가용 MW 미공개",
+          "locator": "1동 계약 현황",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        },
+        {
+          "field": "power_scope_summary",
+          "value": "캠퍼스 총 전력 200MW; Phase별 IT·전력 배분 미공개",
+          "locator": "전력 확보와 건물별 용량 분리",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        }
+      ],
+      "capacities": [],
+      "confirm_operating": false,
+      "publish_existing": true
+    },
+    {
+      "source_code": "LGU_IDC",
+      "url": "https://news.lguplus.com/14042",
+      "title": "LG유플러스 파주 상업용 하이퍼스케일 IDC 개발 발표",
+      "published_at": "2024-05-02",
+      "document_type": "WEB_PAGE",
+      "note": "사업자 공식 상업용 IDC 개발 발표. 부지 매수 발표를 운영 개시로 해석하지 않음",
+      "site_code": "LGU_PAJU",
+      "facts": [
+        {
+          "field": "commercial_model",
+          "value": "상업용 하이퍼스케일 IDC",
+          "locator": "상업용 데이터센터 개발 발표",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        },
+        {
+          "field": "site_area_sqm",
+          "value": 73712,
+          "locator": "2024년 발표 부지 면적; 건물 연면적과 구분",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": "m2"
+        }
+      ],
+      "capacities": [],
+      "confirm_operating": false,
+      "publish_existing": true
+    },
+    {
+      "source_code": "KB_DC_RESEARCH",
+      "url": "https://kbthink.com/securities-view.html?docId=20260811152537520K",
+      "title": "KB증권 LG유플러스 AIDC 사전판매 리서치",
+      "published_at": "2026-08-11",
+      "document_type": "WEB_PAGE",
+      "note": "공개 리서치의 1동 약40MW는 운영사 직접 IT 제원과 교차 확인 필요. 미래 개발 IT 합계에 반영하지 않음",
+      "site_code": "LGU_PAJU",
+      "facts": [
+        {
+          "field": "reported_phase1_it_load_mw",
+          "value": 40,
+          "locator": "2026-08-11 공개 리서치: 파주 1동 약 IT40MW",
+          "status": "CANDIDATE",
+          "origin": "REQUOTE",
+          "unit": "MW"
+        }
+      ],
+      "capacities": [],
+      "confirm_operating": false,
+      "publish_existing": true
+    }
+  ],
+  "relationships": [
+    {
+      "site_code": "LGU_PAJU",
+      "company_id": "ORG-001",
+      "name": "LG유플러스",
+      "roles": [
+        "OPERATOR",
+        "DEVELOPER"
+      ],
+      "url": "https://news.lguplus.com/21965"
+    }
+  ],
+  "development_sites": [
+    {
+      "site_code": "LGU_PAJU",
+      "site_name": "LG유플러스 파주 AI 데이터센터",
+      "address": "경기도 파주시 월롱면 덕은리 1239-1",
+      "sido": "경기도",
+      "sigungu": "파주시",
+      "commercial_model": "MULTI_MODEL",
+      "url": "https://www.lguplus.com/biz/solution/type/aidc",
+      "note": "사업자 공식 상업용 AIDC 개발 확인. 건설 중, 1동 2027년6월 준공 예정. 실제·예정 RFS 및 Phase별 확정 IT Load 미공개",
+      "projects": [
+        {
+          "code": "LGU_PAJU_DEV",
+          "name": "파주 AI 데이터센터 캠퍼스 개발",
+          "status": "CONSTRUCTION",
+          "type": "HYPERSCALE",
+          "note": "200MW는 확보된 캠퍼스 총전력. 1동 준공 예정과 캠퍼스 전체 RFS 분리",
+          "url": "https://news.lguplus.com/21965"
+        }
+      ],
+      "phases": [
+        {
+          "code": "LGU_PAJU_PH1",
+          "project_code": "LGU_PAJU_DEV",
+          "name": "전산 1동",
+          "order": 1,
+          "status": "CONSTRUCTION",
+          "planned_completion_period": "2027-06",
+          "planned_completion_precision": "MONTH",
+          "note": "1동 범위. 준공 예정만 확인됐으며 RFS와 IT 배분은 확정되지 않음",
+          "url": "https://news.lguplus.com/21965"
+        }
+      ],
+      "capacities": [
+        {
+          "scope_type": "PROJECT",
+          "scope_code": "LGU_PAJU_DEV",
+          "type": "GRID_INTAKE_MW",
+          "mw": 200,
+          "stage": "SECURED",
+          "url": "https://news.lguplus.com/21965",
+          "published_at": "2026-06-08",
+          "locator": "Capacity: 파주 캠퍼스 전력 공급 확보",
+          "note": "캠퍼스 전체 수전 확보. Phase 1 용량·IT Load·가용용량과 구분"
+        }
+      ]
+    }
+  ]
+}
