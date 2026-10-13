@@ -9,6 +9,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 PUBLISH_PATHS = (
     "deploy/index.html",
+    "deploy/manage.html",
+    "deploy/market.js",
+    "deploy/market.css",
+    "deploy/google-map.js",
+    "deploy/map-config.json",
     "deploy/data.json",
     "deploy/manager.js",
     "deploy/manager-core.js",

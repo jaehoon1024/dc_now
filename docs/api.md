@@ -20,11 +20,11 @@
 
 ## 담당자 중심 화면 (2026-10-13)
 
-공개 API 루트와 GitHub Pages는 동일한 `dashboard/manager.html` 화면을 사용한다.
-`/manager.css`, `/manager-core.js`, `/manager.js`만 정적 자산으로 제공하며 임의 파일 경로를 허용하지 않는다.
+공개 API 루트와 GitHub Pages의 첫 화면은 `dashboard/market.html`이다. `manage.html`에서 기존 센터 수정·비교·근거 검토 화면을 제공한다.
+`manager.css`, `manager-core.js`, `manager.js`, `market.css`, `market.js`, `google-map.js`, 공개 지도 설정 `map-config.json`만 정적 자산으로 제공하며 임의 파일 경로를 허용하지 않는다.
 `GET /data.json`은 공개 원장·집계·공개 승인 상세만 반환한다.
 
-내부 API 루트는 같은 화면의 담당자 모드다. 토큰과 검토자 이름을 입력하면 실제 검토 업무에 연결한다.
+내부 API 루트는 `dashboard/manager.html`의 담당자 모드다. 토큰과 검토자 이름을 입력하면 실제 검토 업무에 연결한다.
 토큰은 메모리에만 유지하며 연결 성공 시 입력란을 비운다.
 
 추가 내부 엔드포인트:

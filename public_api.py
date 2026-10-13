@@ -14,7 +14,7 @@ from urllib.parse import parse_qs
 from wsgiref.simple_server import WSGIRequestHandler, make_server
 
 from sqlalchemy import create_engine, text
-from manager_workspace import page as manager_page, static_response
+from manager_workspace import page as manager_page, market_page, static_response
 
 from src04_rss_collector import load_env_file, resolve_database_url
 
@@ -553,7 +553,7 @@ def html_response(start_response: Any, body: str) -> list[bytes]:
         ("Content-Length", str(len(encoded))),
         ("Cache-Control", "no-cache"),
         ("X-Content-Type-Options", "nosniff"),
-        ("Content-Security-Policy", "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-src https://maps.google.com https://www.google.com"),
+        ("Content-Security-Policy", "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://maps.googleapis.com https://maps.gstatic.com; img-src 'self' data: blob: https://*.google.com https://*.googleapis.com https://*.gstatic.com https://*.googleusercontent.com; connect-src 'self' https://*.googleapis.com https://*.gstatic.com https://*.google.com; worker-src blob:; frame-src https://maps.google.com https://www.google.com"),
     ])
     return [encoded]
 
@@ -606,6 +606,8 @@ def make_application(repository: Any):
                     {"items": rows, "page": page, "limit": limit, "total": total},
                 )
             if path == "/":
+                return html_response(start_response, market_page())
+            if path == "/manage.html":
                 return html_response(start_response, manager_page())
             return json_response(start_response, "404 Not Found", {"error": "not_found"})
         except (ValueError, TypeError):

@@ -6,6 +6,7 @@ data/raw/
 data/backups/
 data/exports/
 dashboard/*.json
+!dashboard/map-config.json
 dashboard/status.html
 dashboard/quality.html
 !deploy/data.json

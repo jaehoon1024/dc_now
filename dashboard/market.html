@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5f6f9"><title>DC NOW · 국내 데이터센터 시장 현황</title>
+<link rel="stylesheet" href="./market.css">
+</head>
+<body data-mode="public">
+<div class="concept-note"><span>국내 데이터센터 시장 현황</span> 운영·개발·근거를 함께 관리합니다. <a href="./manage.html">담당자 관리 작업공간 ↗</a></div>
+<header class="masthead">
+  <div><div class="brand"><span class="brand-icon" aria-hidden="true">DC</span><b>DC NOW</b><small>MARKET INTELLIGENCE</small></div><h1>국내 데이터센터 운영·개발 현황</h1><p>현재 운영되는 공급과 앞으로 들어올 공급을 지역·사업자·Phase 단위로 살펴봅니다.</p></div>
+  <div class="snapshot"><span class="dot"></span> 공개 데이터 스냅샷<strong id="snapshotAt">불러오는 중</strong><a href="./manage.html#ops">수집·발행 상태 ↗</a></div>
+</header>
+<nav class="section-nav" aria-label="화면 영역"><a href="#summary">시장 요약</a><a href="#supply">공급 전망</a><a href="#location">센터 위치</a><a href="#register">센터 원장</a><a href="#infrastructure">전력·입지</a><a href="#intelligence">근거·수집</a></nav>
+<main>
+<section class="filters" aria-label="조회 조건">
+  <label>관리 범위<select id="scope"><option value="COMMERCIAL">상용 데이터센터</option><option value="CLOUD_SELF_USE">클라우드·IT 자체센터</option><option value="ENTERPRISE">기업 전용센터</option><option value="ALL">전체 추적 대상</option></select></label>
+  <label>지역<select id="region"><option value="">전국</option></select></label>
+  <label class="search">센터·사업자 검색<input id="search" type="search" placeholder="예: 파주, KT, 코람코" autocomplete="off"></label>
+  <fieldset class="value-mode"><legend>용량·일정 기준</legend><label><input type="radio" name="basis" value="planning" checked> 추정 포함</label><label><input type="radio" name="basis" value="verified"> 원문 검증값</label></fieldset>
+  <button id="reset" class="subtle">초기화</button>
+</section>
+<div class="section-heading" id="summary"><h2>시장 요약</h2><span id="scopeNote"></span></div>
+<section class="kpis" id="kpis" aria-label="시장 요약 지표"></section>
+<div class="basis-note" id="basisNote" role="status"></div>
+<div class="section-heading"><h2>언제, 어디에 공급되는가</h2><span>센터 전체와 Phase를 구분 · IT Load 기준</span></div>
+<div class="overview-grid">
+  <section class="panel supply-panel" id="supply"><header><div><h3>연도별 신규 공급 전망</h3><p>RFS 예정 시점에 연결된 프로젝트·Phase</p></div><div class="segmented" aria-label="차트 단위"><button data-metric="it" aria-pressed="true">IT Load</button><button data-metric="count" aria-pressed="false">사업 수</button></div></header><div id="supplyChart" class="chart"></div><div id="supplyNote" class="panel-note"></div></section>
+  <section class="panel location-panel" id="location"><header><div><h3>센터 위치</h3><p>Google 지도 · 목록에서 센터를 선택하세요</p></div><button id="nationalMap" class="subtle">전국 보기</button></header><div class="map-layout"><div class="google-map"><div id="googleCanvas" hidden></div><iframe id="googleMap" title="Google 데이터센터 위치 지도" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=대한민국&amp;z=7&amp;output=embed"></iframe><div class="map-caption" id="mapCaption">전국 조회 · 센터 선택 시 주소로 이동</div></div><div class="map-side"><h4>지역별 대상</h4><div id="mapRegions"></div><div id="mapLegend" class="map-legend" hidden><span><i class="op-color"></i>운영</span><span><i class="dev-color"></i>개발</span><span><i class="mixed-color"></i>운영·증설</span></div><p id="mapQuality"></p></div></div><div class="map-controls"><label>표시 크기<select id="bubbleMetric" disabled><option value="it">IT Load</option><option value="grid">수전용량</option><option value="count">센터 수</option></select></label><label><input id="approximateCoordinates" type="checkbox" disabled> 근사 좌표 포함</label><span id="mapStatus" role="status">Google 주소 지도 · 좌표가 없는 센터도 원장에서 조회할 수 있습니다.</span></div></section>
+</div>
+<div class="section-heading" id="register"><h2>데이터센터 원장</h2><span>운영 현황과 개발 일정을 같은 기준으로 비교</span></div>
+<section class="panel register-panel">
+  <div class="table-toolbar"><div class="stage-tabs" role="group" aria-label="운영 단계"><button data-stage="" aria-pressed="true">전체 <span></span></button><button data-stage="OPERATING" aria-pressed="false">운영 <span></span></button><button data-stage="DEVELOPMENT" aria-pressed="false">개발 <span></span></button><button data-stage="MIXED" aria-pressed="false">운영·증설 <span></span></button><button data-stage="UNKNOWN" aria-pressed="false">미확인 <span></span></button></div><div class="table-actions"><span id="resultCount" aria-live="polite"></span><button id="download" class="subtle">CSV 내보내기 ↓</button></div></div>
+  <div class="table-scroll"><table><thead><tr><th>센터명 · 운영사</th><th>지역 · 주소</th><th>단계</th><th><button data-sort="it">IT Load ↕</button><small>운영 / 개발 · MW</small></th><th>수전용량<small>운영 / 개발 · MW</small></th><th><button data-sort="rfs">다음 RFS ↕</button></th><th>근거 · 확인</th><th>상세</th></tr></thead><tbody id="siteRows"></tbody></table></div>
+  <div class="pagination"><span id="pageInfo"></span><div><button id="prev" class="subtle">← 이전</button><button id="next" class="subtle">다음 →</button></div></div>
+</section>
+<div class="analytics-grid"><section class="panel"><header><div><h3>지역별 IT Load</h3><p>선택 범위 · 운영과 개발을 분리</p></div><span class="legend"><i class="op-color"></i>운영 <i class="dev-color"></i>개발</span></header><div id="regionBars" class="ranking"></div></section><section class="panel"><header><div><h3>운영사별 포트폴리오</h3><p>운영사 연결 기준 · 복수 운영사는 중복될 수 있음</p></div><span class="unit">MW</span></header><div id="companyBars" class="ranking"></div></section></div>
+<div class="section-heading" id="infrastructure"><h2>전력·입지와 데이터 확보</h2><span>확인된 센터 수 · 원문 검증 기준</span></div>
+<div class="infrastructure-grid"><section class="panel"><header><div><h3>현재 확보한 정보</h3><p>추정값과 원문 확보 수준을 함께 확인합니다.</p></div><a href="./manage.html#sources" target="_blank" rel="noopener">근거 보기 ↗</a></header><div id="coverage" class="coverage"></div></section><section class="panel data-roadmap"><header><div><h3>공공정보 연결 현황</h3><p>센터 근거와 지역 지표를 구분합니다.</p></div><span class="chip neutral">자료 확보 예정</span></header><div class="roadmap-item"><b>건축허가 → 착공 → 사용승인</b><span>건축HUB · 세움터</span><p>건물·대지 기준을 센터·Phase와 대조하고, 사용승인과 RFS를 별도 관리합니다.</p></div><div class="roadmap-item"><b>변전소 공급 여유 · 전력 확보</b><span>한국전력</span><p>센터의 확보 전력과 지역 계통 여유를 각각 표시합니다. 변전소 여유를 해당 센터의 가용전력으로 간주하지 않습니다.</p></div><div class="roadmap-item"><b>지역 전력 수요 · 제도·일정</b><span>한전 · 전력거래소 · 정부 원문</span><p>정보통신업 사용량은 산업 지표로 관리하고, 센터 IT Load와 구분합니다.</p></div></section></div>
+<div class="section-heading" id="intelligence"><h2>시장 근거와 갱신 상태</h2><span>출처에서 원장 반영까지 추적</span></div>
+<div class="intelligence-grid"><section class="panel"><header><div><h3>최근 수집 근거</h3><p>문서별 출처 · 센터 연결은 관리 화면에서 확인</p></div><span id="evidenceTotal" class="unit"></span></header><div id="evidence" class="news-list"></div></section><section class="panel"><header><div><h3>수집·확인 현황</h3><p>스냅샷에 기록된 실행 결과</p></div><a href="./manage.html#ops" target="_blank" rel="noopener">상세 ↗</a></header><div id="runs" class="runs"></div><div class="source-quality" id="sourceQuality"></div></section></div>
+<footer><b>DC NOW</b><span>센터 수는 캠퍼스 기준 · 공급은 Phase/RFS 기준 · 추정값에는 근거와 범위를 표시</span><a href="./manage.html#sources">출처·검토 기준 ↗</a></footer>
+</main>
+<dialog id="detailDialog" class="detail-dialog" aria-labelledby="detailTitle"><div class="drawer-head"><div><small>DATA CENTER PROFILE</small><h2 id="detailTitle"></h2><div id="detailMeta"></div></div><button id="closeDetail" class="close-button" aria-label="센터 상세 닫기">×</button></div><div id="detailBody" class="drawer-body"></div><div class="drawer-foot"><span>공개 화면의 개인 수정안은 담당자 원장과 구분됩니다.</span><a id="editorLink" class="primary-link" target="_blank" rel="noopener">추정·키인 수정 열기 ↗</a></div></dialog>
+<p id="error" role="alert" hidden></p><noscript>동적 필터와 상세 탐색에는 JavaScript가 필요합니다. 아래 공개 원장을 확인할 수 있습니다.</noscript><section id="initialMarket" class="initial-market"><h2>공개 센터 원장</h2><p>전체 추적 <strong id="initialTotal">0</strong>곳 · 상용 <strong id="initialCommercial">0</strong>곳 · 공개 근거 <strong id="initialEvidence">0</strong>건</p><div class="table-scroll"><table><thead><tr><th>센터</th><th>지역</th><th>운영·개발</th></tr></thead><tbody id="initialRows"></tbody></table></div></section>
+<!--MARKET_DATA-->
+<script src="./manager-core.js"></script><script src="./google-map.js"></script><script src="./market.js"></script>
+</body></html>

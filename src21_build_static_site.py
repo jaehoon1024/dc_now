@@ -5,9 +5,8 @@ import html,json,shutil,hashlib
 from datetime import datetime
 from pathlib import Path
 from urllib.parse import quote_plus
-from sqlalchemy import create_engine
 from public_api import PublicRepository,json_value
-from src04_rss_collector import load_env_file,resolve_database_url
+from urllib.request import urlopen
 ROOT=Path(__file__).resolve().parent;OUT=ROOT/"deploy"
 def build_payload(repo):
  public_sites,total=repo.sites(None,None,500,0)
@@ -200,19 +199,28 @@ def render_manager(payload):
 
 def write_site(payload,out=OUT):
  out.mkdir(parents=True,exist_ok=True)
- page=render_manager(payload)
- for name in ('manager.css','manager-core.js','manager.js'):
-  version=hashlib.sha256((ROOT/'dashboard'/name).read_bytes()).hexdigest()[:12]
-  page=page.replace('./'+name+'"','./'+name+'?v='+version+'"')
- (out/"index.html").write_text(page,encoding="utf-8")
+ assets=('manager.css','manager-core.js','manager.js','market.css','market.js','google-map.js','map-config.json')
+ from manager_workspace import market_page
+ market=market_page()
+ target=payload.get('target_summary') or {}
+ evidence=payload.get('evidence_summary') or {}
+ for ident,value in [('initialTotal',payload.get('total',len(payload.get('sites',[])))),('initialCommercial',target.get('commercial_confirmed_total',0)),('initialEvidence',evidence.get('public_document_count',0))]:
+  market=market.replace(f'<strong id="{ident}">0</strong>',f'<strong id="{ident}">{int(value or 0)}</strong>')
+ labels={'OPERATING':'운영','DEVELOPMENT':'개발','MIXED':'운영·증설','UNKNOWN':'미확인','ON_HOLD':'보류'}
+ rows=''.join('<tr><td>{}</td><td>{}</td><td>{}</td></tr>'.format(html.escape(str(s.get('site_name') or '')),html.escape(str(s.get('sido') or '미확인')),html.escape(labels.get(s.get('lifecycle_group'),'미확인'))) for s in payload.get('sites',[])[:20])
+ market=market.replace('<tbody id="initialRows"></tbody>',f'<tbody id="initialRows">{rows}</tbody>')
+ for file,page in [('index.html',market),('manage.html',render_manager(payload))]:
+  for name in assets:
+   version=hashlib.sha256((ROOT/'dashboard'/name).read_bytes()).hexdigest()[:12]
+   page=page.replace('./'+name+'"','./'+name+'?v='+version+'"')
+  (out/file).write_text(page,encoding='utf-8')
  (out/"data.json").write_text(json.dumps(payload,ensure_ascii=False,default=json_value,separators=(",",":")),encoding="utf-8")
  (out/".nojekyll").touch()
- for name in ("manager.css","manager-core.js","manager.js"):
+ for name in assets:
   shutil.copyfile(ROOT/"dashboard"/name,out/name)
- (out/"_headers").write_text("/*\n  Cache-Control: public, max-age=0, must-revalidate\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:; connect-src 'self'; frame-src https://www.google.com https://maps.google.com\n\n/data.json\n  Cache-Control: public, max-age=60, must-revalidate\n",encoding="utf-8")
+ (out/"_headers").write_text("/*\n  Cache-Control: public, max-age=0, must-revalidate\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' https://maps.googleapis.com https://maps.gstatic.com; img-src 'self' data: blob: https://*.google.com https://*.googleapis.com https://*.gstatic.com https://*.googleusercontent.com; connect-src 'self' https://*.googleapis.com https://*.gstatic.com https://*.google.com; worker-src blob:; frame-src https://www.google.com https://maps.google.com\n\n/data.json\n  Cache-Control: public, max-age=60, must-revalidate\n",encoding="utf-8")
 def main():
- load_env_file();e=create_engine(resolve_database_url(),connect_args={"options":"-c default_transaction_read_only=on -c statement_timeout=10000"})
- try:payload=build_payload(PublicRepository(e))
- finally:e.dispose()
+ with urlopen('http://127.0.0.1:8765/data.json',timeout=90) as response:payload=json.load(response)
+ if not isinstance(payload,dict) or not isinstance(payload.get('sites'),list) or not isinstance(payload.get('details'),dict):raise ValueError('Invalid public snapshot')
  write_site(payload);print(f"정적 사이트 생성: {OUT} / 추적 대상 {payload['total']}건 / 공개 확정 {payload['public_total']}건");return 0
 if __name__=="__main__":raise SystemExit(main())

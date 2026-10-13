@@ -77,6 +77,16 @@ class PublicApiTests(unittest.TestCase):
     def test_unknown_site_returns_404(self):
         self.assertEqual(request(self.app, "/api/v1/sites/UNKNOWN")[0]["status"], "404 Not Found")
 
+    def test_market_and_manager_routes_keep_editing_available(self):
+        for path,label in [('/', '국내 데이터센터 운영·개발 현황'),('/manage.html', '근거 검토')]:
+            captured={}
+            body=b''.join(self.app({'PATH_INFO':path,'REQUEST_METHOD':'GET'},lambda s,h:captured.update(status=s))).decode()
+            self.assertEqual(captured['status'],'200 OK')
+            self.assertIn(label,body)
+        response,config=request(self.app,'/map-config.json')
+        self.assertEqual(response['status'],'200 OK')
+        self.assertIn('browser_key',config)
+
 
 if __name__ == "__main__":
     unittest.main()

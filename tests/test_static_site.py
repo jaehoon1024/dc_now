@@ -22,7 +22,7 @@ class StaticSiteTests(unittest.TestCase):
    self.assertIn('data-mode="public"',page)
    self.assertRegex(page,r'manager-core\.js\?v=[a-f0-9]{12}')
    self.assertNotIn('data-mode="internal"',page)
-   for name in ('manager.css','manager-core.js','manager.js','.nojekyll'):
+   for name in ('manager.css','manager-core.js','manager.js','manage.html','market.css','market.js','google-map.js','map-config.json','.nojekyll'):
     self.assertTrue((out/name).exists())
    self.assertNotIn('password', (out/"data.json").read_text().lower())
    self.assertIn('https://maps.google.com',(out/"_headers").read_text())
@@ -37,5 +37,19 @@ class StaticSiteTests(unittest.TestCase):
    self.assertIn('<strong id="initialEvidence">12</strong>',page)
    self.assertIn('센터 &lt;script&gt;',page)
    self.assertNotIn('<script>alert(1)</script>',page)
-   for label in ('오늘의 업무','센터 현황','개발 프로젝트','공급 분석','근거 검토','수집·발행'):
+   for label in ('시장 요약','공급 전망','센터 위치','센터 원장','전력·입지','근거·수집'):
     self.assertIn(label,page)
+   manager=(out/'manage.html').read_text()
+   for label in ('오늘의 업무','센터 현황','개발 프로젝트','공급 분석','근거 검토','수집·발행'):
+    self.assertIn(label,manager)
+
+ def test_publisher_tracks_market_assets_and_does_not_read_environment_file(self):
+  from src22_publish_dashboard import PUBLISH_PATHS
+  self.assertTrue({'deploy/manage.html','deploy/market.css','deploy/market.js','deploy/google-map.js','deploy/map-config.json'}<=set(PUBLISH_PATHS))
+  from unittest.mock import patch
+  import io
+  from src21_build_static_site import main
+  snapshot={'total':0,'sites':[],'details':{},'public_total':0}
+  with patch('src21_build_static_site.urlopen',return_value=io.BytesIO(json.dumps(snapshot).encode())),patch('src21_build_static_site.write_site') as write:
+   self.assertEqual(main(),0)
+   self.assertEqual(write.call_args.args[0],snapshot)
