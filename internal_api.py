@@ -2,6 +2,7 @@
 """Token-authenticated local API for review and quality operations."""
 from __future__ import annotations
 import argparse,hmac,json,os
+import subprocess
 from urllib.parse import parse_qs
 from wsgiref.simple_server import make_server
 from sqlalchemy import create_engine
@@ -11,6 +12,7 @@ from sqlalchemy import text
 from manager_workspace import page as manager_page, static_response
 from src15_quality_report import build_report
 from pathlib import Path
+from planning_values import save_value,list_values,write_value,PlanningConflict
 ADMIN_HTML=Path(__file__).resolve().parent/"dashboard/admin.html"
 def response(start,status,payload):
  b=json.dumps(payload,default=str,ensure_ascii=False).encode();start(status,[("Content-Type","application/json; charset=utf-8"),("Content-Length",str(len(b))),("Cache-Control","no-store"),("X-Content-Type-Options","nosniff")]);return[b]
@@ -29,9 +31,24 @@ def make_app(engine,token):
     from public_api import PublicRepository
     from src21_build_static_site import build_payload
     payload=build_payload(PublicRepository(engine))
+    payload['planning_values']=list_values(engine,public_only=False)
     snapshot=Path(__file__).resolve().parent/"deploy"/"data.json"
     if snapshot.exists():payload["public_generated_at"]=json.loads(snapshot.read_text(encoding="utf-8")).get("generated_at")
     return response(start,"200 OK",payload)
+   if method=='GET' and path=='/internal/v1/planning-values':return response(start,'200 OK',{'items':list_values(engine,public_only=False)})
+   if method=='POST' and path=='/internal/v1/publish':
+    subprocess.run(['systemctl','--user','start','--no-block','dc-dashboard-publish.service'],check=True,capture_output=True,timeout=5)
+    return response(start,'202 Accepted',{'status':'queued'})
+   if method=='POST' and path in {'/internal/v1/planning-values','/internal/v1/planning-import'}:
+    size=int(env.get('CONTENT_LENGTH') or 0)
+    if size<=0 or size>500000:return response(start,'400 Bad Request',{'error':'invalid_size'})
+    d=json.loads(env['wsgi.input'].read(size))
+    if path.endswith('planning-values'):return response(start,'200 OK',save_value(engine,d))
+    items=d.get('items')
+    if not isinstance(items,list) or not 1<=len(items)<=200:raise ValueError('invalid import size')
+    with engine.begin() as c:
+     rows=[write_value(c,{**item,'reviewer':d['reviewer']}) for item in items]
+    return response(start,'200 OK',{'saved':len(rows)})
    if method=="GET" and path=="/internal/v1/review-history":
     with engine.connect() as c:
      rows=[dict(x) for x in c.execute(text("SELECT actor_id,action,entity_type,reason,occurred_at FROM audit_log WHERE action IN ('REVIEW_APPROVE','REVIEW_REJECT') ORDER BY occurred_at DESC LIMIT 100")).mappings()]
@@ -46,7 +63,7 @@ def make_app(engine,token):
      return response(start,"400 Bad Request",{"error":"invalid_request"})
     return response(start,"200 OK",review(engine,data["kind"],data["record_id"],data["decision"],data["reviewer"],data["note"],bool(data.get("publish")),data.get("expected_status")))
    return response(start,"404 Not Found",{"error":"not_found"})
-  except ReviewConflict:return response(start,"409 Conflict",{"error":"review_conflict"})
+  except (ReviewConflict,PlanningConflict):return response(start,"409 Conflict",{"error":"review_conflict"})
   except (ValueError,KeyError,json.JSONDecodeError):return response(start,"400 Bad Request",{"error":"invalid_request"})
   except Exception:return response(start,"503 Service Unavailable",{"error":"service_unavailable"})
  return app

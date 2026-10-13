@@ -71,6 +71,7 @@ def summarize(rows):
     return dict(registered_sources=len(rows),contributing_sources=sum(r['documents']>0 for r in rows),registered_only_sources=sum(r['documents']==0 for r in rows),total_documents=total,aggregator_documents=aggregator,aggregator_share_pct=round(100*aggregator/total,2) if total else None)
 
 def assess(engine):
+    from planning_values import planning_summary
     with engine.connect() as c:
         rows=[dict(r) for r in c.execute(text('''SELECT sr.source_code,sr.source_name,sr.source_type,sr.base_url,sr.collection_method,sr.collection_policy,sr.active,
             COUNT(ed.document_id)::int AS documents,
@@ -97,7 +98,7 @@ def assess(engine):
     reference_docs={doc['url']:doc for manifest in manifests for doc in manifest['documents']}
     with engine.connect() as c:gaps=discovery_gaps(c)
     review_date=max(m['checked_on'] for m in manifests)
-    return {'generated_at':datetime.now().astimezone().isoformat(),'review_date':review_date,'summary':summarize(rows),'coverage':coverage,'capacity_evidence':capacity_links,'sources':rows,'discovery_gaps':gaps,
+    return {'generated_at':datetime.now().astimezone().isoformat(),'review_date':review_date,'summary':summarize(rows),'coverage':coverage,'planning_coverage':planning_summary(engine),'capacity_evidence':capacity_links,'sources':rows,'discovery_gaps':gaps,
         'reviewed_references':[{'source_code':d['source_code'],'title':d['title'],'url':d['url'],'published_at':d['published_at'],'note':d['note']} for d in reference_docs.values()],
         'limitations':['Google News는 발견 도구입니다. 문서 승인이 센터의 모든 필드 확정을 의미하지 않습니다.','기관별 시장 정의·지역·기준일이 달라 공개 보고서의 합계를 센터 합계에 더하지 않습니다.','유료 DB는 상품 소개만 확인했습니다. 원장·가격·임차인 데이터는 취득하지 않았습니다.','공공 API 소스 등록은 연동 완료를 의미하지 않습니다.','운영 IT Load는 운영 시설의 공개 총용량입니다. 실측 부하·점유·가용용량을 의미하지 않습니다.']}
 

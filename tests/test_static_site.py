@@ -6,6 +6,13 @@ from src21_build_static_site import write_site
 
 
 class StaticSiteTests(unittest.TestCase):
+ def test_planning_identifiers_and_ranges_serialize_in_real_snapshot(self):
+  from uuid import uuid4
+  from decimal import Decimal
+  uid=uuid4();payload={'total':0,'sites':[],'planning_values':[{'planning_id':uid,'value':40,'low_value':Decimal('35.000'),'high_value':Decimal('45.000')}]}
+  with tempfile.TemporaryDirectory() as d:
+   write_site(payload,Path(d));row=json.loads((Path(d)/'data.json').read_text())['planning_values'][0]
+   self.assertEqual(row['planning_id'],str(uid));self.assertEqual(row['low_value'],35)
  def test_build_writes_public_files_without_secrets(self):
   payload={"total":0,"sites":[],"details":{},"companies":[],"collection_status":[]}
   with tempfile.TemporaryDirectory() as d:
@@ -13,6 +20,7 @@ class StaticSiteTests(unittest.TestCase):
    self.assertEqual(json.loads((out/"data.json").read_text())["total"],0)
    page=(out/"index.html").read_text()
    self.assertIn('data-mode="public"',page)
+   self.assertRegex(page,r'manager-core\.js\?v=[a-f0-9]{12}')
    self.assertNotIn('data-mode="internal"',page)
    for name in ('manager.css','manager-core.js','manager.js','.nojekyll'):
     self.assertTrue((out/name).exists())

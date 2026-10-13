@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-10-13T10:15:14.375631+09:00",
+  "generated_at": "2026-10-13T13:02:41.406185+09:00",
   "review_date": "2026-10-13",
   "summary": {
     "registered_sources": 78,
     "contributing_sources": 44,
     "registered_only_sources": 34,
-    "total_documents": 12075,
-    "aggregator_documents": 11913,
-    "aggregator_share_pct": 98.66
+    "total_documents": 12093,
+    "aggregator_documents": 11930,
+    "aggregator_share_pct": 98.65
   },
   "coverage": {
     "commercial_centers": 66,
@@ -15,6 +15,19 @@
     "centers_with_grid_mw": 12,
     "centers_with_unknown_stage": 2,
     "centers_with_verified_coordinates": 43
+  },
+  "planning_coverage": {
+    "public_working_values": 73,
+    "centers_with_working_values": 57,
+    "commercial_centers": 66,
+    "verified_it_centers": 7,
+    "working_it_centers": 64,
+    "basis_counts": {
+      "ANNOUNCED": 2,
+      "ESTIMATED": 71,
+      "MANUAL": 0,
+      "MANUAL_CONFIRMED": 0
+    }
   },
   "capacity_evidence": {
     "confirmed_capacity_records": 26,
@@ -29,10 +42,10 @@
       "collection_method": "RSS",
       "collection_policy": "METADATA_ONLY",
       "active": true,
-      "documents": 11915,
+      "documents": 11932,
       "public_confirmed": 471,
-      "aggregator_urls": 11913,
-      "latest_imported_at": "2026-10-13 06:36:51.030384+09:00",
+      "aggregator_urls": 11930,
+      "latest_imported_at": "2026-10-13 12:36:36.146837+09:00",
       "group": "뉴스 탐색",
       "acquisition_status": "문서 확보 · 수집 연계"
     },
@@ -127,6 +140,21 @@
       "acquisition_status": "수동 근거 확보"
     },
     {
+      "source_code": "KT_CLOUD_PRESS",
+      "source_name": "kt cloud 공식 보도자료",
+      "source_type": "COMPANY",
+      "base_url": "https://tech.ktcloud.com/category/News/Press%20Release",
+      "collection_method": "RSS",
+      "collection_policy": "METADATA_ONLY",
+      "active": true,
+      "documents": 5,
+      "public_confirmed": 3,
+      "aggregator_urls": 0,
+      "latest_imported_at": "2026-10-13 12:37:42.867169+09:00",
+      "group": "사업자 공식자료",
+      "acquisition_status": "문서 확보 · 수집 연계"
+    },
+    {
       "source_code": "LGU_IDC",
       "source_name": "LG유플러스 IDC 센터 안내",
       "source_type": "COMPANY",
@@ -155,21 +183,6 @@
       "latest_imported_at": "2026-10-13 10:07:40.719951+09:00",
       "group": "사업자 공식자료",
       "acquisition_status": "수동 근거 확보"
-    },
-    {
-      "source_code": "KT_CLOUD_PRESS",
-      "source_name": "kt cloud 공식 보도자료",
-      "source_type": "COMPANY",
-      "base_url": "https://tech.ktcloud.com/category/News/Press%20Release",
-      "collection_method": "RSS",
-      "collection_policy": "METADATA_ONLY",
-      "active": true,
-      "documents": 4,
-      "public_confirmed": 3,
-      "aggregator_urls": 0,
-      "latest_imported_at": "2026-10-08 18:36:49.032665+09:00",
-      "group": "사업자 공식자료",
-      "acquisition_status": "문서 확보 · 수집 연계"
     },
     {
       "source_code": "LGU_NEWS",

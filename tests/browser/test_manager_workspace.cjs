@@ -10,7 +10,8 @@ if(!base)throw Error('Pass workspace path');
  const publicCount=data.sites.filter(x=>x.commercial_scope_status==='IN_SCOPE'&&x.commercial_review_status==='CONFIRMED').length;
  async function setup(internal=false){
   const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
-  let approved=false,decisions=[];
+  let approved=false,decisions=[],planningWrites=[],publishRequests=0;
+  const workspace=JSON.parse(JSON.stringify(data));
   const sample={id:'TEST-REVIEW',label:'IT_LOAD_MW',review_status:'CANDIDATE',created_at:'2026-10-13',scope_type:'PROJECT',raw_value:'20',raw_unit:'MW',normalized_value_mw:20,document_url:'https://example.com/public',can_publish:false};
   await page.route('**/*',async route=>{
    const u=new URL(route.request().url());
@@ -18,14 +19,24 @@ if(!base)throw Error('Pass workspace path');
    const p=u.pathname;
    if(p==='/'){let html=fs.readFileSync(base+'/dashboard/manager.html','utf8');if(internal)html=html.replace('data-mode="public"','data-mode="internal"');await route.fulfill({contentType:'text/html',body:html});}
    else if(['/manager.css','/manager.js','/manager-core.js'].includes(p))await route.fulfill({contentType:p.endsWith('.css')?'text/css':'application/javascript',body:fs.readFileSync(base+'/dashboard'+p,'utf8')});
-   else if(p==='/data.json'||p==='/internal/v1/workspace')await route.fulfill({json:data});
+   else if(p==='/data.json'||p==='/internal/v1/workspace')await route.fulfill({json:workspace});
+   else if(p==='/internal/v1/planning-values'){
+    const d=route.request().postDataJSON();planningWrites.push(d);const key=x=>[x.site_code,x.scope_type,x.scope_code,x.field_name,x.bucket].join('|');
+    workspace.planning_values=(workspace.planning_values||[]).filter(v=>key(v)!==key(d)).concat({...d,version:d.expected_version+1});
+    await route.fulfill({json:{version:d.expected_version+1}});
+   }
+   else if(p==='/internal/v1/planning-import'){
+    const d=route.request().postDataJSON();for(const item of d.items){planningWrites.push(item);const key=x=>[x.site_code,x.scope_type,x.scope_code,x.field_name,x.bucket].join('|');workspace.planning_values=workspace.planning_values.filter(v=>key(v)!==key(item)).concat({...item,version:item.expected_version+1});}
+    await route.fulfill({json:{saved:d.items.length}});
+   }
+   else if(p==='/internal/v1/publish'){publishRequests++;await route.fulfill({status:202,json:{status:'queued'}});}
    else if(p==='/internal/v1/review-queue')await route.fulfill({json:{capacity:approved?[]:[sample]}});
    else if(p==='/internal/v1/quality')await route.fulfill({json:{review_queue:{capacity:approved?0:1},checks:{}}});
    else if(p==='/internal/v1/review-history')await route.fulfill({json:{items:approved?[{actor_id:'browser-test',action:'REVIEW_APPROVE',entity_type:'CAPACITY',reason:'checked',occurred_at:'2026-10-13'}]:[]}});
    else if(p==='/internal/v1/review'){const body=route.request().postDataJSON();decisions.push(body);approved=true;await route.fulfill({json:{review_status:'CONFIRMED'}});}
    else await route.fulfill({status:404,body:'not found'});
   });
-  await page.goto('https://workspace.test/');return{page,errors,decisions};
+  await page.goto('https://workspace.test/');return{page,errors,decisions,planningWrites,publishCount:()=>publishRequests};
  }
  const {page,errors}=await setup();
  await page.locator('#content h1').filter({hasText:'오늘의 업무'}).waitFor();
@@ -84,11 +95,25 @@ if(!base)throw Error('Pass workspace path');
   assert.ok((await page.locator('#content').innerText()).includes(period),code+' forecast precision');
  }
  await page.screenshot({path:base+'/output/design/kt-sk-development.png',fullPage:true});
+ await page.evaluate(()=>location.hash='#detail/KT_GASAN');
+ await page.getByRole('heading',{name:'kt cloud 가산 AI 데이터센터',exact:true}).waitFor();
+ await page.locator('[data-detail-tab="planning"]').click();
+ await page.locator('#planValue').fill('52');await page.locator('#planMethod').fill('브라우저 수정안 테스트');
+ await page.locator('#planningForm button[type="submit"]').click();
+ await page.locator('#feedback').filter({hasText:'내 브라우저 수정안 저장 완료'}).waitFor();
+ assert.ok((await page.locator('.metrics').innerText()).includes('52 MW'));
+ await page.locator('#valueMode').selectOption('verified');assert.ok((await page.locator('.metrics').innerText()).includes('26 MW'));
+ await page.locator('#valueMode').selectOption('planning');assert.ok((await page.locator('.metrics').innerText()).includes('52 MW'));
+ await page.reload();await page.locator('[data-detail-tab="planning"]').waitFor();assert.ok((await page.locator('.metrics').innerText()).includes('52 MW'));
+ await page.locator('[data-detail-tab="planning"]').click();
+ const download=page.waitForEvent('download');await page.locator('#exportDrafts').click();const file=await download;assert.equal(file.suggestedFilename(),'dc-now-planning-drafts.json');
+ await page.locator('#clearDrafts').click();assert.ok((await page.locator('.metrics').innerText()).includes('26 MW'));
+ await page.screenshot({path:base+'/output/design/planning-keyin-desktop.png',fullPage:true});
  await page.locator('[data-page="home"]').click();
  await page.screenshot({path:base+'/output/design/manager-live-desktop.png',fullPage:true});
  await page.setViewportSize({width:390,height:900});
- for(const p of ['home','register','detail','supply','map','review','sources','ops']){
-  if(p==='detail'){await page.locator('[data-page="register"]').click();await page.locator('tbody [data-site]').first().click();}else await page.locator('[data-page="'+p+'"]').click();
+ for(const p of ['home','register','detail','planning','supply','map','review','sources','ops']){
+  if(p==='detail'){await page.locator('[data-page="register"]').click();await page.locator('tbody [data-site]').first().click();}else if(p==='planning')await page.locator('[data-detail-tab="planning"]').click();else await page.locator('[data-page="'+p+'"]').click();
   await page.waitForTimeout(50);
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth),false,'mobile overflow '+p);
  }
@@ -99,6 +124,13 @@ if(!base)throw Error('Pass workspace path');
  await admin.page.locator('[data-page="review"]').click();await admin.page.locator('#note').fill('Official source reviewed in browser test');await admin.page.locator('#reviewForm button[type="submit"]').click();
  await admin.page.locator('#feedback').filter({hasText:'승인 완료'}).waitFor();
  assert.equal(admin.decisions.length,1);assert.equal(admin.decisions[0].expected_status,'CANDIDATE');assert.equal(admin.decisions[0].decision,'approve');
+ assert.deepEqual(admin.errors,[]);
+ await admin.page.evaluate(()=>location.hash='#detail/KT_GASAN');await admin.page.locator('[data-detail-tab="planning"]').waitFor();await admin.page.locator('[data-detail-tab="planning"]').click();
+ await admin.page.locator('#planValue').fill('31');await admin.page.locator('#planMethod').fill('담당자 원장 수정 테스트');await admin.page.locator('#planningForm button[type="submit"]').click();
+ await admin.page.locator('#feedback').filter({hasText:'원장 저장 완료'}).waitFor();assert.equal(admin.planningWrites[0].expected_version,0);assert.equal(admin.planningWrites[0].value,31);assert.ok((await admin.page.locator('.metrics').innerText()).includes('31 MW'));
+ const imported={...admin.planningWrites[0],value:37,expected_version:1};await admin.page.locator('#importPlanning').setInputFiles({name:'correction.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({format:'dc-now-planning-v1',items:[imported]}))});
+ await admin.page.locator('#feedback').filter({hasText:'1개 수정안을 원장에 저장'}).waitFor();assert.ok((await admin.page.locator('.metrics').innerText()).includes('37 MW'));
+ await admin.page.locator('#publishPlanning').click();await admin.page.locator('#feedback').filter({hasText:'게시를 요청'}).waitFor();assert.equal(admin.publishCount(),1);
  assert.deepEqual(admin.errors,[]);
  console.log('PASS: real public data, scope/search/reset, comparison, project/source detail, supply metric, Google address map, private review separation, all menus, 390px layout, authenticated review and audit refresh (mock write only)');
  await browser.close();

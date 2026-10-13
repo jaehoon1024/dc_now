@@ -12,8 +12,16 @@ class InternalApiTests(unittest.TestCase):
  def test_admin_page_has_review_actions_without_storing_token(self):
   _,page=self.call(path="/");self.assertIn('data-mode="internal"',page);self.assertIn('id="token"',page);self.assertNotIn("localStorage",page);self.assertNotIn("sessionStorage",page)
  def test_private_workspace_history_and_queue_require_auth(self):
-  for path in ("/internal/v1/workspace","/internal/v1/review-history","/internal/v1/review-queue"):
+  for path in ("/internal/v1/workspace","/internal/v1/review-history","/internal/v1/review-queue","/internal/v1/planning-values"):
    self.assertEqual(self.call(path=path)[0],"401 Unauthorized")
+ def test_planning_write_import_and_publish_require_auth(self):
+  for path in ['/internal/v1/planning-values','/internal/v1/planning-import','/internal/v1/publish']:
+   self.assertEqual(self.call(path=path,method='POST')[0],'401 Unauthorized')
+ def test_publish_can_only_start_fixed_dashboard_service(self):
+  from unittest.mock import patch
+  with patch('internal_api.subprocess.run') as run:
+   status,body=self.call('Bearer '+'x'*32,'/internal/v1/publish','POST',{'command':'bad'})
+   self.assertEqual(status,'202 Accepted');self.assertEqual(run.call_args[0][0],['systemctl','--user','start','--no-block','dc-dashboard-publish.service'])
  def test_assets_allowlist_does_not_expose_local_files(self):
   self.assertEqual(self.call(path="/manager.js")[0],"200 OK")
   for path in ("/.env","/../.env","/data.json"):

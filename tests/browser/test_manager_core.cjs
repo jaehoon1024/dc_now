@@ -39,3 +39,20 @@ console.log('PASS: mixed campus, scope/privacy, unknown capacity, phase/parent d
 const phaseCompletion={generated_at:'2026-10-13',details:{A:{projects:[{project_code:'PD'}],phases:[{project_code:'PD',phase_code:'P1',status_code:'CONSTRUCTION',planned_completion_period:'2027-06'}],capacities:[{scope_type:'PROJECT',project_code:'PD',capacity_type_code:'GRID_INTAKE_MW',normalized_value_mw:200}]}}};
 const completion=C.schedule(phaseCompletion,[base]);
 assert.equal(completion[0].period,'');assert.equal(completion[0].year,null);assert.equal(completion[0].completion_period,'2027-06');assert.equal(completion[0].grid,null);assert.equal(C.annual(completion,'grid').length,0);
+
+const planning={generated_at:'2026-10-13',sites:[{...base,lifecycle_group:'DEVELOPMENT',operating_it_load_mw:null,development_it_load_mw:null}],details:{A:{projects:[{project_code:'PD',status_code:'CONSTRUCTION'}],phases:[{project_code:'PD',phase_code:'P1',status_code:'CONSTRUCTION',planned_completion_period:'2027-06'}],capacities:[]}},planning_values:[
+ {site_code:'A',scope_type:'SITE',scope_code:'A',field_name:'IT_LOAD_MW',bucket:'DEVELOPMENT',value:100,low_value:80,high_value:120,basis:'ESTIMATED',active:true},
+ {site_code:'A',scope_type:'PHASE',scope_code:'P1',field_name:'IT_LOAD_MW',bucket:'DEVELOPMENT',value:40,basis:'ANNOUNCED',active:true},
+ {site_code:'A',scope_type:'PHASE',scope_code:'P1',field_name:'RFS_PERIOD',bucket:'GENERAL',value:'2027-Q4',basis:'ESTIMATED',active:true}
+]};
+const work=C.prepare(planning,true),strict=C.prepare(planning,false);
+assert.equal(work.sites[0].development_it_load_mw,100);assert.equal(work.details.A.development_it_load_mw,100);
+assert.equal(strict.sites[0].development_it_load_mw,null);assert.equal(planning.sites[0].development_it_load_mw,null);
+assert.equal(C.schedule(work,work.sites)[0].it,40);assert.equal(C.schedule(work,work.sites)[0].period,'2027-Q4');
+assert.equal(C.annual(C.schedule(work,work.sites),'it')[0].total,40);assert.equal(C.sumKnown(work.sites,'development_it_load_mw').low,80);
+const fresh={...planning,sites:[{...planning.sites[0],development_it_load_mw:90}]};assert.equal(C.prepare(fresh,true).sites[0].development_it_load_mw,90);
+const correction={...planning.planning_values[0],value:110,basis:'MANUAL',draft:true};assert.equal(C.prepare(fresh,true,[correction]).sites[0].development_it_load_mw,110);
+assert.equal(C.prepare(fresh,true,[{...correction,active:false}]).sites[0].development_it_load_mw,90);
+assert.equal(C.periodEnd('2027-02-29'),null);assert.equal(C.periodEnd('2028-02-29'),'2028-02-29');assert.equal(C.periodEnd('2028-13'),null);
+const held=C.prepare(planning,true,[{site_code:'A',scope_type:'SITE',scope_code:'A',field_name:'STATUS_CODE',bucket:'GENERAL',value:'ON_HOLD',basis:'MANUAL',active:true}]);assert.equal(C.annual(C.schedule(held,held.sites),'it').length,0);
+console.log('PASS: estimates versus verified values, manual priority, immutable source data, withdrawal, phase/campus separation and real dates');

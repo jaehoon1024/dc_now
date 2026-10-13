@@ -8,6 +8,7 @@ import html
 import json
 from datetime import date, datetime
 from decimal import Decimal
+from uuid import UUID
 from typing import Any
 from urllib.parse import parse_qs
 from wsgiref.simple_server import WSGIRequestHandler, make_server
@@ -31,6 +32,8 @@ DASHBOARD_PATH = __import__("pathlib").Path(__file__).resolve().parent / "dashbo
 
 
 def json_value(value: Any) -> Any:
+    if isinstance(value, UUID):
+        return str(value)
     if isinstance(value, (date, datetime)):
         return value.isoformat()
     if isinstance(value, Decimal):
@@ -505,6 +508,10 @@ class PublicRepository:
     def source_assessment(self) -> dict[str, Any]:
         from src26_source_quality_audit import assess
         return assess(self.engine)
+
+    def planning_values(self):
+        from planning_values import list_values
+        return list_values(self.engine)
 
     def recent_evidence(self, limit: int = 24) -> list[dict[str, Any]]:
         with self.engine.connect() as connection:
