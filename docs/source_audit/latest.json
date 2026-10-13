@@ -1,24 +1,24 @@
 {
-  "generated_at": "2026-10-13T09:43:42.958329+09:00",
+  "generated_at": "2026-10-13T10:15:14.375631+09:00",
   "review_date": "2026-10-13",
   "summary": {
-    "registered_sources": 74,
-    "contributing_sources": 40,
+    "registered_sources": 78,
+    "contributing_sources": 44,
     "registered_only_sources": 34,
-    "total_documents": 12040,
+    "total_documents": 12075,
     "aggregator_documents": 11913,
-    "aggregator_share_pct": 98.95
+    "aggregator_share_pct": 98.66
   },
   "coverage": {
-    "commercial_centers": 53,
-    "centers_with_it_mw": 6,
-    "centers_with_grid_mw": 11,
-    "centers_with_unknown_stage": 9,
-    "centers_with_verified_coordinates": 39
+    "commercial_centers": 66,
+    "centers_with_it_mw": 7,
+    "centers_with_grid_mw": 12,
+    "centers_with_unknown_stage": 2,
+    "centers_with_verified_coordinates": 43
   },
   "capacity_evidence": {
-    "confirmed_capacity_records": 24,
-    "records_with_public_document": 22
+    "confirmed_capacity_records": 26,
+    "records_with_public_document": 24
   },
   "sources": [
     {
@@ -82,6 +82,21 @@
       "acquisition_status": "문서 확보 · 수집 연계"
     },
     {
+      "source_code": "KT_CORP_NEWS",
+      "source_name": "kt cloud 기업 공식 보도자료",
+      "source_type": "COMPANY",
+      "base_url": "https://www.ktcloud.com/media/press?source=dc",
+      "collection_method": "API",
+      "collection_policy": "METADATA_ONLY",
+      "active": true,
+      "documents": 15,
+      "public_confirmed": 0,
+      "aggregator_urls": 0,
+      "latest_imported_at": "2026-10-13 10:08:21.155369+09:00",
+      "group": "사업자 공식자료",
+      "acquisition_status": "문서 확보 · 수집 연계"
+    },
+    {
       "source_code": "ETNEWS",
       "source_name": "전자신문",
       "source_type": "NEWS",
@@ -97,6 +112,21 @@
       "acquisition_status": "문서 확보 · 수집 연계"
     },
     {
+      "source_code": "KT_FACILITY_REVIEW",
+      "source_name": "kt cloud 공식 시설 검증",
+      "source_type": "COMPANY",
+      "base_url": "https://www.kt-idc.com/ktidc/viewktidc_introducePage",
+      "collection_method": "MANUAL",
+      "collection_policy": "MANUAL_ONLY",
+      "active": true,
+      "documents": 12,
+      "public_confirmed": 12,
+      "aggregator_urls": 0,
+      "latest_imported_at": "2026-10-13 10:07:40.719951+09:00",
+      "group": "사업자 공식자료",
+      "acquisition_status": "수동 근거 확보"
+    },
+    {
       "source_code": "LGU_IDC",
       "source_name": "LG유플러스 IDC 센터 안내",
       "source_type": "COMPANY",
@@ -108,6 +138,21 @@
       "public_confirmed": 4,
       "aggregator_urls": 0,
       "latest_imported_at": "2026-10-13 09:38:27.982601+09:00",
+      "group": "사업자 공식자료",
+      "acquisition_status": "수동 근거 확보"
+    },
+    {
+      "source_code": "SKT_OFFICIAL_REVIEW",
+      "source_name": "SK텔레콤 공식 사업·시설 검증",
+      "source_type": "COMPANY",
+      "base_url": "https://news.sktelecom.com/",
+      "collection_method": "MANUAL",
+      "collection_policy": "MANUAL_ONLY",
+      "active": true,
+      "documents": 5,
+      "public_confirmed": 5,
+      "aggregator_urls": 0,
+      "latest_imported_at": "2026-10-13 10:07:40.719951+09:00",
       "group": "사업자 공식자료",
       "acquisition_status": "수동 근거 확보"
     },
@@ -140,6 +185,21 @@
       "latest_imported_at": "2026-10-13 09:39:55.938429+09:00",
       "group": "사업자 공식자료",
       "acquisition_status": "문서 확보 · 수집 연계"
+    },
+    {
+      "source_code": "KT_CORP_REVIEW",
+      "source_name": "kt cloud 기업 발표 검증",
+      "source_type": "COMPANY",
+      "base_url": "https://www.ktcloud.com/media/press?source=dc",
+      "collection_method": "MANUAL",
+      "collection_policy": "MANUAL_ONLY",
+      "active": true,
+      "documents": 3,
+      "public_confirmed": 3,
+      "aggregator_urls": 0,
+      "latest_imported_at": "2026-10-13 10:07:40.719951+09:00",
+      "group": "사업자 공식자료",
+      "acquisition_status": "수동 근거 확보"
     },
     {
       "source_code": "LGCNS_NEWS",
@@ -1152,6 +1212,15 @@
       "issue": "상용 범주 미검증 · 확정 프로젝트 미연계"
     },
     {
+      "site_code": "KT_WONJU_AI",
+      "site_name": "원주 KT 협의 AI 데이터센터 수집 검증 대상",
+      "commercial_scope_status": "REVIEW_REQUIRED",
+      "project_count": 0,
+      "mention_count": 4,
+      "latest_published_at": "2026-09-07 16:00:00+09:00",
+      "issue": "상용 범주 미검증 · 확정 프로젝트 미연계"
+    },
+    {
       "site_code": "GS_DONGHAE_AI",
       "site_name": "GS 동해 AI 데이터센터",
       "commercial_scope_status": "REVIEW_REQUIRED",
@@ -1159,9 +1228,167 @@
       "mention_count": 3,
       "latest_published_at": "2026-09-14 16:00:00+09:00",
       "issue": "상용 범주 미검증 · 확정 프로젝트 미연계"
+    },
+    {
+      "site_code": "YIDO_CHEONGNA",
+      "site_name": "이도 청라 데이터센터",
+      "commercial_scope_status": "IN_SCOPE",
+      "project_count": 1,
+      "mention_count": 2,
+      "latest_published_at": "2026-10-07",
+      "issue": "KT 청라 수전50MW 발표와 기존 이도 청라50MW 후보의 동일 사업 여부 확인 필요 · 중복 MW 반영 보류"
+    },
+    {
+      "site_code": "KT_GURO",
+      "site_name": "KT Cloud 구로 데이터센터",
+      "commercial_scope_status": "REVIEW_REQUIRED",
+      "project_count": 0,
+      "mention_count": 1,
+      "latest_published_at": "2025-04-22",
+      "issue": "KT 구로30MW 운영 수주 보도 원문·개발사업자 및 현재 공사 단계 교차 확인 필요 · SKT 구로와 별개 후보"
     }
   ],
   "reviewed_references": [
+    {
+      "source_code": "KT_FACILITY_REVIEW",
+      "title": "kt cloud 용산 공식 시설 서비스 안내",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=yongsan",
+      "published_at": null,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13"
+    },
+    {
+      "source_code": "KT_FACILITY_REVIEW",
+      "title": "kt cloud 목동1 공식 시설 서비스 안내",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=mokdong1",
+      "published_at": null,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13"
+    },
+    {
+      "source_code": "KT_FACILITY_REVIEW",
+      "title": "kt cloud 목동2 공식 시설 서비스 안내",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=mokdong2",
+      "published_at": null,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13"
+    },
+    {
+      "source_code": "KT_FACILITY_REVIEW",
+      "title": "kt cloud 여의도 공식 시설 서비스 안내",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=yeouido",
+      "published_at": null,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13"
+    },
+    {
+      "source_code": "KT_FACILITY_REVIEW",
+      "title": "kt cloud 강남 공식 시설 서비스 안내",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=gangnam",
+      "published_at": null,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13"
+    },
+    {
+      "source_code": "KT_FACILITY_REVIEW",
+      "title": "kt cloud 남구로 공식 시설 서비스 안내",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=namguro",
+      "published_at": null,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13"
+    },
+    {
+      "source_code": "KT_FACILITY_REVIEW",
+      "title": "kt cloud 백석 AI 공식 시설 서비스 안내",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=beakseok",
+      "published_at": null,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13"
+    },
+    {
+      "source_code": "KT_FACILITY_REVIEW",
+      "title": "kt cloud 경북 CDC 공식 시설 서비스 안내",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=gyeongbuk",
+      "published_at": null,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13"
+    },
+    {
+      "source_code": "KT_FACILITY_REVIEW",
+      "title": "kt cloud 대전 공식 시설 서비스 안내",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=daejeon",
+      "published_at": null,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13"
+    },
+    {
+      "source_code": "KT_FACILITY_REVIEW",
+      "title": "kt cloud 분당 공식 시설 서비스 안내",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=bundang",
+      "published_at": null,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13"
+    },
+    {
+      "source_code": "KT_FACILITY_REVIEW",
+      "title": "kt cloud 천안 클라우드 전용 CDC 시설 안내",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=cdc",
+      "published_at": null,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13"
+    },
+    {
+      "source_code": "KT_FACILITY_REVIEW",
+      "title": "kt cloud 현재 시설 서비스·센터별 운영 연락처",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_facilityPage",
+      "published_at": null,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13"
+    },
+    {
+      "source_code": "KT_CORP_REVIEW",
+      "title": "kt cloud 가산 AI 데이터센터 개소·제원 공식 발표",
+      "url": "https://www.ktcloud.com/media/press/20251106090958820?lan=kor",
+      "published_at": "2025-11-06",
+      "note": "공식 시설 안내 개소식2025년10월과 보도자료 발표일11월6일 구분. 발표일을 RFS로 저장하지 않음"
+    },
+    {
+      "source_code": "SKT_OFFICIAL_REVIEW",
+      "title": "SKT 공식 운영8개 센터 및 울산·구로 건설, SK호라이즌 분할 추진",
+      "url": "https://news.sktelecom.com/229987",
+      "published_at": "2026-08-27",
+      "note": "분할·설립은2027년1분기 목표. 현재 운영사를 신설 예정 회사로 교체하지 않음.318MW는 회사 포트폴리오 총량이라 센터별 합계에 추가하지 않음"
+    },
+    {
+      "source_code": "SKT_OFFICIAL_REVIEW",
+      "title": "SK브로드밴드 가산·서초·일산·분당 시설 공식 안내",
+      "url": "https://biz.skbroadband.com/page.do?menu_id=P06010100",
+      "published_at": null,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13"
+    },
+    {
+      "source_code": "KT_CORP_REVIEW",
+      "title": "kt cloud·SGC 군산 AI 데이터센터 개발 참여 공식 발표",
+      "url": "https://www.ktcloud.com/media/press/20260929084129950?lan=kor",
+      "published_at": "2026-09-28",
+      "note": "공개 공식 원문 확인. 확인일2026-10-13"
+    },
+    {
+      "source_code": "SKT_OFFICIAL_REVIEW",
+      "title": "SK AI 데이터센터 울산 기공식 공식 발표",
+      "url": "https://news.sktelecom.com/214708",
+      "published_at": "2025-08-29",
+      "note": "공개 공식 원문 확인. 확인일2026-10-13"
+    },
+    {
+      "source_code": "SKT_OFFICIAL_REVIEW",
+      "title": "SK·AWS 울산 AI Zone 계약 및2027년 운영 목표",
+      "url": "https://news.sktelecom.com/en/1948",
+      "published_at": "2025-06-22",
+      "note": "공개 공식 원문 확인. 확인일2026-10-13"
+    },
+    {
+      "source_code": "SKT_OFFICIAL_REVIEW",
+      "title": "SKT/SKB AIDC 사업부장 울산·구로 개발 일정",
+      "url": "https://news.sktelecom.com/213527",
+      "published_at": "2025-07-03",
+      "note": "공개 공식 원문 확인. 확인일2026-10-13"
+    },
+    {
+      "source_code": "KT_CORP_REVIEW",
+      "title": "kt cloud 청라 AIDC 수전50MW·2030년1분기 준공 계획",
+      "url": "https://www.ktcloud.com/media/press/20261007091727504?lan=kor",
+      "published_at": "2026-10-07",
+      "note": "수전50MW·2026년4분기 착공·2030년1분기 준공 발표 확인. 기존 YIDO_CHEONGNA(청라50MW)와 동일성 확인 전 새 센터·MW 중복 반영 보류. RFS 미공개"
+    },
     {
       "source_code": "LGU_IDC",
       "title": "LG U+ AIDC 공식 시설 안내: 파주",

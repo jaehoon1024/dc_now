@@ -72,6 +72,18 @@ if(!base)throw Error('Pass workspace path');
  await page.locator('[data-detail-tab="capacity"]').click();
  assert.ok((await page.locator('#content').innerText()).includes('200 MW'));
  await page.screenshot({path:base+'/output/design/paju-development.png',fullPage:true});
+ await page.evaluate(()=>location.hash='#detail/KT_GASAN');
+ await page.getByRole('heading',{name:'kt cloud 가산 AI 데이터센터',exact:true}).waitFor();
+ await page.locator('[data-detail-tab="capacity"]').click();
+ assert.ok((await page.locator('#content').innerText()).includes('26 MW'));
+ assert.ok((await page.locator('#content').innerText()).includes('40 MW'));
+ for(const [code,name,period] of [['SGC_GUNSAN','SGC·kt cloud 군산 AI 데이터센터','2028-Q1'],['SK_AWS_ULSAN','SK-AWS 울산 AI 데이터센터','2027'],['SKHORIZON_GURO','SK 구로 AI 데이터센터','2030']]){
+  await page.evaluate(code=>location.hash='#detail/'+code,code);
+  await page.getByRole('heading',{name,exact:true}).waitFor();
+  await page.locator('[data-detail-tab="phases"]').click();
+  assert.ok((await page.locator('#content').innerText()).includes(period),code+' forecast precision');
+ }
+ await page.screenshot({path:base+'/output/design/kt-sk-development.png',fullPage:true});
  await page.locator('[data-page="home"]').click();
  await page.screenshot({path:base+'/output/design/manager-live-desktop.png',fullPage:true});
  await page.setViewportSize({width:390,height:900});

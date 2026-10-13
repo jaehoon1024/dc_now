@@ -1,0 +1,54 @@
+{
+  "aliases": [
+    {
+      "site_code": "SGC_GUNSAN",
+      "title_pattern": "(?=.*(sgc|kt클라우드|ktcloud|케이티|(^|[^a-z])kt(?=[^a-z]|$)))(?=.*군산)"
+    },
+    {
+      "site_code": "SK_AWS_ULSAN",
+      "title_pattern": "(?=.*(sk|에스케이))(?=.*울산)"
+    },
+    {
+      "site_code": "SKHORIZON_GURO",
+      "title_pattern": "(?=.*(sk|에스케이))(?=.*구로)"
+    },
+    {
+      "site_code": "KT_GASAN",
+      "title_pattern": "(?=.*(kt클라우드|ktcloud|케이티|(^|[^a-z])kt(?=[^a-z]|$)))(?=.*가산)"
+    },
+    {
+      "site_code": "KT_WONJU_AI",
+      "title_pattern": "(?=.*(kt클라우드|ktcloud|케이티|(^|[^a-z])kt(?=[^a-z]|$)))(?=.*원주)"
+    },
+    {
+      "site_code": "KT_GURO",
+      "title_pattern": "(?=.*(kt클라우드|ktcloud|케이티|(^|[^a-z])kt(?=[^a-z]|$)))(?=.*구로)(?!.*남구로)"
+    },
+    {
+      "site_code": "SKB_GASAN",
+      "title_pattern": "(?=.*(sk|에스케이))(?=.*가산)"
+    },
+    {
+      "site_code": "SKB_YANGJU",
+      "title_pattern": "(?=.*(sk|에스케이))(?=.*양주)"
+    },
+    {
+      "site_code": "LGU_PAJU",
+      "title_pattern": "(?=.*(lg|유플러스|유플))(?=.*파주)"
+    }
+  ],
+  "open_reviews": [
+    {
+      "site_code": "YIDO_CHEONGNA",
+      "published_at": "2026-10-07",
+      "issue": "KT 청라 수전50MW 발표와 기존 이도 청라50MW 후보의 동일 사업 여부 확인 필요 · 중복 MW 반영 보류",
+      "document_count": 2
+    },
+    {
+      "site_code": "KT_GURO",
+      "published_at": "2025-04-22",
+      "issue": "KT 구로30MW 운영 수주 보도 원문·개발사업자 및 현재 공사 단계 교차 확인 필요 · SKT 구로와 별개 후보",
+      "document_count": 1
+    }
+  ]
+}

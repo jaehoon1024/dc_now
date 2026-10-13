@@ -8,6 +8,7 @@ from sqlalchemy import create_engine,text
 from src04_rss_collector import load_env_file,resolve_database_url
 ROOT=Path(__file__).resolve().parent
 RESEARCH={'CBRE_DC_KR','CUSHMAN_DC_KR','JLL_DC_KR','SAVILLS_DC_KR','RSQUARE_DC_KR'}
+ALIASES=ROOT/'data/reference/discovery_aliases.json'
 
 DISCOVERY_QUERY = """
  WITH titles AS MATERIALIZED (
@@ -26,7 +27,10 @@ DISCOVERY_QUERY = """
  )
  SELECT s.site_code,s.site_name,s.commercial_scope_status,s.project_count,
   count(DISTINCT n.document_id) AS mention_count,max(n.published_at) AS latest_published_at
- FROM candidates s JOIN titles n ON length(s.stem)>=6 AND position(s.stem in n.normalized_title)>0
+ FROM candidates s
+ LEFT JOIN jsonb_to_recordset(CAST(:aliases AS jsonb)) AS a(site_code text,title_pattern text) ON a.site_code=s.site_code
+ JOIN titles n ON (length(s.stem)>=6 AND position(s.stem in n.normalized_title)>0)
+   OR (a.title_pattern IS NOT NULL AND n.normalized_title ~ a.title_pattern)
  WHERE s.commercial_scope_status='REVIEW_REQUIRED' OR s.project_count=0
  GROUP BY s.site_id,s.site_code,s.site_name,s.commercial_scope_status,s.project_count
  HAVING count(DISTINCT n.document_id)>=3
@@ -34,12 +38,21 @@ DISCOVERY_QUERY = """
 """
 
 def discovery_gaps(connection):
-    rows=[dict(r) for r in connection.execute(text(DISCOVERY_QUERY)).mappings()]
+    config=json.loads(ALIASES.read_text()) if ALIASES.exists() else {'aliases':[],'open_reviews':[]}
+    rows=[dict(r) for r in connection.execute(text(DISCOVERY_QUERY),{'aliases':json.dumps(config['aliases'],ensure_ascii=False)}).mappings()]
     for row in rows:
         issues=[]
         if row['commercial_scope_status']=='REVIEW_REQUIRED':issues.append('상용 범주 미검증')
         if not row['project_count']:issues.append('확정 프로젝트 미연계')
         row['issue']=' · '.join(issues)
+    for review in config.get('open_reviews',[]):
+        site=connection.execute(text("""SELECT s.site_code,s.site_name,s.commercial_scope_status,
+            (SELECT count(*) FROM dc_project p WHERE p.site_id=s.site_id AND p.public_visible AND p.review_status='CONFIRMED' AND p.record_status='ACTIVE') AS project_count
+            FROM dc_site s WHERE s.site_code=:site_code AND s.public_visible AND s.record_status='ACTIVE'"""),review).mappings().first()
+        if site:
+            row=next((r for r in rows if r['site_code']==review['site_code']),None)
+            if row:row['issue']+=' · '+review['issue']
+            else:rows.append({**dict(site),'mention_count':review['document_count'],'latest_published_at':review['published_at'],'issue':review['issue']})
     return rows
 
 def group(row):

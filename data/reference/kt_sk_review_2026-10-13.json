@@ -1,0 +1,1225 @@
+{
+  "checked_on": "2026-10-13",
+  "reviewer": "kt-sk-operator-review-2026-10-13",
+  "sources": [
+    {
+      "code": "KT_FACILITY_REVIEW",
+      "name": "kt cloud 공식 시설 검증",
+      "type": "COMPANY",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introducePage",
+      "note": "공개 공식 시설·보도자료 사실 및 근거 URL 수동 검증. 본문 저장 안 함"
+    },
+    {
+      "code": "KT_CORP_REVIEW",
+      "name": "kt cloud 기업 발표 검증",
+      "type": "COMPANY",
+      "url": "https://www.ktcloud.com/media/press?source=dc",
+      "note": "공개 공식 시설·보도자료 사실 및 근거 URL 수동 검증. 본문 저장 안 함"
+    },
+    {
+      "code": "SKT_OFFICIAL_REVIEW",
+      "name": "SK텔레콤 공식 사업·시설 검증",
+      "type": "COMPANY",
+      "url": "https://news.sktelecom.com/",
+      "note": "공개 공식 시설·보도자료 사실 및 근거 URL 수동 검증. 본문 저장 안 함"
+    }
+  ],
+  "documents": [
+    {
+      "source_code": "KT_FACILITY_REVIEW",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=yongsan",
+      "title": "kt cloud 용산 공식 시설 서비스 안내",
+      "site_code": "KT_YONGSAN",
+      "published_at": null,
+      "document_type": "WEB_PAGE",
+      "facts": [
+        {
+          "field": "development_stage",
+          "value": "OPERATING",
+          "locator": "현재 시설 서비스 안내: 개관·고객 입주·상면 서비스 확인",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        }
+      ],
+      "capacities": [],
+      "confirm_operating": true,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13",
+      "publish_existing": true,
+      "site_name": "kt cloud 용산 데이터센터"
+    },
+    {
+      "source_code": "KT_FACILITY_REVIEW",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=mokdong1",
+      "title": "kt cloud 목동1 공식 시설 서비스 안내",
+      "site_code": "KT_MOKDONG1",
+      "published_at": null,
+      "document_type": "WEB_PAGE",
+      "facts": [
+        {
+          "field": "development_stage",
+          "value": "OPERATING",
+          "locator": "현재 시설 서비스 안내: 개관·고객 입주·상면 서비스 확인",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        }
+      ],
+      "capacities": [],
+      "confirm_operating": true,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13",
+      "publish_existing": true,
+      "site_name": "kt cloud 목동1 데이터센터"
+    },
+    {
+      "source_code": "KT_FACILITY_REVIEW",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=mokdong2",
+      "title": "kt cloud 목동2 공식 시설 서비스 안내",
+      "site_code": "KT_MOKDONG2",
+      "published_at": null,
+      "document_type": "WEB_PAGE",
+      "facts": [
+        {
+          "field": "development_stage",
+          "value": "OPERATING",
+          "locator": "현재 시설 서비스 안내: 개관·고객 입주·상면 서비스 확인",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        }
+      ],
+      "capacities": [],
+      "confirm_operating": true,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13",
+      "publish_existing": true,
+      "site_name": "kt cloud 목동2 데이터센터"
+    },
+    {
+      "source_code": "KT_FACILITY_REVIEW",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=yeouido",
+      "title": "kt cloud 여의도 공식 시설 서비스 안내",
+      "site_code": "KT_YEOUIDO",
+      "published_at": null,
+      "document_type": "WEB_PAGE",
+      "facts": [
+        {
+          "field": "development_stage",
+          "value": "OPERATING",
+          "locator": "현재 시설 서비스 안내: 개관·고객 입주·상면 서비스 확인",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        }
+      ],
+      "capacities": [],
+      "confirm_operating": true,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13",
+      "publish_existing": true,
+      "site_name": "kt cloud 여의도 데이터센터"
+    },
+    {
+      "source_code": "KT_FACILITY_REVIEW",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=gangnam",
+      "title": "kt cloud 강남 공식 시설 서비스 안내",
+      "site_code": "KT_GANGNAM",
+      "published_at": null,
+      "document_type": "WEB_PAGE",
+      "facts": [
+        {
+          "field": "development_stage",
+          "value": "OPERATING",
+          "locator": "현재 시설 서비스 안내: 개관·고객 입주·상면 서비스 확인",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        }
+      ],
+      "capacities": [],
+      "confirm_operating": true,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13",
+      "publish_existing": true,
+      "site_name": "kt cloud 강남 데이터센터"
+    },
+    {
+      "source_code": "KT_FACILITY_REVIEW",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=namguro",
+      "title": "kt cloud 남구로 공식 시설 서비스 안내",
+      "site_code": "KT_NAMGURO",
+      "published_at": null,
+      "document_type": "WEB_PAGE",
+      "facts": [
+        {
+          "field": "development_stage",
+          "value": "OPERATING",
+          "locator": "현재 시설 서비스 안내: 개관·고객 입주·상면 서비스 확인",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        }
+      ],
+      "capacities": [],
+      "confirm_operating": true,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13",
+      "publish_existing": true,
+      "site_name": "kt cloud 남구로 데이터센터"
+    },
+    {
+      "source_code": "KT_FACILITY_REVIEW",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=beakseok",
+      "title": "kt cloud 백석 AI 공식 시설 서비스 안내",
+      "site_code": "KT_BAEKSEOK_AI",
+      "published_at": null,
+      "document_type": "WEB_PAGE",
+      "facts": [
+        {
+          "field": "development_stage",
+          "value": "OPERATING",
+          "locator": "현재 시설 서비스 안내: 개관·고객 입주·상면 서비스 확인",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        },
+        {
+          "field": "gpu_hpc_ready",
+          "value": true,
+          "locator": "고집적랙을 제공하는 AI 전용 시설; 개관2024년8월",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        }
+      ],
+      "capacities": [],
+      "confirm_operating": true,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13",
+      "publish_existing": true,
+      "site_name": "kt cloud 백석 AI 데이터센터"
+    },
+    {
+      "source_code": "KT_FACILITY_REVIEW",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=gyeongbuk",
+      "title": "kt cloud 경북 CDC 공식 시설 서비스 안내",
+      "site_code": "KT_GYEONGBUK_AI",
+      "published_at": null,
+      "document_type": "WEB_PAGE",
+      "facts": [
+        {
+          "field": "development_stage",
+          "value": "OPERATING",
+          "locator": "현재 시설 서비스 안내: 개관·고객 입주·상면 서비스 확인",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        },
+        {
+          "field": "operating_scope_summary",
+          "value": "2025년5월 개관, 공공·민간 클라우드 및 AI서버·Colocation 서비스",
+          "locator": "AI서버+Colocation 인프라 및 건물개요",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        }
+      ],
+      "capacities": [],
+      "confirm_operating": true,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13",
+      "publish_existing": true,
+      "site_name": "kt cloud 경북 CDC 데이터센터"
+    },
+    {
+      "source_code": "KT_FACILITY_REVIEW",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=daejeon",
+      "title": "kt cloud 대전 공식 시설 서비스 안내",
+      "site_code": "KT_DAEJEON",
+      "published_at": null,
+      "document_type": "WEB_PAGE",
+      "facts": [
+        {
+          "field": "development_stage",
+          "value": "OPERATING",
+          "locator": "현재 시설 서비스 안내: 개관·고객 입주·상면 서비스 확인",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        }
+      ],
+      "capacities": [],
+      "confirm_operating": true,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13",
+      "publish_existing": true,
+      "site_name": "kt cloud 대전 데이터센터"
+    },
+    {
+      "source_code": "KT_FACILITY_REVIEW",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=bundang",
+      "title": "kt cloud 분당 공식 시설 서비스 안내",
+      "site_code": "KT_BUNDANG",
+      "published_at": null,
+      "document_type": "WEB_PAGE",
+      "facts": [
+        {
+          "field": "development_stage",
+          "value": "OPERATING",
+          "locator": "현재 시설 서비스 안내: 개관·고객 입주·상면 서비스 확인",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        },
+        {
+          "field": "rack_density_kw",
+          "value": 20,
+          "locator": "하이퍼스케일 AI존20kW 이상. 센터 전체 평균값 아님",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": "kW"
+        }
+      ],
+      "capacities": [],
+      "confirm_operating": true,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13",
+      "publish_existing": true,
+      "site_name": "kt cloud 분당 데이터센터"
+    },
+    {
+      "source_code": "KT_FACILITY_REVIEW",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=cdc",
+      "title": "kt cloud 천안 클라우드 전용 CDC 시설 안내",
+      "site_code": "KT_CHEONAN",
+      "published_at": null,
+      "document_type": "WEB_PAGE",
+      "facts": [
+        {
+          "field": "operating_scope_summary",
+          "value": "2010년 개관 클라우드 전용 센터; 별도 코로케이션 제공 확인 전 공급 집계 제외",
+          "locator": "공식 천안CDC Cloud 전용 설명",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        }
+      ],
+      "capacities": [],
+      "confirm_operating": true,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13",
+      "publish_existing": true,
+      "operating_scope": "CLOUD_SELF_USE",
+      "site_name": "kt cloud 천안 클라우드 데이터센터"
+    },
+    {
+      "source_code": "KT_FACILITY_REVIEW",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_facilityPage",
+      "title": "kt cloud 현재 시설 서비스·센터별 운영 연락처",
+      "site_code": null,
+      "published_at": null,
+      "document_type": "WEB_PAGE",
+      "facts": [],
+      "capacities": [],
+      "confirm_operating": false,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13",
+      "publish_existing": true,
+      "site_reviews": [
+        {
+          "site_code": "KT_SONGJEONG",
+          "site_name": "kt cloud 송정 GHC 데이터센터",
+          "confirm_operating": true,
+          "facts": [
+            {
+              "field": "operating_scope_summary",
+              "value": "공식 DC 서비스의 현행 송정 GHC 센터 운영 연락처 확인; MW 미공개",
+              "locator": "시설 페이지 센터별 고객 상담 운영 목록",
+              "status": "CONFIRMED",
+              "origin": "PRIMARY",
+              "unit": null
+            }
+          ],
+          "capacities": []
+        },
+        {
+          "site_code": "KT_BEOMIL",
+          "site_name": "kt cloud 범일 데이터센터",
+          "confirm_operating": true,
+          "facts": [
+            {
+              "field": "operating_scope_summary",
+              "value": "공식 DC 서비스의 현행 범일 센터 운영 연락처 확인; MW 미공개",
+              "locator": "시설 페이지 센터별 고객 상담 운영 목록",
+              "status": "CONFIRMED",
+              "origin": "PRIMARY",
+              "unit": null
+            }
+          ],
+          "capacities": []
+        }
+      ]
+    },
+    {
+      "source_code": "KT_CORP_REVIEW",
+      "url": "https://www.ktcloud.com/media/press/20251106090958820?lan=kor",
+      "title": "kt cloud 가산 AI 데이터센터 개소·제원 공식 발표",
+      "site_code": "KT_GASAN",
+      "published_at": "2025-11-06",
+      "document_type": "WEB_PAGE",
+      "facts": [
+        {
+          "field": "gpu_hpc_ready",
+          "value": true,
+          "locator": "상업용 AI 센터 개소 및 GPU 테스트",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        },
+        {
+          "field": "cooling",
+          "value": "공랭+Direct-to-Chip 액체냉각",
+          "locator": "실제 상용 적용 D2C",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        },
+        {
+          "field": "power_scope_summary",
+          "value": "수전40MW·IT26MW; 계약·가용용량 미공개",
+          "locator": "개소 발표 시설 제원",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        }
+      ],
+      "capacities": [
+        {
+          "type": "IT_LOAD_MW",
+          "mw": 26,
+          "locator": "총 IT 용량26MW"
+        },
+        {
+          "type": "GRID_INTAKE_MW",
+          "mw": 40,
+          "locator": "총 수전 용량40MW"
+        }
+      ],
+      "confirm_operating": true,
+      "note": "공식 시설 안내 개소식2025년10월과 보도자료 발표일11월6일 구분. 발표일을 RFS로 저장하지 않음",
+      "publish_existing": true,
+      "site_name": "kt cloud 가산 AI 데이터센터"
+    },
+    {
+      "source_code": "SKT_OFFICIAL_REVIEW",
+      "url": "https://news.sktelecom.com/229987",
+      "title": "SKT 공식 운영8개 센터 및 울산·구로 건설, SK호라이즌 분할 추진",
+      "site_code": "",
+      "published_at": "2026-08-27",
+      "document_type": "WEB_PAGE",
+      "facts": [],
+      "capacities": [],
+      "confirm_operating": false,
+      "note": "분할·설립은2027년1분기 목표. 현재 운영사를 신설 예정 회사로 교체하지 않음.318MW는 회사 포트폴리오 총량이라 센터별 합계에 추가하지 않음",
+      "publish_existing": true,
+      "site_reviews": [
+        {
+          "site_code": "SKB_SEOCHO",
+          "site_name": "SK브로드밴드 서초 데이터센터",
+          "confirm_operating": true,
+          "facts": [
+            {
+              "field": "development_stage",
+              "value": "OPERATING",
+              "locator": "운영 중8개 센터 각주: 서초/일산2곳/분당/가산/센텀/양주/판교",
+              "status": "CONFIRMED",
+              "origin": "PRIMARY",
+              "unit": null
+            },
+            {
+              "field": "governance_transition",
+              "value": "SK호라이즌은2027년1분기 분할·설립 목표; 현 운영주체 SK브로드밴드",
+              "locator": "공식 인적분할 계획 및 설립 목표",
+              "status": "CONFIRMED",
+              "origin": "PRIMARY",
+              "unit": null
+            }
+          ],
+          "capacities": []
+        },
+        {
+          "site_code": "SKB_ILSAN",
+          "site_name": "SK브로드밴드 일산 데이터센터",
+          "confirm_operating": true,
+          "facts": [
+            {
+              "field": "development_stage",
+              "value": "OPERATING",
+              "locator": "운영 중8개 센터 각주: 서초/일산2곳/분당/가산/센텀/양주/판교",
+              "status": "CONFIRMED",
+              "origin": "PRIMARY",
+              "unit": null
+            },
+            {
+              "field": "governance_transition",
+              "value": "SK호라이즌은2027년1분기 분할·설립 목표; 현 운영주체 SK브로드밴드",
+              "locator": "공식 인적분할 계획 및 설립 목표",
+              "status": "CONFIRMED",
+              "origin": "PRIMARY",
+              "unit": null
+            }
+          ],
+          "capacities": []
+        },
+        {
+          "site_code": "SKB_ILSAN2",
+          "site_name": "SK브로드밴드 일산 제2 데이터센터",
+          "confirm_operating": true,
+          "facts": [
+            {
+              "field": "development_stage",
+              "value": "OPERATING",
+              "locator": "운영 중8개 센터 각주: 서초/일산2곳/분당/가산/센텀/양주/판교",
+              "status": "CONFIRMED",
+              "origin": "PRIMARY",
+              "unit": null
+            },
+            {
+              "field": "governance_transition",
+              "value": "SK호라이즌은2027년1분기 분할·설립 목표; 현 운영주체 SK브로드밴드",
+              "locator": "공식 인적분할 계획 및 설립 목표",
+              "status": "CONFIRMED",
+              "origin": "PRIMARY",
+              "unit": null
+            }
+          ],
+          "capacities": []
+        },
+        {
+          "site_code": "SKB_BUNDANG",
+          "site_name": "SK브로드밴드 분당 데이터센터",
+          "confirm_operating": true,
+          "facts": [
+            {
+              "field": "development_stage",
+              "value": "OPERATING",
+              "locator": "운영 중8개 센터 각주: 서초/일산2곳/분당/가산/센텀/양주/판교",
+              "status": "CONFIRMED",
+              "origin": "PRIMARY",
+              "unit": null
+            },
+            {
+              "field": "governance_transition",
+              "value": "SK호라이즌은2027년1분기 분할·설립 목표; 현 운영주체 SK브로드밴드",
+              "locator": "공식 인적분할 계획 및 설립 목표",
+              "status": "CONFIRMED",
+              "origin": "PRIMARY",
+              "unit": null
+            }
+          ],
+          "capacities": []
+        },
+        {
+          "site_code": "SKB_GASAN",
+          "site_name": "SK브로드밴드 가산 데이터센터",
+          "confirm_operating": true,
+          "facts": [
+            {
+              "field": "development_stage",
+              "value": "OPERATING",
+              "locator": "운영 중8개 센터 각주: 서초/일산2곳/분당/가산/센텀/양주/판교",
+              "status": "CONFIRMED",
+              "origin": "PRIMARY",
+              "unit": null
+            },
+            {
+              "field": "governance_transition",
+              "value": "SK호라이즌은2027년1분기 분할·설립 목표; 현 운영주체 SK브로드밴드",
+              "locator": "공식 인적분할 계획 및 설립 목표",
+              "status": "CONFIRMED",
+              "origin": "PRIMARY",
+              "unit": null
+            }
+          ],
+          "capacities": []
+        },
+        {
+          "site_code": "SKB_CENTUM",
+          "site_name": "SK브로드밴드 센텀 데이터센터",
+          "confirm_operating": true,
+          "facts": [
+            {
+              "field": "development_stage",
+              "value": "OPERATING",
+              "locator": "운영 중8개 센터 각주: 서초/일산2곳/분당/가산/센텀/양주/판교",
+              "status": "CONFIRMED",
+              "origin": "PRIMARY",
+              "unit": null
+            },
+            {
+              "field": "governance_transition",
+              "value": "SK호라이즌은2027년1분기 분할·설립 목표; 현 운영주체 SK브로드밴드",
+              "locator": "공식 인적분할 계획 및 설립 목표",
+              "status": "CONFIRMED",
+              "origin": "PRIMARY",
+              "unit": null
+            }
+          ],
+          "capacities": []
+        },
+        {
+          "site_code": "SKB_YANGJU",
+          "site_name": "SK브로드밴드 양주 데이터센터",
+          "confirm_operating": true,
+          "facts": [
+            {
+              "field": "development_stage",
+              "value": "OPERATING",
+              "locator": "운영 중8개 센터 각주: 서초/일산2곳/분당/가산/센텀/양주/판교",
+              "status": "CONFIRMED",
+              "origin": "PRIMARY",
+              "unit": null
+            },
+            {
+              "field": "governance_transition",
+              "value": "SK호라이즌은2027년1분기 분할·설립 목표; 현 운영주체 SK브로드밴드",
+              "locator": "공식 인적분할 계획 및 설립 목표",
+              "status": "CONFIRMED",
+              "origin": "PRIMARY",
+              "unit": null
+            }
+          ],
+          "capacities": []
+        },
+        {
+          "site_code": "SKB_PANGYO",
+          "site_name": "SK브로드밴드 판교 데이터센터",
+          "confirm_operating": true,
+          "facts": [
+            {
+              "field": "development_stage",
+              "value": "OPERATING",
+              "locator": "운영 중8개 센터 각주: 서초/일산2곳/분당/가산/센텀/양주/판교",
+              "status": "CONFIRMED",
+              "origin": "PRIMARY",
+              "unit": null
+            },
+            {
+              "field": "governance_transition",
+              "value": "SK호라이즌은2027년1분기 분할·설립 목표; 현 운영주체 SK브로드밴드",
+              "locator": "공식 인적분할 계획 및 설립 목표",
+              "status": "CONFIRMED",
+              "origin": "PRIMARY",
+              "unit": null
+            }
+          ],
+          "capacities": []
+        }
+      ]
+    },
+    {
+      "source_code": "SKT_OFFICIAL_REVIEW",
+      "url": "https://biz.skbroadband.com/page.do?menu_id=P06010100",
+      "title": "SK브로드밴드 가산·서초·일산·분당 시설 공식 안내",
+      "site_code": "SKB_GASAN",
+      "published_at": null,
+      "document_type": "WEB_PAGE",
+      "facts": [
+        {
+          "field": "announced_capacity_summary",
+          "value": "가산46MW 발표. 수전·IT 구분 미표기이므로 각 MW 지표에 미반영",
+          "locator": "가산센터 특징 Location46MW",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        },
+        {
+          "field": "rack_density_kw",
+          "value": 20,
+          "locator": "가산 랙당 최대20kW; 센터 평균값 아님",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": "kW"
+        },
+        {
+          "field": "tier_design_certification",
+          "value": "Uptime Tier III 인증 소개; 인증 유형 세부 범위 추가 확인",
+          "locator": "가산센터 Certification",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        }
+      ],
+      "capacities": [],
+      "confirm_operating": false,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13",
+      "publish_existing": true
+    },
+    {
+      "source_code": "KT_CORP_REVIEW",
+      "url": "https://www.ktcloud.com/media/press/20260929084129950?lan=kor",
+      "title": "kt cloud·SGC 군산 AI 데이터센터 개발 참여 공식 발표",
+      "site_code": "SGC_GUNSAN",
+      "published_at": "2026-09-28",
+      "document_type": "WEB_PAGE",
+      "facts": [
+        {
+          "field": "development_stage",
+          "value": "SITE_SECURED",
+          "locator": "연말2026 착공 계획. 제목 착수는 실제 건설 착공과 구분",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        },
+        {
+          "field": "announced_capacity_summary",
+          "value": "Phase1 60MW, 향후300MW 확장 계획. 수전·IT 기준 미공개로 공급 MW 합계 제외",
+          "locator": "1단계 모듈형60MW 및 장래 확대300MW",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        },
+        {
+          "field": "planned_construction_period",
+          "value": "2026년 말 착공 계획",
+          "locator": "공식 본문 올해 말 착공",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        },
+        {
+          "field": "planned_rfs_summary",
+          "value": "1단계2028년1분기 운영 목표",
+          "locator": "2028년1분기 본격 운영",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        },
+        {
+          "field": "gpu_hpc_design_ready",
+          "value": true,
+          "locator": "Vera Rubin 대응 AI Ready 설계",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        },
+        {
+          "field": "dlc_design_ready",
+          "value": true,
+          "locator": "전층 액체냉각 특화 설계",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        }
+      ],
+      "capacities": [],
+      "confirm_operating": false,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13",
+      "publish_existing": true
+    },
+    {
+      "source_code": "SKT_OFFICIAL_REVIEW",
+      "url": "https://news.sktelecom.com/214708",
+      "title": "SK AI 데이터센터 울산 기공식 공식 발표",
+      "site_code": "SK_AWS_ULSAN",
+      "published_at": "2025-08-29",
+      "document_type": "WEB_PAGE",
+      "facts": [
+        {
+          "field": "development_stage",
+          "value": "CONSTRUCTION",
+          "locator": "2025년8월29일 기공식·착공",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        },
+        {
+          "field": "cooling",
+          "value": "개발 설계: 공랭+수랭 하이브리드",
+          "locator": "울산 시설 설계",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        },
+        {
+          "field": "gpu_hpc_design_ready",
+          "value": true,
+          "locator": "초고집적 AI 서버 시설 설계",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        }
+      ],
+      "capacities": [],
+      "confirm_operating": false,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13",
+      "publish_existing": true
+    },
+    {
+      "source_code": "SKT_OFFICIAL_REVIEW",
+      "url": "https://news.sktelecom.com/en/1948",
+      "title": "SK·AWS 울산 AI Zone 계약 및2027년 운영 목표",
+      "site_code": "SK_AWS_ULSAN",
+      "published_at": "2025-06-22",
+      "document_type": "WEB_PAGE",
+      "facts": [
+        {
+          "field": "planned_rfs_summary",
+          "value": "2027년 최초 운영 목표. 월·분기 미공개",
+          "locator": "AWS AI Zone operations expected in2027",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        },
+        {
+          "field": "phase1_contract_status",
+          "value": "SK-AWS15년 협력 계약 발표. 시설별 계약 MW·가용 MW 미공개",
+          "locator": "15-year strategic deal",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        }
+      ],
+      "capacities": [],
+      "confirm_operating": false,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13",
+      "publish_existing": true
+    },
+    {
+      "source_code": "SKT_OFFICIAL_REVIEW",
+      "url": "https://news.sktelecom.com/213527",
+      "title": "SKT/SKB AIDC 사업부장 울산·구로 개발 일정",
+      "site_code": "SKHORIZON_GURO",
+      "published_at": "2025-07-03",
+      "document_type": "WEB_PAGE",
+      "facts": [
+        {
+          "field": "planned_rfs_summary",
+          "value": "구로2030년 완공 목표. 서비스 개시 RFS 미공개",
+          "locator": "사업계획2030년 구로DC 완공",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        },
+        {
+          "field": "governance_transition",
+          "value": "SK호라이즌은 신설 예정 법인. 사업 추진 SKT/SKB, 운영 승계는 완료 확인 필요",
+          "locator": "2026년8월27일 발표와 교차 검증",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY",
+          "unit": null
+        }
+      ],
+      "capacities": [],
+      "confirm_operating": false,
+      "note": "공개 공식 원문 확인. 확인일2026-10-13",
+      "publish_existing": true
+    },
+    {
+      "source_code": "KT_CORP_REVIEW",
+      "url": "https://www.ktcloud.com/media/press/20261007091727504?lan=kor",
+      "title": "kt cloud 청라 AIDC 수전50MW·2030년1분기 준공 계획",
+      "site_code": "",
+      "published_at": "2026-10-07",
+      "document_type": "WEB_PAGE",
+      "facts": [],
+      "capacities": [],
+      "confirm_operating": false,
+      "note": "수전50MW·2026년4분기 착공·2030년1분기 준공 발표 확인. 기존 YIDO_CHEONGNA(청라50MW)와 동일성 확인 전 새 센터·MW 중복 반영 보류. RFS 미공개",
+      "publish_existing": true
+    }
+  ],
+  "relationships": [
+    {
+      "site_code": "KT_YONGSAN",
+      "company_id": "ORG-004",
+      "name": "kt cloud",
+      "roles": [
+        "OPERATOR"
+      ],
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=yongsan"
+    },
+    {
+      "site_code": "KT_MOKDONG1",
+      "company_id": "ORG-004",
+      "name": "kt cloud",
+      "roles": [
+        "OPERATOR"
+      ],
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=mokdong1"
+    },
+    {
+      "site_code": "KT_MOKDONG2",
+      "company_id": "ORG-004",
+      "name": "kt cloud",
+      "roles": [
+        "OPERATOR"
+      ],
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=mokdong2"
+    },
+    {
+      "site_code": "KT_YEOUIDO",
+      "company_id": "ORG-004",
+      "name": "kt cloud",
+      "roles": [
+        "OPERATOR"
+      ],
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=yeouido"
+    },
+    {
+      "site_code": "KT_GANGNAM",
+      "company_id": "ORG-004",
+      "name": "kt cloud",
+      "roles": [
+        "OPERATOR"
+      ],
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=gangnam"
+    },
+    {
+      "site_code": "KT_NAMGURO",
+      "company_id": "ORG-004",
+      "name": "kt cloud",
+      "roles": [
+        "OPERATOR"
+      ],
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=namguro"
+    },
+    {
+      "site_code": "KT_BAEKSEOK_AI",
+      "company_id": "ORG-004",
+      "name": "kt cloud",
+      "roles": [
+        "OPERATOR"
+      ],
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=beakseok"
+    },
+    {
+      "site_code": "KT_GYEONGBUK_AI",
+      "company_id": "ORG-004",
+      "name": "kt cloud",
+      "roles": [
+        "OPERATOR"
+      ],
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=gyeongbuk"
+    },
+    {
+      "site_code": "KT_DAEJEON",
+      "company_id": "ORG-004",
+      "name": "kt cloud",
+      "roles": [
+        "OPERATOR"
+      ],
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=daejeon"
+    },
+    {
+      "site_code": "KT_BUNDANG",
+      "company_id": "ORG-004",
+      "name": "kt cloud",
+      "roles": [
+        "OPERATOR"
+      ],
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=bundang"
+    },
+    {
+      "site_code": "KT_CHEONAN",
+      "company_id": "ORG-004",
+      "name": "kt cloud",
+      "roles": [
+        "OPERATOR"
+      ],
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=cdc"
+    },
+    {
+      "site_code": "KT_SONGJEONG",
+      "company_id": "ORG-004",
+      "name": "kt cloud",
+      "roles": [
+        "OPERATOR"
+      ],
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_facilityPage"
+    },
+    {
+      "site_code": "KT_BEOMIL",
+      "company_id": "ORG-004",
+      "name": "kt cloud",
+      "roles": [
+        "OPERATOR"
+      ],
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_facilityPage"
+    },
+    {
+      "site_code": "KT_GASAN",
+      "company_id": "ORG-004",
+      "name": "kt cloud",
+      "roles": [
+        "OPERATOR"
+      ],
+      "url": "https://www.ktcloud.com/media/press/20251106090958820?lan=kor"
+    },
+    {
+      "site_code": "SKB_SEOCHO",
+      "company_id": "ORG-003",
+      "name": "SK브로드밴드",
+      "roles": [
+        "OPERATOR"
+      ],
+      "url": "https://news.sktelecom.com/229987"
+    },
+    {
+      "site_code": "SKB_ILSAN",
+      "company_id": "ORG-003",
+      "name": "SK브로드밴드",
+      "roles": [
+        "OPERATOR"
+      ],
+      "url": "https://news.sktelecom.com/229987"
+    },
+    {
+      "site_code": "SKB_ILSAN2",
+      "company_id": "ORG-003",
+      "name": "SK브로드밴드",
+      "roles": [
+        "OPERATOR"
+      ],
+      "url": "https://news.sktelecom.com/229987"
+    },
+    {
+      "site_code": "SKB_BUNDANG",
+      "company_id": "ORG-003",
+      "name": "SK브로드밴드",
+      "roles": [
+        "OPERATOR"
+      ],
+      "url": "https://news.sktelecom.com/229987"
+    },
+    {
+      "site_code": "SKB_GASAN",
+      "company_id": "ORG-003",
+      "name": "SK브로드밴드",
+      "roles": [
+        "OPERATOR"
+      ],
+      "url": "https://news.sktelecom.com/229987"
+    },
+    {
+      "site_code": "SKB_CENTUM",
+      "company_id": "ORG-003",
+      "name": "SK브로드밴드",
+      "roles": [
+        "OPERATOR"
+      ],
+      "url": "https://news.sktelecom.com/229987"
+    },
+    {
+      "site_code": "SKB_YANGJU",
+      "company_id": "ORG-003",
+      "name": "SK브로드밴드",
+      "roles": [
+        "OPERATOR"
+      ],
+      "url": "https://news.sktelecom.com/229987"
+    },
+    {
+      "site_code": "SKB_PANGYO",
+      "company_id": "ORG-003",
+      "name": "SK브로드밴드",
+      "roles": [
+        "OPERATOR"
+      ],
+      "url": "https://news.sktelecom.com/229987"
+    },
+    {
+      "site_code": "SGC_GUNSAN",
+      "name": "kt cloud",
+      "company_id": "ORG-004",
+      "roles": [
+        "OPERATOR",
+        "DBO_PROVIDER"
+      ],
+      "url": "https://www.ktcloud.com/media/press/20260929084129950?lan=kor"
+    },
+    {
+      "site_code": "SGC_GUNSAN",
+      "name": "SGC에너지",
+      "company_id": "ORG_SGC_ENERGY",
+      "roles": [
+        "DEVELOPER"
+      ],
+      "url": "https://www.ktcloud.com/media/press/20260929084129950?lan=kor"
+    },
+    {
+      "site_code": "SGC_GUNSAN",
+      "name": "현대엔지니어링",
+      "company_id": "ORG_HYUNDAI_ENG",
+      "roles": [
+        "BUILDER"
+      ],
+      "url": "https://www.ktcloud.com/media/press/20260929084129950?lan=kor"
+    },
+    {
+      "site_code": "SK_AWS_ULSAN",
+      "name": "SK텔레콤",
+      "company_id": "ORG_SK_TELECOM",
+      "roles": [
+        "DEVELOPER"
+      ],
+      "url": "https://news.sktelecom.com/214708"
+    },
+    {
+      "site_code": "SK_AWS_ULSAN",
+      "name": "SK브로드밴드",
+      "company_id": "ORG-003",
+      "roles": [
+        "OPERATOR"
+      ],
+      "url": "https://news.sktelecom.com/en/1948"
+    },
+    {
+      "site_code": "SK_AWS_ULSAN",
+      "name": "SK에코플랜트",
+      "company_id": "ORG-020",
+      "roles": [
+        "BUILDER"
+      ],
+      "url": "https://news.sktelecom.com/214708"
+    },
+    {
+      "site_code": "SKHORIZON_GURO",
+      "name": "SK텔레콤",
+      "company_id": "ORG_SK_TELECOM",
+      "roles": [
+        "DEVELOPER"
+      ],
+      "url": "https://news.sktelecom.com/229987"
+    },
+    {
+      "site_code": "SKHORIZON_GURO",
+      "name": "SK브로드밴드",
+      "company_id": "ORG-003",
+      "roles": [
+        "OPERATOR"
+      ],
+      "url": "https://news.sktelecom.com/229987"
+    }
+  ],
+  "development_sites": [
+    {
+      "site_code": "SGC_GUNSAN",
+      "site_name": "SGC·kt cloud 군산 AI 데이터센터",
+      "address": "전북특별자치도 군산시",
+      "sido": "전북특별자치도",
+      "sigungu": "군산시",
+      "location_precision": "DISTRICT",
+      "commercial_model": "MULTI_MODEL",
+      "url": "https://www.ktcloud.com/media/press/20260929084129950?lan=kor",
+      "note": "공식 사업 범위 확인. 미공개 IT·계약·가용MW 추정 안 함. 부지 상세 주소·좌표 추가 확인 필요",
+      "projects": [
+        {
+          "code": "SGC_GUNSAN_DEV",
+          "name": "SGC·kt cloud 군산 AI 데이터센터 개발",
+          "status": "SITE_SECURED",
+          "type": "HYPERSCALE",
+          "url": "https://www.ktcloud.com/media/press/20260929084129950?lan=kor",
+          "note": "공식 사업 범위 확인. 미공개 IT·계약·가용MW 추정 안 함. 부지 상세 주소·좌표 추가 확인 필요",
+          "planned_rfs_period": "2028-Q1",
+          "planned_rfs_precision": "QUARTER"
+        }
+      ],
+      "phases": [
+        {
+          "code": "SGC_GUNSAN_PH1",
+          "project_code": "SGC_GUNSAN_DEV",
+          "name": "1단계",
+          "order": 1,
+          "status": "SITE_SECURED",
+          "note": "발표 정밀도 보존. 준공과 RFS 구분",
+          "url": "https://www.ktcloud.com/media/press/20260929084129950?lan=kor",
+          "planned_rfs_period": "2028-Q1",
+          "planned_rfs_precision": "QUARTER",
+          "planned_completion_period": null,
+          "planned_completion_precision": null
+        }
+      ],
+      "capacities": []
+    },
+    {
+      "site_code": "SK_AWS_ULSAN",
+      "site_name": "SK-AWS 울산 AI 데이터센터",
+      "address": "울산광역시 미포국가산업단지",
+      "sido": "울산광역시",
+      "sigungu": null,
+      "location_precision": "DISTRICT",
+      "commercial_model": "MULTI_MODEL",
+      "url": "https://news.sktelecom.com/214708",
+      "note": "공식 사업 범위 확인. 미공개 IT·계약·가용MW 추정 안 함. 부지 상세 주소·좌표 추가 확인 필요",
+      "projects": [
+        {
+          "code": "SK_AWS_ULSAN_DEV",
+          "name": "SK-AWS 울산 AI 데이터센터 개발",
+          "status": "CONSTRUCTION",
+          "type": "HYPERSCALE",
+          "url": "https://news.sktelecom.com/214708",
+          "note": "공식 사업 범위 확인. 미공개 IT·계약·가용MW 추정 안 함. 부지 상세 주소·좌표 추가 확인 필요",
+          "planned_rfs_period": "2027",
+          "planned_rfs_precision": "YEAR"
+        }
+      ],
+      "phases": [
+        {
+          "code": "SK_AWS_ULSAN_PH1",
+          "project_code": "SK_AWS_ULSAN_DEV",
+          "name": "1단계",
+          "order": 1,
+          "status": "CONSTRUCTION",
+          "note": "발표 정밀도 보존. 준공과 RFS 구분",
+          "url": "https://news.sktelecom.com/214708",
+          "planned_rfs_period": "2027",
+          "planned_rfs_precision": "YEAR",
+          "planned_completion_period": null,
+          "planned_completion_precision": null
+        }
+      ],
+      "capacities": []
+    },
+    {
+      "site_code": "SKHORIZON_GURO",
+      "site_name": "SK 구로 AI 데이터센터",
+      "address": "서울특별시 구로구",
+      "sido": "서울특별시",
+      "sigungu": "구로구",
+      "location_precision": "DISTRICT",
+      "commercial_model": "MULTI_MODEL",
+      "url": "https://news.sktelecom.com/229987",
+      "note": "공식 사업 범위 확인. 미공개 IT·계약·가용MW 추정 안 함. 부지 상세 주소·좌표 추가 확인 필요",
+      "projects": [
+        {
+          "code": "SKHORIZON_GURO_DEV",
+          "name": "SK 구로 AI 데이터센터 개발",
+          "status": "CONSTRUCTION",
+          "type": "HYPERSCALE",
+          "url": "https://news.sktelecom.com/229987",
+          "note": "공식 사업 범위 확인. 미공개 IT·계약·가용MW 추정 안 함. 부지 상세 주소·좌표 추가 확인 필요",
+          "planned_rfs_period": null,
+          "planned_rfs_precision": null
+        }
+      ],
+      "phases": [
+        {
+          "code": "SKHORIZON_GURO_PH1",
+          "project_code": "SKHORIZON_GURO_DEV",
+          "name": "전체 사업 일정",
+          "order": 1,
+          "status": "CONSTRUCTION",
+          "note": "발표 정밀도 보존. 준공과 RFS 구분",
+          "url": "https://news.sktelecom.com/213527",
+          "planned_rfs_period": null,
+          "planned_rfs_precision": null,
+          "planned_completion_period": "2030",
+          "planned_completion_precision": "YEAR"
+        }
+      ],
+      "capacities": []
+    }
+  ],
+  "new_sites": [
+    {
+      "code": "KT_BUNDANG",
+      "name": "kt cloud 분당 데이터센터",
+      "address": "경기도 성남시 분당구",
+      "sido": "경기도",
+      "sigungu": "성남시 분당구",
+      "precision": "DISTRICT",
+      "url": "https://www.kt-idc.com/ktidc/viewktidc_introduce_total?idcType=bundang"
+    }
+  ]
+}

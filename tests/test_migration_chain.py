@@ -37,10 +37,10 @@ class MigrationChainTests(unittest.TestCase):
         self.assertEqual(len(seen), 15)
         self.assertEqual(seen[-1], "0001_core_schema")
 
-    def test_latest_revision_is_single_0031_head(self):
+    def test_latest_revision_is_single_0032_head(self):
         revisions = self.revisions()
         heads = set(revisions) - {x for x in revisions.values() if x is not None}
-        self.assertEqual(heads, {'0031_development_completion'})
+        self.assertEqual(heads, {'0032_operator_review'})
 
 
 if __name__ == "__main__":

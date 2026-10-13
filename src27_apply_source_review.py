@@ -14,12 +14,27 @@ from src04_rss_collector import load_env_file, resolve_database_url
 ROOT = Path(__file__).resolve().parent
 DEFAULT = ROOT / 'data/reference/source_review_2026-10-13.json'
 
+def target_reviews(manifest):
+    """One public document can support separately located centers."""
+    for doc in manifest['documents']:
+        yield doc
+        for target in doc.get('site_reviews', []):
+            yield {**doc, **target, 'site_reviews': []}
+
 def validate(manifest):
     checked = date.fromisoformat(manifest['checked_on'])
     if checked > date.today():
         raise ValueError('future review date')
     seen = set()
+    codes=set()
+    import re
+    for s in manifest.get('new_sites', []):
+        if not re.fullmatch(r'[A-Z0-9_]{2,30}',s['code']) or s['code'] in codes or not s['name'] or not s['address']:
+            raise ValueError('invalid new site')
+        codes.add(s['code'])
     for doc in manifest['documents']:
+        allowed={'site_code','site_name','facts','capacities','confirm_operating','operating_scope'}
+        if any(set(t)-allowed for t in doc.get('site_reviews', [])):raise ValueError('site review cannot override its evidence document')
         parsed = urlparse(doc['url'])
         if parsed.scheme != 'https' or not parsed.hostname or parsed.username or parsed.password:
             raise ValueError('invalid public URL')
@@ -28,6 +43,10 @@ def validate(manifest):
         seen.add(doc['url'])
         if doc.get('published_at') and date.fromisoformat(doc['published_at']) > checked:
             raise ValueError('future publication date')
+    if any(s['url'] not in seen for s in manifest.get('new_sites', [])):raise ValueError('unverified new site')
+    for doc in target_reviews(manifest):
+        if doc.get('operating_scope', 'COMMERCIAL') not in {'COMMERCIAL','CLOUD_SELF_USE','ENTERPRISE'}:
+            raise ValueError('invalid operating scope')
         if (doc['facts'] or doc['capacities'] or doc['confirm_operating']) and not doc.get('site_code'):
             raise ValueError('missing target site')
         for cap in doc['capacities']:
@@ -47,6 +66,17 @@ def audit(c, actor, kind, identity, before, after, reason):
 
 def apply_review(c, manifest, storage=None):
     actor=manifest['reviewer'];counts=dict(new_sources=0,new_documents=0,new_facts=0,new_capacities=0,new_projects=0,promoted_sites=0,corrected_capacities=0,new_companies=0,new_relationships=0)
+    counts['new_sites']=0
+    urls={d['url'] for d in manifest['documents']}
+    for s in manifest.get('new_sites', []):
+        if s['url'] not in urls:
+            raise ValueError('new site lacks reviewed source')
+        existing=c.execute(text('SELECT site_id FROM dc_site WHERE site_code=:code'),s).scalar()
+        if existing:continue
+        sid=c.execute(text("""INSERT INTO dc_site(site_code,site_name,site_name_raw,address_standard,address_raw,sido,sigungu,
+            location_precision,coordinate_quality,review_status,public_visible)
+            VALUES(:code,:name,:name,:address,:address,:sido,:sigungu,:precision,'U','CONFIRMED',true) RETURNING site_id"""),s).scalar_one()
+        audit(c,actor,'SITE',sid,None,s,s['url']);counts['new_sites']+=1
     for s in manifest['sources']:
         existing=c.execute(text('SELECT source_id FROM source_registry WHERE source_code=:code'),s).scalar()
         if existing:
@@ -80,21 +110,26 @@ def apply_review(c, manifest, storage=None):
             vid=c.execute(text('''INSERT INTO evidence_document_version(document_id,version_no,mime_type,content_hash_sha256,raw_storage_path,parser_name,parser_version,extraction_status)
                 VALUES(:did,COALESCE((SELECT MAX(version_no)+1 FROM evidence_document_version WHERE document_id=:did),1),'application/json',:hash,:path,'manual-fact-review','1','SUCCESS') RETURNING document_version_id'''),dict(did=did,hash=digest,path=str(path))).scalar_one()
         documents[d['url']]=(did,vid)
-    for d in manifest['documents']:
+    for d in target_reviews(manifest):
         if not d.get('site_code'):
             continue
         site=c.execute(text('SELECT * FROM dc_site WHERE site_code=:code AND record_status=\'ACTIVE\''),{'code':d['site_code']}).mappings().one()
         site_id=site['site_id'];vid=documents[d['url']][1]
+        if d.get('site_name') and d['site_name']!=site['site_name']:
+            c.execute(text('UPDATE dc_site SET site_name=:name,updated_at=NOW() WHERE site_id=:id'),{'name':d['site_name'],'id':site_id})
+            audit(c,actor,'SITE',site_id,{'site_name':site['site_name']},{'site_name':d['site_name']},d['url'])
         if d['confirm_operating']:
+            scope=d.get('operating_scope','COMMERCIAL')
             pcode=d['site_code']+'_OP'
             exists=c.execute(text("SELECT project_id FROM dc_project WHERE project_code=:code"),{'code':pcode}).scalar()
             if not exists:
                 pid=c.execute(text('''INSERT INTO dc_project(project_code,site_id,project_name,project_type,project_scope,status_code,review_status,public_visible,scope_note)
-                    VALUES(:code,:site,:name,'COLOCATION','전체 센터','OPERATING','CONFIRMED',true,:note) RETURNING project_id'''),dict(code=pcode,site=site_id,name=site['site_name']+' 상용 운영',note=d['url'])).scalar_one()
+                    VALUES(:code,:site,:name,:type,'전체 센터','OPERATING','CONFIRMED',true,:note) RETURNING project_id'''),dict(code=pcode,site=site_id,name=site['site_name']+' 운영',type='COLOCATION' if scope=='COMMERCIAL' else 'CLOUD',note=d['url'])).scalar_one()
                 audit(c,actor,'PROJECT',pid,None,{'status':'OPERATING'},d['url']);counts['new_projects']+=1
-            if site['commercial_scope_status']!='IN_SCOPE' or site['facility_scope']!='COMMERCIAL':
-                c.execute(text('''UPDATE dc_site SET commercial_scope_status='IN_SCOPE',commercial_model='COLOCATION',commercial_review_status='CONFIRMED',commercial_source_url=:url,commercial_scope_note=:note,facility_scope='COMMERCIAL',facility_review_status='CONFIRMED',facility_source_url=:url,facility_scope_note=:note,updated_at=NOW() WHERE site_id=:site'''),dict(site=site_id,url=d['url'],note='사업자 공식 자료에서 상용 서비스 운영 확인 · '+manifest['checked_on']))
-                audit(c,actor,'SITE',site_id,dict(site),{'commercial_scope_status':'IN_SCOPE','facility_scope':'COMMERCIAL'},d['url']);counts['promoted_sites']+=1
+            commercial='IN_SCOPE' if scope=='COMMERCIAL' else 'OUT_OF_SCOPE'
+            if site['commercial_scope_status']!=commercial or site['facility_scope']!=scope:
+                c.execute(text('''UPDATE dc_site SET commercial_scope_status=:commercial,commercial_model=:model,commercial_review_status='CONFIRMED',commercial_source_url=:url,commercial_scope_note=:note,facility_scope=:scope,facility_review_status='CONFIRMED',facility_source_url=:url,facility_scope_note=:note,updated_at=NOW() WHERE site_id=:site'''),dict(site=site_id,url=d['url'],scope=scope,commercial=commercial,model='COLOCATION' if scope=='COMMERCIAL' else 'UNKNOWN',note='사업자 공식 자료에서 운영 및 시설 범주 확인 · '+manifest['checked_on']))
+                audit(c,actor,'SITE',site_id,dict(site),{'commercial_scope_status':commercial,'facility_scope':scope},d['url']);counts['promoted_sites']+=1
         for f in d['facts']:
             value=json.dumps(f['value'],ensure_ascii=False)
             duplicate=c.execute(text('''SELECT f.fact_id FROM extracted_fact f JOIN fact_evidence fe USING(fact_id) WHERE f.scope_type='SITE' AND f.scope_id=:site AND f.field_name=:field AND f.normalized_value=CAST(:value AS jsonb) AND fe.document_version_id=:vid'''),dict(site=str(site_id),field=f['field'],value=value,vid=vid)).scalar()

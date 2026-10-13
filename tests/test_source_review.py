@@ -60,6 +60,14 @@ class SourceReviewDatabaseTests(unittest.TestCase):
 
 @unittest.skipUnless(os.getenv('DC_TEST_DATABASE')=='1','rollback-only DB test disabled')
 class DiscoveryLinkageTests(unittest.TestCase):
+ def test_kt_alias_cannot_match_skt_or_a_different_kt_center(self):
+  from src04_rss_collector import load_env_file,resolve_database_url
+  from src26_source_quality_audit import ALIASES
+  load_env_file();engine=create_engine(resolve_database_url());self.addCleanup(engine.dispose)
+  aliases={r['site_code']:r['title_pattern'] for r in json.loads(ALIASES.read_text())['aliases']}
+  with engine.connect() as c:
+   for title,expected in [('kt클라우드구로데이터센터운영수주',True),('kt구로데이터센터수주',True),('skt구로데이터센터착공',False),('ktcloud남구로데이터센터',False)]:
+    self.assertEqual(c.execute(text('SELECT :title ~ :pattern'),{'title':title,'pattern':aliases['KT_GURO']}).scalar_one(),expected,title)
  def test_repeated_public_mentions_raise_gap_until_scope_and_project_are_linked(self):
   from src04_rss_collector import load_env_file,resolve_database_url
   from src26_source_quality_audit import discovery_gaps

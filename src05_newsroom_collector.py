@@ -14,7 +14,8 @@ from datetime import date, datetime
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
-from urllib.parse import urlparse, urljoin, unquote
+from urllib.parse import urlparse, urljoin, unquote, parse_qs, urlencode
+from html import unescape
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
@@ -188,7 +189,8 @@ def article_batches(page,max_pages=3,since=None,fetch=None,sleep=None):
     parser=PARSERS.get(str(page['parser_code']))
     if parser is None:raise CollectorError('지원하지 않는 뉴스룸 파서')
     current=page['page_url'];seen=set();page['pages_scanned']=0
-    for _ in range(max_pages if page['parser_code']=='LGUPLUS_ARCHIVE_V1' else 1):
+    paged=page['parser_code'] in {'LGUPLUS_ARCHIVE_V1','KT_CORP_JSON_V1'}
+    for _ in range(max_pages if paged else 1):
         if current in seen:raise CollectorError('뉴스룸 목록 페이지 순환')
         seen.add(current);payload=fetch({**page,'page_url':current});items=parser(payload)
         if not items:raise CollectorError('보도자료 목록 항목을 찾지 못했습니다.')
@@ -198,8 +200,8 @@ def article_batches(page,max_pages=3,since=None,fetch=None,sleep=None):
         yield [x for x in items if not since or not x.get('published_at') or x['published_at'].date()>=since]
         if since and len(dates)==len(items) and min(dates)<since:
             page['scan_end']='date_limit';return
-        if page['parser_code']!='LGUPLUS_ARCHIVE_V1':return
-        current=next_archive_url(payload,current)
+        if not paged:return
+        current=next_kt_url(payload,current) if page['parser_code']=='KT_CORP_JSON_V1' else next_archive_url(payload,current)
         if not current:page['scan_end']='archive_end';return
         if page['pages_scanned']<max_pages:sleep(max(30,int(page['request_interval_seconds'])))
     page['scan_end']='page_limit'
@@ -294,10 +296,36 @@ def parse_skb_press(payload: bytes) -> list[dict[str, Any]]:
     return list(unique.values())
 
 
+def parse_kt_corporate(payload):
+    data=json.loads(payload)
+    if str(data.get('code'))!='200' or not isinstance(data.get('body'),list):raise CollectorError('KT 공식 목록 응답 오류')
+    items={}
+    for row in data['body']:
+        seq=str(row.get('seq',''))
+        if row.get('openYn')!='Y' or not re.fullmatch(r'[0-9]{17}',seq):continue
+        title=' '.join(unescape(str(row.get('title',''))).split())
+        if not title:continue
+        try:published=datetime.strptime(row['pressDateNm'][:10],'%Y-%m-%d').replace(tzinfo=ZoneInfo('Asia/Seoul'))
+        except (ValueError,KeyError,TypeError):raise CollectorError('KT 공식 목록 게시일 오류') from None
+        url='https://www.ktcloud.com/media/press/'+seq+'?lan=kor'
+        items[url]={'title':title,'canonical_url':url,'published_at':published,'published_raw':row['pressDateNm'][:10],'guid':seq}
+    return list(items.values())
+
+def next_kt_url(payload,current_url):
+    current=urlparse(current_url);query=parse_qs(current.query)
+    if current.scheme!='https' or current.hostname!='data.ktcloud.com' or current.path!='/api/board/list/media/press/kor':raise CollectorError('허용되지 않은 KT 목록 경로')
+    paging=json.loads(payload).get('pagination',{})
+    number=int(query.get('curPage',['1'])[0])
+    if int(paging.get('curPage',0))!=number:raise CollectorError('KT 목록 페이지 불일치')
+    if number>=int(paging.get('pageCnt',0)):return None
+    query['curPage']=[str(number+1)]
+    return current._replace(query=urlencode(query,doseq=True)).geturl()
+
 PARSERS = {
     "LGUPLUS_PRESS_V1": parse_lgu_press,
     "LGUPLUS_ARCHIVE_V1": parse_lgu_archive,
     "SKB_PRESS_V1": parse_skb_press,
+    "KT_CORP_JSON_V1": parse_kt_corporate,
 }
 
 
