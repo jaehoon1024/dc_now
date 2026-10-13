@@ -42,7 +42,7 @@
   }
   function periodEnd(period) {
     const value=String(period||'');
-    let match=value.match(/^(\d{4})\s*[Qq]([1-4])$/);
+    let match=value.match(/^(\d{4})[\s-]*[Qq]([1-4])$/);
     if(match)return new Date(Date.UTC(Number(match[1]),Number(match[2])*3,0)).toISOString().slice(0,10);
     match=value.match(/^(\d{4})(?:-(\d{2})(?:-(\d{2}))?)?$/);
     if(!match)return null;
