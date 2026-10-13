@@ -43,9 +43,10 @@ def import_rows(engine,rows):
    scope=resolve_scope(c,r["scope_type"],r["scope_code"])
    if not scope:raise ValueError("unknown scope")
    r["scope_id"]=str(scope);r["norm_json"]=json.dumps(r["normalized_value"],ensure_ascii=False) if r["normalized_value"] is not None else None
+   version=c.execute(text("SELECT document_version_id FROM evidence_document_version WHERE document_id=:document AND is_current ORDER BY version_no DESC LIMIT 1"),{"document":r["document_id"]}).scalar()
+   if not version:raise ValueError("document has no current evidence version")
    fact=c.execute(text("""INSERT INTO extracted_fact(scope_type,scope_id,field_name,value_type,raw_value_text,normalized_value,normalized_unit,claim_origin,source_grade,effective_from,effective_to,review_status,confidence_score) VALUES(:scope_type,:scope_id,:field_name,:value_type,:raw_value_text,CAST(:norm_json AS jsonb),NULLIF(:normalized_unit,''),:claim_origin,:source_grade,:effective_from,:effective_to,'CANDIDATE',:confidence_score) RETURNING fact_id"""),r).scalar_one()
-   result=c.execute(text("""INSERT INTO fact_evidence(fact_id,document_id,evidence_location,quote_text,is_primary) SELECT :fact,document_id,NULLIF(:evidence_location,''),NULLIF(:quote_text,''),true FROM evidence_document WHERE document_id=:document"""),{"fact":fact,"document":r["document_id"],**r})
-   if result.rowcount!=1:raise ValueError("unknown document")
+   c.execute(text("""INSERT INTO fact_evidence(fact_id,document_version_id,evidence_locator,quote_text,is_primary_evidence) VALUES(:fact,:version,:locator,NULLIF(:quote_text,''),:primary)"""),{"fact":fact,"version":version,"locator":r["evidence_location"] or "document", "primary":r["claim_origin"]=="PRIMARY",**r})
    n+=1
  return n
 def main():

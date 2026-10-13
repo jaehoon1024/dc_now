@@ -19,13 +19,14 @@ class FactImportTests(unittest.TestCase):
     try:
      c.execute(text("CREATE TEMP TABLE company(company_id text PRIMARY KEY) ON COMMIT DROP"));c.execute(text("INSERT INTO company VALUES('ORG-T')"))
      c.execute(text("CREATE TEMP TABLE evidence_document(document_id uuid PRIMARY KEY DEFAULT gen_random_uuid()) ON COMMIT DROP"));doc=c.execute(text("INSERT INTO evidence_document DEFAULT VALUES RETURNING document_id")).scalar()
+     c.execute(text("CREATE TEMP TABLE evidence_document_version(document_version_id uuid DEFAULT gen_random_uuid(),document_id uuid,is_current boolean,version_no int) ON COMMIT DROP"));c.execute(text("INSERT INTO evidence_document_version(document_id,is_current,version_no) VALUES(:d,true,1)"),{"d":doc})
      c.execute(text("CREATE TEMP TABLE extracted_fact(fact_id uuid PRIMARY KEY DEFAULT gen_random_uuid(),scope_type text,scope_id text,field_name text,value_type text,raw_value_text text,normalized_value jsonb,normalized_unit text,claim_origin text,source_grade text,effective_from date,effective_to date,review_status text,confidence_score numeric) ON COMMIT DROP"))
-     c.execute(text("CREATE TEMP TABLE fact_evidence(fact_id uuid,document_id uuid,evidence_location text,quote_text text,is_primary boolean) ON COMMIT DROP"))
+     c.execute(text("CREATE TEMP TABLE fact_evidence(fact_id uuid,document_version_id uuid,evidence_locator text,quote_text text,is_primary_evidence boolean) ON COMMIT DROP"))
      class E:
       @contextmanager
       def begin(self):yield c
      row={"scope_type":"COMPANY","scope_code":"ORG-T","field_name":"name","value_type":"TEXT","raw_value_text":"회사","normalized_value":None,"normalized_unit":"","claim_origin":"PRIMARY","source_grade":"A","effective_from":None,"effective_to":None,"confidence_score":1.0,"document_id":str(doc),"evidence_location":"p1","quote_text":"회사"}
-     self.assertEqual(import_rows(E(),[row]),1);self.assertEqual(c.execute(text("SELECT review_status FROM extracted_fact")).scalar(),"CANDIDATE");self.assertTrue(c.execute(text("SELECT is_primary FROM fact_evidence")).scalar())
+     self.assertEqual(import_rows(E(),[row]),1);self.assertEqual(c.execute(text("SELECT review_status FROM extracted_fact")).scalar(),"CANDIDATE");self.assertTrue(c.execute(text("SELECT is_primary_evidence FROM fact_evidence")).scalar())
     finally:tx.rollback()
   finally:engine.dispose()
 if __name__=="__main__":unittest.main()

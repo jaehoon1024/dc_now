@@ -1,0 +1,507 @@
+{
+  "checked_on": "2026-10-13",
+  "reviewer": "source-review-2026-10-13",
+  "sources": [
+    {
+      "code": "SAVILLS_DC_KR",
+      "name": "세빌스 코리아 데이터센터 리서치",
+      "type": "INDUSTRY",
+      "url": "https://www.savills.co.kr/research_articles/166316/222899-0",
+      "note": "한국 상용 데이터센터 공개 리서치 · 시장 정의와 기준일 확인"
+    },
+    {
+      "code": "RSQUARE_DC_KR",
+      "name": "알스퀘어 데이터센터 리서치",
+      "type": "INDUSTRY",
+      "url": "https://research.rsquare.co.kr/research/reports/2025-data-center-report",
+      "note": "공개 보고서 · 공급 예정 프로젝트, 수전/IT Load 구분 · 과거 계획은 재검증"
+    },
+    {
+      "code": "CERIK_DC",
+      "name": "한국건설산업연구원 데이터센터 연구",
+      "type": "INDUSTRY",
+      "url": "https://www.cerik.re.kr/report/briefing/3018",
+      "note": "건설·투자 구조 연구 · 전국 상용 센터 원장으로 오인하지 않음"
+    },
+    {
+      "code": "DCBYTE_LICENSED",
+      "name": "DC Byte Market Analytics",
+      "type": "INDUSTRY",
+      "url": "https://www.dcbyte.com/faq/",
+      "note": "LICENSE_REQUIRED: 상품 소개만 확인. 계약·재배포 권한 미확보, 원장 데이터 미취득"
+    },
+    {
+      "code": "TELEGEOGRAPHY_LICENSED",
+      "name": "TeleGeography Data Center Research Service",
+      "type": "INDUSTRY",
+      "url": "https://www2.telegeography.com/data-center-research-samples",
+      "note": "LICENSE_REQUIRED: 상품 소개만 확인. 시설·연결성·가격 DB 미취득"
+    },
+    {
+      "code": "STRUCTURE_LICENSED",
+      "name": "Structure Research",
+      "type": "INDUSTRY",
+      "url": "https://www.structureresearch.net/about-us/",
+      "note": "LICENSE_REQUIRED: 사업 소개만 확인. 유료 시장 보고서 및 원장 미취득"
+    },
+    {
+      "code": "DLENC_NEWS",
+      "name": "DL이앤씨 공식 사업 소식",
+      "type": "COMPANY",
+      "url": "https://m.dlenc.co.kr/m/pr/InfoView.do?no_ntc_plte_sral=26401",
+      "note": "시공·준공·수전/IT 제원 공개 자료. 준공과 상용 RFS를 구분"
+    }
+  ],
+  "documents": [
+    {
+      "source_code": "EMPYRION_DIGITAL",
+      "url": "https://empyriondigital.com/south-korea/kr1-gangnam-data-centre/",
+      "title": "KR1 Gangnam 공식 시설 사양",
+      "published_at": null,
+      "document_type": "WEB_PAGE",
+      "note": "",
+      "site_code": "EMPYRION_KR1",
+      "facts": [
+        {
+          "field": "gpu_hpc_ready",
+          "value": true,
+          "locator": "Artificial Intelligence Ready: GPU/HPC 지원",
+          "unit": null,
+          "status": "CONFIRMED",
+          "origin": "PRIMARY"
+        },
+        {
+          "field": "cooling",
+          "value": "StatePoint hybrid liquid-to-air",
+          "locator": "Designed for Efficiency: 냉각 시스템",
+          "unit": null,
+          "status": "CONFIRMED",
+          "origin": "PRIMARY"
+        },
+        {
+          "field": "address",
+          "value": "서울특별시 서초구 양재동 224",
+          "locator": "Location: 224 Yangjae-dong",
+          "unit": null,
+          "status": "CONFIRMED",
+          "origin": "PRIMARY"
+        }
+      ],
+      "capacities": [
+        {
+          "type": "IT_LOAD_MW",
+          "mw": 29.4,
+          "locator": "IT capacity: 시설 총 IT 용량, 현재 가용용량 아님"
+        }
+      ],
+      "confirm_operating": false
+    },
+    {
+      "source_code": "EMPYRION_DIGITAL",
+      "url": "https://empyriondigital.com/empyrion-digital-leverages-nortek-dccs-statepoint-liquid-cooling-technology-to-power-south-koreas-next-gen-ai-ready-data-centre/",
+      "title": "KR1 냉각 기술 및 RFS 공식 발표",
+      "published_at": "2025-09-04",
+      "document_type": "PRESS_RELEASE",
+      "note": "월 단위 RFS를 임의의 날짜로 바꾸지 않음",
+      "site_code": "EMPYRION_KR1",
+      "facts": [
+        {
+          "field": "rfs_month",
+          "value": "2025-08",
+          "locator": "RFS 발표: 월 단위, 정확한 일자 미공개",
+          "unit": null,
+          "status": "CONFIRMED",
+          "origin": "PRIMARY"
+        },
+        {
+          "field": "dlc_integration",
+          "value": "future integration supported; installation unconfirmed",
+          "locator": "향후 DLC 통합 가능성: 설치 완료와 구분",
+          "unit": null,
+          "status": "CONFIRMED",
+          "origin": "PRIMARY"
+        }
+      ],
+      "capacities": [],
+      "confirm_operating": true
+    },
+    {
+      "source_code": "STT_GDC_KR",
+      "url": "https://www.sttgdc.com/kr-en/newsroom/stt-gdc-opens-stt-seoul-1-extending-its-platform-into-south-korea",
+      "title": "STT Seoul 1 한국 첫 상용 운영 발표",
+      "published_at": "2026-06-16",
+      "document_type": "PRESS_RELEASE",
+      "note": "가산동까지 공식 확인. 기존 지번 345-26의 검증 상태는 상향하지 않음",
+      "site_code": "STT_SEOUL1",
+      "facts": [
+        {
+          "field": "rfs_month",
+          "value": "2026-06",
+          "locator": "commercial operations: 2026년 6월",
+          "unit": null,
+          "status": "CONFIRMED",
+          "origin": "PRIMARY"
+        },
+        {
+          "field": "design_pue_upper_bound",
+          "value": 1.3,
+          "locator": "design PUE below 1.3: 실측 PUE 아님",
+          "unit": null,
+          "status": "CONFIRMED",
+          "origin": "PRIMARY"
+        },
+        {
+          "field": "tier_design_certification",
+          "value": "Tier III TCDD",
+          "locator": "Uptime 설계 문서 인증: 운영 시설 인증과 구분",
+          "unit": null,
+          "status": "CONFIRMED",
+          "origin": "PRIMARY"
+        },
+        {
+          "field": "power_voltage_kv",
+          "value": 22.9,
+          "locator": "dual power feeds",
+          "unit": "kV",
+          "status": "CONFIRMED",
+          "origin": "PRIMARY"
+        }
+      ],
+      "capacities": [
+        {
+          "type": "IT_LOAD_MW",
+          "mw": 30,
+          "locator": "시설 최대 IT Load: 점유·가용 용량 미공개"
+        }
+      ],
+      "confirm_operating": true
+    },
+    {
+      "source_code": "KINX",
+      "url": "https://company.kinx.net/wp-content/uploads/2026/01/KINX_IR_Book_Kor_260115.pdf",
+      "title": "KINX IR Book 2026년 1월 과천센터",
+      "published_at": "2026-01-15",
+      "document_type": "PDF",
+      "note": "계약률·입주율·가용용량은 서로 다름. 과거 목표를 현재 실적으로 사용하지 않음",
+      "site_code": "KINX_GWACHEON",
+      "facts": [
+        {
+          "field": "design_pue",
+          "value": 1.3,
+          "locator": "p23: 설계 PUE, 실측 아님",
+          "unit": null,
+          "status": "CONFIRMED",
+          "origin": "PRIMARY"
+        },
+        {
+          "field": "rfs_month",
+          "value": "2024-12",
+          "locator": "p23: 서비스 오픈 완료 월",
+          "unit": null,
+          "status": "CONFIRMED",
+          "origin": "PRIMARY"
+        }
+      ],
+      "capacities": [
+        {
+          "type": "IT_LOAD_MW",
+          "mw": 10,
+          "locator": "p23: 고객 제공 전력량; p24: 층별 고객 할당 전력"
+        },
+        {
+          "type": "GRID_INTAKE_MW",
+          "mw": 20,
+          "locator": "p23: 주수전 20MW. 별도 비상 예비수전 20MW는 합산 제외"
+        }
+      ],
+      "confirm_operating": false
+    },
+    {
+      "source_code": "DIGITAL_REALTY_NEWS",
+      "url": "https://www.prnewswire.com/news-releases/digital-realty-opens-first-carrier-neutral-data-center-in-south-korea-301468189.html",
+      "title": "Digital Realty 발행 ICN10 운영 개시 보도자료",
+      "published_at": "2022-01-25",
+      "document_type": "PRESS_RELEASE",
+      "note": "오래된 원시 시설 사양. 2026년 시설 페이지와 상용 서비스 존재 교차 확인, 증설·가용용량 주장 없음",
+      "site_code": "DLR_ICN10",
+      "facts": [],
+      "capacities": [
+        {
+          "type": "IT_LOAD_MW",
+          "mw": 12,
+          "locator": "공식 발행 보도자료: critical IT capacity"
+        }
+      ],
+      "confirm_operating": false
+    },
+    {
+      "source_code": "DIGITAL_REALTY_NEWS",
+      "url": "https://www.digitalrealty.com/data-centers/asia-pacific/seoul/icn10",
+      "title": "Digital Realty ICN10 현재 시설 페이지",
+      "published_at": null,
+      "document_type": "WEB_PAGE",
+      "note": "",
+      "site_code": "DLR_ICN10",
+      "facts": [
+        {
+          "field": "address",
+          "value": "서울특별시 마포구 월드컵북로60길 12",
+          "locator": "시설 주소",
+          "unit": null,
+          "status": "CONFIRMED",
+          "origin": "PRIMARY"
+        },
+        {
+          "field": "ups_redundancy",
+          "value": "N+1",
+          "locator": "Power: UPS redundancy",
+          "unit": null,
+          "status": "CONFIRMED",
+          "origin": "PRIMARY"
+        }
+      ],
+      "capacities": [],
+      "confirm_operating": false,
+      "publish_existing": true
+    },
+    {
+      "source_code": "CUSHMAN_DC_KR",
+      "url": "https://www.cushmanwakefield.com/en/south-korea/news/2026/09/south-korea-data-centre-market-to-require-investment",
+      "title": "Cushman 한국 데이터센터 투자 전망 2030",
+      "published_at": "2026-09-04",
+      "document_type": "PRESS_RELEASE",
+      "note": "페이지 발행 9월4일, 발표 본문 9월1일. H1 2026 선임대 255MW는 운영 공급/가용용량과 구분. 2030년 136억 달러는 투자 전망",
+      "site_code": null,
+      "facts": [],
+      "capacities": [],
+      "confirm_operating": false
+    },
+    {
+      "source_code": "CBRE_DC_KR",
+      "url": "https://www.cbre.com.au/insights/articles/asia-pacific-data-centre-boom-to-continue-in-2026",
+      "title": "CBRE APAC 데이터센터 2026 전망",
+      "published_at": null,
+      "document_type": "WEB_PAGE",
+      "note": "한국 전력·지역 수용성 제약 설명. APAC 전체 통계를 국내 센터 합계에 넣지 않음",
+      "site_code": null,
+      "facts": [],
+      "capacities": [],
+      "confirm_operating": false
+    },
+    {
+      "source_code": "JLL_DC_KR",
+      "url": "https://www.jll.com/en-au/insights/market-dynamics/asia-pacific-data-centre",
+      "title": "JLL Asia Pacific Data Centre Report Year-end 2025",
+      "published_at": "2026-03-10",
+      "document_type": "WEB_PAGE",
+      "note": "공개 요약 검토. 24GW 전망은 APAC·colo/자체/on-prem 합계, 한국 상용 공급 통계 아님",
+      "site_code": null,
+      "facts": [],
+      "capacities": [],
+      "confirm_operating": false
+    },
+    {
+      "source_code": "SAVILLS_DC_KR",
+      "url": "https://www.savills.co.kr/research_articles/166316/222899-0",
+      "title": "세빌스 한국 데이터센터 2025 상반기",
+      "published_at": "2025-06-19",
+      "document_type": "WEB_PAGE",
+      "note": "공개 소개 검토. 임베디드 보고서 전체의 센터별 값은 이번 반영에서 추출하지 않음",
+      "site_code": null,
+      "facts": [],
+      "capacities": [],
+      "confirm_operating": false
+    },
+    {
+      "source_code": "RSQUARE_DC_KR",
+      "url": "https://research.rsquare.co.kr/research/reports/2025-data-center-report",
+      "title": "알스퀘어 2025 데이터센터 보고서",
+      "published_at": null,
+      "document_type": "PDF",
+      "note": "PDF 표지 2025-11, 표 기준 2025-09. 검색엔진 날짜를 발행일로 사용하지 않음. 과거 준공 예상은 현재 확정 RFS로 전환하지 않음",
+      "site_code": "KAAM_ANSAN",
+      "facts": [
+        {
+          "field": "reported_it_load_mw",
+          "value": 48,
+          "locator": "PDF p22: 캄스퀘어 안산; 2025-09 기준",
+          "unit": "MW",
+          "status": "CANDIDATE",
+          "origin": "REQUOTE"
+        },
+        {
+          "field": "reported_grid_intake_mw",
+          "value": 80,
+          "locator": "PDF p22: 캄스퀘어 안산; 2025-09 기준",
+          "unit": "MW",
+          "status": "CANDIDATE",
+          "origin": "REQUOTE"
+        },
+        {
+          "field": "reported_completion_period",
+          "value": "Phase 1 2027; final 2028",
+          "locator": "PDF p22: 준공 예정 연도. RFS와 구분",
+          "unit": null,
+          "status": "CANDIDATE",
+          "origin": "REQUOTE"
+        }
+      ],
+      "capacities": [],
+      "confirm_operating": false
+    },
+    {
+      "source_code": "CERIK_DC",
+      "url": "https://www.cerik.re.kr/report/briefing/3018",
+      "title": "건설동향브리핑 1029호: 글로벌 DC 투자 구조",
+      "published_at": "2025-10-31",
+      "document_type": "WEB_PAGE",
+      "note": "공개 연구 요약 검토. 시장 가치 전망은 국내 IT MW와 단위가 달라 분리",
+      "site_code": null,
+      "facts": [],
+      "capacities": [],
+      "confirm_operating": false
+    },
+    {
+      "source_code": "MSIT_PRESS",
+      "url": "https://www.msit.go.kr/bbs/view.do?bbsSeqNo=100&mId=311&mPid=121&nttSeqNo=3186611&sCode=user",
+      "title": "2026 지속가능한 데이터센터 산업 발전 지원 공고",
+      "published_at": "2026-03-30",
+      "document_type": "WEB_PAGE",
+      "note": "정부 지원 사업 근거. 정책 지원 대상을 실제 운영 상용센터 목록으로 집계하지 않음",
+      "site_code": null,
+      "facts": [],
+      "capacities": [],
+      "confirm_operating": false
+    },
+    {
+      "source_code": "LGU_IDC",
+      "url": "https://www.lguplus.com/biz/all/telecom/idc/center/B000000031",
+      "title": "LG U+ 공식 센터별 수전·주소 현황",
+      "published_at": null,
+      "document_type": "WEB_PAGE",
+      "note": "6개 센터 전력 제원 대조. 상암은 개요 19.25MW와 상세 20MW가 달라 충돌 처리. 2회선은 단순 두 배 합산하지 않음",
+      "site_code": "LGU_SANGAM",
+      "facts": [
+        {
+          "field": "power_spec_conflict",
+          "value": "개요 19.25MW / 상세 20MW: 동일 공식 페이지 불일치, 운영사 재확인 필요",
+          "locator": "IDC 센터 현황과 상암센터 상세 인프라 비교",
+          "unit": null,
+          "status": "CONFIRMED",
+          "origin": "PRIMARY"
+        }
+      ],
+      "capacities": [],
+      "confirm_operating": false,
+      "publish_existing": true
+    },
+    {
+      "source_code": "DLENC_NEWS",
+      "url": "https://m.dlenc.co.kr/m/pr/InfoView.do?no_ntc_plte_sral=26401",
+      "title": "DL이앤씨 가산 데이터센터 준공",
+      "published_at": "2025-09-29",
+      "document_type": "WEB_PAGE",
+      "note": "공식 발표 20MW 수전 / IT12.9MW. 준공은 서비스 개시일과 구분",
+      "site_code": "DCI_SEOUL01",
+      "facts": [],
+      "capacities": [],
+      "confirm_operating": false,
+      "publish_existing": true
+    },
+    {
+      "source_code": "LGCNS_NEWS",
+      "url": "https://www.lgcns.com/kr/newsroom/press/detail.ko_0787",
+      "title": "LG CNS 죽전 개발 당시 시설 사양",
+      "published_at": null,
+      "document_type": "WEB_PAGE",
+      "note": "공식 수전 100MW는 개발 당시 설계 사양. 예정 준공 2024는 실제 RFS와 구분. 현재 실측·점유 용량 확인 자료 아님",
+      "site_code": null,
+      "facts": [],
+      "capacities": [],
+      "confirm_operating": false,
+      "publish_existing": true
+    },
+    {
+      "source_code": "ACTIS_EPOCH",
+      "url": "https://adik.co.kr/services-two/",
+      "title": "Epoch Digital Korea 안양 시설 IT 제원",
+      "published_at": null,
+      "document_type": "WEB_PAGE",
+      "note": "26MW IT Load 확인. 페이지에 과거 건설중 문구도 남아 있어 운영·개발 문구의 최신성은 별도 재확인",
+      "site_code": "EPOCH_ANYANG",
+      "facts": [],
+      "capacities": [
+        {
+          "type": "IT_LOAD_MW",
+          "mw": 26,
+          "locator": "데이터센터 개요: 시설 전체 IT Load. 실측 부하 아님"
+        }
+      ],
+      "confirm_operating": false,
+      "publish_existing": true
+    }
+  ],
+  "corrections": [
+    {
+      "site_code": "LGU_SANGAM",
+      "type": "GRID_INTAKE_MW",
+      "old_url": "https://www.lguplus.com/biz/all/telecom/idc/center/B000000031",
+      "new_type": "GRID_INTAKE_MW",
+      "new_url": "https://www.lguplus.com/biz/all/telecom/idc/center/B000000031",
+      "review_status": "CONFLICT",
+      "exclude": true,
+      "reason": "동일 공식 페이지에서 19.25MW와 20MW가 불일치. 확정 수전 합계에서 제외하고 재확인"
+    },
+    {
+      "site_code": "EPOCH_ANYANG",
+      "type": "GRID_INTAKE_MW",
+      "old_url": "https://www.cerik.re.kr/uploads/report/3018/%EA%B1%B4%EC%84%A4%EB%8F%99%ED%96%A5%EB%B8%8C%EB%A6%AC%ED%95%91%201029%ED%98%B8.pdf",
+      "new_type": "ANNOUNCED_UNCLASSIFIED_MW",
+      "new_url": "https://www.cerik.re.kr/uploads/report/3018/%EA%B1%B4%EC%84%A4%EB%8F%99%ED%96%A5%EB%B8%8C%EB%A6%AC%ED%95%91%201029%ED%98%B8.pdf",
+      "review_status": "CANDIDATE",
+      "exclude": true,
+      "reason": "기사·연구에서 발표한 40MW의 수전/IT 구분 근거 부족. 별도 공식 IT26MW 확보, 40MW는 분류 대기"
+    },
+    {
+      "site_code": "DCI_SEOUL01",
+      "type": "IT_LOAD_MW",
+      "old_url": "https://m.dlenc.co.kr/pr/InfoView.do?no_ntc_plte_sral=26401",
+      "new_type": "IT_LOAD_MW",
+      "new_url": "https://m.dlenc.co.kr/m/pr/InfoView.do?no_ntc_plte_sral=26401",
+      "review_status": "CONFIRMED",
+      "exclude": false,
+      "reason": "접근 실패 주소를 동일 공지 번호의 검증된 공식 모바일 URL로 교체"
+    },
+    {
+      "site_code": "DCI_SEOUL01",
+      "type": "GRID_INTAKE_MW",
+      "old_url": "https://m.dlenc.co.kr/pr/InfoView.do?no_ntc_plte_sral=26401",
+      "new_type": "GRID_INTAKE_MW",
+      "new_url": "https://m.dlenc.co.kr/m/pr/InfoView.do?no_ntc_plte_sral=26401",
+      "review_status": "CONFIRMED",
+      "exclude": false,
+      "reason": "접근 실패 주소를 동일 공지 번호의 검증된 공식 모바일 URL로 교체"
+    }
+  ],
+  "relationships": [
+    {
+      "site_code": "EMPYRION_KR1",
+      "company_id": "ORG-EMPYRION",
+      "name": "Empyrion Digital",
+      "roles": [
+        "OPERATOR"
+      ],
+      "url": "https://empyriondigital.com/south-korea/kr1-gangnam-data-centre/"
+    },
+    {
+      "site_code": "STT_SEOUL1",
+      "company_id": "ORG-STTGDC-KR",
+      "name": "STT GDC Korea",
+      "roles": [
+        "OPERATOR",
+        "DEVELOPER"
+      ],
+      "url": "https://www.sttgdc.com/kr-en/newsroom/stt-gdc-opens-stt-seoul-1-extending-its-platform-into-south-korea"
+    }
+  ]
+}

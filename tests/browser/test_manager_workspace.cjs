@@ -50,11 +50,24 @@ if(!base)throw Error('Pass workspace path');
  await page.locator('[data-supply-metric="grid"]').click();
  await page.locator('[data-page="map"]').click();
  assert.ok((await page.locator('iframe').getAttribute('src')).startsWith('https://maps.google.com/maps?'));
- await page.locator('[data-page="review"]').click();assert.ok((await page.locator('#content').innerText()).includes('인증'));
+ await page.locator('[data-page="review"]').click();await page.waitForFunction(()=>document.querySelector('#content').innerText.includes('인증'));assert.ok((await page.locator('#content').innerText()).includes('인증'));
  for(const p of ['companies','sources','ops','projects','home']){await page.locator('[data-page="'+p+'"]').click();await page.waitForFunction(p=>location.hash==='#'+p,p);}
+ await page.locator('[data-page="sources"]').click();
+ await page.locator('#sourceGroup').selectOption('유료 전문 데이터');
+ assert.equal(await page.locator('#content tbody tr').count(),3);
+ assert.ok((await page.locator('#content').innerText()).includes('계약 필요 · 미취득'));
+ await page.locator('#sourceGroup').selectOption('');
+ assert.equal(await page.locator('#content tbody tr').count(),data.source_assessment.sources.length);
+ await page.screenshot({path:base+'/output/design/source-quality-desktop.png',fullPage:true});
+ await page.evaluate(()=>location.hash='#detail/STT_SEOUL1');
+ await page.locator('[data-detail-tab="facility"]').waitFor();
+ await page.locator('[data-detail-tab="facility"]').click();
+ assert.ok((await page.locator('#content').innerText()).includes('설계 PUE 상한 미만'));
+ assert.ok((await page.locator('#content').innerText()).includes('2026-06'));
+ await page.locator('[data-page="home"]').click();
  await page.screenshot({path:base+'/output/design/manager-live-desktop.png',fullPage:true});
  await page.setViewportSize({width:390,height:900});
- for(const p of ['home','register','detail','supply','map','review','ops']){
+ for(const p of ['home','register','detail','supply','map','review','sources','ops']){
   if(p==='detail'){await page.locator('[data-page="register"]').click();await page.locator('tbody [data-site]').first().click();}else await page.locator('[data-page="'+p+'"]').click();
   await page.waitForTimeout(50);
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth),false,'mobile overflow '+p);

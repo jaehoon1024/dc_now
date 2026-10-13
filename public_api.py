@@ -316,10 +316,24 @@ class PublicRepository:
                                 AND ed.record_status='ACTIVE')
                 ORDER BY cs.published_at DESC NULLS LAST, cs.created_at DESC
             """), {"site_code": site_code}).mappings().all()
+            facts = connection.execute(text("""
+                SELECT DISTINCT f.field_name,f.normalized_value,f.normalized_unit,
+                       f.reviewed_at,ed.canonical_url,ed.published_at,fe.evidence_locator
+                FROM extracted_fact f JOIN dc_site s ON f.scope_type='SITE' AND f.scope_id=s.site_id::text
+                JOIN fact_evidence fe ON fe.fact_id=f.fact_id
+                JOIN evidence_document_version ev ON ev.document_version_id=fe.document_version_id AND ev.is_current
+                JOIN evidence_document ed ON ed.document_id=ev.document_id
+                WHERE s.site_code=:site_code AND f.review_status='CONFIRMED'
+                  AND ed.access_scope='PUBLIC' AND ed.review_status='CONFIRMED' AND ed.record_status='ACTIVE'
+                  AND f.field_name IN ('design_pue','design_pue_upper_bound','gpu_hpc_ready','cooling',
+                                      'dlc_integration','tier_design_certification','power_voltage_kv','rfs_month','address','ups_redundancy','power_spec_conflict')
+                ORDER BY f.reviewed_at DESC
+            """), {"site_code": site_code}).mappings().all()
         result = dict(site)
         result["projects"] = [dict(row) for row in projects]
         result["phases"] = [dict(row) for row in phases]
         result["capacities"] = [dict(row) for row in capacities]
+        result["verified_facts"] = [dict(row) for row in facts]
         return result
 
     def companies(self) -> list[dict[str, Any]]:
@@ -481,6 +495,10 @@ class PublicRepository:
                 WHERE ed.record_status='ACTIVE'
             """)).mappings().one()
         return {key: int(value or 0) for key, value in row.items()}
+
+    def source_assessment(self) -> dict[str, Any]:
+        from src26_source_quality_audit import assess
+        return assess(self.engine)
 
     def recent_evidence(self, limit: int = 24) -> list[dict[str, Any]]:
         with self.engine.connect() as connection:

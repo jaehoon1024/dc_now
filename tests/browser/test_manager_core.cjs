@@ -30,6 +30,7 @@ assert.equal(C.annual(rows,'it')[0].total,24);
 assert.equal(C.annual([{year:2028,it:20,actual:true},{year:2028,it:30,actual:false,operating:true}],'it').length,0);
 assert.equal(C.annual([{year:2028,it:null,actual:false}],'it')[0].known,0);
 assert.equal(C.periodEnd('2028 Q2'),'2028-06-30');
+assert.equal(C.periodEnd('2028-Q2'),'2028-06-30');
 assert.equal(C.periodEnd('2026'),'2026-12-31');
 assert.equal(C.annual([{year:2024,it:90,actual:false,overdue:true}],'it').length,0);
 assert.equal(C.runState({job_name:'RSS_DAILY',run_status:'SUCCESS',finished_at:'2026-10-12T00:00:00Z'},Date.parse('2026-10-13T00:00:00Z')).css,'dev');
