@@ -470,7 +470,7 @@
       "new_url": "https://m.dlenc.co.kr/m/pr/InfoView.do?no_ntc_plte_sral=26401",
       "review_status": "CONFIRMED",
       "exclude": false,
-      "reason": "접근 실패 주소를 동일 공지 번호의 검증된 공식 모바일 URL로 교체"
+      "reason": "동일 공지 번호의 공식 모바일 경로로 URL 정리. 웹 탐색 도구의 접근 실패 후 원주소·교체주소 모두 HTTP200 및 본문 제원 일치 재확인"
     },
     {
       "site_code": "DCI_SEOUL01",
@@ -480,7 +480,7 @@
       "new_url": "https://m.dlenc.co.kr/m/pr/InfoView.do?no_ntc_plte_sral=26401",
       "review_status": "CONFIRMED",
       "exclude": false,
-      "reason": "접근 실패 주소를 동일 공지 번호의 검증된 공식 모바일 URL로 교체"
+      "reason": "동일 공지 번호의 공식 모바일 경로로 URL 정리. 웹 탐색 도구의 접근 실패 후 원주소·교체주소 모두 HTTP200 및 본문 제원 일치 재확인"
     }
   ],
   "relationships": [
