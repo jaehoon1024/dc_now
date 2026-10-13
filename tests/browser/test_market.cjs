@@ -18,7 +18,7 @@ const base=process.argv[2];
  await p.route('**/*',async r=>{
   const u=new URL(r.request().url());if(u.hostname!=='market.test'){await r.abort();return;}
   const file=u.pathname==='/'?'index.html':u.pathname.slice(1),path=base+'/deploy/'+file;
-  if(!['index.html','manage.html','data.json','map-config.json','manager.js','manager.css','manager-core.js','market.js','market.css','google-map.js'].includes(file)){await r.fulfill({status:404});return;}
+  if(!['index.html','manage.html','data.json','map-config.json','manager.js','manager.css','manager-core.js','market.js','market.css','google-map.js','development.js'].includes(file)){await r.fulfill({status:404});return;}
   await r.fulfill({contentType:file.endsWith('.html')?'text/html':file.endsWith('.css')?'text/css':file.endsWith('.json')?'application/json':'application/javascript',body:fs.readFileSync(path)});
  });
  await p.goto('https://market.test/');await p.locator('#siteRows tr').first().waitFor();

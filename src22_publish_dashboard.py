@@ -8,11 +8,13 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 PUBLISH_PATHS = (
+    "data/reference/namepf_intelligence.json",
     "deploy/index.html",
     "deploy/manage.html",
     "deploy/market.js",
     "deploy/market.css",
     "deploy/google-map.js",
+    "deploy/development.js",
     "deploy/map-config.json",
     "deploy/data.json",
     "deploy/manager.js",
@@ -35,6 +37,7 @@ def run(*args: str, check: bool = True) -> subprocess.CompletedProcess[str]:
 
 
 def main() -> int:
+    run(str(ROOT / ".venv/bin/python"), str(ROOT / "src30_collect_permit_intelligence.py"))
     run(str(ROOT / ".venv/bin/python"), str(ROOT / "src21_build_static_site.py"))
     changed = run("git", "status", "--porcelain", "--", *PUBLISH_PATHS).stdout.strip()
     if not changed:

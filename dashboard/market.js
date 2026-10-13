@@ -13,7 +13,7 @@
   const date = x => x ? String(x).slice(0,10) : '일자 미표기';
   const time = x => x ? new Date(x).toLocaleString('ko-KR', {month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Seoul'}) : '시각 미확인';
   const state = {scope:'COMMERCIAL', region:'', q:'', include:true, stage:'', year:null, metric:'it', sort:'default', desc:true, page:0};
-  let raw, data, rows = [], base = [], schedule = [], selected = null, mapController=null;
+  let raw, data, rows = [], base = [], schedule = [], selected = null, mapController=null, development=null;
   const legacy=/^#(detail|register|projects|companies|review|sources|ops|map)(?:\/|$)/;
   if(legacy.test(location.hash)){location.replace('./manage.html'+location.hash);return;}
   window.addEventListener('hashchange',()=>{if(legacy.test(location.hash))location.replace('./manage.html'+location.hash);});
@@ -29,6 +29,7 @@
     $('#snapshotAt').textContent = new Date(raw.generated_at).toLocaleString('ko-KR', {timeZone:'Asia/Seoul',hour12:false});
     [...new Set(raw.sites.map(s => s.sido).filter(Boolean))].sort().forEach(r => $('#region').add(new Option(compactRegion(r),r)));
     if(raw.sites.some(s=>!s.sido))$('#region').add(new Option('지역 미확인','__UNKNOWN__'));
+    development=new DCDevelopment({onCenter:openDetail,onAddress:(address,name)=>{selected=null;$('#googleCanvas').hidden=true;$('#googleMap').hidden=false;$('#googleMap').src='https://maps.google.com/maps?q='+encodeURIComponent(address||name||'대한민국')+'&z=15&output=embed';$('#mapCaption').textContent=(name||'인허가 사업장')+' · 주소 검색 · 좌표 검증 별도';$('#location').scrollIntoView({behavior:'smooth',block:'center'});}});
     wire(); render(); $('#initialMarket')?.setAttribute('hidden','');
     mapController = new DCGoogleMap($('#googleCanvas'), {onSelect:openDetail,onStatus:message=>{$('#mapStatus').textContent=message;$('#bubbleMetric').disabled=$('#approximateCoordinates').disabled=!mapController?.ready;$('#mapLegend').hidden=!mapController?.ready;},onReady:()=>{$('#googleMap').hidden=true;$('#googleCanvas').hidden=false;renderMapRegions();}});
     await mapController.init('./map-config.json'); renderMapRegions();
@@ -71,7 +72,7 @@
     $('#scopeNote').textContent=[$('#scope option:checked').textContent,state.region?compactRegion(state.region):'전국',state.stage?labels[state.stage]:'전체 단계',state.year?`RFS ${state.year}년`:'',`${rows.length}곳`].filter(Boolean).join(' · ');
     document.querySelectorAll('[data-stage]').forEach(b=>{b.setAttribute('aria-pressed',String(b.dataset.stage===state.stage));b.querySelector('span').textContent=b.dataset.stage?base.filter(s=>s.lifecycle_group===b.dataset.stage).length:base.length;});
     if(selected&&!rows.some(s=>s.site_code===selected))nationalMap();
-    renderKpis();renderChart();renderMapRegions();renderTable();renderRankings();renderCoverage();renderEvidence();renderRuns();
+    renderKpis();renderChart();renderMapRegions();renderTable();renderRankings();renderCoverage();renderEvidence();renderRuns();development?.update(data,state);
   }
   function renderKpis() {
     const op=rows.filter(isOp),dev=rows.filter(isDev),operating=ManagerData.sumKnown(op,'operating_it_load_mw'),development=ManagerData.sumKnown(dev,'development_it_load_mw');
@@ -155,7 +156,8 @@
   function renderRuns() {
     const names={RSS_DAILY:'RSS 뉴스',NEWSROOM_DAILY:'사업자 뉴스룸',OPENDART_DAILY:'OpenDART 공시'};
     const runs=(raw.collection_status||[]).filter(r=>!/BACKFILL/.test(r.job_name));
-    $('#runs').innerHTML=runs.slice(0,4).map(r=>{const rs=ManagerData.runState(r);return `<div class="run-row"><div><b>${esc(names[r.job_name]||r.job_name)}</b><small>${esc(time(r.finished_at||r.started_at))} KST · ${r.success_source_count??0}/${r.total_source_count??0}개 소스</small></div><div><span class="chip ${rs.css==='op'?'op':rs.css==='dev'?'dev':'bad'}">${esc(rs.label)}</span><span class="run-count">신규 ${num(r.new_document_count)}건</span></div></div>`;}).join('');
+    const external=data.development_intelligence?.collection,externalAge=external?Date.now()-Date.parse(external.last_success_at||''):null,externalStale=external?.status==='SUCCESS'&&(!Number.isFinite(externalAge)||externalAge>36*3600000);
+    $('#runs').innerHTML=(external?`<div class="run-row"><div><b>인허가·전력 참고자료</b><small>${esc(time(external.last_success_at))} KST · NamePF 공개 사실값</small></div><div><span class="chip ${external.status==='SUCCESS'?externalStale?'dev':'op':'bad'}">${external.status==='SUCCESS'?externalStale?'수집 지연 확인':'최근 수집 성공':'실패 · 이전 자료 유지'}</span><span class="run-count">신규 ${num(external.added_records)}건 · 변경 ${num(external.changed_records)}건</span></div></div>`:'')+runs.slice(0,4).map(r=>{const rs=ManagerData.runState(r);return `<div class="run-row"><div><b>${esc(names[r.job_name]||r.job_name)}</b><small>${esc(time(r.finished_at||r.started_at))} KST · ${r.success_source_count??0}/${r.total_source_count??0}개 소스</small></div><div><span class="chip ${rs.css==='op'?'op':rs.css==='dev'?'dev':'bad'}">${esc(rs.label)}</span><span class="run-count">신규 ${num(r.new_document_count)}건</span></div></div>`;}).join('');
     const s=raw.source_assessment?.summary||{};
     $('#sourceQuality').innerHTML=`등록 소스 ${num(s.registered_sources)}개 · 문서 기여 ${num(s.contributing_sources)}개<br>뉴스 집계 URL 비중 ${num(s.aggregator_share_pct)}% · 기사 탐색에서 사업자·기관 원문 확보로 확장할 필요가 있습니다.`;
   }
@@ -172,6 +174,8 @@
     html+=detailSchedule.map(u=>`<div class="phase-card"><div><b>${esc(u.phase_name)}</b>${chip(u.status_code)}</div><p>${esc(u.project_name)}</p><p>IT ${num(u.it)} MW · 수전 ${num(u.grid)} MW · ${u.actual?'실제 RFS':'RFS 예정'} ${esc(u.period||'미확인')}${u.estimated?' · 작업값 포함':''}</p>${u.completion_period?`<p>준공 예정 ${esc(u.completion_period)} · RFS와 별도</p>`:''}</div>`).join('')||'<p class="unit">현재 범위에서 연결된 사업 일정이 없습니다.</p>';
     html+='<h3>발표·추정·담당자 입력</h3>';
     html+=models.map(v=>{const url=safeURL(v.source_url),numeric=['IT_LOAD_MW','GRID_INTAKE_MW','PUE'].includes(v.field_name),unit=v.field_name.includes('_MW')?' MW':'';return `<div class="basis-card"><b>${esc(fieldNames[v.field_name]||v.field_name)} · ${numeric?num(v.value):esc(v.value)}${unit}</b><span class="chip ${v.basis==='ANNOUNCED'?'op':'dev'}">${esc(v.draft?'수정안':ManagerData.basisLabels[v.basis]||v.basis)}</span><p>${v.scope_type==='SITE'?'캠퍼스 전체':esc(v.scope_code)} · ${v.bucket==='OPERATING'?'운영':v.bucket==='DEVELOPMENT'?'개발':'기본정보'}${v.low_value!=null&&v.high_value!=null?` · 범위 ${num(v.low_value)}–${num(v.high_value)}${unit}`:''}</p><p>${esc(v.method||'산정 근거 미표기')}</p>${url?`<a href="${esc(url)}" target="_blank" rel="noopener">산정 근거 원문 ↗</a>`:''}</div>`;}).join('')||'<p class="unit">등록된 작업값이 없습니다.</p>';
+    const permits=(data.development_intelligence?.items||[]).filter(r=>r.connection?.site_code===code);
+    if(permits.length)html+='<h3>주소로 연결한 건축 인허가</h3>'+permits.map(r=>'<div class="fact-card"><b>'+esc(r.building_name||'건물명 미표기')+' · '+esc(r.permit_stage==='준공'?'사용승인':r.permit_stage)+'</b><p>'+esc(r.permit_kind)+' · 허가 '+esc(r.dates?.permit_on||'—')+' · 착공 '+esc(r.dates?.construction_started_on||'—')+' · 사용승인 '+esc(r.dates?.building_approved_on||'—')+'</p><p>원장 연결 · RFS/용량 확정 별도</p></div>').join('');
     html+='<h3>원문 검증 근거</h3>';
     html+=(d.verified_facts||[]).slice(0,6).map(f=>{const url=safeURL(f.canonical_url);return `<div class="fact-card"><b>${esc(f.field_name)} · ${esc(f.normalized_value)}</b><p>${esc(f.evidence_locator||'')} · 확인 ${date(f.reviewed_at)}</p>${url?`<a href="${esc(url)}" target="_blank" rel="noopener">출처 확인 ↗</a>`:''}</div>`;}).join('')||'<p class="unit">등록된 검증 항목이 없습니다.</p>';
     $('#detailBody').innerHTML=html;

@@ -9,7 +9,7 @@ def build():
     snapshot = json.loads((ROOT / 'deploy/data.json').read_text(encoding='utf-8'))
     page = (ROOT / 'dashboard/market.html').read_text(encoding='utf-8')
     page = page.replace('<link rel="stylesheet" href="./market.css">', '<style>' + (ROOT / 'dashboard/market.css').read_text(encoding='utf-8') + '</style>')
-    for name in ('manager-core.js', 'google-map.js', 'market.js'):
+    for name in ('manager-core.js', 'google-map.js', 'development.js', 'market.js'):
         code = (ROOT / 'dashboard' / name).read_text(encoding='utf-8').replace('</script', '<\\/script')
         page = page.replace(f'<script src="./{name}"></script>', f'<script>{code}</script>')
     payload = json.dumps(snapshot, ensure_ascii=False, separators=(',', ':')).replace('<', '\\u003c').replace('>', '\\u003e').replace('&', '\\u0026')

@@ -8,6 +8,7 @@ ASSETS = {
     '/manager.js': ('manager.js', 'application/javascript; charset=utf-8'),
     '/market.css': ('market.css', 'text/css; charset=utf-8'),
     '/market.js': ('market.js', 'application/javascript; charset=utf-8'),
+    '/development.js': ('development.js', 'application/javascript; charset=utf-8'),
     '/google-map.js': ('google-map.js', 'application/javascript; charset=utf-8'),
     '/map-config.json': ('map-config.json', 'application/json; charset=utf-8'),
 }

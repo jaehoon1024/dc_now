@@ -21,8 +21,10 @@
 ## 담당자 중심 화면 (2026-10-13)
 
 공개 API 루트와 GitHub Pages의 첫 화면은 `dashboard/market.html`이다. `manage.html`에서 기존 센터 수정·비교·근거 검토 화면을 제공한다.
-`manager.css`, `manager-core.js`, `manager.js`, `market.css`, `market.js`, `google-map.js`, 공개 지도 설정 `map-config.json`만 정적 자산으로 제공하며 임의 파일 경로를 허용하지 않는다.
+`manager.css`, `manager-core.js`, `manager.js`, `market.css`, `market.js`, `google-map.js`, `development.js`, 공개 지도 설정 `map-config.json`만 정적 자산으로 제공하며 임의 파일 경로를 허용하지 않는다.
 `GET /data.json`은 공개 원장·집계·공개 승인 상세만 반환한다.
+
+게시 스냅샷의 `development_intelligence`에는 외부 인허가 후보·원장 대조·지역 전력 지표와 수집 결과가 추가된다. 기존 원장 확정 상태와 독립적인 참고 자료이며 SQL 원장 승인 상태를 바꾸지 않는다. `src21_build_static_site.py`가 정기 발행 시 최신 참고 파일을 공개 API 원장과 대조한다.
 
 내부 API 루트는 `dashboard/manager.html`의 담당자 모드다. 토큰과 검토자 이름을 입력하면 실제 검토 업무에 연결한다.
 토큰은 메모리에만 유지하며 연결 성공 시 입력란을 비운다.

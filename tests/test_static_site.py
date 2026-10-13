@@ -50,6 +50,6 @@ class StaticSiteTests(unittest.TestCase):
   import io
   from src21_build_static_site import main
   snapshot={'total':0,'sites':[],'details':{},'public_total':0}
-  with patch('src21_build_static_site.urlopen',return_value=io.BytesIO(json.dumps(snapshot).encode())),patch('src21_build_static_site.write_site') as write:
+  with patch('src21_build_static_site.urlopen',return_value=io.BytesIO(json.dumps(snapshot).encode())),patch('src21_build_static_site.load_reference',return_value=None),patch('src21_build_static_site.write_site') as write:
    self.assertEqual(main(),0)
    self.assertEqual(write.call_args.args[0],snapshot)

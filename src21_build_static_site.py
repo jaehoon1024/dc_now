@@ -7,6 +7,7 @@ from pathlib import Path
 from urllib.parse import quote_plus
 from public_api import PublicRepository,json_value
 from urllib.request import urlopen
+from permit_intelligence import augment,load_reference
 ROOT=Path(__file__).resolve().parent;OUT=ROOT/"deploy"
 def build_payload(repo):
  public_sites,total=repo.sites(None,None,500,0)
@@ -14,7 +15,7 @@ def build_payload(repo):
  details={x["site_code"]:repo.site_detail(x["site_code"]) for x in sites if x.get("public_visible") and x.get("review_status")=="CONFIRMED"}
  payload={"generated_at":datetime.now().astimezone().isoformat(),"total":len(sites),"public_total":total,"target_summary":repo.target_summary(),"sites":sites,"details":details,"regions":repo.regions(),"companies":repo.companies(),"player_intelligence":repo.player_intelligence(),"yearly":repo.yearly(),"collection_status":repo.collection_status(),"evidence_summary":repo.evidence_summary(),"recent_evidence":repo.recent_evidence(),"source_assessment":repo.source_assessment()}
  payload['planning_values']=repo.planning_values() if hasattr(repo,'planning_values') else []
- return payload
+ return augment(payload,load_reference())
 def render_html(payload):
  page=(ROOT/"dashboard/professional.html").read_text(encoding="utf-8")
  page=page.replace(
@@ -199,7 +200,7 @@ def render_manager(payload):
 
 def write_site(payload,out=OUT):
  out.mkdir(parents=True,exist_ok=True)
- assets=('manager.css','manager-core.js','manager.js','market.css','market.js','google-map.js','map-config.json')
+ assets=('manager.css','manager-core.js','manager.js','market.css','market.js','google-map.js','development.js','map-config.json')
  from manager_workspace import market_page
  market=market_page()
  target=payload.get('target_summary') or {}
@@ -222,5 +223,6 @@ def write_site(payload,out=OUT):
 def main():
  with urlopen('http://127.0.0.1:8765/data.json',timeout=90) as response:payload=json.load(response)
  if not isinstance(payload,dict) or not isinstance(payload.get('sites'),list) or not isinstance(payload.get('details'),dict):raise ValueError('Invalid public snapshot')
+ payload=augment(payload,load_reference())
  write_site(payload);print(f"정적 사이트 생성: {OUT} / 추적 대상 {payload['total']}건 / 공개 확정 {payload['public_total']}건");return 0
 if __name__=="__main__":raise SystemExit(main())
