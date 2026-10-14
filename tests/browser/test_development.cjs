@@ -9,6 +9,18 @@ const base=process.argv[2];
  await p.goto('https://development.test/');await p.locator('#permitRows tr').first().waitFor();
  assert.match(await p.locator('#discoveryRibbon').innerText(),/138/);assert.match(await p.locator('#permitMetrics').innerText(),/49/);assert.match(await p.locator('#permitMetrics').innerText(),/47/);assert.match(await p.locator('#permitMetrics').innerText(),/42/);
  await p.locator('[data-permit-stage="공사 중"]').click();assert.match(await p.locator('#permitScope').innerText(),/^47건/);await p.locator('[data-permit-stage=""]').click();
+ // One reset clears both market and permit conditions and returns defaults.
+ await p.locator('[data-permit-stage="공사 중"]').click();
+ await p.locator('#permitConnection').selectOption('ADDRESS_MATCH');
+ await p.locator('#permitChart [data-permit-year]').first().press('Enter');
+ await p.locator('[data-metric="count"]').click();await p.locator('#energyToggle').click();
+ await p.locator('#reset').click();
+ assert.equal(await p.locator('[data-permit-stage=""]').getAttribute('aria-pressed'),'true');
+ assert.equal(await p.locator('#permitConnection').inputValue(),'');
+ assert.match(await p.locator('#permitScope').innerText(),/^138건/);assert.doesNotMatch(await p.locator('#permitScope').innerText(),/허가 \d{4}년/);
+ assert.match(await p.locator('#permitPageInfo').innerText(),/^1–10/);
+ assert.equal(await p.locator('[data-metric="it"]').getAttribute('aria-pressed'),'true');assert.equal(await p.locator('#energyRows tr').count(),8);
+ await p.locator('#permitNext').click();await p.locator('#reset').click();assert.match(await p.locator('#permitPageInfo').innerText(),/^1–10/);
  await p.locator('#permitConnection').selectOption('ADDRESS_MATCH');assert.match(await p.locator('#permitScope').innerText(),/^20건/);await p.locator('#permitConnection').selectOption('');
  await p.locator('#permitNext').click();assert.match(await p.locator('#permitPageInfo').innerText(),/^11–20/);await p.locator('#permitPrev').click();
  await p.locator('#search').fill('파주');assert.match(await p.locator('#permitScope').innerText(),/^1건/);await p.locator('#permitRows [data-permit-id]').first().click();assert.match(await p.locator('#permitBody').innerText(),/LG유플러스/);assert.match(await p.locator('#permitBody').innerText(),/RFS/);

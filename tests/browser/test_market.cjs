@@ -24,6 +24,14 @@ const base=process.argv[2];
  await p.goto('https://market.test/');await p.locator('#siteRows tr').first().waitFor();
  assert.match(await p.locator('#scopeNote').innerText(),/66곳/);
  assert.equal(await p.locator('#initialMarket').isVisible(),false);
+ // Market section anchors must stay on the market page, including the register.
+ for(const hash of ['summary','supply','location','permits','centers','infrastructure','intelligence']){
+  await p.locator('.section-nav a[href="#'+hash+'"]').click();
+  assert.equal(new URL(p.url()).pathname,'/');assert.equal(new URL(p.url()).hash,'#'+hash);
+ }
+ await p.goto('https://market.test/#centers');await p.locator('#siteRows tr').first().waitFor();
+ assert.equal(new URL(p.url()).pathname,'/');
+
  await p.locator('[name=basis][value=verified]').check();assert.match(await p.locator('#kpis').innerText(),/146\.3/);assert.equal(await p.locator('#supplyChart .capacity-bar').count(),0);assert.match(await p.locator('#supplyChart').innerText(),/용량 미확인/);
  await p.locator('[name=basis][value=planning]').check();await p.locator('[data-stage="DEVELOPMENT"]').click();assert.match(await p.locator('#scopeNote').innerText(),/13곳/);
  await p.locator('#reset').click();await p.locator('[data-year="2027"]').press('Enter');assert.match(await p.locator('#scopeNote').innerText(),/RFS 2027년/);assert.equal(await p.locator('#siteRows tr').count(),3);await p.locator('[data-year="2027"]').click();assert.match(await p.locator('#scopeNote').innerText(),/66곳/);
@@ -33,6 +41,7 @@ const base=process.argv[2];
  await p.locator('#scope').selectOption('ALL');assert.match(await p.locator('#scopeNote').innerText(),/146곳/);
  await p.locator('#reset').click();await p.locator('#region').selectOption('경기도');assert.match(await p.locator('#scopeNote').innerText(),/23곳/);
  await p.locator('#reset').click();await p.setViewportSize({width:390,height:844});assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth),390);await p.locator('#search').fill('파주');await p.locator('[data-detail="LGU_PAJU"]').first().click();assert.equal(await p.locator('#detailDialog').evaluate(e=>e.getBoundingClientRect().width),390);await p.keyboard.press('Escape');
+ await p.goto('https://market.test/#register');await p.waitForURL('**/manage.html#register');await p.locator('#siteSearch').waitFor();
  await p.goto('https://market.test/#detail/KT_GASAN');await p.waitForURL('**/manage.html#detail/KT_GASAN');await p.getByRole('heading',{name:'kt cloud 가산 AI 데이터센터',exact:true}).waitFor();
  await p.goto('https://market.test/manage.html#detail/KT_GASAN/planning');await p.locator('#planValue').waitFor();assert.equal(await p.locator('#planValue').inputValue(),'26');
  await p.locator('#planValue').fill('52');await p.locator('#planMethod').fill('새 대시보드 연동 테스트');await p.locator('#planningForm button[type=submit]').click();await p.locator('#feedback').filter({hasText:'수정안 저장 완료'}).waitFor();

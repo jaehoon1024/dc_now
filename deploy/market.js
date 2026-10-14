@@ -43,7 +43,12 @@
     document.querySelectorAll('[data-stage]').forEach(e => e.addEventListener('click', () => {state.stage=e.dataset.stage; state.page=0; state.year=null; render();}));
     document.querySelectorAll('[data-metric]').forEach(e => e.addEventListener('click', () => {state.metric=e.dataset.metric; renderChart();}));
     document.querySelectorAll('[data-sort]').forEach(e => e.addEventListener('click', () => {state.desc=state.sort===e.dataset.sort?!state.desc:true; state.sort=e.dataset.sort; state.page=0; renderTable();}));
-    $('#reset').addEventListener('click', () => {Object.assign(state,{scope:'COMMERCIAL',region:'',q:'',include:true,stage:'',year:null,page:0,sort:'default'});$('#scope').value=state.scope;$('#region').value='';$('#search').value='';$('[name=basis][value=planning]').checked=true; nationalMap(); render();});
+    $('#reset').addEventListener('click', () => {
+      Object.assign(state,{scope:'COMMERCIAL',region:'',q:'',include:true,stage:'',year:null,metric:'it',page:0,sort:'default',desc:true});
+      $('#scope').value=state.scope;$('#region').value='';$('#search').value='';$('[name=basis][value=planning]').checked=true;
+      $('#bubbleMetric').value='it';$('#approximateCoordinates').checked=false;
+      development?.reset();nationalMap();render();
+    });
     $('#prev').addEventListener('click', () => {state.page--; renderTable();});
     $('#next').addEventListener('click', () => {state.page++; renderTable();});
     $('#nationalMap').addEventListener('click', nationalMap);

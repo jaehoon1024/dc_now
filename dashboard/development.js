@@ -16,6 +16,11 @@
    try{const n=JSON.parse(localStorage.getItem('dc-now-permit-notes-v1')||'{}');if(n&&typeof n==='object'&&!Array.isArray(n))this.notes=n;}catch{}
    this.wire();
   }
+  reset(){
+   Object.assign(this.filter,{stage:'',connection:'',year:null,page:0});
+   this.energyAll=false;
+   $('#permitConnection').value='';
+  }
   wire(){
    document.querySelectorAll('[data-permit-stage]').forEach(b=>b.addEventListener('click',()=>{this.filter.stage=b.dataset.permitStage;this.filter.page=0;this.filter.year=null;this.render();}));
    $('#permitConnection').addEventListener('change',e=>{this.filter.connection=e.target.value;this.filter.page=0;this.render();});
