@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 PUBLISH_PATHS = (
     "data/reference/namepf_intelligence.json",
+    "data/reference/permit_workbook_20261014.json",
     "deploy/index.html",
     "deploy/manage.html",
     "deploy/market.js",

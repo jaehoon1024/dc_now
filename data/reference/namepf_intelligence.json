@@ -9449,8 +9449,8 @@
   "fact_digest": "cc4a45b58cea5b6a5d9019178f0b2efe54be2ff1eb1a8473e5ced94e25b076a1",
   "collection": {
     "status": "SUCCESS",
-    "attempted_at": "2026-10-14T05:09:44.869546+00:00",
-    "last_success_at": "2026-10-14T05:09:44.869546+00:00",
+    "attempted_at": "2026-10-14T05:50:00.620465+00:00",
+    "last_success_at": "2026-10-14T05:50:00.620465+00:00",
     "source_changed": false,
     "added_records": 0,
     "changed_records": 0,

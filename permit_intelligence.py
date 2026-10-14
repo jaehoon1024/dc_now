@@ -129,12 +129,16 @@ def build(document, previous=None, now=None):
     return result
 
 
-def load_reference(path=REFERENCE):
+def load_reference(path=REFERENCE, *, include_workbook=True):
     if not path.exists():
         return None
     dataset=json.loads(path.read_text(encoding='utf-8'))
     if dataset.get('format')!='dc-development-intelligence-v1' or not isinstance(dataset.get('items'),list):
         raise ValueError('Invalid development intelligence file')
+    if include_workbook and path == REFERENCE:
+        from permit_workbook import WORKBOOK_REFERENCE,attach_workbook
+        if WORKBOOK_REFERENCE.exists():
+            dataset=attach_workbook(dataset,json.loads(WORKBOOK_REFERENCE.read_text(encoding='utf-8')))
     return dataset
 
 

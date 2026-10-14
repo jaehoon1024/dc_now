@@ -19,7 +19,7 @@ def save(path, dataset):
 
 
 def refresh(path=REFERENCE,input_path=None):
-    previous=load_reference(path)
+    previous=load_reference(path,include_workbook=False)
     try:
         if input_path:
             document=json.loads(input_path.read_text(encoding='utf-8'))
