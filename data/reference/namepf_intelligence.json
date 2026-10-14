@@ -3,8 +3,8 @@
   "source_url": "https://dc.namepf.com/data/dash.json",
   "source_name": "NamePF 공개 데이터센터 개발 현황",
   "source_type": "THIRD_PARTY_DASHBOARD",
-  "source_built_raw": "2026-10-13 10:30",
-  "permits_updated_on": "2026-10-12",
+  "source_built_raw": "2026-10-14 07:45",
+  "permits_updated_on": "2026-10-14",
   "primary_source_url": "https://www.data.go.kr/data/15136267/openapi.do",
   "fact_status": "CANDIDATE",
   "items": [
@@ -3782,16 +3782,16 @@
           "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPN0VzV1RxVDJ2bUNCeC1sX3llaUR1ZzJwcVBoVnY4ZU5zNXdINVFMc2Z0a0Z1dkN4b01ZUDJtWHZhVkFEa0hQbGdtU3Y3MmtEMHFkZUpkdUY3cDZ0TllZSGl5MEhQczQyc2k5Mm1Tc1lzaVExZkkweGNHbVlLcmxWcXVXaXF1ZC1jazJjcEt3VEZId1Y5MUFTWkxCaTBNa2luVHBaMXpDRUdXQlpLQmc?oc=5"
         },
         {
+          "title": "“젠슨 황 AI 협력에도…” 영등포 엣지 데이터센터 주민 반발에 표류 논란",
+          "publisher": "헤럴드경제",
+          "published_on": "2025-11-05",
+          "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1fUDg4Q0JlWkRxbFZTYTI5VWpST3FLUmhkbkdfZjBQYTBIX19oT3ZzeUFNdkxhejlRVGNjWlNoekZaYURYTXJXeVgyblZYYVJWcmdSM2Jn?oc=5"
+        },
+        {
           "title": "마스턴투자운용, 서울 영등포에 엣지 데이터센터 개발",
           "publisher": "뉴스톱",
           "published_on": "2025-10-17",
           "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE93MHJzd0V1d1BZdEViZWxIQlJHMUdWeWRVdm1yZHZkZ1JzcjBiODl2UzBNR3ZMc3hvaUJNbHc1R1ItZ1RYdFRiZ2x2SmtjbVZfLVcyclRZemZId1FzcXVRMjhYU1EyWUh1UWVDa2ZTTQ?oc=5"
-        },
-        {
-          "title": "마스턴운용, 서울 영등포에 10MW급 엣지 데이터센터 개발",
-          "publisher": "매일경제",
-          "published_on": "2025-10-17",
-          "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5VNUVXV3RMbS01U3RDblctWUhHbUZxVkE4YnZNTlV5d3lyLXVDQXJtdU5JTzU4cG9pUjRDS2t4Qml5T1BFRkx6eEJpaFAtVzRZMUE?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -9446,14 +9446,14 @@
       }
     ]
   },
-  "fact_digest": "78fda85c15f0e46d9ef612ebc646ff1f40bc30f983d4bc16756b03a6f613a98e",
+  "fact_digest": "cc4a45b58cea5b6a5d9019178f0b2efe54be2ff1eb1a8473e5ced94e25b076a1",
   "collection": {
     "status": "SUCCESS",
-    "attempted_at": "2026-10-13T10:09:16.843266+00:00",
-    "last_success_at": "2026-10-13T10:09:16.843266+00:00",
-    "source_changed": false,
+    "attempted_at": "2026-10-14T00:10:27.418560+00:00",
+    "last_success_at": "2026-10-14T00:10:27.418560+00:00",
+    "source_changed": true,
     "added_records": 0,
-    "changed_records": 0,
+    "changed_records": 1,
     "removed_records": 0
   }
 }
