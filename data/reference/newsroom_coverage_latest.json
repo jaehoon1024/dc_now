@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-16T06:48:50.316129+09:00",
+  "checked_at": "2026-10-16T06:56:02.243047+09:00",
   "sources": [
     {
       "source_code": "KT_CORP_NEWS",
@@ -11,11 +11,11 @@
     },
     {
       "source_code": "LGU_NEWS",
-      "pages_scanned": 3,
-      "oldest_listed_date": "2026-09-09",
+      "pages_scanned": 6,
+      "oldest_listed_date": "2026-08-05",
       "scan_end": "page_limit",
       "new_documents": 0,
-      "found_documents": 30
+      "found_documents": 60
     },
     {
       "source_code": "SKB_IDC",
