@@ -160,4 +160,12 @@ def augment(payload, dataset):
         'area_review_records':sum((r.get('areas_sqm',{}).get('dc_use_ratio_pct') or 0)>100 for r in items),
         'coordinate_representative_records':sum(r.get('location',{}).get('verification')=='ADMINISTRATIVE_REPRESENTATIVE_POINT' for r in items)}
     result['development_intelligence']=intelligence
+    if result.get('source_assessment'):
+        assessment=copy.deepcopy(result['source_assessment'])
+        for source in assessment.get('sources',[]):
+            source['permit_records']=len(items) if source['source_code']=='BUILDING_HUB_PERMIT' else 0
+            if source['source_code']=='BUILDING_HUB_PERMIT':
+                source['permit_acquisition']='NamePF·첨부 목록 경유 · 원본 API 직접 취득과 구분'
+        assessment['reference_contribution']={'permit_records':len(items),'route':'NamePF·첨부 목록 경유','workbook_matched':intelligence.get('workbook_import',{}).get('applied_records',0)}
+        result['source_assessment']=assessment
     return result

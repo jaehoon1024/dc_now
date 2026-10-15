@@ -334,7 +334,7 @@ def parse_args() -> argparse.Namespace:
         description="승인된 기업 뉴스룸에서 최소 메타데이터 수집"
     )
     parser.add_argument("--source-code")
-    parser.add_argument("--max-pages",type=int,default=3,choices=range(1,201),metavar="1..200")
+    parser.add_argument("--max-pages",type=int,default=6,choices=range(1,201),metavar="1..200")
     parser.add_argument("--since",type=date.fromisoformat,help="과거 목록 반입 시작일 YYYY-MM-DD")
     parser.add_argument(
         "--trigger",
@@ -475,6 +475,7 @@ def main() -> int:
     engine = create_engine(resolve_database_url(), pool_pre_ping=True)
     run_id = None
     successes = failures = new = updated = 0
+    coverage=[]
     errors: list[str] = []
     try:
         pages = load_pages(engine, args.source_code)
@@ -495,6 +496,7 @@ def main() -> int:
                 new += counts.new
                 updated += counts.updated
                 mark_page(engine, page["page_id"], None)
+                coverage.append({'source_code':page['source_code'],'pages_scanned':page.get('pages_scanned',1),'oldest_listed_date':str(page.get('oldest_listed_date') or ''),'scan_end':page.get('scan_end','single_page'),'new_documents':counts.new,'found_documents':counts.found})
                 print(f"목록 범위 {page['source_code']}: {page.get('pages_scanned',1)}페이지 / 최저 게시일 {page.get('oldest_listed_date','미확인')} / 종료 {page.get('scan_end','single_page')}",flush=True)
                 print(
                     f"- {page['source_code']}: 발견 {counts.found}, "
@@ -508,6 +510,11 @@ def main() -> int:
                 mark_page(engine, page["page_id"], error)
                 print(f"뉴스룸 실패 - {message}", file=sys.stderr)
         finish_run(engine, run_id, successes, failures, new, updated, errors)
+        from src30_collect_permit_intelligence import save
+        save(Path(__file__).resolve().parent/'data/reference/newsroom_coverage_latest.json',{'checked_at':datetime.now().astimezone().isoformat(),'sources':coverage})
+        from official_collection import collect
+        official=collect(engine)
+        print('공식 안내 수집: '+json.dumps(official['summary'],ensure_ascii=False))
         return 1 if failures else 0
     except Exception as error:
         if run_id is not None:

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "source_code": "GABIA_IDC",
+      "url": "https://idc.gabiacloud.com/server/idc",
+      "reviewed_robots_redirect": "https://www.gabia.com/error_page/err_404",
+      "robots_reviewed_absent": true
+    },
+    {
+      "source_code": "DREAMMARK1",
+      "url": "https://dream-mark1.co.kr/ko/dataCenter/incheon"
+    },
+    {
+      "source_code": "HOSTWAY_IDC",
+      "url": "https://www.hostway.co.kr/"
+    },
+    {
+      "source_code": "PDG_KR",
+      "url": "https://princetondg.com/where-we-operate/"
+    },
+    {
+      "source_code": "STT_GDC_KR",
+      "url": "https://www.sttgdc.com/kr-en/locations/seoul"
+    },
+    {
+      "source_code": "EMPYRION_DIGITAL",
+      "url": "https://empyriondigital.com/south-korea/"
+    },
+    {
+      "source_code": "KINX",
+      "url": "https://www.kinx.net/"
+    },
+    {
+      "source_code": "DIGITAL_EDGE",
+      "url": "https://www.digitaledgedc.com/"
+    }
+  ]
+}

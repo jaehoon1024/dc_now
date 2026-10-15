@@ -490,7 +490,10 @@ def store_items(
     collector_version: str = VERSION,
     parser_name: str = "rss-metadata",
     external_id_prefix: str = "rss",
+    document_type: str = "NEWS",
 ) -> Counts:
+    if document_type not in {'NEWS','WEB_PAGE'}:
+        raise ValueError('Unsupported document type')
     counts = Counts(found=len(items))
     keywords = feed.get("filter_keywords") or []
     if isinstance(keywords, str):
@@ -559,7 +562,7 @@ def store_items(
                             :canonical_url,
                             :external_document_id,
                             :title,
-                            'NEWS',
+                            :document_type,
                             :publisher,
                             :published_at,
                             'ko',
@@ -578,6 +581,7 @@ def store_items(
                         "publisher": item.get("publisher") or feed["source_name"],
                         "published_at": item.get("published_at"),
                         "source_grade": feed["default_source_grade"],
+                        "document_type": document_type,
                     },
                 ).scalar_one()
             else:

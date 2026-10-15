@@ -3,8 +3,8 @@
   "source_url": "https://dc.namepf.com/data/dash.json",
   "source_name": "NamePF 공개 데이터센터 개발 현황",
   "source_type": "THIRD_PARTY_DASHBOARD",
-  "source_built_raw": "2026-10-14 07:45",
-  "permits_updated_on": "2026-10-14",
+  "source_built_raw": "2026-10-15 07:44",
+  "permits_updated_on": "2026-10-15",
   "primary_source_url": "https://www.data.go.kr/data/15136267/openapi.do",
   "fact_status": "CANDIDATE",
   "items": [
@@ -9096,7 +9096,7 @@
   ],
   "infrastructure": {
     "source_status": "SOURCE_REPORTED",
-    "headroom_checked_on": "2026-10-13",
+    "headroom_checked_on": "2026-10-14",
     "regions": [
       {
         "name": "강원",
@@ -9446,11 +9446,11 @@
       }
     ]
   },
-  "fact_digest": "cc4a45b58cea5b6a5d9019178f0b2efe54be2ff1eb1a8473e5ced94e25b076a1",
+  "fact_digest": "ccd5d602c7cafbcdd23257cc63dcc0aa3e5c9ea802a5437774a15815d8ddcd6e",
   "collection": {
     "status": "SUCCESS",
-    "attempted_at": "2026-10-14T05:50:00.620465+00:00",
-    "last_success_at": "2026-10-14T05:50:00.620465+00:00",
+    "attempted_at": "2026-10-15T21:54:32.963482+00:00",
+    "last_success_at": "2026-10-15T21:54:32.963482+00:00",
     "source_changed": false,
     "added_records": 0,
     "changed_records": 0,

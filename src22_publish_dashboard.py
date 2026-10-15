@@ -10,6 +10,8 @@ ROOT = Path(__file__).resolve().parent
 PUBLISH_PATHS = (
     "data/reference/namepf_intelligence.json",
     "data/reference/permit_workbook_20261014.json",
+    "data/reference/official_collection_latest.json",
+    "data/reference/newsroom_coverage_latest.json",
     "deploy/index.html",
     "deploy/manage.html",
     "deploy/market.js",

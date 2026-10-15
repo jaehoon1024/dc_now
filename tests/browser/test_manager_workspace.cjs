@@ -36,7 +36,7 @@ if(!base)throw Error('Pass workspace path');
    else if(p==='/internal/v1/review'){const body=route.request().postDataJSON();decisions.push(body);approved=true;await route.fulfill({json:{review_status:'CONFIRMED'}});}
    else await route.fulfill({status:404,body:'not found'});
   });
-  await page.goto('https://workspace.test/');return{page,errors,decisions,planningWrites,publishCount:()=>publishRequests};
+  await page.goto('https://workspace.test/');if(!internal)await page.locator('#snapshotAt').filter({hasText:/\d{4}/}).waitFor();return{page,errors,decisions,planningWrites,publishCount:()=>publishRequests};
  }
  const {page,errors}=await setup();
  await page.locator('#content h1').filter({hasText:'오늘의 업무'}).waitFor();
@@ -64,6 +64,12 @@ if(!base)throw Error('Pass workspace path');
  await page.locator('[data-page="review"]').click();await page.waitForFunction(()=>document.querySelector('#content').innerText.includes('인증'));assert.ok((await page.locator('#content').innerText()).includes('인증'));
  for(const p of ['companies','sources','ops','projects','home']){await page.locator('[data-page="'+p+'"]').click();await page.waitForFunction(p=>location.hash==='#'+p,p);}
  await page.locator('[data-page="sources"]').click();
+ await page.locator('#sourceStatus').selectOption('API_NOT_CONNECTED');
+ const apiSources=data.source_assessment.sources.filter(x=>x.connection_status==='API_NOT_CONNECTED');
+ assert.equal(await page.locator('[data-source-code]').count(),apiSources.length);
+ const hub=page.locator('[data-source-code="BUILDING_HUB_PERMIT"]');assert.match(await hub.innerText(),/138건/);assert.match(await hub.innerText(),/API 수집기 미연결/);
+ await hub.locator('summary').click();assert.match(await hub.locator('details').innerText(),/제3자|경유/);
+ await page.locator('#sourceStatus').selectOption('');
  await page.locator('#sourceGroup').selectOption('유료 전문 데이터');
  assert.equal(await page.locator('.panel').filter({has:page.getByRole('heading',{name:'소스별 실제 기여도',exact:true})}).locator('tbody tr').count(),3);
  assert.ok((await page.locator('#content').innerText()).includes('계약 필요 · 미취득'));

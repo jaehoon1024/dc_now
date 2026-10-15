@@ -1,0 +1,29 @@
+{
+  "checked_at": "2026-10-16T06:48:50.316129+09:00",
+  "sources": [
+    {
+      "source_code": "KT_CORP_NEWS",
+      "pages_scanned": 3,
+      "oldest_listed_date": "2022-07-07",
+      "scan_end": "archive_end",
+      "new_documents": 0,
+      "found_documents": 25
+    },
+    {
+      "source_code": "LGU_NEWS",
+      "pages_scanned": 3,
+      "oldest_listed_date": "2026-09-09",
+      "scan_end": "page_limit",
+      "new_documents": 0,
+      "found_documents": 30
+    },
+    {
+      "source_code": "SKB_IDC",
+      "pages_scanned": 1,
+      "oldest_listed_date": "2026-05-03",
+      "scan_end": "single_page",
+      "new_documents": 0,
+      "found_documents": 11
+    }
+  ]
+}

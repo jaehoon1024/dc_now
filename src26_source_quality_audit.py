@@ -75,11 +75,14 @@ def assess(engine):
     with engine.connect() as c:
         rows=[dict(r) for r in c.execute(text('''SELECT sr.source_code,sr.source_name,sr.source_type,sr.base_url,sr.collection_method,sr.collection_policy,sr.active,
             COUNT(ed.document_id)::int AS documents,
+            COUNT(ed.document_id) FILTER(WHERE ed.created_at>=CURRENT_TIMESTAMP-INTERVAL '7 days')::int AS documents_last_7_days,
             COUNT(ed.document_id) FILTER(WHERE ed.review_status='CONFIRMED' AND ed.access_scope='PUBLIC')::int AS public_confirmed,
             COUNT(ed.document_id) FILTER(WHERE ed.canonical_url LIKE 'https://news.google.com/%')::int AS aggregator_urls,
             MAX(ed.created_at) AS latest_imported_at
             FROM source_registry sr LEFT JOIN evidence_document ed ON ed.source_id=sr.source_id AND ed.record_status='ACTIVE'
             GROUP BY sr.source_id ORDER BY COUNT(ed.document_id) DESC,sr.source_code''')).mappings()]
+        from source_contribution import enrich_rows
+        enrich_rows(rows,c)
         coverage=dict(c.execute(text('''SELECT COUNT(*) AS commercial_centers,
             COUNT(*) FILTER(WHERE v.operating_it_load_mw IS NOT NULL OR v.development_it_load_mw IS NOT NULL) AS centers_with_it_mw,
             COUNT(*) FILTER(WHERE v.operating_grid_intake_mw IS NOT NULL OR v.development_grid_intake_mw IS NOT NULL) AS centers_with_grid_mw,
@@ -94,6 +97,7 @@ def assess(engine):
     for r in rows:
         r['group']=group(r)
         r['acquisition_status']='계약 필요 · 미취득' if r['source_code'].endswith('_LICENSED') else '등록만 · 문서 미확보' if not r['documents'] else '수동 근거 확보' if r['collection_policy'] in {'MANUAL_ONLY','BLOCKED'} else '문서 확보 · 수집 연계'
+    for r in rows:r['acquisition_status']=r['connection_label']
     manifests=[json.loads(path.read_text()) for path in sorted((ROOT/'data/reference').glob('*review_*.json'))]
     reference_docs={doc['url']:doc for manifest in manifests for doc in manifest['documents']}
     with engine.connect() as c:gaps=discovery_gaps(c)
