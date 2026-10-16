@@ -9448,12 +9448,13 @@
   },
   "fact_digest": "ccd5d602c7cafbcdd23257cc63dcc0aa3e5c9ea802a5437774a15815d8ddcd6e",
   "collection": {
-    "status": "SUCCESS",
-    "attempted_at": "2026-10-15T21:54:32.963482+00:00",
+    "status": "FAILED_KEPT_PREVIOUS",
+    "attempted_at": "2026-10-16T00:10:33.260653+00:00",
     "last_success_at": "2026-10-15T21:54:32.963482+00:00",
     "source_changed": false,
     "added_records": 0,
     "changed_records": 0,
-    "removed_records": 0
+    "removed_records": 0,
+    "error_code": "ValueError"
   }
 }
