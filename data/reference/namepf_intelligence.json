@@ -3,8 +3,8 @@
   "source_url": "https://dc.namepf.com/data/dash.json",
   "source_name": "NamePF 공개 데이터센터 개발 현황",
   "source_type": "THIRD_PARTY_DASHBOARD",
-  "source_built_raw": "2026-10-15 07:44",
-  "permits_updated_on": "2026-10-15",
+  "source_built_raw": "2026-10-17 07:44",
+  "permits_updated_on": "2026-10-17",
   "primary_source_url": "https://www.data.go.kr/data/15136267/openapi.do",
   "fact_status": "CANDIDATE",
   "items": [
@@ -3782,16 +3782,16 @@
           "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPN0VzV1RxVDJ2bUNCeC1sX3llaUR1ZzJwcVBoVnY4ZU5zNXdINVFMc2Z0a0Z1dkN4b01ZUDJtWHZhVkFEa0hQbGdtU3Y3MmtEMHFkZUpkdUY3cDZ0TllZSGl5MEhQczQyc2k5Mm1Tc1lzaVExZkkweGNHbVlLcmxWcXVXaXF1ZC1jazJjcEt3VEZId1Y5MUFTWkxCaTBNa2luVHBaMXpDRUdXQlpLQmc?oc=5"
         },
         {
-          "title": "“젠슨 황 AI 협력에도…” 영등포 엣지 데이터센터 주민 반발에 표류 논란",
-          "publisher": "헤럴드경제",
-          "published_on": "2025-11-05",
-          "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1fUDg4Q0JlWkRxbFZTYTI5VWpST3FLUmhkbkdfZjBQYTBIX19oT3ZzeUFNdkxhejlRVGNjWlNoekZaYURYTXJXeVgyblZYYVJWcmdSM2Jn?oc=5"
-        },
-        {
           "title": "마스턴투자운용, 서울 영등포에 엣지 데이터센터 개발",
           "publisher": "뉴스톱",
           "published_on": "2025-10-17",
           "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE93MHJzd0V1d1BZdEViZWxIQlJHMUdWeWRVdm1yZHZkZ1JzcjBiODl2UzBNR3ZMc3hvaUJNbHc1R1ItZ1RYdFRiZ2x2SmtjbVZfLVcyclRZemZId1FzcXVRMjhYU1EyWUh1UWVDa2ZTTQ?oc=5"
+        },
+        {
+          "title": "마스턴운용, 서울 영등포에 10MW급 엣지 데이터센터 개발",
+          "publisher": "매일경제",
+          "published_on": "2025-10-17",
+          "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5VNUVXV3RMbS01U3RDblctWUhHbUZxVkE4YnZNTlV5d3lyLXVDQXJtdU5JTzU4cG9pUjRDS2t4Qml5T1BFRkx6eEJpaFAtVzRZMUE?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -4375,10 +4375,10 @@
           "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFA0UlhNQ3p4MW9RQTJFaDl0TWppbDl1QTZuN3RuSGUzSWdmWktQcUszdzhVSzBHMlBtUXY3eDI1OW9lNlFpWXV4anc1NEJ2X3Z5ZEZHLTVWb2VMckFmb3poYWg2bEJZTkRh?oc=5"
         },
         {
-          "title": "의정부시, 용현산단에 클라우드 데이터센터 투자 유치",
-          "publisher": "스카이데일리",
-          "published_on": "2024-04-28",
-          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9rT1o3aWJ2d3FFV2tKdFdrVEtQMGo5VC1lX0ktRWxaQ2xEd3NmR29pTWJneXpHY2h0dGJYaGJ4QThNMGdhQUVmSjZWN1ZHRURvaDVXU004czVkY29yTFhpYkNSc0lQOFVMNFg5SXhzQTJ3a3dGLUpuMF80RXI1dw?oc=5"
+          "title": "의정부 미래형 첨단산단 '가속도'… 용현산단 데이터센터 구축",
+          "publisher": "경기일보",
+          "published_on": "2024-04-23",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE90QWdXbjdTR2RKWDdYMVRpZUgxRkJzWEpDT2hxejRlR09zanNRV2dXRDlLU0loLUk1cjJZNGhfYVZhR0hXbXROMGtSbDlBRk8xQkpqMFRJSEtwTWM?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -7207,7 +7207,7 @@
           "title": "부천 삼정동 데이터센터 주민들 없는 ‘설명회’…주민들 뿔났다",
           "publisher": "Daum",
           "published_on": "2024-05-28",
-          "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBvZkZXajlOZG1iYU9BZEtyUWwzOHprUWswTERldzN3Q2g4dElWV3ZienBMQ25uekJVeUJGUGlDZHd2cEY1ZDBjdG9IRjRONFk?oc=5"
+          "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9pbDJyMVZDNkExN0xSRDdRNTY0VzRkQ2QwdzZwYU9GUVVILWFBMnFIaWRUZm1oYUEwbGNqWnJ2YVpINUZpcVhma2Vraw?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -9096,7 +9096,7 @@
   ],
   "infrastructure": {
     "source_status": "SOURCE_REPORTED",
-    "headroom_checked_on": "2026-10-14",
+    "headroom_checked_on": "2026-10-16",
     "regions": [
       {
         "name": "강원",
@@ -9110,9 +9110,9 @@
         "known_groups": 4,
         "available_groups": 4,
         "headroom_mw": 1325.0,
-        "ict_average_mw": 60.194,
-        "ict_period_from": "2025-08",
-        "ict_period_to": "2026-07",
+        "ict_average_mw": 60.211,
+        "ict_period_from": "2025-09",
+        "ict_period_to": "2026-08",
         "self_sufficiency_pct": 175.6,
         "self_sufficiency_year": "2025"
       },
@@ -9145,9 +9145,9 @@
         "known_groups": 21,
         "available_groups": 1,
         "headroom_mw": 98.0,
-        "ict_average_mw": 574.417,
-        "ict_period_from": "2025-08",
-        "ict_period_to": "2026-07",
+        "ict_average_mw": 580.209,
+        "ict_period_from": "2025-09",
+        "ict_period_to": "2026-08",
         "self_sufficiency_pct": 59.2,
         "self_sufficiency_year": "2025"
       },
@@ -9167,9 +9167,9 @@
         "known_groups": 8,
         "available_groups": 5,
         "headroom_mw": 2475.0,
-        "ict_average_mw": 41.768,
-        "ict_period_from": "2025-08",
-        "ict_period_to": "2026-07",
+        "ict_average_mw": 41.784,
+        "ict_period_from": "2025-09",
+        "ict_period_to": "2026-08",
         "self_sufficiency_pct": 137.0,
         "self_sufficiency_year": "2025"
       },
@@ -9190,9 +9190,9 @@
         "known_groups": 9,
         "available_groups": 8,
         "headroom_mw": 2625.0,
-        "ict_average_mw": 44.599,
-        "ict_period_from": "2025-08",
-        "ict_period_to": "2026-07",
+        "ict_average_mw": 44.594,
+        "ict_period_from": "2025-09",
+        "ict_period_to": "2026-08",
         "self_sufficiency_pct": 251.8,
         "self_sufficiency_year": "2025"
       },
@@ -9209,9 +9209,9 @@
         "known_groups": 5,
         "available_groups": 4,
         "headroom_mw": 693.0,
-        "ict_average_mw": 34.811,
-        "ict_period_from": "2025-08",
-        "ict_period_to": "2026-07",
+        "ict_average_mw": 34.912,
+        "ict_period_from": "2025-09",
+        "ict_period_to": "2026-08",
         "self_sufficiency_pct": 23.6,
         "self_sufficiency_year": "2025"
       },
@@ -9228,8 +9228,8 @@
         "available_groups": 2,
         "headroom_mw": 678.0,
         "ict_average_mw": 37.449,
-        "ict_period_from": "2025-08",
-        "ict_period_to": "2026-07",
+        "ict_period_from": "2025-09",
+        "ict_period_to": "2026-08",
         "self_sufficiency_pct": 3.1,
         "self_sufficiency_year": "2025"
       },
@@ -9246,9 +9246,9 @@
         "known_groups": 5,
         "available_groups": 1,
         "headroom_mw": 546.0,
-        "ict_average_mw": 86.962,
-        "ict_period_from": "2025-08",
-        "ict_period_to": "2026-07",
+        "ict_average_mw": 87.368,
+        "ict_period_from": "2025-09",
+        "ict_period_to": "2026-08",
         "self_sufficiency_pct": 122.6,
         "self_sufficiency_year": "2025"
       },
@@ -9269,9 +9269,9 @@
         "known_groups": 9,
         "available_groups": 1,
         "headroom_mw": 98.0,
-        "ict_average_mw": 260.624,
-        "ict_period_from": "2025-08",
-        "ict_period_to": "2026-07",
+        "ict_average_mw": 262.667,
+        "ict_period_from": "2025-09",
+        "ict_period_to": "2026-08",
         "self_sufficiency_pct": 6.8,
         "self_sufficiency_year": "2025"
       },
@@ -9284,9 +9284,9 @@
         "known_groups": 1,
         "available_groups": 0,
         "headroom_mw": 0.0,
-        "ict_average_mw": 24.194,
-        "ict_period_from": "2025-08",
-        "ict_period_to": "2026-07",
+        "ict_average_mw": 24.23,
+        "ict_period_from": "2025-09",
+        "ict_period_to": "2026-08",
         "self_sufficiency_pct": 114.0,
         "self_sufficiency_year": "2025"
       },
@@ -9304,9 +9304,9 @@
         "known_groups": 6,
         "available_groups": 5,
         "headroom_mw": 3290.0,
-        "ict_average_mw": 13.277,
-        "ict_period_from": "2025-08",
-        "ict_period_to": "2026-07",
+        "ict_average_mw": 13.29,
+        "ict_period_from": "2025-09",
+        "ict_period_to": "2026-08",
         "self_sufficiency_pct": 113.9,
         "self_sufficiency_year": "2025"
       },
@@ -9324,9 +9324,9 @@
         "known_groups": 6,
         "available_groups": 0,
         "headroom_mw": 0.0,
-        "ict_average_mw": 47.335,
-        "ict_period_from": "2025-08",
-        "ict_period_to": "2026-07",
+        "ict_average_mw": 48.314,
+        "ict_period_from": "2025-09",
+        "ict_period_to": "2026-08",
         "self_sufficiency_pct": 172.7,
         "self_sufficiency_year": "2025"
       },
@@ -9343,9 +9343,9 @@
         "known_groups": 5,
         "available_groups": 2,
         "headroom_mw": 1096.0,
-        "ict_average_mw": 68.69,
-        "ict_period_from": "2025-08",
-        "ict_period_to": "2026-07",
+        "ict_average_mw": 68.746,
+        "ict_period_from": "2025-09",
+        "ict_period_to": "2026-08",
         "self_sufficiency_pct": 170.4,
         "self_sufficiency_year": "2025"
       },
@@ -9361,9 +9361,9 @@
         "known_groups": 4,
         "available_groups": 3,
         "headroom_mw": 1592.0,
-        "ict_average_mw": 27.913,
-        "ict_period_from": "2025-08",
-        "ict_period_to": "2026-07",
+        "ict_average_mw": 27.938,
+        "ict_period_from": "2025-09",
+        "ict_period_to": "2026-08",
         "self_sufficiency_pct": 71.4,
         "self_sufficiency_year": "2025"
       },
@@ -9379,9 +9379,9 @@
         "known_groups": 4,
         "available_groups": 3,
         "headroom_mw": 414.0,
-        "ict_average_mw": 12.257,
-        "ict_period_from": "2025-08",
-        "ict_period_to": "2026-07",
+        "ict_average_mw": 12.308,
+        "ict_period_from": "2025-09",
+        "ict_period_to": "2026-08",
         "self_sufficiency_pct": 73.4,
         "self_sufficiency_year": "2025"
       },
@@ -9403,9 +9403,9 @@
         "known_groups": 10,
         "available_groups": 3,
         "headroom_mw": 801.0,
-        "ict_average_mw": 37.377,
-        "ict_period_from": "2025-08",
-        "ict_period_to": "2026-07",
+        "ict_average_mw": 37.458,
+        "ict_period_from": "2025-09",
+        "ict_period_to": "2026-08",
         "self_sufficiency_pct": 209.3,
         "self_sufficiency_year": "2025"
       },
@@ -9422,9 +9422,9 @@
         "known_groups": 5,
         "available_groups": 4,
         "headroom_mw": 1425.0,
-        "ict_average_mw": 26.532,
-        "ict_period_from": "2025-08",
-        "ict_period_to": "2026-07",
+        "ict_average_mw": 26.556,
+        "ict_period_from": "2025-09",
+        "ict_period_to": "2026-08",
         "self_sufficiency_pct": 25.0,
         "self_sufficiency_year": "2025"
       }
@@ -9446,15 +9446,14 @@
       }
     ]
   },
-  "fact_digest": "ccd5d602c7cafbcdd23257cc63dcc0aa3e5c9ea802a5437774a15815d8ddcd6e",
+  "fact_digest": "0205802b39aad4d2bc08d532730afb7f9c699375428fd764358df3733f9f96fd",
   "collection": {
-    "status": "FAILED_KEPT_PREVIOUS",
-    "attempted_at": "2026-10-16T00:10:33.260653+00:00",
-    "last_success_at": "2026-10-15T21:54:32.963482+00:00",
-    "source_changed": false,
+    "status": "SUCCESS",
+    "attempted_at": "2026-10-17T00:10:33.280290+00:00",
+    "last_success_at": "2026-10-17T00:10:33.280290+00:00",
+    "source_changed": true,
     "added_records": 0,
-    "changed_records": 0,
-    "removed_records": 0,
-    "error_code": "ValueError"
+    "changed_records": 3,
+    "removed_records": 0
   }
 }
