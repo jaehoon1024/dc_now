@@ -3,8 +3,8 @@
   "source_url": "https://dc.namepf.com/data/dash.json",
   "source_name": "NamePF 공개 데이터센터 개발 현황",
   "source_type": "THIRD_PARTY_DASHBOARD",
-  "source_built_raw": "2026-10-18 07:42",
-  "permits_updated_on": "2026-10-18",
+  "source_built_raw": "2026-10-19 08:55",
+  "permits_updated_on": "2026-10-19",
   "primary_source_url": "https://www.data.go.kr/data/15136267/openapi.do",
   "fact_status": "CANDIDATE",
   "items": [
@@ -38,7 +38,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacity_checked_on": "2026-10-19",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "고덕, 서안성, 평택T/P": 0.0,
@@ -132,7 +132,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacity_checked_on": "2026-10-19",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "북부산": 546.0
@@ -267,7 +267,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacity_checked_on": "2026-10-19",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "선산": 222.0
@@ -451,7 +451,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacity_checked_on": "2026-10-19",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "신녹산": 0.0
@@ -689,7 +689,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacity_checked_on": "2026-10-19",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "인천C/C, 신김포": 0.0
@@ -754,7 +754,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacity_checked_on": "2026-10-19",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "고덕, 서안성, 평택T/P": 0.0,
@@ -1229,8 +1229,30 @@
         "source_precision": "ri",
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
-      "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacities": [
+        {
+          "type": "ANNOUNCED_UNCLASSIFIED_MW",
+          "mw": 100.0,
+          "source_basis": "미표기",
+          "review_status": "CANDIDATE",
+          "scope_status": "UNCONFIRMED",
+          "evidence": [
+            {
+              "title": "함양 AI 데이터센터, 속도보다 검증이 중요하다",
+              "publisher": "오마이뉴스(다음)",
+              "published_on": "2026-04-09",
+              "url": "https://v.daum.net/v/20260409164723794"
+            },
+            {
+              "title": "함양군 관계자 본사 방문, 100MW급 데이터센터 건립 및 기술 협력 구체화",
+              "publisher": "뉴스와이어(몬드리안에이아이 보도자료)",
+              "published_on": "2026-02-03",
+              "url": "https://www.newswire.co.kr/newsRead.php?no=1028104"
+            }
+          ]
+        }
+      ],
+      "capacity_checked_on": "2026-10-19",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "의령": 719.0
@@ -1249,7 +1271,7 @@
       "commercial_scope": "REVIEW_REQUIRED",
       "review_status": "CANDIDATE",
       "quality_warnings": [
-        "용량 원문 확보 필요",
+        "발표 MW의 수전/IT 기준 미확인",
         "행정구역 대표점 · 센터 정확 좌표로 사용하지 않음"
       ]
     },
@@ -1282,8 +1304,51 @@
         "source_precision": "dong",
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
-      "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacities": [
+        {
+          "type": "GRID_INTAKE_MW",
+          "mw": 7.6,
+          "source_basis": "수전",
+          "review_status": "CANDIDATE",
+          "scope_status": "UNCONFIRMED",
+          "evidence": [
+            {
+              "title": "아워DC, 안산 반월산단 기존 공장 활용해 엣지 데이터센터 조성",
+              "publisher": "헤럴드경제",
+              "published_on": "2026-10-15",
+              "url": "https://biz.heraldcorp.com/article/10903502"
+            },
+            {
+              "title": "안산 반월공단 '아워DC' 착공… 2027년 하반기 운영 목표",
+              "publisher": "이데일리",
+              "published_on": "2026-10-15",
+              "url": "https://edaily.co.kr/News/Read?mediaCodeNo=257&newsId=03857286645613248"
+            }
+          ]
+        },
+        {
+          "type": "IT_LOAD_MW",
+          "mw": 4.82,
+          "source_basis": "명시 IT 필드",
+          "review_status": "CANDIDATE",
+          "scope_status": "UNCONFIRMED",
+          "evidence": [
+            {
+              "title": "아워DC, 안산 반월산단 기존 공장 활용해 엣지 데이터센터 조성",
+              "publisher": "헤럴드경제",
+              "published_on": "2026-10-15",
+              "url": "https://biz.heraldcorp.com/article/10903502"
+            },
+            {
+              "title": "안산 반월공단 '아워DC' 착공… 2027년 하반기 운영 목표",
+              "publisher": "이데일리",
+              "published_on": "2026-10-15",
+              "url": "https://edaily.co.kr/News/Read?mediaCodeNo=257&newsId=03857286645613248"
+            }
+          ]
+        }
+      ],
+      "capacity_checked_on": "2026-10-19",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "신안산": 0.0
@@ -1295,7 +1360,6 @@
       "commercial_scope": "REVIEW_REQUIRED",
       "review_status": "CANDIDATE",
       "quality_warnings": [
-        "용량 원문 확보 필요",
         "행정구역 대표점 · 센터 정확 좌표로 사용하지 않음"
       ]
     },
@@ -1423,7 +1487,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacity_checked_on": "2026-10-19",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "고덕, 서안성, 평택T/P": 0.0,
@@ -1723,7 +1787,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacity_checked_on": "2026-10-19",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "신가좌": 0.0,
@@ -2035,8 +2099,24 @@
         "source_precision": "dong",
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
-      "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacities": [
+        {
+          "type": "ANNOUNCED_UNCLASSIFIED_MW",
+          "mw": 40.0,
+          "source_basis": "미표기",
+          "review_status": "CANDIDATE",
+          "scope_status": "UNCONFIRMED",
+          "evidence": [
+            {
+              "title": "DCI·코람코운용, 40MW 안산 성곡동 데이터센터 연내 착공",
+              "publisher": "딜북뉴스",
+              "published_on": "2025-08-13",
+              "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNZzRnZlp4d2t0cUpXa1h6V1VKZ3Q0WnJ2akFDN0lHci14MEpfYUpLNWR0clNkMkZUQzVNZW5WdGpsdG9nVGd1UVhMazFvaDdCVk4yR2tNclNBWlFJTmpvUmlMc2owM1FjMXA1YWtCSzRueW13NGdfYXc4N3lMNnFKRDFrOExfSG5qUVRzN2Jnemh1YUtGVktXejhsdktOa09HSE5OTUYxR29zVFAxYXQyeGZn?oc=5"
+            }
+          ]
+        }
+      ],
+      "capacity_checked_on": null,
       "infrastructure_context": {
         "substation_headroom_mw": {
           "신안산": 0.0
@@ -2068,7 +2148,7 @@
       "review_status": "CANDIDATE",
       "quality_warnings": [
         "데이터센터 용도 면적이 총 연면적을 초과 · 원대장 대조 필요",
-        "용량 원문 확보 필요",
+        "발표 MW의 수전/IT 기준 미확인",
         "행정구역 대표점 · 센터 정확 좌표로 사용하지 않음"
       ]
     },
@@ -2402,6 +2482,12 @@
       },
       "news": [
         {
+          "title": "영등포구, 양평동 데이터센터 당장 허가 안 해…여의도 국제학교 유치 추진",
+          "publisher": "한국금융신문",
+          "published_on": "2026-09-16",
+          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE1RMnFlekpoOEtSQ2V0UUg0NEhDUFZTTlVCOThpM2tMeG9waGg3b3p2NnVQa1IxZnR4YjlsNnlpa3hxeVFzQzU4T0JFMXItallSdnJUWEtlSDgzbFFrUDJEaHhqT0JKc1lqbzRTbUNEZzE5MDJrTHBNS21yWkw?oc=5"
+        },
+        {
           "title": "영등포 양평동, AI 데이터센터 건립 두고 주민 반발…전문가 '안전성 확보된 시설'",
           "publisher": "이코노미스트",
           "published_on": "2025-11-03",
@@ -2567,8 +2653,30 @@
         "source_precision": "ri",
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
-      "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacities": [
+        {
+          "type": "GRID_INTAKE_MW",
+          "mw": 9.9,
+          "source_basis": "수전",
+          "review_status": "CANDIDATE",
+          "scope_status": "UNCONFIRMED",
+          "evidence": [
+            {
+              "title": "적자 한화솔루션, 자회사 데이터센터 1500억 PF에 지분 전량 댄다",
+              "publisher": "이포커스",
+              "published_on": "2026-06-23",
+              "url": "https://www.e-focus.co.kr/news/articleView.html?idxno=3002445"
+            },
+            {
+              "title": "[창간기획] ① 방산캐시로 AI데이터센터 짓는다…한화시스템, 그룹 미래투자 핵심축 부상",
+              "publisher": "이지경제",
+              "published_on": "2026-09-09",
+              "url": "https://www.ezyeconomy.com/news/articleView.html?idxno=239602"
+            }
+          ]
+        }
+      ],
+      "capacity_checked_on": "2026-10-19",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "고덕, 서안성, 평택T/P": 0.0
@@ -2581,7 +2689,6 @@
       "review_status": "CANDIDATE",
       "quality_warnings": [
         "데이터센터 용도 면적이 총 연면적을 초과 · 원대장 대조 필요",
-        "용량 원문 확보 필요",
         "행정구역 대표점 · 센터 정확 좌표로 사용하지 않음"
       ]
     },
@@ -2681,7 +2788,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacity_checked_on": "2026-10-19",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "신녹산": 0.0
@@ -2727,7 +2834,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacity_checked_on": "2026-10-19",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "신녹산": 0.0
@@ -2842,8 +2949,30 @@
         "source_precision": "dong",
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
-      "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacities": [
+        {
+          "type": "ANNOUNCED_UNCLASSIFIED_MW",
+          "mw": 25.0,
+          "source_basis": "미표기",
+          "review_status": "CANDIDATE",
+          "scope_status": "UNCONFIRMED",
+          "evidence": [
+            {
+              "title": "부천에 25MW 데이터센터 건축 허가",
+              "publisher": "코어비트",
+              "published_on": "2025-07-07",
+              "url": "https://www.corebeat.co.kr/article/992"
+            },
+            {
+              "title": "부천 춘의동 데이터센터 특고압선 지중화… 인근 공장 근로자 반발 예고",
+              "publisher": "경기일보",
+              "published_on": "2023-09-02",
+              "url": "https://www.kyeonggi.com/article/20230831580127"
+            }
+          ]
+        }
+      ],
+      "capacity_checked_on": "2026-10-19",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "갈산": 0.0
@@ -2863,7 +2992,7 @@
       "review_status": "CANDIDATE",
       "quality_warnings": [
         "데이터센터 용도 면적이 총 연면적을 초과 · 원대장 대조 필요",
-        "용량 원문 확보 필요",
+        "발표 MW의 수전/IT 기준 미확인",
         "행정구역 대표점 · 센터 정확 좌표로 사용하지 않음"
       ]
     },
@@ -3831,7 +3960,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacity_checked_on": "2026-10-19",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "신강진": 493.0
@@ -4467,7 +4596,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacity_checked_on": "2026-10-19",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "서서울2": 0.0,
@@ -7131,7 +7260,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacity_checked_on": "2026-10-19",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "신녹산": 0.0
@@ -8153,6 +8282,12 @@
       },
       "news": [
         {
+          "title": "영등포구, 양평동 데이터센터 당장 허가 안 해…여의도 국제학교 유치 추진",
+          "publisher": "한국금융신문",
+          "published_on": "2026-09-16",
+          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE1RMnFlekpoOEtSQ2V0UUg0NEhDUFZTTlVCOThpM2tMeG9waGg3b3p2NnVQa1IxZnR4YjlsNnlpa3hxeVFzQzU4T0JFMXItallSdnJUWEtlSDgzbFFrUDJEaHhqT0JKc1lqbzRTbUNEZzE5MDJrTHBNS21yWkw?oc=5"
+        },
+        {
           "title": "영등포 양평동, AI 데이터센터 건립 두고 주민 반발…전문가 '안전성 확보된 시설'",
           "publisher": "이코노미스트",
           "published_on": "2025-11-03",
@@ -9096,7 +9231,7 @@
   ],
   "infrastructure": {
     "source_status": "SOURCE_REPORTED",
-    "headroom_checked_on": "2026-10-16",
+    "headroom_checked_on": "2026-10-18",
     "regions": [
       {
         "name": "강원",
@@ -9446,14 +9581,14 @@
       }
     ]
   },
-  "fact_digest": "758e5cb47663a38a7dae101090c0357bb54f8256f9e95da9cb64dd395637c199",
+  "fact_digest": "a233460a603bdfe1841b41e02593d87e539415924cb2f384f8f19819a9208889",
   "collection": {
     "status": "SUCCESS",
-    "attempted_at": "2026-10-18T00:10:33.235260+00:00",
-    "last_success_at": "2026-10-18T00:10:33.235260+00:00",
+    "attempted_at": "2026-10-19T00:10:33.263724+00:00",
+    "last_success_at": "2026-10-19T00:10:33.263724+00:00",
     "source_changed": true,
     "added_records": 0,
-    "changed_records": 1,
+    "changed_records": 7,
     "removed_records": 0
   }
 }
