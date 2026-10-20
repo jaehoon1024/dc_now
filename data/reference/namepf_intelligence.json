@@ -3,8 +3,8 @@
   "source_url": "https://dc.namepf.com/data/dash.json",
   "source_name": "NamePF 공개 데이터센터 개발 현황",
   "source_type": "THIRD_PARTY_DASHBOARD",
-  "source_built_raw": "2026-10-19 08:55",
-  "permits_updated_on": "2026-10-19",
+  "source_built_raw": "2026-10-20 07:46",
+  "permits_updated_on": "2026-10-20",
   "primary_source_url": "https://www.data.go.kr/data/15136267/openapi.do",
   "fact_status": "CANDIDATE",
   "items": [
@@ -581,10 +581,10 @@
           "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE96cXFOTHhqaUhvd1hUMVdpYkRWRGdWcG1YR3cwcTVONkd6c3JpVGFacy1Cbkl6dkJkMkkwTHhwWk1kVlRBclJLbG1PZEEwYmp2WEFvbk5tbDhiYm9ZT0JxUXVGMU1NMWxnZGdHaURtRzhLQQ?oc=5"
         },
         {
-          "title": "장성군 황룡면에 2조2000억 규모 AI 데이터센터 조성",
-          "publisher": "DealSite경제TV",
+          "title": "장성군, 황룡면에 2조 2000억 규모 ‘AI 데이터센터’ 조성",
+          "publisher": "m.ngtv.tv",
           "published_on": "2026-01-19",
-          "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9jcVBpVDhwX3AzUDdwb2R3ejlFeWs5S3M3cDEzU0JnOTg2QU5kRFJqZlZFYU9GUk8zUnk0Zm1IMjVTUEw1UDczamN1bF82ZVBWMjR0Qy13?oc=5"
+          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBsWmd6Rzk5UlZ6R3VYVGs4TGljTkcwVm56Y2RWSlU1N3dhSnhNLXYwamJ3bjNORjFXdUtnNDF3TW9vdTBUbnVKdXRXTUJkU2sxenB5SXFWOUV4eC1LQ21laQ?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -646,10 +646,10 @@
           "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE96cXFOTHhqaUhvd1hUMVdpYkRWRGdWcG1YR3cwcTVONkd6c3JpVGFacy1Cbkl6dkJkMkkwTHhwWk1kVlRBclJLbG1PZEEwYmp2WEFvbk5tbDhiYm9ZT0JxUXVGMU1NMWxnZGdHaURtRzhLQQ?oc=5"
         },
         {
-          "title": "장성군 황룡면에 2조2000억 규모 AI 데이터센터 조성",
-          "publisher": "DealSite경제TV",
+          "title": "장성군, 황룡면에 2조 2000억 규모 ‘AI 데이터센터’ 조성",
+          "publisher": "m.ngtv.tv",
           "published_on": "2026-01-19",
-          "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9jcVBpVDhwX3AzUDdwb2R3ejlFeWs5S3M3cDEzU0JnOTg2QU5kRFJqZlZFYU9GUk8zUnk0Zm1IMjVTUEw1UDczamN1bF82ZVBWMjR0Qy13?oc=5"
+          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBsWmd6Rzk5UlZ6R3VYVGs4TGljTkcwVm56Y2RWSlU1N3dhSnhNLXYwamJ3bjNORjFXdUtnNDF3TW9vdTBUbnVKdXRXTUJkU2sxenB5SXFWOUV4eC1LQ21laQ?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -1587,7 +1587,14 @@
         "reported_headroom_sum_mw": 89.0,
         "meaning": "지역·변전소 공급 여유 · 센터 확보 전력과 별도"
       },
-      "news": [],
+      "news": [
+        {
+          "title": "[은행 뉴스브리핑] 우리금융 '포항 AI Factory 데이터센터' PF 금융약정",
+          "publisher": "아시아타임즈",
+          "published_on": "2026-09-23",
+          "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE11UmdvRkQ4QWRjanBvTkpfSkV5Y00tckgyMkdhOTN6LUZWNWtsRXpZTDVvSXV3LUJtckZYRmVjdExnUHlOWEJqQUNaSENwbWp6MHR3QjJmM183WjREWEE?oc=5"
+        }
+      ],
       "commercial_scope": "REVIEW_REQUIRED",
       "review_status": "CANDIDATE",
       "quality_warnings": [
@@ -2733,22 +2740,22 @@
       },
       "news": [
         {
-          "title": "최승원 고양시장 예비후보 “문봉동 데이터센터 전면 재검토”…주민 안전 우선 강조",
-          "publisher": "내외뉴스통신",
-          "published_on": "2026-03-23",
-          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1RMVhzUDZSelBUR2FmcUFnOVV0NUY3T1JKbmxic0s1NEpmWHdjTVhCZHk2ejJ2NmNEc2dZVHlrWDVNeVllVWl0UEVYMHpUOHBKdlF0Nl9xSExKMGNORTJaaDlhVHByM1g2by1nQ9IBcEFVX3lxTE0tX0gwV29lQnpLcDlvdGJmdnI2TnhLdTViMFRSOHRacGNXaklXZ2FRZV9Nc2VVVFcxeDFhbGtjMTFpTkRFdGdHaG5DUnhfSU16TWNteC1iSk1TcVB6NDJSWTg2ZGFJdFV5enFaOGtSUWw?oc=5"
-        },
-        {
-          "title": "감사원, 고양시의회 ‘문봉동 데이터센터 인허가’ 감사청구 ‘기각’",
-          "publisher": "Daum",
-          "published_on": "2025-09-21",
-          "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE1qcUtqd3ZCbkM5S0hDaFBLMEZDeDlRczJ0Mm1BVFVlaHRTNWg3cXNBa21CM29Fa1ZaZ3N5Tk1LaTZXcjFLUXc?oc=5"
+          "title": "감사원, 고양시의회 ‘문봉동 데이터센터 인허가 감사청구’ 기각",
+          "publisher": "뉴스프리존",
+          "published_on": "2025-09-19",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFA5UjdkV0hGTEZRMXMyLUtMdXljYjhNa1AzRlNJcjNTMkhseHRCM0JNZ1ZGZWxObl9jb2w2TWdXX25VY3VRbUtiamNReGF1bE9pNEZHbWE2TzNsdnk3ZDVsLWU2Z2Y5RC1nTDJSaUw5eHY1MDDSAXdBVV95cUxQaGx4ZUdYYnY4T1c4NjRtMEMyUWlHb3RSbnZ4Q2NCMnZGMXV2dUtmdnphWlc2al8ybGhuWEVURXpvX3R3Nm1kRGgwOUljWnF4TWlKRGgxYzRkNE40bkZQOFhNamtWUlpiamtKZGdDbV9FQ2hGc25rNA?oc=5"
         },
         {
           "title": "고양 문봉동 데이터센터개발사업, 870억 브릿지론 리파이낸싱",
           "publisher": "딜북뉴스",
           "published_on": "2025-09-01",
           "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOZE5NcTgtSDZzSnlRUDlRaFN0UzF6WWxwa29hcVJDd2x0UjNQa2ExdDFmTkdmNFIzOG1SWjRiYmRZSU1uM28tNmpuQlN5emNfNTNVbEliNzZaaFlEc3NheElSeDUwN05weld0TXJmUmRLUG9HLWQ1Qi1pZGRLZWVSSnYtVTVfYmxrTW5kV2RqZVdrVEdNVGVxV0xuMnE?oc=5"
+        },
+        {
+          "title": "문봉동 데이터센터 인허가 특혜 논란…고양시의회, 공익감사청구안 통과",
+          "publisher": "글로벌이코노믹",
+          "published_on": "2025-06-24",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNWkl0VGpXWEx2MFFSbHhyQjhtNHFjenVwdjEyYXY3N2lGdThPcFJjamVPTk1xMzItV0tMYWVBS3Q0MmktQldqcnI3X3YyUGdjMHdfX0dwV3F4b0pNb0I1a2hNVUV2R1VISzdaVFViajI3N0NCZnRJdmt3Z2M2MzV4a1VyTWJGMVJxOUZn?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -3598,7 +3605,14 @@
         "reported_headroom_sum_mw": 0.0,
         "meaning": "지역·변전소 공급 여유 · 센터 확보 전력과 별도"
       },
-      "news": [],
+      "news": [
+        {
+          "title": "안산 성곡동 데이터센터, 8340억 본PF 조달 성공",
+          "publisher": "Nate News",
+          "published_on": "2024-12-27",
+          "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE44LTlBU0phYW1laFBXMjNydkxYaWNaUTB4dVNBbzUtTkY3TExqeXdEQko5Wk0wMnpEVExpNWhSSnUwb3dCSVA5a2pMU2pRaE1FNS04?oc=5"
+        }
+      ],
       "commercial_scope": "REVIEW_REQUIRED",
       "review_status": "CANDIDATE",
       "quality_warnings": [
@@ -3972,7 +3986,7 @@
         {
           "title": "[르포] 황무지에 들어설 AI데이터센터…해남 솔라시도를 가다",
           "publisher": "아시아투데이",
-          "published_on": "2026-02-14",
+          "published_on": "2026-02-13",
           "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBoSUNlNlMxMzJabzR2MjRkbFhQbDUxV2ZVRXZ3UzhfNkR1WTZ6dXVVdXFjU2lNYko0eU11RkpTekFHNTdyeVFiRWhnWndoZjhPYll3UFVVLThyYUsyeWZyRkNERlRpZFU1NGJZYTZn?oc=5"
         },
         {
@@ -3983,7 +3997,7 @@
         },
         {
           "title": "블랙록, 수십조원 투자…해남 솔라시도 ‘AI 데이터센터 최적지’ 급부상",
-          "publisher": "진일보",
+          "publisher": "진일보 | 전남일보",
           "published_on": "2025-09-30",
           "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5fZl9FaXBya1ZITGpyMmlUUU9Ua05CVTlLWGZZR1BxejFKOTIweDZNWGJCV0liX3I0d1BTUExOXzd2d2pwVzFTX3YtTzNNa1JBUnNneTljZ2hLZ3c0aVFNOFNueDRkNFZMRks4dGJSSQ?oc=5"
         }
@@ -7331,14 +7345,7 @@
         "reported_headroom_sum_mw": 0.0,
         "meaning": "지역·변전소 공급 여유 · 센터 확보 전력과 별도"
       },
-      "news": [
-        {
-          "title": "부천 삼정동 데이터센터 주민들 없는 ‘설명회’…주민들 뿔났다",
-          "publisher": "Daum",
-          "published_on": "2024-05-28",
-          "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9pbDJyMVZDNkExN0xSRDdRNTY0VzRkQ2QwdzZwYU9GUVVILWFBMnFIaWRUZm1oYUEwbGNqWnJ2YVpINUZpcVhma2Vraw?oc=5"
-        }
-      ],
+      "news": [],
       "commercial_scope": "REVIEW_REQUIRED",
       "review_status": "CANDIDATE",
       "quality_warnings": [
@@ -9231,7 +9238,7 @@
   ],
   "infrastructure": {
     "source_status": "SOURCE_REPORTED",
-    "headroom_checked_on": "2026-10-18",
+    "headroom_checked_on": "2026-10-19",
     "regions": [
       {
         "name": "강원",
@@ -9581,11 +9588,11 @@
       }
     ]
   },
-  "fact_digest": "a233460a603bdfe1841b41e02593d87e539415924cb2f384f8f19819a9208889",
+  "fact_digest": "b8c9e1d496e2dbabd316209b463e55b9d9b12e3baadfb3510c720799ace815af",
   "collection": {
     "status": "SUCCESS",
-    "attempted_at": "2026-10-19T00:10:33.263724+00:00",
-    "last_success_at": "2026-10-19T00:10:33.263724+00:00",
+    "attempted_at": "2026-10-20T00:10:33.278566+00:00",
+    "last_success_at": "2026-10-20T00:10:33.278566+00:00",
     "source_changed": true,
     "added_records": 0,
     "changed_records": 7,
