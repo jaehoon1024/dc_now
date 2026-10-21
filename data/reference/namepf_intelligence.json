@@ -3,8 +3,8 @@
   "source_url": "https://dc.namepf.com/data/dash.json",
   "source_name": "NamePF 공개 데이터센터 개발 현황",
   "source_type": "THIRD_PARTY_DASHBOARD",
-  "source_built_raw": "2026-10-20 07:46",
-  "permits_updated_on": "2026-10-20",
+  "source_built_raw": "2026-10-21 07:44",
+  "permits_updated_on": "2026-10-21",
   "primary_source_url": "https://www.data.go.kr/data/15136267/openapi.do",
   "fact_status": "CANDIDATE",
   "items": [
@@ -3925,16 +3925,16 @@
           "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPN0VzV1RxVDJ2bUNCeC1sX3llaUR1ZzJwcVBoVnY4ZU5zNXdINVFMc2Z0a0Z1dkN4b01ZUDJtWHZhVkFEa0hQbGdtU3Y3MmtEMHFkZUpkdUY3cDZ0TllZSGl5MEhQczQyc2k5Mm1Tc1lzaVExZkkweGNHbVlLcmxWcXVXaXF1ZC1jazJjcEt3VEZId1Y5MUFTWkxCaTBNa2luVHBaMXpDRUdXQlpLQmc?oc=5"
         },
         {
-          "title": "“젠슨 황 AI 협력에도…” 영등포 엣지 데이터센터 주민 반발에 표류 논란",
-          "publisher": "헤럴드경제",
-          "published_on": "2025-11-05",
-          "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1fUDg4Q0JlWkRxbFZTYTI5VWpST3FLUmhkbkdfZjBQYTBIX19oT3ZzeUFNdkxhejlRVGNjWlNoekZaYURYTXJXeVgyblZYYVJWcmdSM2Jn?oc=5"
-        },
-        {
           "title": "마스턴투자운용, 서울 영등포에 엣지 데이터센터 개발",
           "publisher": "뉴스톱",
           "published_on": "2025-10-17",
           "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE93MHJzd0V1d1BZdEViZWxIQlJHMUdWeWRVdm1yZHZkZ1JzcjBiODl2UzBNR3ZMc3hvaUJNbHc1R1ItZ1RYdFRiZ2x2SmtjbVZfLVcyclRZemZId1FzcXVRMjhYU1EyWUh1UWVDa2ZTTQ?oc=5"
+        },
+        {
+          "title": "마스턴운용, 서울 영등포에 10MW급 엣지 데이터센터 개발",
+          "publisher": "매일경제",
+          "published_on": "2025-10-17",
+          "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5VNUVXV3RMbS01U3RDblctWUhHbUZxVkE4YnZNTlV5d3lyLXVDQXJtdU5JTzU4cG9pUjRDS2t4Qml5T1BFRkx6eEJpaFAtVzRZMUE?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -4627,12 +4627,6 @@
           "publisher": "데이터투자",
           "published_on": "2026-08-04",
           "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1OajRvMmRadHNFemdUT0VzLXBYQUlyRzVLUUlSTlVGWXQxMkNnbS12Q3RaUFQ4UmZZWkxuZFRYd3RaTHdaT3BCR1JLVkxuN3dPOUtuM2lURnV1bVgySko3TXlCcGV1Y2lEbFg4Nk13b3hmZDQ?oc=5"
-        },
-        {
-          "title": "지엔씨에너지 수주공시 - 시흥정왕동 데이터센터 가스터빈 발전기 328.1억원 (매출액대비 12.5 %)",
-          "publisher": "한국경제",
-          "published_on": "2026-08-04",
-          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBZMjFHOUFVd0RENXIwNUY2SmtCLVNXdEYxN0l3M19DalVzeERNUFNKSjBiMDRCalJVOFBMS2owY1QzemVzSU8zRTh4LUl2eDVjUmJtRkhxcnRRdw?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -5004,6 +4998,12 @@
       },
       "news": [
         {
+          "title": "코스콤, 안양 데이터센터 고도화...금융 IT 인프라 핵심 거점 강화",
+          "publisher": "글로벌이코노믹",
+          "published_on": "2026-03-27",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQOHVOQWlQMXZibFdXZ0V4ZjBjbVRKU0doRFpiTWYzRE9PRWZIRWptZ2ZMNFR2aHF0LTRtdW9SNVpoWDU4YmJ4S1NJa2Z6NW9KNThOWmJBNXdWZGtmZi12N2xtY0JfWGtfWmZmQ3pUSnA2ZnBWT3JnQ1dYTnoyZVRBZ1dWMVBkaF8t?oc=5"
+        },
+        {
           "title": "코스콤, 차세대 안양 데이터센터 건설…연말 준공 목표",
           "publisher": "비즈워치",
           "published_on": "2026-03-27",
@@ -5014,12 +5014,6 @@
           "publisher": "전자신문",
           "published_on": "2026-03-16",
           "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFAyMnE4OHJJendpTlFlOUJZUVJaU0FSQWQzZVFLdFRhVUtTVDRnZjhIQ3dFTnlURVZQN2p0dmFFbmluSFkzSWc3Mkx4WUwydw?oc=5"
-        },
-        {
-          "title": "코스콤, 차세대 안양 데이터센터 연말 준공...금융 IT 인프라 고도화",
-          "publisher": "마켓인",
-          "published_on": "2026-03-13",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE43WDRxbGdkQjl0S3JaTUZoZFdQMmZHMmc4NThfaTEtVWpCM3dLaXo4X3BRd0trenVOeV80N3B5eWYxbjk3VER4bm12Q05RQXdsV3NVVmNOQm9XNmpXZUtFVTBRa29tMUxFRkdjNXlIdFFGZTA?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -5645,7 +5639,7 @@
           "title": "[기획취재] 인천 서해구 원창동 데이터센터 건립추진.. 새로운 상생모델 가능할지 의문",
           "publisher": "인천매거진",
           "published_on": "2026-10-12",
-          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBsX3doMC03RUJvX3gyRk9ld3BEXzJia2d1ZjJnaDcyNFBnZHFJVWFVUGUyMnJocnFkWHI2TGpMMGhURmlBc3BsbzlxaGRFNTBrREpaWjBXZUUxR2dveWV2clF0a2cteng2NHRJejhB0gFuQVVfeXFMUGxfd2gwLTdFQm9feDJGT2V3cERfMmJrZ3VmMmdoNzI0UGdkcUlVYVVQZTIycmhycWRYcjZMakwwaFRGaUFzcGxvOXFoZEU1MGtESlpaMFdlRTFHZ295ZXZyUXRrZy16eDY0dEl6OEE?oc=5"
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE8tZ3V4a0lhSWprS1ltM21sS1NKQXNUVkliUnN0c1pPdFgwN3B0a0pxZUF6bnBxTzYyNGVlUnZXVFM0UFBtQWtURzdqR2x0T0RlM2F0bjJRNkVpRUJ4Y29uOHR6Um51Sk82SEHSAW5BVV95cUxQbF93aDAtN0VCb194MkZPZXdwRF8yYmtndWYyZ2g3MjRQZ2RxSVVhVVBlMjJyaHJxZFhyNkxqTDBoVEZpQXNwbG85cWhkRTUwa0RKWlowV2VFMUdnb3lldnJRdGtnLXp4NjR0SXo4QQ?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -7035,10 +7029,10 @@
       },
       "news": [
         {
-          "title": "한국수출입은행, 용인 인재개발원 데이터센터 '기공식'",
-          "publisher": "초이스경제",
-          "published_on": "2023-01-13",
-          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBuLVJ5ZnQ2OFVlVVppUlYyczlEYlFQUzA2b3FXNF80Wno3YVNnd3psZzl4MEdyd09obTMxc3hTcy1RMHQ2WE5qbVM2REZvTG5qckFFekZmVmRjRjZRUkVKXzR6Wm5pdkVxeXp4YkZESdIBc0FVX3lxTE9zX2lKNjZWdWp4V282VC1OcmJpVzdaOUlTVlU1U0RJSW12VlZfTEpoTzVKYnpyc3kyN2s5aFJpYnNQWURUVlBiTFFLVTNadzFlQ195bk1xcHVhWDg4djhMZzlSb3dCRnJlVEVWcmZEQXN5ME0?oc=5"
+          "title": "물·에너지 빨아들이는 IT 기업 데이터센터, 중동·남미로",
+          "publisher": "한겨레",
+          "published_on": "2025-05-28",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9rd0JiTXpYaFpxS2JSOTFsRElwZDcteUNHWXV0RHp3dFhfZGN2N0NOcjV3X2UzazRnaGt2Zjh0QjhnOHJkMXpjNzN0S0ZNb0IyOE9ZWlVBV0dMWDhqWEJQaDN4ZTl4Y2VxcWFHamFoZ1J2bFE?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -7577,7 +7571,7 @@
           "title": "'서울 남부권 디지털 허브' 케이스퀘어데이터센터 가산 준공",
           "publisher": "연합뉴스",
           "published_on": "2025-07-24",
-          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9RZFdFUXFjaExycnZXNG1XdzVKNGpoMnVvNUZacDdHNkJTdkdBa1RNNThKeXI0ZkJxc1dXQVBidnItWkZaNkpjVnlhMFBkaUNxQUNGZ29GV2RTX2PSAWBBVV95cUxPTUFaZ05ZSVpHM3ltZnBNeEw1UDU1eU1aNmVWQkJIdEtiY3ZWWC1xQk1TMk93V3pUMi04NjNPY0dxUFFnbmZfR1U3aUxKS3d4bFdPV0tGbTlNRE9yUUpLWjY?oc=5"
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9RZFdFUXFjaExycnZXNG1XdzVKNGpoMnVvNUZacDdHNkJTdkdBa1RNNThKeXI0ZkJxc1dXQVBidnItWkZaNkpjVnlhMFBkaUNxQUNGZ29GV2RTX2M?oc=5"
         },
         {
           "title": "현대건설, ‘케이스퀘어데이터센터 가산’ 준공",
@@ -7586,10 +7580,10 @@
           "url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE5sODJ3SkZPTmYtNHhpOXk4Vmo2a2wzQnlhUFBRRWtCMXZpLU1ueFZhdEktdHhsSFJNSWYwUkREOEhpVzQ?oc=5"
         },
         {
-          "title": "현대건설, ‘케이스퀘어데이터센터 가산’ 준공… 디지털 생태계 핵심기지 구축 박차",
-          "publisher": "스마트투데이",
+          "title": "현건, '케이스퀘어데이터센터 가산' 준공…데이터센터 시장 선도",
+          "publisher": "뉴스1",
           "published_on": "2025-07-24",
-          "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1FTUQ1THY3MFg3dlEtU3J5RkM3ZGF3WDNnTDlxT3pPUmYtZGszdU5Vd0cyMW9wbHVWMHlhSHhXUEU5djgtRWVOUmowNnpnZHI5ekVoaXkxbVFkWVptVUE?oc=5"
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBLWjhTSW1Zd3FvaWYwbE9UZFZNcjEyUUs3Z0Z3ZUs0WVdRcVFncjZESGdPd19FQ0RuaHlSWDhYTGstMkJVWnpsMnd6T1pOOWxOQlV6aEV1NUVISUE?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -7847,16 +7841,22 @@
       },
       "news": [
         {
+          "title": "대전 대덕구-㈜케이알로지스, 평촌동 데이터센터 건립사업 업무협약 체결",
+          "publisher": "대전일보",
+          "published_on": "2024-10-01",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE14MUk2ZnlPNTh6Vzhmd3U3WXFTLUVRdG9TWE1tRjhlbW9WLXBfd2tYb1hhVjNkVHUtdTdqbmxWTVNmbXBiODFndzJESzdxb3FBWnUweEpWN2dOS2Q5em1VMUtfLVR4dUJnNG55RWhfTdIBc0FVX3lxTFA1YnRzcVZpRGZBQkNlaGEwUlJ5WlMzMko0ZURWV1dZZEhuOWlFV3paQ2ZiNk9Cajh5ZktaX1RJWWhwX1VlaTk5OGNzbkxhQzNDMTZLV2FkYnNxamNCa2FLV1ZiN1N4Z1FDVEIzUW5reUJYU1E?oc=5"
+        },
+        {
           "title": "대덕구-(주)케이알로지스, 평촌 데이터센터 구축 업무협약 체결",
           "publisher": "충청뉴스",
           "published_on": "2024-10-01",
           "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1tcG5iQzlRS19KUUY4TFlfbVlvcTF2N0VLcno3aE96LVl6X2hxYjF3cHBQandKYl8tcjFsNDRkYmhKMDBzUzJCaDdEUVdGMktFTUc4Ty1CeDg4UE0yaVlkNmxjckpXOWU4dTMyaQ?oc=5"
         },
         {
-          "title": "대전 대덕구, 평촌동에 '데이터센터' 건립한다…업무협약",
-          "publisher": "뉴시스",
+          "title": "대전 대덕구-(주)케이알로지스, 평촌동 데이터센터 건립사업 업무협약 체결",
+          "publisher": "글로컬타임스",
           "published_on": "2024-10-01",
-          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5ZeGwwaHA3dEg0T09hNlJObWszcEg5cUtJYzVTbld1SVBNQUVtcFJEOHlCRXYzMzRWZzd0aVR2bTYtcUdsWTl1NC1RVll5amRFNmlhblZPQ054Tl9mNDJqWNIBeEFVX3lxTE5uUVBGSVNQNThMVlI1cjQ2SmlVRUVkRlVKY0ZYc3NKYjlXX3UyU0RlcjQxUXpTUUdRRG4yX0ZwUEIwUG5jUTR5WnhhOU1RVnB5alRHQ201R2J1LVJfVlk5UXBmTXoyaUdoT1o0cklFeXI3VVdjY3VXRg?oc=5"
+          "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE0wS2kwMl9nNUNiczllTi1nN1FYdUVWOVJPSk1FNFdUbnpBNUVuVVp2XzB1cHBkbTNYWURZV1JKX0RaakZGaGJLZE9mTmpxNHByMEVjNkpoR0ltT1RxVUtJUlRtTVFiTE160gFsQVVfeXFMUFNTUkZvZ3VNUUY3YWROakp1OHlnT3lxS1ZkdzE5Ql90TWdrcnd1ZWlscWRnOE9yVmRpMEdLNGtWUlFoQTU5cjdhcmQ0RWJOaGdnV1N6LTlwclVkQTZ1S0JuaGROMG9xYXdzYmls?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -8111,22 +8111,10 @@
       },
       "news": [
         {
-          "title": "KT 강남IDC 장애…엔씨소프트·배달의민족 ‘먹통’",
-          "publisher": "한겨레",
-          "published_on": "2018-02-02",
-          "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBiazZrODN5by16Slg4LTIyNG9lY25yS09iUjFkMnhUaEZOc1FfZVZ1akZRMzNWeDJhdnZIZE9zd05wdVZPdTdSMHhyZ24tNjNFRmxWSzJvUUNSU3NlcnNN?oc=5"
-        },
-        {
           "title": "“증권사는 여의도, 게임은 강남”…KT, IDC도 산업군별 맞춤 전략",
           "publisher": "디지털데일리",
           "published_on": "2015-07-15",
           "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE4xcnZXeVdSVExsRHdKZDlWdXZxYThoUkkybjRfYzhNRWVoQ25URUg3T0NBTkFBTkdKZDZSR1EwdVBITmpUNmVxMGo3YndHaEhRRnIyNDd1V3luMWJWbW01V1lB?oc=5"
-        },
-        {
-          "title": "KTF 통합 데이터센터 강남에 개관",
-          "publisher": "정보통신신문",
-          "published_on": "2004-03-08",
-          "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBudjQ1VWthdk9VeHN5bXRTWnV5SFJXNExsVTlxbjdlbU4tbzhlcnowTm5ZNEdMdXdVNk9sckpHVERuT2NYRUtNcHE2ZnVBYVp6bWM0cld3Zm5lUXJUWkFpZUh3X3JSZWM?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -8529,10 +8517,10 @@
           "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1vV2JrekIyUXhwdTFjLWozSko2YndreHNQckhxbklZWHFQQ1BEdjFYMlF3aW42RUZ0M3E2ZGVzY1lRU0l0WnpMQXpGWFZJNGIwQ003NzRScWZvTWNkRWU2Ylp3V3p1TVXSAWtBVV95cUxNZGV2OEdQWTB0d0kwZTJacTlWRnoyM0k0N1VQYVNzeElSR2tCdW5sV042ZUZMd2xuNzBNeHdTNVJnVGZXSWktbmE5alQ5RS0xZC1ycEJIRDQzOFpIQ2ItdXo3bWZHT0hSbXJ3VQ?oc=5"
         },
         {
-          "title": "김포 구래동 데이터센터 건립 놓고 주민 \"환경피해 우려\" 반대 목소리",
-          "publisher": "중부일보",
-          "published_on": "2024-06-27",
-          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9ZTUlCNGRZUnUtaHFSNEZHZzhfcEhrVkVfNDRUR2ljQkRJT3Z6ODVWWDA0aWxUc3ZDYnV5dkl3ZmFHNDdmS1M1LTN6bWl4alVjODREbWhxQ1lfQXBvRUNwRXlKZ21neGtpazRXM25UNA?oc=5"
+          "title": "김포한강신도시 구래동 데이터센터 착공 신고… 주민 반발 ‘2R'",
+          "publisher": "경기일보",
+          "published_on": "2024-06-01",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5sY0FabjlBVmZDcHpzWWpZdEtiWHlpN2lObW9ld2VoN2RSQnREbmF0VEJPQmtnQ2ZsZjNvVVZ2bE9tOExCSklhWnZFRG4xck4zV2tXcy1XS19QLTQ?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -8581,22 +8569,22 @@
       },
       "news": [
         {
-          "title": "하남시, IBK기업은행 데이터센터서 통합방호훈련",
-          "publisher": "동방일보",
-          "published_on": "2026-08-20",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9GTVBkVWdRcUFpQ0E3dVkyLTdsaUlGZUhGYVNpYVlMT3ZGYW9pbUJXVE9RYmhkM1BSTXMwckVvSy13NHY3X0prQ1A3ZG5xcjVlajlJcWlxUFZnNFdwVkdyN1dHYlhMSzZnTWNSLXRkNWhjRnc?oc=5"
+          "title": "델 테크놀로지스, IBK기업은행 하남데이터센터에 ‘사이버 복원력’ 입혔다",
+          "publisher": "보안뉴스",
+          "published_on": "2026-10-13",
+          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1WbklFM09mSWk4b3lIVUhfai0xRTBma1U5M1JaWEUzU0JydWMxTlpIVVZPVFQtT0Q2WVM5VTM5LURBdnFXMFhBNDBNN05oMnpBSWpGdFJTWG81OFdfeDFEX1JjTVBNQS0xRGRn?oc=5"
         },
         {
-          "title": "하남시, IBK기업은행 하남데이터센터서 민·관·군·경·소방 통합방호훈련 실시 > 뉴스",
-          "publisher": "더코리아",
-          "published_on": "2026-08-20",
-          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9WWEhQdkhKUXBSY0RleFBRNS1vemsxZ29ybE5rZmxVUk9kclJkMHV6ZVR3dGxfbndlUlBKMkR6ZnhPYk5YSF9Ed0NoWG9ZLUQxcFFKRzFrb0ZVZWlFVlllOVZVQi1YaXZBVHE4eFhPUDg?oc=5"
+          "title": "[구축사례] IBK기업은행, 하남데이터센터에 델의 사이버 복원력 솔루션 도입해 전사 정보보호 기반 강화",
+          "publisher": "디지털경제뉴스",
+          "published_on": "2026-10-13",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE11UVhzeFphdml1aU9CRGd3bkVJR240NjFsUldPUmZ3bVhEamoxMEU1cF9uYW03aW10RTB0TW9DZnl1bkZwcjhnZmdjX0Jsb2JkYkxjZ0gtVE5EZFdlVGFQT2ZxUG1wUk1BN3c?oc=5"
         },
         {
-          "title": "하남시, IBK기업은행 하남데이터센터서 민·관·군·경·소방 통합방호훈련",
-          "publisher": "산경일보",
-          "published_on": "2026-08-20",
-          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBPSHJnWlpnbVNaYlR0XzNiNTJSQWloUDd6OFZDMnMxQjk1SnN3a3Z1LUs1Wm9taGhKdzVPblQ0THowbHg4QWo5SUViTlFrQ3U4OHV1TXhzYnZWSHlnY3lFdENscjNmeFlNUV9BNGtzVTc?oc=5"
+          "title": "델, IBK기업은행 하남데이터센터에 '사이버 복원력' 인프라 구축",
+          "publisher": "이데일리",
+          "published_on": "2026-10-13",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOaHpoVFkyYWlTeXpTTzBFLXB1UTZXOVgwOXl5U2N3Z2l5ZjhQd21GY0dIN2lMdTdaLUZhZFBwajZQd3pmd0tyODdpclc4RWl6NVhGSElHWUtTNXNzVUozZGtUdVpaczFwenZBeWdsQTg0SVBCOUVPN095ZE1EMG0wVg?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -9238,7 +9226,7 @@
   ],
   "infrastructure": {
     "source_status": "SOURCE_REPORTED",
-    "headroom_checked_on": "2026-10-19",
+    "headroom_checked_on": "2026-10-20",
     "regions": [
       {
         "name": "강원",
@@ -9588,14 +9576,14 @@
       }
     ]
   },
-  "fact_digest": "b8c9e1d496e2dbabd316209b463e55b9d9b12e3baadfb3510c720799ace815af",
+  "fact_digest": "0c0df13e6b00c7fe5e703cac3a91c436bcff60b5f6d2f84aa81bde73300eb58e",
   "collection": {
     "status": "SUCCESS",
-    "attempted_at": "2026-10-20T00:10:33.278566+00:00",
-    "last_success_at": "2026-10-20T00:10:33.278566+00:00",
+    "attempted_at": "2026-10-21T00:10:10.567652+00:00",
+    "last_success_at": "2026-10-21T00:10:10.567652+00:00",
     "source_changed": true,
     "added_records": 0,
-    "changed_records": 7,
+    "changed_records": 10,
     "removed_records": 0
   }
 }
