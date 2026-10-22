@@ -3,8 +3,8 @@
   "source_url": "https://dc.namepf.com/data/dash.json",
   "source_name": "NamePF 공개 데이터센터 개발 현황",
   "source_type": "THIRD_PARTY_DASHBOARD",
-  "source_built_raw": "2026-10-21 07:44",
-  "permits_updated_on": "2026-10-21",
+  "source_built_raw": "2026-10-22 07:45",
+  "permits_updated_on": "2026-10-22",
   "primary_source_url": "https://www.data.go.kr/data/15136267/openapi.do",
   "fact_status": "CANDIDATE",
   "items": [
@@ -3919,10 +3919,10 @@
       },
       "news": [
         {
-          "title": "한화·마스턴운용, 영등포동서 10MW급 엣지 데이터센터 추가 개발",
-          "publisher": "딜북뉴스",
-          "published_on": "2026-03-10",
-          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPN0VzV1RxVDJ2bUNCeC1sX3llaUR1ZzJwcVBoVnY4ZU5zNXdINVFMc2Z0a0Z1dkN4b01ZUDJtWHZhVkFEa0hQbGdtU3Y3MmtEMHFkZUpkdUY3cDZ0TllZSGl5MEhQczQyc2k5Mm1Tc1lzaVExZkkweGNHbVlLcmxWcXVXaXF1ZC1jazJjcEt3VEZId1Y5MUFTWkxCaTBNa2luVHBaMXpDRUdXQlpLQmc?oc=5"
+          "title": "“젠슨 황 AI 협력에도…” 영등포 엣지 데이터센터 주민 반발에 표류 논란",
+          "publisher": "헤럴드경제",
+          "published_on": "2025-11-05",
+          "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1fUDg4Q0JlWkRxbFZTYTI5VWpST3FLUmhkbkdfZjBQYTBIX19oT3ZzeUFNdkxhejlRVGNjWlNoekZaYURYTXJXeVgyblZYYVJWcmdSM2Jn?oc=5"
         },
         {
           "title": "마스턴투자운용, 서울 영등포에 엣지 데이터센터 개발",
@@ -5558,14 +5558,7 @@
         "reported_headroom_sum_mw": 0.0,
         "meaning": "지역·변전소 공급 여유 · 센터 확보 전력과 별도"
       },
-      "news": [
-        {
-          "title": "고양특례시 홍정민 의원, 사리현동 데이터센터 반대 대책회의 참석…주민과 학교 의견 수렴 촉구",
-          "publisher": "팍스경제TV",
-          "published_on": "2024-02-15",
-          "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBCeTNSRXN5ZjVraS11N1V0c2VGQ1dwa2dnMzdDcU81WXhldTZVcWF4T1VVU3dQQ3h6R3J1TTd0bDhKTms0U0x3MGtwYUNwOHZ4NGgzWURKR0U2SGt0MVJrSjYzOWtqY0ty?oc=5"
-        }
-      ],
+      "news": [],
       "commercial_scope": "REVIEW_REQUIRED",
       "review_status": "CANDIDATE",
       "quality_warnings": [
@@ -9226,7 +9219,7 @@
   ],
   "infrastructure": {
     "source_status": "SOURCE_REPORTED",
-    "headroom_checked_on": "2026-10-20",
+    "headroom_checked_on": "2026-10-21",
     "regions": [
       {
         "name": "강원",
@@ -9576,14 +9569,14 @@
       }
     ]
   },
-  "fact_digest": "0c0df13e6b00c7fe5e703cac3a91c436bcff60b5f6d2f84aa81bde73300eb58e",
+  "fact_digest": "6a72dc4f33bc2a81991b0d34153372fb851a89411409b723440bf2210620ddd7",
   "collection": {
     "status": "SUCCESS",
-    "attempted_at": "2026-10-21T00:10:10.567652+00:00",
-    "last_success_at": "2026-10-21T00:10:10.567652+00:00",
+    "attempted_at": "2026-10-22T00:10:33.279927+00:00",
+    "last_success_at": "2026-10-22T00:10:33.279927+00:00",
     "source_changed": true,
     "added_records": 0,
-    "changed_records": 10,
+    "changed_records": 2,
     "removed_records": 0
   }
 }
