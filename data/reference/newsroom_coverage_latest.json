@@ -1,13 +1,13 @@
 {
-  "checked_at": "2026-10-22T06:56:09.838151+09:00",
+  "checked_at": "2026-10-23T06:59:08.017591+09:00",
   "sources": [
     {
       "source_code": "KT_CORP_NEWS",
       "pages_scanned": 3,
       "oldest_listed_date": "2022-07-07",
       "scan_end": "archive_end",
-      "new_documents": 0,
-      "found_documents": 25
+      "new_documents": 1,
+      "found_documents": 26
     },
     {
       "source_code": "LGU_NEWS",
