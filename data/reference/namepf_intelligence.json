@@ -3,8 +3,8 @@
   "source_url": "https://dc.namepf.com/data/dash.json",
   "source_name": "NamePF 공개 데이터센터 개발 현황",
   "source_type": "THIRD_PARTY_DASHBOARD",
-  "source_built_raw": "2026-10-23 07:43",
-  "permits_updated_on": "2026-10-23",
+  "source_built_raw": "2026-10-24 07:47",
+  "permits_updated_on": "2026-10-24",
   "primary_source_url": "https://www.data.go.kr/data/15136267/openapi.do",
   "fact_status": "CANDIDATE",
   "items": [
@@ -923,10 +923,10 @@
       },
       "news": [
         {
-          "title": "통상 6개월 인허가 한 달 만에 통과…남양주시, 대규모 데이터센터 우리금융 AI 디지털 유니버스 연내 착공",
-          "publisher": "Daum",
-          "published_on": "2026-06-10",
-          "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTFBhZjlIWW4zaWljTS1XdmtyLXJnekZUZWZVLXVZa1dqWEMyMXc2aGhpZFYxSTdGdXZ1MmNaMTZtbWozTmM4Wmc?oc=5"
+          "title": "유호준·경기의회, 남양주로 쏟아지는 데이터센터 폭탄 전력 계획은? 남양주시 카카오, 우리금융그룹 이어 신한금융그룹 데이터센터 유치",
+          "publisher": "오토투데이",
+          "published_on": "2025-12-10",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9GbHVFZVd3N2JjZUl0WjJhdHVEZmtrNmMwRGhxSFlBanI0Y3NHVHZlV181RHV4bFJ6bzJFRy04WWNFaGJLNGpndGFhc01idklqNWhfcWplVmJrZkt5RXNqb19OMDB6cmJ3QWl5UXhB?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -9569,11 +9569,11 @@
       }
     ]
   },
-  "fact_digest": "2a19751334779d4d203827367f949116a312454dbbde68d09a6726ba3397afac",
+  "fact_digest": "6693afb626246e3e70859873eaf1d549d288a77697ac8cb799857d19db49e506",
   "collection": {
     "status": "SUCCESS",
-    "attempted_at": "2026-10-23T00:10:33.313668+00:00",
-    "last_success_at": "2026-10-23T00:10:33.313668+00:00",
+    "attempted_at": "2026-10-24T00:10:35.412187+00:00",
+    "last_success_at": "2026-10-24T00:10:35.412187+00:00",
     "source_changed": true,
     "added_records": 0,
     "changed_records": 1,
