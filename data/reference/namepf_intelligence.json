@@ -3,8 +3,8 @@
   "source_url": "https://dc.namepf.com/data/dash.json",
   "source_name": "NamePF 공개 데이터센터 개발 현황",
   "source_type": "THIRD_PARTY_DASHBOARD",
-  "source_built_raw": "2026-10-24 07:47",
-  "permits_updated_on": "2026-10-24",
+  "source_built_raw": "2026-10-25 07:42",
+  "permits_updated_on": "2026-10-25",
   "primary_source_url": "https://www.data.go.kr/data/15136267/openapi.do",
   "fact_status": "CANDIDATE",
   "items": [
@@ -3533,10 +3533,10 @@
           "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1PYXhGMm9UODB6SW1hOExjdUVEcE5VenhpMzFvVE9GWkgzem1ZRThIaW52b2ZrbnFCRHBMQm5IRElRR05LVUVSVFFZYnU2MGZ4ekE?oc=5"
         },
         {
-          "title": "이지스운용, '하이퍼스케일' 안산 초지동 데이터센터 개발 착공",
-          "publisher": "서울파이낸스",
+          "title": "이지스자산운용, 안산 초지동 데이터센터 개발 착공…40MW급 하이퍼스케일",
+          "publisher": "한국금융경제신문",
           "published_on": "2025-03-12",
-          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1rNF9sT043aGpRdFFDSkdMLUd3azQ1YnV2WVRrOFJLTnRIVmctQWVOeXhKZWYyY3p4NWkxNVFsTFUxdGVINjlJQ2ZuTzFKWlM0SUFRYUpReVI0Yk1QWWd6Qy1WT29CdjBxWnc?oc=5"
+          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE04LXdnRjU2ZkZrdEZYS3J6YzdEMUZpQXFwdU5xelRPWTV3ZXlvTlktVDVkRFk2bHBFRlJiM19yZVQyZjVVRVRfWWRGbExYRlJncS13eEt1d19DNVNzczkwWnJ2Q05Jc0RXOWJqMNIBcEFVX3lxTFBRRGk1bjl4OEhaWUhERzExQ3hqRzJya1loZlUzT3I4MUdScjdjLUNkekVFLWwxU3pfa1JqZXlPRUtLVlZORXZRcFZGUHNRRlY1QTA3N1NQQzRTUnRRWThJSm00VzNoeVlNWXlldEo4MUg?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -7132,10 +7132,10 @@
           "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBlMElmemx5THhCQmhuaFNqVy15Ti1TSWZYejZmX2JCWnNDVjNPdTRkTVpDSUdqbDVIQWFuX1VLRVJxd1J5QWowLXZrblFkaDAtY3R3NWZUV3BYamxXamdoYnNTQ2RlbU90cndwZEZBeWg?oc=5"
         },
         {
-          "title": "이지스운용, 80㎿ 규모 고양 삼송 데이터센터 준공",
-          "publisher": "대한경제",
+          "title": "고양 삼송에 초대형 데이터센터…이지스자산운용 준공",
+          "publisher": "비즈워치",
           "published_on": "2026-07-15",
-          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9mQ0NjT2dIcXYyN19PVW9XVjk5cE91SjNDLWdXT0UwTWt6ZjZ5c0t5TjZra2hpd2NFOUdPRzQ5eGNTNnVrYmFieGJWeldRNkx3N3RxS0JPTGVhZm9JX2hfemk2dUlBZXN3OXB5Tk1XZVd0T0M5?oc=5"
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5lZ3dUTUpWVU56OGQ2czlMUzlUN0xkc0dWMXdfX0xNOUJpZENiQlV3ckNhMjFUM0lYeUl4MWtTMFRwcUNxSVhOTS0wLVBxSVhOc3REbTlyU0twcXc2NWNpVkFYOUI5Zl9vYURFYzBZMEQ?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -9219,7 +9219,7 @@
   ],
   "infrastructure": {
     "source_status": "SOURCE_REPORTED",
-    "headroom_checked_on": "2026-10-22",
+    "headroom_checked_on": "2026-10-24",
     "regions": [
       {
         "name": "강원",
@@ -9569,14 +9569,14 @@
       }
     ]
   },
-  "fact_digest": "6693afb626246e3e70859873eaf1d549d288a77697ac8cb799857d19db49e506",
+  "fact_digest": "1a39f2c04aacddc79e43221a66f045575e40bbe6b34ca37e824340cb57c9f92b",
   "collection": {
     "status": "SUCCESS",
-    "attempted_at": "2026-10-24T00:10:35.412187+00:00",
-    "last_success_at": "2026-10-24T00:10:35.412187+00:00",
+    "attempted_at": "2026-10-25T00:10:33.290245+00:00",
+    "last_success_at": "2026-10-25T00:10:33.290245+00:00",
     "source_changed": true,
     "added_records": 0,
-    "changed_records": 1,
+    "changed_records": 2,
     "removed_records": 0
   }
 }
