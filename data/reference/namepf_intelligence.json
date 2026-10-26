@@ -3,8 +3,8 @@
   "source_url": "https://dc.namepf.com/data/dash.json",
   "source_name": "NamePF 공개 데이터센터 개발 현황",
   "source_type": "THIRD_PARTY_DASHBOARD",
-  "source_built_raw": "2026-10-25 07:42",
-  "permits_updated_on": "2026-10-25",
+  "source_built_raw": "2026-10-26 08:53",
+  "permits_updated_on": "2026-10-26",
   "primary_source_url": "https://www.data.go.kr/data/15136267/openapi.do",
   "fact_status": "CANDIDATE",
   "items": [
@@ -3421,7 +3421,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-12",
+      "capacity_checked_on": "2026-10-26",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "신광명": 0.0,
@@ -4495,7 +4495,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-12",
+      "capacity_checked_on": "2026-10-26",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "신의정부": 98.0,
@@ -4988,7 +4988,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacity_checked_on": "2026-10-26",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "서서울1": 0.0
@@ -5054,7 +5054,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacity_checked_on": "2026-10-26",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "신김해": 0.0,
@@ -5408,7 +5408,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacity_checked_on": "2026-10-26",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "고덕, 서안성, 평택T/P": 0.0,
@@ -5754,7 +5754,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacity_checked_on": "2026-10-26",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "신양산": 0.0
@@ -5965,7 +5965,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacity_checked_on": "2026-10-26",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "고덕, 서안성, 평택T/P": 0.0,
@@ -6083,7 +6083,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-12",
+      "capacity_checked_on": "2026-10-26",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "신광명": 0.0,
@@ -6294,7 +6294,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacity_checked_on": "2026-10-26",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "갈산": 0.0,
@@ -7614,8 +7614,24 @@
         "source_precision": "dong",
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
-      "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacities": [
+        {
+          "type": "ANNOUNCED_UNCLASSIFIED_MW",
+          "mw": 40.0,
+          "source_basis": "미표기",
+          "review_status": "CANDIDATE",
+          "scope_status": "UNCONFIRMED",
+          "evidence": [
+            {
+              "title": "[인터뷰] 김영준 다우기술 데이터센터 사업총괄",
+              "publisher": "한국건설신문",
+              "published_on": "2025-06-30",
+              "url": "https://www.kharn.kr/news/article.html?no=28155"
+            }
+          ]
+        }
+      ],
+      "capacity_checked_on": "2026-10-26",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "신성남2": 0.0
@@ -7647,7 +7663,7 @@
       "review_status": "CANDIDATE",
       "quality_warnings": [
         "데이터센터 용도 면적이 총 연면적을 초과 · 원대장 대조 필요",
-        "용량 원문 확보 필요",
+        "발표 MW의 수전/IT 기준 미확인",
         "행정구역 대표점 · 센터 정확 좌표로 사용하지 않음"
       ]
     },
@@ -7776,7 +7792,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-12",
+      "capacity_checked_on": "2026-10-26",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "신성남2": 0.0
@@ -7822,7 +7838,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacity_checked_on": "2026-10-26",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "세종": 0.0,
@@ -7889,7 +7905,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-12",
+      "capacity_checked_on": "2026-10-26",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "성동": 0.0,
@@ -8399,7 +8415,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacity_checked_on": "2026-10-26",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "서서울2": 0.0,
@@ -8552,7 +8568,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-12",
+      "capacity_checked_on": "2026-10-26",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "동서울": 0.0
@@ -9077,7 +9093,7 @@
         "verification": "ADMINISTRATIVE_REPRESENTATIVE_POINT"
       },
       "capacities": [],
-      "capacity_checked_on": "2026-10-13",
+      "capacity_checked_on": "2026-10-26",
       "infrastructure_context": {
         "substation_headroom_mw": {
           "고덕, 서안성, 평택T/P": 0.0,
@@ -9219,7 +9235,7 @@
   ],
   "infrastructure": {
     "source_status": "SOURCE_REPORTED",
-    "headroom_checked_on": "2026-10-24",
+    "headroom_checked_on": "2026-10-25",
     "regions": [
       {
         "name": "강원",
@@ -9569,14 +9585,14 @@
       }
     ]
   },
-  "fact_digest": "1a39f2c04aacddc79e43221a66f045575e40bbe6b34ca37e824340cb57c9f92b",
+  "fact_digest": "f1aa140bccf3947be26f6b2aa426df02850fa76889c0a67cc23cf780e2131385",
   "collection": {
     "status": "SUCCESS",
-    "attempted_at": "2026-10-25T00:10:33.290245+00:00",
-    "last_success_at": "2026-10-25T00:10:33.290245+00:00",
+    "attempted_at": "2026-10-26T00:10:33.551949+00:00",
+    "last_success_at": "2026-10-26T00:10:33.551949+00:00",
     "source_changed": true,
     "added_records": 0,
-    "changed_records": 2,
+    "changed_records": 1,
     "removed_records": 0
   }
 }

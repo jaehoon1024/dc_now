@@ -1,7 +1,7 @@
 {
   "format": "official-collection-v1",
-  "checked_at": "2026-10-24T22:00:32.342641+00:00",
-  "started_at": "2026-10-24T21:57:08.959079+00:00",
+  "checked_at": "2026-10-25T21:57:30.098219+00:00",
+  "started_at": "2026-10-25T21:54:07.790313+00:00",
   "status": "PARTIAL",
   "summary": {
     "sources": 8,
@@ -13,10 +13,10 @@
     {
       "source_code": "GABIA_IDC",
       "url": "https://idc.gabiacloud.com/server/idc",
-      "attempted_at": "2026-10-24T21:57:08.963762+00:00",
+      "attempted_at": "2026-10-25T21:54:07.795488+00:00",
       "status": "SUCCESS",
       "new_documents": 0,
-      "last_success_at": "2026-10-24T21:57:39.422657+00:00",
+      "last_success_at": "2026-10-25T21:54:38.237285+00:00",
       "robots_status": "REVIEWED_NO_RULES",
       "document_title": "가비아 IDC - 수도권 중심의 데이터센터로 만나는 빠른 연결과 안정적 운영",
       "document_count": 1
@@ -24,7 +24,7 @@
     {
       "source_code": "DREAMMARK1",
       "url": "https://dream-mark1.co.kr/ko/dataCenter/incheon",
-      "attempted_at": "2026-10-24T21:57:39.422684+00:00",
+      "attempted_at": "2026-10-25T21:54:38.237309+00:00",
       "status": "FAILED",
       "new_documents": 0,
       "last_success_at": null,
@@ -33,10 +33,10 @@
     {
       "source_code": "HOSTWAY_IDC",
       "url": "https://www.hostway.co.kr/",
-      "attempted_at": "2026-10-24T21:57:39.510263+00:00",
+      "attempted_at": "2026-10-25T21:54:38.366580+00:00",
       "status": "SUCCESS",
       "new_documents": 0,
-      "last_success_at": "2026-10-24T21:58:10.507224+00:00",
+      "last_success_at": "2026-10-25T21:55:09.351701+00:00",
       "robots_status": "ALLOWED",
       "document_title": "Hostway Home - 호스트웨이 IDC",
       "document_count": 1
@@ -44,10 +44,10 @@
     {
       "source_code": "PDG_KR",
       "url": "https://princetondg.com/where-we-operate/",
-      "attempted_at": "2026-10-24T21:58:10.507252+00:00",
+      "attempted_at": "2026-10-25T21:55:09.351729+00:00",
       "status": "SUCCESS",
       "new_documents": 0,
-      "last_success_at": "2026-10-24T21:58:41.455155+00:00",
+      "last_success_at": "2026-10-25T21:55:40.265719+00:00",
       "robots_status": "ALLOWED",
       "document_title": "Where We Operate - Princeton Digital Group",
       "document_count": 1
@@ -55,10 +55,10 @@
     {
       "source_code": "STT_GDC_KR",
       "url": "https://www.sttgdc.com/kr-en/locations/seoul",
-      "attempted_at": "2026-10-24T21:58:41.455178+00:00",
+      "attempted_at": "2026-10-25T21:55:40.265742+00:00",
       "status": "SUCCESS",
       "new_documents": 0,
-      "last_success_at": "2026-10-24T21:59:13.188241+00:00",
+      "last_success_at": "2026-10-25T21:56:10.959507+00:00",
       "robots_status": "ALLOWED",
       "document_title": "Seoul | STTGDC",
       "document_count": 1
@@ -66,10 +66,10 @@
     {
       "source_code": "EMPYRION_DIGITAL",
       "url": "https://empyriondigital.com/south-korea/",
-      "attempted_at": "2026-10-24T21:59:13.188268+00:00",
+      "attempted_at": "2026-10-25T21:56:10.959533+00:00",
       "status": "SUCCESS",
       "new_documents": 0,
-      "last_success_at": "2026-10-24T21:59:45.365248+00:00",
+      "last_success_at": "2026-10-25T21:56:43.135292+00:00",
       "robots_status": "ALLOWED",
       "document_title": "South Korea - Empyrion Digital",
       "document_count": 1
@@ -77,10 +77,10 @@
     {
       "source_code": "KINX",
       "url": "https://www.kinx.net/",
-      "attempted_at": "2026-10-24T21:59:45.365274+00:00",
+      "attempted_at": "2026-10-25T21:56:43.135318+00:00",
       "status": "SUCCESS",
       "new_documents": 0,
-      "last_success_at": "2026-10-24T22:00:00.833150+00:00",
+      "last_success_at": "2026-10-25T21:56:58.610309+00:00",
       "robots_status": "ALLOWED",
       "document_title": "멀티 클라우드 연결, KINX에서 시작",
       "document_count": 1
@@ -88,10 +88,10 @@
     {
       "source_code": "DIGITAL_EDGE",
       "url": "https://www.digitaledgedc.com/",
-      "attempted_at": "2026-10-24T22:00:00.833279+00:00",
+      "attempted_at": "2026-10-25T21:56:58.610336+00:00",
       "status": "SUCCESS",
       "new_documents": 0,
-      "last_success_at": "2026-10-24T22:00:32.338731+00:00",
+      "last_success_at": "2026-10-25T21:57:30.093078+00:00",
       "robots_status": "ALLOWED",
       "document_title": "Data Centers, Colocation and Interconnection in Asia Pacific",
       "document_count": 1
