@@ -3,8 +3,8 @@
   "source_url": "https://dc.namepf.com/data/dash.json",
   "source_name": "NamePF 공개 데이터센터 개발 현황",
   "source_type": "THIRD_PARTY_DASHBOARD",
-  "source_built_raw": "2026-10-26 08:53",
-  "permits_updated_on": "2026-10-26",
+  "source_built_raw": "2026-10-27 07:49",
+  "permits_updated_on": "2026-10-27",
   "primary_source_url": "https://www.data.go.kr/data/15136267/openapi.do",
   "fact_status": "CANDIDATE",
   "items": [
@@ -224,10 +224,10 @@
           "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9xQk1LMzRUbHI2YURhYVBJb1VXMGhubFJ4VlJkOEZpUXNBY21mM3B1SFNKYkI2cVNEUDZ5RjltOXBkbHNDUWVMWjhLbzBJVDdfM0FNZ3JoVi1KMGhT?oc=5"
         },
         {
-          "title": "당진 석문산단에 2031년까지 2조원 투입해 AI 데이터센터 건립",
-          "publisher": "연합뉴스",
+          "title": "당진시, 석문국가산단 내 AI데이터센터 투자협약 체결",
+          "publisher": "당진신문",
           "published_on": "2025-12-04",
-          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE50ZG5NNnFFSTM0a0lKbTdXaE9rcU51WEhsUEFZeTJDSUJHbnhhbkVfbWMzQ1QwVS1XVzlyMV9ZWkdhLWhyNnh2WnhQMS1iMnRoV1N3d2ZhODBJVWvSAWBBVV95cUxOTGJCR0c3TlJqS0wwNXpMV0VGcTNqdkN1TXJUWmJTY3pfd1VzS25FQTFxRkxPRzhEbU1jdkxpV19RcmRHUzhXR2Y5UG5feUV3Tm5mSjc4anVnQW9zTU5JdjM?oc=5"
+          "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBRcVlrOUMzYzRETmxnOE1CeTRURkMtVDBZTGhTVk1pMExGanIxQUdfWURHRjQtY0RINHliMVRfLWNlVC1vSk44RExIaWd6NWVSUGhMU01UdzBRV0U4M1JlR2QxSVo3MW9o?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -582,7 +582,7 @@
         },
         {
           "title": "장성군, 황룡면에 2조 2000억 규모 ‘AI 데이터센터’ 조성",
-          "publisher": "m.ngtv.tv",
+          "publisher": "ngtv.tv",
           "published_on": "2026-01-19",
           "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBsWmd6Rzk5UlZ6R3VYVGs4TGljTkcwVm56Y2RWSlU1N3dhSnhNLXYwamJ3bjNORjFXdUtnNDF3TW9vdTBUbnVKdXRXTUJkU2sxenB5SXFWOUV4eC1LQ21laQ?oc=5"
         }
@@ -647,7 +647,7 @@
         },
         {
           "title": "장성군, 황룡면에 2조 2000억 규모 ‘AI 데이터센터’ 조성",
-          "publisher": "m.ngtv.tv",
+          "publisher": "ngtv.tv",
           "published_on": "2026-01-19",
           "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBsWmd6Rzk5UlZ6R3VYVGs4TGljTkcwVm56Y2RWSlU1N3dhSnhNLXYwamJ3bjNORjFXdUtnNDF3TW9vdTBUbnVKdXRXTUJkU2sxenB5SXFWOUV4eC1LQ21laQ?oc=5"
         }
@@ -1042,7 +1042,20 @@
         "reported_headroom_sum_mw": 0.0,
         "meaning": "지역·변전소 공급 여유 · 센터 확보 전력과 별도"
       },
-      "news": [],
+      "news": [
+        {
+          "title": "㈜서한, 서울 강남 1300억 원 규모 ‘엣지 AI 데이터센터’ 우선협상자 선정",
+          "publisher": "펜앤마이크",
+          "published_on": "2026-10-21",
+          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE91UUlJam9jNGUxVG5zeFc5RUQ0dGdYc3QyOUg0TDdTcDdFZEtDa1RUckZST2FEU3B4Sk1SYjc5ak9JR0F2VUFXT2lRNlhZV1lnMDFqQ0hIdEItYW84WGI4b3kxQS1ZWXZTb1lN0gFvQVVfeXFMTWdRbHpMWldrclUycW84Mkw2bDRZaXZJZGhpUk50RFZPUk1iTHV3enVIZnd1MzJlRFBaNzlXdWxXc3lSakxEMnVESWpwLWg4YVNxd3pLeDBobHE0dzRLMW81blJfSGc5eTBINVJQN3lv?oc=5"
+        },
+        {
+          "title": "[특징주] 서한, 강남 대치동 1296억 데이터센터 신축공사 수주…주가 19%대 급등",
+          "publisher": "뉴스티앤티",
+          "published_on": "2026-10-21",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9pQWZTMW81TVVqakdYdnBXTFYzQmlkSGtHNDc1aU5MXy1sdGNkRTJWangzdWwwWGpPZnAxV3VNNFM5WHVKNDRkX2ZrWjVTRTN4SkpEQ0txLVNId0l5ZG1sNVZTVHdXMXNwbUE?oc=5"
+        }
+      ],
       "commercial_scope": "REVIEW_REQUIRED",
       "review_status": "CANDIDATE",
       "quality_warnings": [
@@ -1587,14 +1600,7 @@
         "reported_headroom_sum_mw": 89.0,
         "meaning": "지역·변전소 공급 여유 · 센터 확보 전력과 별도"
       },
-      "news": [
-        {
-          "title": "[은행 뉴스브리핑] 우리금융 '포항 AI Factory 데이터센터' PF 금융약정",
-          "publisher": "아시아타임즈",
-          "published_on": "2026-09-23",
-          "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE11UmdvRkQ4QWRjanBvTkpfSkV5Y00tckgyMkdhOTN6LUZWNWtsRXpZTDVvSXV3LUJtckZYRmVjdExnUHlOWEJqQUNaSENwbWp6MHR3QjJmM183WjREWEE?oc=5"
-        }
-      ],
+      "news": [],
       "commercial_scope": "REVIEW_REQUIRED",
       "review_status": "CANDIDATE",
       "quality_warnings": [
@@ -2740,22 +2746,22 @@
       },
       "news": [
         {
-          "title": "감사원, 고양시의회 ‘문봉동 데이터센터 인허가 감사청구’ 기각",
-          "publisher": "뉴스프리존",
-          "published_on": "2025-09-19",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFA5UjdkV0hGTEZRMXMyLUtMdXljYjhNa1AzRlNJcjNTMkhseHRCM0JNZ1ZGZWxObl9jb2w2TWdXX25VY3VRbUtiamNReGF1bE9pNEZHbWE2TzNsdnk3ZDVsLWU2Z2Y5RC1nTDJSaUw5eHY1MDDSAXdBVV95cUxQaGx4ZUdYYnY4T1c4NjRtMEMyUWlHb3RSbnZ4Q2NCMnZGMXV2dUtmdnphWlc2al8ybGhuWEVURXpvX3R3Nm1kRGgwOUljWnF4TWlKRGgxYzRkNE40bkZQOFhNamtWUlpiamtKZGdDbV9FQ2hGc25rNA?oc=5"
+          "title": "고양시, 문봉동 데이터센터 건축 심의 '조건부 의결’",
+          "publisher": "고양신문",
+          "published_on": "2025-06-17",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE8wNDJlLTRvcERmd0l4MWlURlcweGhEMkZzU0FsdVZ0UkZSWlZneDRXRHJTSVUzQ1lKbnFNd2ZpRDFoUkY3Z2tQUzF0ZUdGaUcxcUwydkIwOUt6NEg0RWlidXNhOHVhZHRVTnc?oc=5"
         },
         {
-          "title": "고양 문봉동 데이터센터개발사업, 870억 브릿지론 리파이낸싱",
-          "publisher": "딜북뉴스",
-          "published_on": "2025-09-01",
-          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOZE5NcTgtSDZzSnlRUDlRaFN0UzF6WWxwa29hcVJDd2x0UjNQa2ExdDFmTkdmNFIzOG1SWjRiYmRZSU1uM28tNmpuQlN5emNfNTNVbEliNzZaaFlEc3NheElSeDUwN05weld0TXJmUmRLUG9HLWQ1Qi1pZGRLZWVSSnYtVTVfYmxrTW5kV2RqZVdrVEdNVGVxV0xuMnE?oc=5"
+          "title": "이번엔 문봉동…고양시, 데이터센터 건축허가 놓고 또 '몸살'",
+          "publisher": "경기일보",
+          "published_on": "2025-02-19",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE51c24tSWNIcWpnV2hhZHJyUGFJcTYxRTBKQ2pQekZJVU9VOUF6dHptaWlDRnk4VlJaMUhtcEhPQ3VBcUM2YjQ1NkdrUE14UFJhT0ItWXU1RmdpSDg?oc=5"
         },
         {
-          "title": "문봉동 데이터센터 인허가 특혜 논란…고양시의회, 공익감사청구안 통과",
-          "publisher": "글로벌이코노믹",
-          "published_on": "2025-06-24",
-          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNWkl0VGpXWEx2MFFSbHhyQjhtNHFjenVwdjEyYXY3N2lGdThPcFJjamVPTk1xMzItV0tMYWVBS3Q0MmktQldqcnI3X3YyUGdjMHdfX0dwV3F4b0pNb0I1a2hNVUV2R1VISzdaVFViajI3N0NCZnRJdmt3Z2M2MzV4a1VyTWJGMVJxOUZn?oc=5"
+          "title": "고양시, 덕이동‧문봉동 데이터센터 건립 찬반 시끌",
+          "publisher": "신아일보",
+          "published_on": "2024-08-11",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9MVGk0M1JuaFFUMmt1Nk5xZE0tcnA0SDkzZlBQM3ZFbHJYcU1pcUFEdlZmWWtrdGxsQ2lkRV9kR1c1T3YwdnZoMGJ5ejZXV0xlNE5BUVM5c3dmaFozbFdsd3EtT3RtN0F4Yi1idUh5TEM?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -3986,7 +3992,7 @@
         {
           "title": "[르포] 황무지에 들어설 AI데이터센터…해남 솔라시도를 가다",
           "publisher": "아시아투데이",
-          "published_on": "2026-02-13",
+          "published_on": "2026-02-14",
           "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBoSUNlNlMxMzJabzR2MjRkbFhQbDUxV2ZVRXZ3UzhfNkR1WTZ6dXVVdXFjU2lNYko0eU11RkpTekFHNTdyeVFiRWhnWndoZjhPYll3UFVVLThyYUsyeWZyRkNERlRpZFU1NGJZYTZn?oc=5"
         },
         {
@@ -4314,12 +4320,6 @@
           "publisher": "연합뉴스",
           "published_on": "2023-08-21",
           "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1EcXgzM3RwQzlOeVctNHh4dnRLdWhlVlhzVEoxNUcwZ0lIWXMwazN2YjhuV2tlb0FHNkpuX2gxeWJxczVJNEgzemF2T05lU0FLZWE1Q3E5QllLcVHSAWBBVV95cUxOdGNUaGwxa2RQc0JkWWlneDN5cWp5RTg3NndCWkdkLVV5NWxnQ0c0VWUwcVhoRHJjc3AxTjJLamdrbWpLb0NaaERaazAtdlIzdDhwWElVVEFiaXVxdFNmUTI?oc=5"
-        },
-        {
-          "title": "광양 황금산단에 40MW급 클라우드데이터센터 구축한다",
-          "publisher": "에너지경제신문",
-          "published_on": "2023-08-21",
-          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1wY0FMOGRjaEJLYlRteUxBV2hlVHNKeWUtUUVyWUt6amdBcFJxcGdvMGloSUdmSFN4LU0yTkM3MlFHa0g3aFh1OEJQVEhnRnVqVUVncUNJN0JTcUU?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -4512,16 +4512,16 @@
           "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE13czVmU3U0VFlGdjRWZElWR1JNdC03Rmg2d2pjLTI0MXRyeF9WTWdLR3NYaHROT21qRGhubkotVDMxR1dyU3ZTYzhta3VUaEQ3?oc=5"
         },
         {
-          "title": "의정부 용현산단 데이터센터 착공 또 연기",
-          "publisher": "일간경기",
-          "published_on": "2024-12-10",
-          "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFA0UlhNQ3p4MW9RQTJFaDl0TWppbDl1QTZuN3RuSGUzSWdmWktQcUszdzhVSzBHMlBtUXY3eDI1OW9lNlFpWXV4anc1NEJ2X3Z5ZEZHLTVWb2VMckFmb3poYWg2bEJZTkRh?oc=5"
-        },
-        {
           "title": "의정부 미래형 첨단산단 '가속도'… 용현산단 데이터센터 구축",
           "publisher": "경기일보",
           "published_on": "2024-04-23",
           "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE90QWdXbjdTR2RKWDdYMVRpZUgxRkJzWEpDT2hxejRlR09zanNRV2dXRDlLU0loLUk1cjJZNGhfYVZhR0hXbXROMGtSbDlBRk8xQkpqMFRJSEtwTWM?oc=5"
+        },
+        {
+          "title": "의정부시, 용현산업단지 클라우드 데이터센터 유치 투자 협약 체결",
+          "publisher": "보안뉴스",
+          "published_on": "2023-01-07",
+          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBpTXhtcTZXbmJNTmZzNm10dElLb0hpQ0VyLXZvaXFRWEtVejE5dlg1MFNlUURnTmljYVhPQW5DczNwQkh4QmVsVUNWbllSVFRmTDFtREJTd0tuQlVvMXFPblpuVFZTZk03bGQ4?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -5228,7 +5228,8 @@
       "infrastructure_context": {
         "substation_headroom_mw": {
           "신가좌": 0.0,
-          "신경서": 0.0
+          "신경서": 0.0,
+          "인천C/C, 신김포": 0.0
         },
         "reported_headroom_sum_mw": 0.0,
         "meaning": "지역·변전소 공급 여유 · 센터 확보 전력과 별도"
@@ -5622,7 +5623,8 @@
       "infrastructure_context": {
         "substation_headroom_mw": {
           "신가좌": 0.0,
-          "신경서": 0.0
+          "신경서": 0.0,
+          "인천C/C, 신김포": 0.0
         },
         "reported_headroom_sum_mw": 0.0,
         "meaning": "지역·변전소 공급 여유 · 센터 확보 전력과 별도"
@@ -6353,7 +6355,8 @@
       "infrastructure_context": {
         "substation_headroom_mw": {
           "신가좌": 0.0,
-          "신경서": 0.0
+          "신경서": 0.0,
+          "인천C/C, 신김포": 0.0
         },
         "reported_headroom_sum_mw": 0.0,
         "meaning": "지역·변전소 공급 여유 · 센터 확보 전력과 별도"
@@ -7132,10 +7135,10 @@
           "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBlMElmemx5THhCQmhuaFNqVy15Ti1TSWZYejZmX2JCWnNDVjNPdTRkTVpDSUdqbDVIQWFuX1VLRVJxd1J5QWowLXZrblFkaDAtY3R3NWZUV3BYamxXamdoYnNTQ2RlbU90cndwZEZBeWg?oc=5"
         },
         {
-          "title": "고양 삼송에 초대형 데이터센터…이지스자산운용 준공",
-          "publisher": "비즈워치",
+          "title": "이지스운용, 80㎿ 규모 고양 삼송 데이터센터 준공",
+          "publisher": "대한경제",
           "published_on": "2026-07-15",
-          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5lZ3dUTUpWVU56OGQ2czlMUzlUN0xkc0dWMXdfX0xNOUJpZENiQlV3ckNhMjFUM0lYeUl4MWtTMFRwcUNxSVhOTS0wLVBxSVhOc3REbTlyU0twcXc2NWNpVkFYOUI5Zl9vYURFYzBZMEQ?oc=5"
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9mQ0NjT2dIcXYyN19PVW9XVjk5cE91SjNDLWdXT0UwTWt6ZjZ5c0t5TjZra2hpd2NFOUdPRzQ5eGNTNnVrYmFieGJWeldRNkx3N3RxS0JPTGVhZm9JX2hfemk2dUlBZXN3OXB5Tk1XZVd0T0M5?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -9235,7 +9238,7 @@
   ],
   "infrastructure": {
     "source_status": "SOURCE_REPORTED",
-    "headroom_checked_on": "2026-10-25",
+    "headroom_checked_on": "2026-10-26",
     "regions": [
       {
         "name": "강원",
@@ -9585,14 +9588,14 @@
       }
     ]
   },
-  "fact_digest": "f1aa140bccf3947be26f6b2aa426df02850fa76889c0a67cc23cf780e2131385",
+  "fact_digest": "c22ee9c715fdeb5b6ac8ed04ce8f120d1159c94a6b18c7a4af1a068f4d9a0ab3",
   "collection": {
     "status": "SUCCESS",
-    "attempted_at": "2026-10-26T00:10:33.551949+00:00",
-    "last_success_at": "2026-10-26T00:10:33.551949+00:00",
+    "attempted_at": "2026-10-27T00:10:33.293835+00:00",
+    "last_success_at": "2026-10-27T00:10:33.293835+00:00",
     "source_changed": true,
     "added_records": 0,
-    "changed_records": 1,
+    "changed_records": 13,
     "removed_records": 0
   }
 }
