@@ -3,8 +3,8 @@
   "source_url": "https://dc.namepf.com/data/dash.json",
   "source_name": "NamePF 공개 데이터센터 개발 현황",
   "source_type": "THIRD_PARTY_DASHBOARD",
-  "source_built_raw": "2026-10-27 07:49",
-  "permits_updated_on": "2026-10-27",
+  "source_built_raw": "2026-10-28 07:49",
+  "permits_updated_on": "2026-10-28",
   "primary_source_url": "https://www.data.go.kr/data/15136267/openapi.do",
   "fact_status": "CANDIDATE",
   "items": [
@@ -499,10 +499,8 @@
       "capacities": [],
       "capacity_checked_on": "2026-10-13",
       "infrastructure_context": {
-        "substation_headroom_mw": {
-          "신제천": 547.0
-        },
-        "reported_headroom_sum_mw": 547.0,
+        "substation_headroom_mw": {},
+        "reported_headroom_sum_mw": null,
         "meaning": "지역·변전소 공급 여유 · 센터 확보 전력과 별도"
       },
       "news": [],
@@ -1186,10 +1184,8 @@
       ],
       "capacity_checked_on": "2026-10-13",
       "infrastructure_context": {
-        "substation_headroom_mw": {
-          "신제천": 547.0
-        },
-        "reported_headroom_sum_mw": 547.0,
+        "substation_headroom_mw": {},
+        "reported_headroom_sum_mw": null,
         "meaning": "지역·변전소 공급 여유 · 센터 확보 전력과 별도"
       },
       "news": [
@@ -1661,10 +1657,8 @@
       ],
       "capacity_checked_on": "2026-10-13",
       "infrastructure_context": {
-        "substation_headroom_mw": {
-          "동해": 194.0
-        },
-        "reported_headroom_sum_mw": 194.0,
+        "substation_headroom_mw": {},
+        "reported_headroom_sum_mw": null,
         "meaning": "지역·변전소 공급 여유 · 센터 확보 전력과 별도"
       },
       "news": [],
@@ -2545,12 +2539,8 @@
       "capacities": [],
       "capacity_checked_on": "2026-10-13",
       "infrastructure_context": {
-        "substation_headroom_mw": {
-          "남울산": 1146.0,
-          "신울산": 500.0,
-          "울산T/P": 0.0
-        },
-        "reported_headroom_sum_mw": 1646.0,
+        "substation_headroom_mw": {},
+        "reported_headroom_sum_mw": null,
         "meaning": "지역·변전소 공급 여유 · 센터 확보 전력과 별도"
       },
       "news": [],
@@ -2917,12 +2907,8 @@
       ],
       "capacity_checked_on": "2026-10-13",
       "infrastructure_context": {
-        "substation_headroom_mw": {
-          "남울산": 1146.0,
-          "신울산": 500.0,
-          "울산T/P": 0.0
-        },
-        "reported_headroom_sum_mw": 1646.0,
+        "substation_headroom_mw": {},
+        "reported_headroom_sum_mw": null,
         "meaning": "지역·변전소 공급 여유 · 센터 확보 전력과 별도"
       },
       "news": [],
@@ -4800,6 +4786,12 @@
       },
       "news": [
         {
+          "title": "LGU+, 안양에 초대형 IDC ‘평촌2센터’…외부공기·지열로 냉·난방",
+          "publisher": "한겨레",
+          "published_on": "2023-10-26",
+          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9QbUUwU092MTg5U3FDNlZsWV9FaktuX3YxVXFkUWM4b1g5c2p4ZnBHaWZBZmNZMG5ocWs5RG1yT2I0M2YtZWgza0RBZ3lHbWRBdE1tQlpDdjVoVTR1V01YTA?oc=5"
+        },
+        {
           "title": "뜨거운 감자…안양 평촌 LG유플러스 신축 데이터센터 지중선로 공사 갈등",
           "publisher": "인천일보",
           "published_on": "2022-12-09",
@@ -4998,12 +4990,6 @@
       },
       "news": [
         {
-          "title": "코스콤, 안양 데이터센터 고도화...금융 IT 인프라 핵심 거점 강화",
-          "publisher": "글로벌이코노믹",
-          "published_on": "2026-03-27",
-          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQOHVOQWlQMXZibFdXZ0V4ZjBjbVRKU0doRFpiTWYzRE9PRWZIRWptZ2ZMNFR2aHF0LTRtdW9SNVpoWDU4YmJ4S1NJa2Z6NW9KNThOWmJBNXdWZGtmZi12N2xtY0JfWGtfWmZmQ3pUSnA2ZnBWT3JnQ1dYTnoyZVRBZ1dWMVBkaF8t?oc=5"
-        },
-        {
           "title": "코스콤, 차세대 안양 데이터센터 건설…연말 준공 목표",
           "publisher": "비즈워치",
           "published_on": "2026-03-27",
@@ -5014,6 +5000,12 @@
           "publisher": "전자신문",
           "published_on": "2026-03-16",
           "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFAyMnE4OHJJendpTlFlOUJZUVJaU0FSQWQzZVFLdFRhVUtTVDRnZjhIQ3dFTnlURVZQN2p0dmFFbmluSFkzSWc3Mkx4WUwydw?oc=5"
+        },
+        {
+          "title": "코스콤, 차세대 안양 데이터센터 연말 준공...금융 IT 인프라 고도화",
+          "publisher": "마켓인",
+          "published_on": "2026-03-13",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE43WDRxbGdkQjl0S3JaTUZoZFdQMmZHMmc4NThfaTEtVWpCM3dLaXo4X3BRd0trenVOeV80N3B5eWYxbjk3VER4bm12Q05RQXdsV3NVVmNOQm9XNmpXZUtFVTBRa29tMUxFRkdjNXlIdFFGZTA?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -5275,10 +5267,8 @@
       "capacities": [],
       "capacity_checked_on": "2026-10-13",
       "infrastructure_context": {
-        "substation_headroom_mw": {
-          "신제천": 547.0
-        },
-        "reported_headroom_sum_mw": 547.0,
+        "substation_headroom_mw": {},
+        "reported_headroom_sum_mw": null,
         "meaning": "지역·변전소 공급 여유 · 센터 확보 전력과 별도"
       },
       "news": [],
@@ -5491,10 +5481,22 @@
       },
       "news": [
         {
-          "title": "메타인프라, 아산에 데이터센터 설립..빅데이터 허브 '도약'",
-          "publisher": "동양일보",
+          "title": "캡스톤운용·메타인프라, 3200억 규모 아산 AI데이터센터 11월 착공",
+          "publisher": "딜북뉴스",
+          "published_on": "2025-09-26",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOVEF4NDFmaWV1bEFfN2NJRGVUdDN0X0kzQlEtci1ydW05SWxpWjhlcmlSU2tkQUZ6aWdpdlIxVzRNNlprbHNlcnNRcl9Oc09STm85TVRXVTB3M3hQM1VCSlg2V2xOS3N2cGNyTTJXWEEwZ3M3d1pWamNNaHZoU0NZVnZRN1NsaUdPdGdjNXZYUHlwNFBqemVwSWk1MU9TVmxIdEFQSW9IVzU?oc=5"
+        },
+        {
+          "title": "메타인프라, KT·KT클라우드와 아산 데이터센터 사업 업무협약 체결",
+          "publisher": "전자신문",
+          "published_on": "2024-05-16",
+          "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5Yc2pwWGpnSDZ4R2xwcEZJcTN4R0FOXzZ1MHp3YnNYUkJ1QnQyVG4xQTNUTFN6RUo1ZVFWTmNkalJrLWRycXQ0S3VjMzJfdw?oc=5"
+        },
+        {
+          "title": "아산시, ㈜메타인프라와 데이터센터 설립 MOU 체결",
+          "publisher": "대한경제",
           "published_on": "2021-08-25",
-          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE50V0Q1eWJFejNLUl9SbDZtR3h3ZDZSNjlPbTBUUEx1WEliNDM0bE1hLVJVaTNId1AxVkZOb29HcU5WengtSGVNV28wQnFRLVQtaktZOTdrNGdCNGpBNW0tSmduQ2xvblZ6b3c?oc=5"
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5PN3lIZmtFYW5iVGVPdmltTGs1ejVRak1RVTF0dzktalg5TU9PQXktdUtyWW8zci1SSWo0cGYyUE9rTjNrY0h6N3ROUEp6U091VkxpbXJXbmlDaTRESWJDVU9iQ05LYjhXX3JsVjN0eF9GVkp6?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -5633,7 +5635,7 @@
         {
           "title": "[기획취재] 인천 서해구 원창동 데이터센터 건립추진.. 새로운 상생모델 가능할지 의문",
           "publisher": "인천매거진",
-          "published_on": "2026-10-12",
+          "published_on": "2026-10-13",
           "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE8tZ3V4a0lhSWprS1ltM21sS1NKQXNUVkliUnN0c1pPdFgwN3B0a0pxZUF6bnBxTzYyNGVlUnZXVFM0UFBtQWtURzdqR2x0T0RlM2F0bjJRNkVpRUJ4Y29uOHR6Um51Sk82SEHSAW5BVV95cUxQbF93aDAtN0VCb194MkZPZXdwRF8yYmtndWYyZ2g3MjRQZ2RxSVVhVVBlMjJyaHJxZFhyNkxqTDBoVEZpQXNwbG85cWhkRTUwa0RKWlowV2VFMUdnb3lldnJRdGtnLXp4NjR0SXo4QQ?oc=5"
         }
       ],
@@ -6258,7 +6260,14 @@
         "reported_headroom_sum_mw": 1278.0,
         "meaning": "지역·변전소 공급 여유 · 센터 확보 전력과 별도"
       },
-      "news": [],
+      "news": [
+        {
+          "title": "KT클라우드, 경북 예천에 10MW 규모 AI 클라우드 데이터센터 준공",
+          "publisher": "비즈니스포스트",
+          "published_on": "2025-05-29",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBkWWd2bzRnXzRUeXFPcnZ4RFI4dFFDbVRGakhZODN2WnZKQ2QxVnN5czJpbjlUNW5mNjVJLUR1VTJhcjlYMWhTSFZYWWxVektSSmZiX1dkcV8yRXF2Q2h5M1dRTnVQelRhaVZfcjBGeHhqTzQ?oc=5"
+        }
+      ],
       "commercial_scope": "REVIEW_REQUIRED",
       "review_status": "CANDIDATE",
       "quality_warnings": [
@@ -7023,14 +7032,7 @@
         "reported_headroom_sum_mw": 0.0,
         "meaning": "지역·변전소 공급 여유 · 센터 확보 전력과 별도"
       },
-      "news": [
-        {
-          "title": "물·에너지 빨아들이는 IT 기업 데이터센터, 중동·남미로",
-          "publisher": "한겨레",
-          "published_on": "2025-05-28",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9rd0JiTXpYaFpxS2JSOTFsRElwZDcteUNHWXV0RHp3dFhfZGN2N0NOcjV3X2UzazRnaGt2Zjh0QjhnOHJkMXpjNzN0S0ZNb0IyOE9ZWlVBV0dMWDhqWEJQaDN4ZTl4Y2VxcWFHamFoZ1J2bFE?oc=5"
-        }
-      ],
+      "news": [],
       "commercial_scope": "REVIEW_REQUIRED",
       "review_status": "CANDIDATE",
       "quality_warnings": [
@@ -7124,9 +7126,9 @@
       "news": [
         {
           "title": "LG CNS, 고양 삼송데이터센터에 '액체냉각' 인프라 구축",
-          "publisher": "블로터",
-          "published_on": "2026-08-26",
-          "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBUd3ZlWXpjVzA0UnJVajl1MDhBdXlDYjBLSzFmSTBqbV85bEhUWlp4cVZ5RDRfcGtYNVlYazczYkRPcHF4VVhKMUhWZTlSM2pkNWt2cEJzc05xSjhhek8zelpXX0xnbXlX0gFsQVVfeXFMUEhuWTJnVEhhdExmd1V4NWpISWM4bENWaHM3S1oxTWIzaU1jckFOXzlpU1plOGNsa2JOOVBIVkN3UXpHRWJyMjBWdWN1djVTMG9VSldCc3Q1Z09SLW5MT3dFa05fQllOZ3dNSjlW?oc=5"
+          "publisher": "Daum",
+          "published_on": "2026-08-25",
+          "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTFBldHllMm5IdXc1MG5VRzRLQ0lOeU5PNjc4UTRyc0xjOHZMMHJ0Y2lpbUMzQmxaU0RyRDNMbTA5eTV6eEdyT0E?oc=5"
         },
         {
           "title": "이지스자산운용, 고양 삼송 데이터센터 준공…수도권 서북부 최대",
@@ -7564,22 +7566,22 @@
       },
       "news": [
         {
-          "title": "'서울 남부권 디지털 허브' 케이스퀘어데이터센터 가산 준공",
-          "publisher": "연합뉴스",
-          "published_on": "2025-07-24",
-          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9RZFdFUXFjaExycnZXNG1XdzVKNGpoMnVvNUZacDdHNkJTdkdBa1RNNThKeXI0ZkJxc1dXQVBidnItWkZaNkpjVnlhMFBkaUNxQUNGZ29GV2RTX2M?oc=5"
-        },
-        {
           "title": "현대건설, ‘케이스퀘어데이터센터 가산’ 준공",
           "publisher": "매일건설신문",
           "published_on": "2025-07-24",
           "url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE5sODJ3SkZPTmYtNHhpOXk4Vmo2a2wzQnlhUFBRRWtCMXZpLU1ueFZhdEktdHhsSFJNSWYwUkREOEhpVzQ?oc=5"
         },
         {
-          "title": "현건, '케이스퀘어데이터센터 가산' 준공…데이터센터 시장 선도",
-          "publisher": "뉴스1",
+          "title": "현대건설, ‘케이스퀘어데이터센터 가산’ 준공… 디지털 생태계 핵심기지 구축 박차",
+          "publisher": "스마트투데이",
           "published_on": "2025-07-24",
-          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBLWjhTSW1Zd3FvaWYwbE9UZFZNcjEyUUs3Z0Z3ZUs0WVdRcVFncjZESGdPd19FQ0RuaHlSWDhYTGstMkJVWnpsMnd6T1pOOWxOQlV6aEV1NUVISUE?oc=5"
+          "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1FTUQ1THY3MFg3dlEtU3J5RkM3ZGF3WDNnTDlxT3pPUmYtZGszdU5Vd0cyMW9wbHVWMHlhSHhXUEU5djgtRWVOUmowNnpnZHI5ekVoaXkxbVFkWVptVUE?oc=5"
+        },
+        {
+          "title": "'서울 남부권 디지털 허브' 케이스퀘어데이터센터 가산 준공",
+          "publisher": "연합뉴스",
+          "published_on": "2025-07-24",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9RZFdFUXFjaExycnZXNG1XdzVKNGpoMnVvNUZacDdHNkJTdkdBa1RNNThKeXI0ZkJxc1dXQVBidnItWkZaNkpjVnlhMFBkaUNxQUNGZ29GV2RTX2PSAWBBVV95cUxPTUFaZ05ZSVpHM3ltZnBNeEw1UDU1eU1aNmVWQkJIdEtiY3ZWWC1xQk1TMk93V3pUMi04NjNPY0dxUFFnbmZfR1U3aUxKS3d4bFdPV0tGbTlNRE9yUUpLWjY?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -7656,10 +7658,10 @@
           "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9KdWt5ckpYaHJhTjBGRUpVeVhUQjJyczh6QXAwWUlhVUtwNXRVaHhzWTJCaXRhLWpnZ25wTEtEVHV0ckphWUhaMWNMR1B3SGZmMEFPR2JId0xZMmpDOEJtU9IBeEFVX3lxTE10T2ROVWhRZWxFaUpvaW00M2o1c0dYQlZKWkI5RE8xZ3ZwaFJ6dC1Rendzdy11Vi1QUVNJVGF4a0hWekRtLTN3YUpPMVlUbFM5RlpmREdjYXY1czNuVGdaZzdNSUNCT2hEbnVwNkJnUFYwZVlfOFZBbw?oc=5"
         },
         {
-          "title": "용인시, 죽전동 다우데이터센터 '착공신고서 반려'",
-          "publisher": "파이낸셜뉴스",
-          "published_on": "2022-11-09",
-          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9nS1lidnJjanYySm1KOU1zS2V1ZjZiTzVkaFlLZjVKdXU0VXFZQThHdTBpQUV1UjNRMHVXdS1zOUJ1YkZCQ2cxb3JYMlpvQVN0WmJRVTlBMGd0UQ?oc=5"
+          "title": "[공시]다우기술, 네이버클라우드와 죽전 데이터센터 계약",
+          "publisher": "한스경제",
+          "published_on": "2026-09-10",
+          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBmZEtTMGxjZ3B2SHFiTGZnaUhoRS1rbHVLakFkNUY3NUVrWlZvUlhXRV9sdkhoZXF1Zzl2RkRwY2lmdEpVUmlscXFNWHdsRUp3bVNnUGtqZHFEV25rODZKUEdDZ2VySmpnZEdn0gFvQVVfeXFMUEthMS0tbEotczZ1ajRNOGt3dUR6UDFKdDBjSVNrNGRPX0E4NzhUMy12c3oxTE41Qlcya053ZUtrai12NGt1WloxeEV5aFBaT01VM1M4MlBXQ1JCU1Nxdm1FblNrWWNOZHlScjRDNUpj?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -7853,16 +7855,16 @@
       },
       "news": [
         {
-          "title": "대전 대덕구-㈜케이알로지스, 평촌동 데이터센터 건립사업 업무협약 체결",
-          "publisher": "대전일보",
+          "title": "대전 대덕구-케이알로지스, 평촌동 데이터센터 건립 업무협약",
+          "publisher": "뉴스1",
           "published_on": "2024-10-01",
-          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE14MUk2ZnlPNTh6Vzhmd3U3WXFTLUVRdG9TWE1tRjhlbW9WLXBfd2tYb1hhVjNkVHUtdTdqbmxWTVNmbXBiODFndzJESzdxb3FBWnUweEpWN2dOS2Q5em1VMUtfLVR4dUJnNG55RWhfTdIBc0FVX3lxTFA1YnRzcVZpRGZBQkNlaGEwUlJ5WlMzMko0ZURWV1dZZEhuOWlFV3paQ2ZiNk9Cajh5ZktaX1RJWWhwX1VlaTk5OGNzbkxhQzNDMTZLV2FkYnNxamNCa2FLV1ZiN1N4Z1FDVEIzUW5reUJYU1E?oc=5"
+          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE16cU9aVDY3RnhHRkpTczlxdk9ydW9YUDdyZVptbm5GZXZxdFJidExvMU5tMjYtUGF2ZkNzVkpGWUlsd0NON3N2Nm1jaTdXbWtUZDB5eGoxUE1EcUxuZHBLaw?oc=5"
         },
         {
-          "title": "대덕구-(주)케이알로지스, 평촌 데이터센터 구축 업무협약 체결",
-          "publisher": "충청뉴스",
+          "title": "대전 대덕구-(주)케이알로지스, 평촌동 데이터센터 건립사업 업무협약 체결 > 뉴스",
+          "publisher": "더코리아",
           "published_on": "2024-10-01",
-          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1tcG5iQzlRS19KUUY4TFlfbVlvcTF2N0VLcno3aE96LVl6X2hxYjF3cHBQandKYl8tcjFsNDRkYmhKMDBzUzJCaDdEUVdGMktFTUc4Ty1CeDg4UE0yaVlkNmxjckpXOWU4dTMyaQ?oc=5"
+          "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBGbU9nSS1DaDJ0MFgyOEtkSDM1bHRTdTZ2RkMySHJudWJvM19kcWV1aEY1aXB6R3JvR19iU3JUTXFyZUZBRHJ5UkZRd3hwc2pWRVczWGZSNjB5dTdWWU8tbW1QbUJ5OFB3YV9QVVI5bTlBUQ?oc=5"
         },
         {
           "title": "대전 대덕구-(주)케이알로지스, 평촌동 데이터센터 건립사업 업무협약 체결",
@@ -8213,10 +8215,10 @@
           "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5BenpmTXZHamlUU3ZqY0tvUzQ3UWF6YlBlekNtSGZ1OU1DLVdCNEpHdW9saGxlanExdmJ1emRadjBQRGFmc0dHVl9yS29LN0pKb2dMNDV1VGduZHhCT1dfRmhsdFA5VDRqaWpQMHFR?oc=5"
         },
         {
-          "title": "“국내 최대 규모”…현대건설, ‘용인 죽전 퍼시픽써니 데이터센터’ 준공",
-          "publisher": "매일경제",
+          "title": "현대건설, 용인 죽전 퍼시픽써니 데이터센터 준공… 64MW 규모",
+          "publisher": "한국건설신문",
           "published_on": "2025-10-24",
-          "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBtYnJjcHA4MjlHV2dfcGlHLXhJbHpxRlZiN3pmTFlyYWE5NHdXX0pZZUl0VXROR3ZPRHNka1RXblhIU2xtZ3JycjRZTlNlcEV0ajBfZmJWVHY?oc=5"
+          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9JTldqdkVsd1M2QmZvQXRTRV9IeWJ1bHZYSThpTUpBMW1mNVVDV1BIeVEzMXM3WVp4Y1NYX1BQZVBXb2pJcFFQU2dDOXdDRlZ0T1FBU1gwTWs2aERyT0hqZmZLMnBlZXNBdnYw?oc=5"
         },
         {
           "title": "현대건설, 1.3조 규모 '용인 죽전 퍼시픽써니 데이터센터' 준공",
@@ -8429,22 +8431,22 @@
       },
       "news": [
         {
-          "title": "카카오, 하남 데이터센터 냉방 전력비 23% 절감…안산 운영 노하우 확대",
-          "publisher": "라이센스뉴스",
-          "published_on": "2026-09-22",
-          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5NM3BFYXhHOGJfb1loVXZyNjFNNDdNaHcyQ2FQSFdhNGJldlNTWVBXQ0s5NXVrWXZWa2V6cWhIMFBRQWY3MXFtSW9vaFNTY2lReFZrdDlZSnE5TE1BOUctVHlib3p0Vy15RlNV?oc=5"
-        },
-        {
           "title": "카카오 데이터센터 안산, 로봇과 만나다 🤖 | 카카오 x 한양대 ERICA 산학협력 프로젝트",
           "publisher": "카카오",
           "published_on": "2026-08-12",
           "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE84amZTU0ZDWkd2N25Qd1Y5WFExNEZoM0lDYlVzZmVabFlOZDhCOGFYelVvMkZIYnpCT05RSzBfdlVQU0RfWjk5X3JuNWVLZG1xSjRzWlB3?oc=5"
         },
         {
-          "title": "카카오, '안산 데이터센터' 통해 온실가스 4753톤 감축 효과…친환경 경영 가속화",
-          "publisher": "뉴스톱",
-          "published_on": "2026-06-24",
-          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE00VER2ZmxlZTNuSGdic2J6RjZjb3FjMzgyR0pGamNVekZ0U3RZMUd0c3VyMnVsenY3UDNtV1FpMEdqMjUtdzQ0ZnFtRXQ4Zm5fZEhtMmdQTUdGTVNXUGFYS0ZXR0FvV1J0R0sxdHo0MA?oc=5"
+          "title": "카카오 데이터센터 이어 ‘AI·로봇’ 후속 러시…안산, 투자문의 잇따라",
+          "publisher": "한국경제",
+          "published_on": "2026-01-16",
+          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE91eXRQUjZjSXhSSV9seUIzV21UbUEyVVowTUR1VHlTOWFQTXNYeVc3cGdodWZLd21PckZuUVRaR0J2X0VtcjVsTXFLd2dBMWhvVS1vQ1ZFQ3pyQQ?oc=5"
+        },
+        {
+          "title": "카카오, 안산 데이터센터에 GPU 2040장 구축...”내년부터 최신 컴퓨팅 제공”",
+          "publisher": "AI타임스",
+          "published_on": "2025-12-29",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBjMndjazY0bmhRRlY3bVJsRUF2azF0MnZ4M3NUWXVNc3FnczJ3bjByT1NTRzhZR0g4d1FocjZFd05zcDljenpTb1k5QXVSSllKVjFVN2ZzR2FPS1JkVEV5NXEtdkY5ZWZkQXc?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -8523,16 +8525,16 @@
           "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1KcHM5ZWx2NHh2OGZ2QmV3OHdpVmZ6VjBNTWRaWnBxSTVvXy1OTndSTWpMMmwxNVBScUtkbVBObDlVRTk1X3gtM3VtZVRuemVMZGZCR1ZEd3ZNQ2VyM0dDUHZhOVJrb3o4YnJHV1dvVQ?oc=5"
         },
         {
+          "title": "김포시 구래동 데이터센터 건립문제 법정 소송으로 번져",
+          "publisher": "중앙신문",
+          "published_on": "2024-07-30",
+          "url": "https://news.google.com/rss/articles/CBMi2wJBVV95cUxPdnM2TjFjelloOE1KMUQxRUpGd2FZZDhwWldBem80UlQ3Vnh0bHNDMnA2Y1R0TVRQdDhVZ19JRlhXX191QXlLc2FSWXVLanhtM2xhdkdFZnp2cWVOYk5pMkFXay1PLXFyU2twUE9ZaUlCSHlkRzg2SmI3UG51eUlwdkVmVGVObWdOQVBkQ1hQRXcyS05XUVhRbWQwcFJBV2kxbzFlYllVYzNZX3hyQUZLbHdLMF82Slo2VERfZTZ3OWotRXBTa1NOTVhBX2ozaE1fbHBMcXBlUDNkcGo0LWZHV1FraXowNlgweGVWbTgxS0txTEdYSWRTdWZYSzVDWGM1Rm02MUl1dW8tdE5QUnNscDF3RGlxMGNGMGhSWGxkSUU1ajhNY1NxQWRIdkd0dWpZdVhqWkhvVVZHYkJsWTJ4YnNtaW1uLWpVTURMLTIxY3pwUl9nazlZdXR5MA?oc=5"
+        },
+        {
           "title": "김포시, 구래동 데이터센터 착공반려 결정",
           "publisher": "김포신문",
           "published_on": "2024-07-29",
           "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1vV2JrekIyUXhwdTFjLWozSko2YndreHNQckhxbklZWHFQQ1BEdjFYMlF3aW42RUZ0M3E2ZGVzY1lRU0l0WnpMQXpGWFZJNGIwQ003NzRScWZvTWNkRWU2Ylp3V3p1TVXSAWtBVV95cUxNZGV2OEdQWTB0d0kwZTJacTlWRnoyM0k0N1VQYVNzeElSR2tCdW5sV042ZUZMd2xuNzBNeHdTNVJnVGZXSWktbmE5alQ5RS0xZC1ycEJIRDQzOFpIQ2ItdXo3bWZHT0hSbXJ3VQ?oc=5"
-        },
-        {
-          "title": "김포한강신도시 구래동 데이터센터 착공 신고… 주민 반발 ‘2R'",
-          "publisher": "경기일보",
-          "published_on": "2024-06-01",
-          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5sY0FabjlBVmZDcHpzWWpZdEtiWHlpN2lObW9ld2VoN2RSQnREbmF0VEJPQmtnQ2ZsZjNvVVZ2bE9tOExCSklhWnZFRG4xck4zV2tXcy1XS19QLTQ?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -8587,16 +8589,16 @@
           "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1WbklFM09mSWk4b3lIVUhfai0xRTBma1U5M1JaWEUzU0JydWMxTlpIVVZPVFQtT0Q2WVM5VTM5LURBdnFXMFhBNDBNN05oMnpBSWpGdFJTWG81OFdfeDFEX1JjTVBNQS0xRGRn?oc=5"
         },
         {
+          "title": "[Success Story] IBK기업은행, 하남데이터센터 \"금융 데이터 백업 3벌 분산\"...격리·변경 차단으로 복구 기반 강화",
+          "publisher": "지티티코리아",
+          "published_on": "2026-10-13",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9qbzljMWhrUjU4bTUxcl93MmpvVXMyVUJKNFlOZUQydk05elNGYlJxa3lqQ1RtdWYwa0N2Wm1ZU2ZrSERraDIydEw2SE1hZURpU01IYm4zQjQ3MlpMRVFTSThrMWEta1lxRWc?oc=5"
+        },
+        {
           "title": "[구축사례] IBK기업은행, 하남데이터센터에 델의 사이버 복원력 솔루션 도입해 전사 정보보호 기반 강화",
           "publisher": "디지털경제뉴스",
           "published_on": "2026-10-13",
           "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE11UVhzeFphdml1aU9CRGd3bkVJR240NjFsUldPUmZ3bVhEamoxMEU1cF9uYW03aW10RTB0TW9DZnl1bkZwcjhnZmdjX0Jsb2JkYkxjZ0gtVE5EZFdlVGFQT2ZxUG1wUk1BN3c?oc=5"
-        },
-        {
-          "title": "델, IBK기업은행 하남데이터센터에 '사이버 복원력' 인프라 구축",
-          "publisher": "이데일리",
-          "published_on": "2026-10-13",
-          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOaHpoVFkyYWlTeXpTTzBFLXB1UTZXOVgwOXl5U2N3Z2l5ZjhQd21GY0dIN2lMdTdaLUZhZFBwajZQd3pmd0tyODdpclc4RWl6NVhGSElHWUtTNXNzVUozZGtUdVpaczFwenZBeWdsQTg0SVBCOUVPN095ZE1EMG0wVg?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -8763,6 +8765,12 @@
         "meaning": "지역·변전소 공급 여유 · 센터 확보 전력과 별도"
       },
       "news": [
+        {
+          "title": "LGU+, 안양에 초대형 IDC ‘평촌2센터’…외부공기·지열로 냉·난방",
+          "publisher": "한겨레",
+          "published_on": "2023-10-26",
+          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9QbUUwU092MTg5U3FDNlZsWV9FaktuX3YxVXFkUWM4b1g5c2p4ZnBHaWZBZmNZMG5ocWs5RG1yT2I0M2YtZWgza0RBZ3lHbWRBdE1tQlpDdjVoVTR1V01YTA?oc=5"
+        },
         {
           "title": "뜨거운 감자…안양 평촌 LG유플러스 신축 데이터센터 지중선로 공사 갈등",
           "publisher": "인천일보",
@@ -9238,7 +9246,7 @@
   ],
   "infrastructure": {
     "source_status": "SOURCE_REPORTED",
-    "headroom_checked_on": "2026-10-26",
+    "headroom_checked_on": "2026-10-27",
     "regions": [
       {
         "name": "강원",
@@ -9588,14 +9596,14 @@
       }
     ]
   },
-  "fact_digest": "c22ee9c715fdeb5b6ac8ed04ce8f120d1159c94a6b18c7a4af1a068f4d9a0ab3",
+  "fact_digest": "57e9f2cd68a3fa941ae63cb37d8987694e0567e1b07e3c80948f905bfdfdf778",
   "collection": {
     "status": "SUCCESS",
-    "attempted_at": "2026-10-27T00:10:33.293835+00:00",
-    "last_success_at": "2026-10-27T00:10:33.293835+00:00",
+    "attempted_at": "2026-10-28T00:10:33.288848+00:00",
+    "last_success_at": "2026-10-28T00:10:33.288848+00:00",
     "source_changed": true,
     "added_records": 0,
-    "changed_records": 13,
+    "changed_records": 21,
     "removed_records": 0
   }
 }
