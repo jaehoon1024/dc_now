@@ -1,12 +1,12 @@
 {
-  "checked_at": "2026-10-29T06:55:07.845219+09:00",
+  "checked_at": "2026-10-30T06:54:07.056441+09:00",
   "sources": [
     {
       "source_code": "KT_CORP_NEWS",
       "pages_scanned": 3,
       "oldest_listed_date": "2022-07-07",
       "scan_end": "archive_end",
-      "new_documents": 1,
+      "new_documents": 0,
       "found_documents": 27
     },
     {
@@ -14,16 +14,8 @@
       "pages_scanned": 6,
       "oldest_listed_date": "2026-08-24",
       "scan_end": "page_limit",
-      "new_documents": 1,
-      "found_documents": 60
-    },
-    {
-      "source_code": "SKB_IDC",
-      "pages_scanned": 1,
-      "oldest_listed_date": "2026-05-03",
-      "scan_end": "single_page",
       "new_documents": 0,
-      "found_documents": 11
+      "found_documents": 60
     }
   ]
 }

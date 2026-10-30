@@ -3,8 +3,8 @@
   "source_url": "https://dc.namepf.com/data/dash.json",
   "source_name": "NamePF 공개 데이터센터 개발 현황",
   "source_type": "THIRD_PARTY_DASHBOARD",
-  "source_built_raw": "2026-10-29 07:52",
-  "permits_updated_on": "2026-10-29",
+  "source_built_raw": "2026-10-30 07:53",
+  "permits_updated_on": "2026-10-30",
   "primary_source_url": "https://www.data.go.kr/data/15136267/openapi.do",
   "fact_status": "CANDIDATE",
   "items": [
@@ -3931,16 +3931,16 @@
           "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE93MHJzd0V1d1BZdEViZWxIQlJHMUdWeWRVdm1yZHZkZ1JzcjBiODl2UzBNR3ZMc3hvaUJNbHc1R1ItZ1RYdFRiZ2x2SmtjbVZfLVcyclRZemZId1FzcXVRMjhYU1EyWUh1UWVDa2ZTTQ?oc=5"
         },
         {
-          "title": "마스턴투자운용, 서울 영등포에 10MW급 엣지 데이터센터 개발",
-          "publisher": "아시아경제",
-          "published_on": "2025-10-17",
-          "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE0tZlIwRDdybVNNLVYtQnZ2djRDdmNpMFpiU2hMMlVkaXpEdXpvM1hvRllxcFFYT3ozZGI4T3FWekFsME4tVFJBS0JlU1pUQnhNRWJqc09iZlhuNk9QS3ZYaUd3?oc=5"
-        },
-        {
           "title": "마스턴운용, 서울 영등포에 10MW급 엣지 데이터센터 개발",
           "publisher": "매일경제",
           "published_on": "2025-10-17",
           "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5VNUVXV3RMbS01U3RDblctWUhHbUZxVkE4YnZNTlV5d3lyLXVDQXJtdU5JTzU4cG9pUjRDS2t4Qml5T1BFRkx6eEJpaFAtVzRZMUE?oc=5"
+        },
+        {
+          "title": "마스턴투자운용, 서울 영등포에 10MW급 엣지 데이터센터 개발",
+          "publisher": "아시아경제",
+          "published_on": "2025-10-17",
+          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE8zM251N1JuQWxJWEZtb2xlaVdTcU5DSXZYWGpjZ3prSFVzd2pYOW44SExvSlhFWEZpSG5kY0ZadDlRcVFLWnVSOENud2xJMHlYVExzUHlEemZia1dUci1rXw?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -4512,16 +4512,16 @@
           "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE13czVmU3U0VFlGdjRWZElWR1JNdC03Rmg2d2pjLTI0MXRyeF9WTWdLR3NYaHROT21qRGhubkotVDMxR1dyU3ZTYzhta3VUaEQ3?oc=5"
         },
         {
+          "title": "의정부시, 용현산단에 클라우드 데이터센터 투자 유치",
+          "publisher": "스카이데일리",
+          "published_on": "2024-04-28",
+          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9rT1o3aWJ2d3FFV2tKdFdrVEtQMGo5VC1lX0ktRWxaQ2xEd3NmR29pTWJneXpHY2h0dGJYaGJ4QThNMGdhQUVmSjZWN1ZHRURvaDVXU004czVkY29yTFhpYkNSc0lQOFVMNFg5SXhzQTJ3a3dGLUpuMF80RXI1dw?oc=5"
+        },
+        {
           "title": "의정부 미래형 첨단산단 '가속도'… 용현산단 데이터센터 구축",
           "publisher": "경기일보",
           "published_on": "2024-04-23",
           "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE90QWdXbjdTR2RKWDdYMVRpZUgxRkJzWEpDT2hxejRlR09zanNRV2dXRDlLU0loLUk1cjJZNGhfYVZhR0hXbXROMGtSbDlBRk8xQkpqMFRJSEtwTWM?oc=5"
-        },
-        {
-          "title": "의정부 용현산단 클라우드 데이터센터…6일 MOU",
-          "publisher": "경기일보",
-          "published_on": "2023-01-02",
-          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9yV1ExU05qTjBCeU02TlhBZ2RfcW1kQTVHM1MyYXNQTmFva0QxcW5Cb3FTY2RtMkJLb0xKdi1mZ0lMRjIzX2RPdE93R1JvSWhpSjlSQ0NpenAzNkE?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -7141,6 +7141,12 @@
       },
       "news": [
         {
+          "title": "고양시 삼송 데이터센터에 ‘차세대 액체냉각’ 기술 적용하기로",
+          "publisher": "조선일보",
+          "published_on": "2026-10-30",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPTWQ5d3NpQmprRHZxQzVwOGp4WHVFc0FuQV9wQTRXSWZvNWZDQWoyLTdaY1UxdGJhenZjM1pnQnZ3UmYzb0FZaVFXdkFPcjViOGtuVWh0VnZmLXhkak1FSUZWakctSDJGblVUSjdGYjlfMlh4SUt2ZFp3R3VLSHoxWlU3TQ?oc=5"
+        },
+        {
           "title": "LG CNS, 고양 삼송데이터센터에 '액체냉각' 인프라 구축",
           "publisher": "블로터",
           "published_on": "2026-08-26",
@@ -7151,12 +7157,6 @@
           "publisher": "연합인포맥스",
           "published_on": "2026-07-15",
           "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBlMElmemx5THhCQmhuaFNqVy15Ti1TSWZYejZmX2JCWnNDVjNPdTRkTVpDSUdqbDVIQWFuX1VLRVJxd1J5QWowLXZrblFkaDAtY3R3NWZUV3BYamxXamdoYnNTQ2RlbU90cndwZEZBeWg?oc=5"
-        },
-        {
-          "title": "이지스운용, 80㎿ 규모 고양 삼송 데이터센터 준공",
-          "publisher": "대한경제",
-          "published_on": "2026-07-15",
-          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9mQ0NjT2dIcXYyN19PVW9XVjk5cE91SjNDLWdXT0UwTWt6ZjZ5c0t5TjZra2hpd2NFOUdPRzQ5eGNTNnVrYmFieGJWeldRNkx3N3RxS0JPTGVhZm9JX2hfemk2dUlBZXN3OXB5Tk1XZVd0T0M5?oc=5"
         }
       ],
       "commercial_scope": "REVIEW_REQUIRED",
@@ -9262,7 +9262,7 @@
   ],
   "infrastructure": {
     "source_status": "SOURCE_REPORTED",
-    "headroom_checked_on": "2026-10-28",
+    "headroom_checked_on": "2026-10-29",
     "regions": [
       {
         "name": "강원",
@@ -9612,14 +9612,14 @@
       }
     ]
   },
-  "fact_digest": "b3060329af28813b115c2da6f1ffa0e654055394997dec505d392958524a20e2",
+  "fact_digest": "39e6520bbb91844c1fe386decbc82c546fc016b4e2bee831b37159efbf1b824b",
   "collection": {
     "status": "SUCCESS",
-    "attempted_at": "2026-10-29T00:10:33.344998+00:00",
-    "last_success_at": "2026-10-29T00:10:33.344998+00:00",
+    "attempted_at": "2026-10-30T00:10:36.347996+00:00",
+    "last_success_at": "2026-10-30T00:10:36.347996+00:00",
     "source_changed": true,
     "added_records": 0,
-    "changed_records": 10,
+    "changed_records": 3,
     "removed_records": 0
   }
 }
